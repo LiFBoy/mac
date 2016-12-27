@@ -4,6 +4,28 @@ import {Router, Route, IndexRoute, browserHistory, hashHistory} from 'react-rout
 import Index from './Component/index'; //首页
 
 
+import Feedbackpro from './Component/My/Feedbackpro';
+import PersonalInfo from './Component/My/PersonalInfo';
+import UserInfo from './Component/My/UserInfo';
+import Setting from './Component/My/Setting';
+import PayInfo from './Component/My/PayInfo';
+import DayGoods from './Component/My/DayGoods';
+import MyMain from './Component/My/MyMain';
+import MyAlms from './Component/My/MyAlms';
+
+
+//Temple
+
+
+import TempleDetail from './Component/Temple/TempleDetail';
+import PaySuccess from './Component/Temple/PaySuccess';
+import PayMoney from './Component/Temple/PayMoney';
+import FocusLists from './Component/Temple/FocusLists';
+import MessageBoard from './Component/Temple/MessageBoard';
+import PayHistory from './Component/Temple/PayHistory';
+import AlmsDetail from './Component/Temple/AlmsDetail';
+import SelectMoney from './Component/Temple/SelectMoney';
+import CommentLists from './Component/Temple/CommentLists';
 
 
 /**
@@ -27,6 +49,27 @@ const RouteConfig = (
     <Router history={history}>
         <Route path="/" component={Roots}>
             <Route path="/index" component={Index} />
+            <Route path="/Feedbackpro" component={Feedbackpro} />
+            <Route path="/PersonalInfo" component={PersonalInfo} />
+            <Route path="/UserInfo" component={UserInfo} />
+            <Route path="/Setting" component={Setting} />
+            <Route path="/PayInfo" component={PayInfo} />
+            <Route path="/DayGoods" component={DayGoods} />
+            <Route path="/MyMain" component={MyMain} />
+            <Route path="/MyAlms" component={MyAlms} />
+
+
+
+            <Route path="/TempleDetail" component={TempleDetail} />
+            <Route path="/PaySuccess" component={PaySuccess} />
+            <Route path="/PayMoney" component={PayMoney} />
+            <Route path="/FocusLists" component={FocusLists} />
+            <Route path="/MessageBoard" component={MessageBoard} />
+            <Route path="/PayHistory" component={PayHistory} />
+            <Route path="/AlmsDetail" component={AlmsDetail} />
+            <Route path="/SelectMoney" component={SelectMoney} />
+            <Route path="/CommentLists" component={CommentLists} />
+
         </Route>
     </Router>
 );
