@@ -39,7 +39,7 @@ server.app.get('*', function (req, res) {
     res.sendFile(__dirname + '/index.html')
 });
 
-server.listen(3003,'192.198.0.158');
+server.listen(3003);
 
 
 
