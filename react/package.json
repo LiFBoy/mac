@@ -12,6 +12,7 @@
   "dependencies": {
     "autoprefixer": "^6.4.0",
     "babel-core": "^6.21.0",
+    "classnames": "^2.2.5",
     "flex.css": "^1.0.1",
     "get-next-page": "1.0.0",
     "html-webpack-plugin": "^2.22.0",
