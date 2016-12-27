@@ -2,7 +2,7 @@ webpackJsonp([1,0],[
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(34);
+	module.exports = __webpack_require__(38);
 
 
 /***/ },
@@ -13,6 +13,18 @@ webpackJsonp([1,0],[
 
 /***/ },
 /* 2 */
+/***/ function(module, exports) {
+
+	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAsCAYAAAAehFoBAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6QzFCMDdCRTc5MDJDMTFFNjkzRjc5Qjk4ODcyN0I3NTciIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6QzFCMDdCRTg5MDJDMTFFNjkzRjc5Qjk4ODcyN0I3NTciPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpDMUIwN0JFNTkwMkMxMUU2OTNGNzlCOTg4NzI3Qjc1NyIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpDMUIwN0JFNjkwMkMxMUU2OTNGNzlCOTg4NzI3Qjc1NyIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PvaNYU8AAAKwSURBVHja7JhNaBNBFMffzH5ZU6vYKGpFD3qQ1vqBol6UXrQR67knTxa8CF5L9VKoHgQvglAKehUPImgLirceelEPDTUItqDWatVUxbQ1yezs+Ha7SDUkzayTzYgOPFheJvN+efnPmzdLhBCwfOQfE9BprDr+Kx+tMDeF9hSNoYmYjIUxU+WgygF3og2jHUAzY0yoGcYcDhmqBh5AM+qoBCNkqBp4jwby3SsDbGsAbMkAazuUAtOmg2DvewBORxZtDuz9I0DXHlYKTMrUYSEN29yJsPfx4Tc1CQYs3Q38471IfDJ1WILWBqvtZilsENICs+0WEHOdPpKgzSeAOC3l04SwdFO3RsCJ3VXpW59NZzZVcRSs1gdYFD+sPIkvagS8kFl5zuKkPsDel1GsXnOVE5wd0UjDXgH4q6vlP0ZYMT+h10nnvr4GfPZ2qRS+TwHLnFPaf6oZggObOBPkwAhrrq/t4pOjKJfPevYSILySHyG8vIbND6F42qXAPjT2M7uBu7EdnCPjSz5iadD80AYwWnrA3H4BSMOOyskvzAB/Owh8ehAlko3c/EQGphu6wNp1A1fcJqcahHVfnMcNeicScKRN52fVah3y15P/S60kWO1YTTwXW8678WjY3HklEuwybFzjcoybjii4UNsb4wPmM0N/zMunr8cH7L7sA3eyD6PORyBdwO/3gjvVX4eyZiTASJ4Cur4DSKIVt/RW9K1BxTQu9b/uNzw7ciDyb0Dk0uB9HQP+Ce92bi7+shbTqNEl9G99L/Ef+J8DpsmT4Bx7F5j/rNqvvKz5AYizOey+3kNhdItSf22rBCG19auQBMv0gCjOBr0te35Wub/2J51GBwfTAJbJSGJcA+C0DPAlv6+qI6wf+6IM8CO0LrRnMYPzMObpkEHqRcrD0LQaPwQYAI7XQ4Yq1BOPAAAAAElFTkSuQmCC"
+
+/***/ },
+/* 3 */
+/***/ function(module, exports) {
+
+	module.exports = ReactRouter;
+
+/***/ },
+/* 4 */
 /***/ function(module, exports) {
 
 	/**
@@ -47,25 +59,19 @@ webpackJsonp([1,0],[
 	var GetSafeRegions1 = exports.GetSafeRegions1 = 'GetSafeRegions1';
 
 /***/ },
-/* 3 */
+/* 5 */
 /***/ function(module, exports) {
 
 	module.exports = Redux;
 
 /***/ },
-/* 4 */
+/* 6 */
 /***/ function(module, exports) {
 
 	module.exports = ReactRedux;
 
 /***/ },
-/* 5 */
-/***/ function(module, exports) {
-
-	module.exports = ReactRouter;
-
-/***/ },
-/* 6 */
+/* 7 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -76,7 +82,7 @@ webpackJsonp([1,0],[
 	var target = exports.target =  false ? '' : 'http://222.46.27.218:8800'; //目标网站
 
 /***/ },
-/* 7 */
+/* 8 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -93,7 +99,7 @@ webpackJsonp([1,0],[
 	})();
 
 /***/ },
-/* 8 */
+/* 9 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -105,13 +111,13 @@ webpackJsonp([1,0],[
 	    value: true
 	});
 
-	var _redux = __webpack_require__(3);
+	var _redux = __webpack_require__(5);
 
-	var _reduxThunk = __webpack_require__(9);
+	var _reduxThunk = __webpack_require__(10);
 
 	var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
 
-	var _reducers = __webpack_require__(35);
+	var _reducers = __webpack_require__(39);
 
 	var _reducers2 = _interopRequireDefault(_reducers);
 
@@ -126,7 +132,7 @@ webpackJsonp([1,0],[
 	};
 
 /***/ },
-/* 9 */
+/* 10 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -154,17 +160,156 @@ webpackJsonp([1,0],[
 	exports['default'] = thunk;
 
 /***/ },
-/* 10 */
+/* 11 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 11 */
-10,
 /* 12 */
-10,
+11,
 /* 13 */
+11,
+/* 14 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	'usr strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _kaoqin = __webpack_require__(2);
+
+	var _kaoqin2 = _interopRequireDefault(_kaoqin);
+
+	var _reactRouter = __webpack_require__(3);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Foot = function (_React$Component) {
+	    _inherits(Foot, _React$Component);
+
+	    function Foot() {
+	        _classCallCheck(this, Foot);
+
+	        return _possibleConstructorReturn(this, (Foot.__proto__ || Object.getPrototypeOf(Foot)).call(this));
+	    }
+
+	    _createClass(Foot, [{
+	        key: 'render',
+	        value: function render() {
+	            return _react2.default.createElement(
+	                'div',
+	                { className: 'app-menu app-white' },
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'menu-option' },
+	                    _react2.default.createElement('img', { src: _kaoqin2.default }),
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'div-text' },
+	                        '\u5BFA\u5E99'
+	                    )
+	                ),
+	                _react2.default.createElement(
+	                    _reactRouter.Link,
+	                    { to: '/Temple' },
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'menu-option' },
+	                        _react2.default.createElement('img', { src: _kaoqin2.default }),
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'div-text' },
+	                            '\u6D88\u606F'
+	                        )
+	                    )
+	                ),
+	                _react2.default.createElement(
+	                    _reactRouter.Link,
+	                    { to: '/MyMain' },
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'menu-option' },
+	                        _react2.default.createElement('img', { src: _kaoqin2.default }),
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'div-text' },
+	                            '\u6211\u7684'
+	                        )
+	                    )
+	                )
+	            );
+	        }
+	    }]);
+
+	    return Foot;
+	}(_react2.default.Component);
+
+	exports.default = Foot;
+
+/***/ },
+/* 15 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	'usr strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Temple = function (_React$Component) {
+	    _inherits(Temple, _React$Component);
+
+	    function Temple() {
+	        _classCallCheck(this, Temple);
+
+	        return _possibleConstructorReturn(this, (Temple.__proto__ || Object.getPrototypeOf(Temple)).call(this));
+	    }
+
+	    _createClass(Temple, [{
+	        key: 'render',
+	        value: function render() {
+	            return _react2.default.createElement('div', null);
+	        }
+	    }]);
+
+	    return Temple;
+	}(_react2.default.Component);
+
+	exports.default = Temple;
+
+/***/ },
+/* 16 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -214,7 +359,7 @@ webpackJsonp([1,0],[
 	exports.default = DayGoods;
 
 /***/ },
-/* 14 */
+/* 17 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -277,7 +422,7 @@ webpackJsonp([1,0],[
 	exports.default = Feedbackpro;
 
 /***/ },
-/* 15 */
+/* 18 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -292,6 +437,245 @@ webpackJsonp([1,0],[
 	var _react = __webpack_require__(1);
 
 	var _react2 = _interopRequireDefault(_react);
+
+	var _kaoqin = __webpack_require__(2);
+
+	var _kaoqin2 = _interopRequireDefault(_kaoqin);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var MyAlms = function (_React$Component) {
+	    _inherits(MyAlms, _React$Component);
+
+	    function MyAlms() {
+	        _classCallCheck(this, MyAlms);
+
+	        var _this = _possibleConstructorReturn(this, (MyAlms.__proto__ || Object.getPrototypeOf(MyAlms)).call(this));
+
+	        _this.state = {
+	            type: 1
+	        };
+	        return _this;
+	    }
+
+	    _createClass(MyAlms, [{
+	        key: 'createLogin',
+	        value: function createLogin() {
+	            return _react2.default.createElement(
+	                'div',
+	                { className: 'app-container-padding' },
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'step border-bottom app-white-chunk' },
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 's-left', style: { flexDirection: 'column', alignItems: 'flex-start' } },
+	                        _react2.default.createElement(
+	                            'div',
+	                            null,
+	                            '\u7075\u9690\u5BFA\u6269\u5EFA'
+	                        ),
+	                        _react2.default.createElement(
+	                            'div',
+	                            null,
+	                            '200022'
+	                        )
+	                    ),
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 's-right s-right-1 s-j-end' },
+	                        '1\u5143'
+	                    )
+	                )
+	            );
+	        }
+	    }, {
+	        key: 'changeType',
+	        value: function changeType(type) {
+	            this.setState({
+	                type: type
+	            });
+	        }
+	    }, {
+	        key: 'createRegistered',
+	        value: function createRegistered() {
+	            return _react2.default.createElement(
+	                'div',
+	                null,
+	                _react2.default.createElement(
+	                    'ul',
+	                    null,
+	                    _react2.default.createElement(
+	                        'li',
+	                        null,
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'step app-white-chunk' },
+	                            _react2.default.createElement(
+	                                'div',
+	                                { className: 's-left' },
+	                                '\u603B\u65E5\u5584\u6B21\u6570'
+	                            ),
+	                            _react2.default.createElement(
+	                                'div',
+	                                { className: 's-left s-j-end' },
+	                                '200\u6B21'
+	                            )
+	                        )
+	                    ),
+	                    _react2.default.createElement(
+	                        'li',
+	                        null,
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'step app-white-chunk' },
+	                            _react2.default.createElement(
+	                                'div',
+	                                { className: 's-left' },
+	                                '\u603B\u65E5\u5584\u5929\u6570'
+	                            ),
+	                            _react2.default.createElement(
+	                                'div',
+	                                { className: 's-left s-j-end' },
+	                                '200\u5929'
+	                            )
+	                        )
+	                    )
+	                ),
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'container' },
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'step' },
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 's-left s-j-center' },
+	                            '\u6350\u732E\u6392\u884C'
+	                        )
+	                    ),
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'step border-bottom app-padding-tb20' },
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 's-left' },
+	                            'N01'
+	                        ),
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 's-left' },
+	                            _react2.default.createElement('img', { src: _kaoqin2.default })
+	                        ),
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 's-left' },
+	                            '\u7075\u9690\u5BFA'
+	                        ),
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 's-right s-j-end' },
+	                            '6000'
+	                        )
+	                    ),
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'step border-bottom app-padding-tb20' },
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 's-left' },
+	                            'N01'
+	                        ),
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 's-left' },
+	                            _react2.default.createElement('img', { src: _kaoqin2.default })
+	                        ),
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 's-left' },
+	                            '\u7075\u9690\u5BFA'
+	                        ),
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 's-right s-j-end' },
+	                            '6000'
+	                        )
+	                    )
+	                )
+	            );
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            var _this2 = this;
+
+	            var stateType = function stateType() {
+	                if (_this2.state.type == 1) {
+	                    return _this2.createLogin();
+	                } else {
+	                    return _this2.createRegistered();
+	                }
+	            };
+	            return _react2.default.createElement(
+	                'div',
+	                null,
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'step app-white-chunk' },
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 's-left s-center', style: { color: this.state.type == 1 ? 'red' : '' }, onClick: this.changeType.bind(this, 1) },
+	                        '\u6700\u8FD1\u65E5\u5584'
+	                    ),
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 's-right s-right-1 s-center', style: { color: this.state.type == 2 ? 'red' : '' }, onClick: this.changeType.bind(this, 2) },
+	                        '\u65E5\u5584\u5386\u53F2'
+	                    )
+	                ),
+	                stateType()
+	            );
+	        }
+	    }]);
+
+	    return MyAlms;
+	}(_react2.default.Component);
+
+	exports.default = MyAlms;
+
+/***/ },
+/* 19 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	'usr strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _Foot = __webpack_require__(14);
+
+	var _Foot2 = _interopRequireDefault(_Foot);
+
+	var _kaoqin = __webpack_require__(2);
+
+	var _kaoqin2 = _interopRequireDefault(_kaoqin);
+
+	var _reactRouter = __webpack_require__(3);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -315,8 +699,125 @@ webpackJsonp([1,0],[
 	        value: function render() {
 	            return _react2.default.createElement(
 	                'div',
-	                null,
-	                'MyMain'
+	                { className: 'app-container' },
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'step app-white-chunk' },
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 's-left s-j-center' },
+	                        _react2.default.createElement('img', { src: _kaoqin2.default })
+	                    ),
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 's-right s-j-center', style: { flexDirection: 'column', alignItems: 'flex-start' } },
+	                        _react2.default.createElement(
+	                            'div',
+	                            null,
+	                            '\u8349\u6728\u4E00\u79CB'
+	                        ),
+	                        _react2.default.createElement(
+	                            'div',
+	                            null,
+	                            '\u65F6\u5149\u81EA\u6709\u65F6\u5149\uFF0C\u65F6\u5149\u81EA\u6709\u65F6\u5149\u3002'
+	                        )
+	                    )
+	                ),
+	                _react2.default.createElement('div', { className: 'app-margin-tb20' }),
+	                _react2.default.createElement(
+	                    _reactRouter.Link,
+	                    { to: '/MyAlms' },
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'step app-white-chunk border-bottom' },
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 's-left' },
+	                            _react2.default.createElement('img', { src: _kaoqin2.default })
+	                        ),
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 's-right' },
+	                            '\u6211\u7684\u65E5\u5584'
+	                        ),
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 's-right s-j-end' },
+	                            's'
+	                        )
+	                    )
+	                ),
+	                _react2.default.createElement(
+	                    _reactRouter.Link,
+	                    { to: '/PayInfo' },
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'step app-white-chunk' },
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 's-left' },
+	                            _react2.default.createElement('img', { src: _kaoqin2.default })
+	                        ),
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 's-right' },
+	                            '\u6211\u7684\u4F9B\u517B'
+	                        ),
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 's-right s-j-end' },
+	                            's'
+	                        )
+	                    )
+	                ),
+	                _react2.default.createElement('div', { className: 'app-margin-tb20' }),
+	                _react2.default.createElement(
+	                    _reactRouter.Link,
+	                    { to: '/Feedbackpro' },
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'step app-white-chunk border-bottom' },
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 's-left' },
+	                            _react2.default.createElement('img', { src: _kaoqin2.default })
+	                        ),
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 's-right' },
+	                            '\u53CD\u9988\u95EE\u9898'
+	                        ),
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 's-right s-j-end' },
+	                            's'
+	                        )
+	                    )
+	                ),
+	                _react2.default.createElement(
+	                    _reactRouter.Link,
+	                    { to: '/Setting' },
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'step app-white-chunk' },
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 's-left' },
+	                            _react2.default.createElement('img', { src: _kaoqin2.default })
+	                        ),
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 's-right' },
+	                            '\u8BBE\u7F6E'
+	                        ),
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 's-right s-j-end' },
+	                            's'
+	                        )
+	                    )
+	                ),
+	                _react2.default.createElement(_Foot2.default, null)
 	            );
 	        }
 	    }]);
@@ -327,7 +828,7 @@ webpackJsonp([1,0],[
 	exports.default = MyMain;
 
 /***/ },
-/* 16 */
+/* 20 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -343,6 +844,10 @@ webpackJsonp([1,0],[
 
 	var _react2 = _interopRequireDefault(_react);
 
+	var _kaoqin = __webpack_require__(2);
+
+	var _kaoqin2 = _interopRequireDefault(_kaoqin);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -357,16 +862,192 @@ webpackJsonp([1,0],[
 	    function PayInfo() {
 	        _classCallCheck(this, PayInfo);
 
-	        return _possibleConstructorReturn(this, (PayInfo.__proto__ || Object.getPrototypeOf(PayInfo)).call(this));
+	        var _this = _possibleConstructorReturn(this, (PayInfo.__proto__ || Object.getPrototypeOf(PayInfo)).call(this));
+
+	        _this.state = {
+	            type: 1
+	        };
+	        return _this;
 	    }
 
 	    _createClass(PayInfo, [{
-	        key: 'render',
-	        value: function render() {
+	        key: 'createLogin',
+	        value: function createLogin() {
+	            return _react2.default.createElement(
+	                'div',
+	                { className: 'app-container-padding' },
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'step border-bottom app-white-chunk' },
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 's-left', style: { flexDirection: 'column', alignItems: 'flex-start' } },
+	                        _react2.default.createElement(
+	                            'div',
+	                            null,
+	                            '\u7075\u9690\u5BFA\u6269\u5EFA'
+	                        ),
+	                        _react2.default.createElement(
+	                            'div',
+	                            null,
+	                            '200022'
+	                        )
+	                    ),
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 's-right s-right-1 s-j-end' },
+	                        '1\u5143'
+	                    )
+	                )
+	            );
+	        }
+	    }, {
+	        key: 'changeType',
+	        value: function changeType(type) {
+	            this.setState({
+	                type: type
+	            });
+	        }
+	    }, {
+	        key: 'createRegistered',
+	        value: function createRegistered() {
 	            return _react2.default.createElement(
 	                'div',
 	                null,
-	                'PayInfo'
+	                _react2.default.createElement(
+	                    'ul',
+	                    null,
+	                    _react2.default.createElement(
+	                        'li',
+	                        null,
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'step app-white-chunk border-bottom' },
+	                            _react2.default.createElement(
+	                                'div',
+	                                { className: 's-left' },
+	                                '\u603B\u65E5\u5584\u6B21\u6570'
+	                            ),
+	                            _react2.default.createElement(
+	                                'div',
+	                                { className: 's-left s-j-end' },
+	                                '200\u6B21'
+	                            )
+	                        )
+	                    ),
+	                    _react2.default.createElement(
+	                        'li',
+	                        null,
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'step app-white-chunk' },
+	                            _react2.default.createElement(
+	                                'div',
+	                                { className: 's-left' },
+	                                '\u603B\u65E5\u5584\u5929\u6570'
+	                            ),
+	                            _react2.default.createElement(
+	                                'div',
+	                                { className: 's-left s-j-end' },
+	                                '200\u5929'
+	                            )
+	                        )
+	                    )
+	                ),
+	                _react2.default.createElement('div', { className: 'app-height-20' }),
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'container' },
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'step border-bottom app-padding-tb20' },
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 's-left s-j-center' },
+	                            '\u6350\u732E\u6392\u884C'
+	                        )
+	                    ),
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'step border-bottom app-padding-tb20' },
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 's-left' },
+	                            'N01'
+	                        ),
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 's-left' },
+	                            _react2.default.createElement('img', { src: _kaoqin2.default })
+	                        ),
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 's-left' },
+	                            '\u7075\u9690\u5BFA'
+	                        ),
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 's-right s-j-end' },
+	                            '6000'
+	                        )
+	                    ),
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'step border-bottom app-padding-tb20' },
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 's-left' },
+	                            'N01'
+	                        ),
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 's-left' },
+	                            _react2.default.createElement('img', { src: _kaoqin2.default })
+	                        ),
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 's-left' },
+	                            '\u7075\u9690\u5BFA'
+	                        ),
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 's-right s-j-end' },
+	                            '6000'
+	                        )
+	                    )
+	                )
+	            );
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            var _this2 = this;
+
+	            var stateType = function stateType() {
+	                if (_this2.state.type == 1) {
+	                    return _this2.createLogin();
+	                } else {
+	                    return _this2.createRegistered();
+	                }
+	            };
+	            return _react2.default.createElement(
+	                'div',
+	                null,
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'step app-white-chunk' },
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 's-left s-center', style: { color: this.state.type == 1 ? 'red' : '' }, onClick: this.changeType.bind(this, 1) },
+	                        '\u6700\u8FD1\u4F9B\u517B'
+	                    ),
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 's-right s-right-1 s-center', style: { color: this.state.type == 2 ? 'red' : '' }, onClick: this.changeType.bind(this, 2) },
+	                        '\u4F9B\u517B\u5386\u53F2'
+	                    )
+	                ),
+	                stateType()
 	            );
 	        }
 	    }]);
@@ -377,7 +1058,7 @@ webpackJsonp([1,0],[
 	exports.default = PayInfo;
 
 /***/ },
-/* 17 */
+/* 21 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -496,7 +1177,7 @@ webpackJsonp([1,0],[
 	exports.default = PersonalInfo;
 
 /***/ },
-/* 18 */
+/* 22 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -555,7 +1236,7 @@ webpackJsonp([1,0],[
 	exports.default = Setting;
 
 /***/ },
-/* 19 */
+/* 23 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -571,7 +1252,7 @@ webpackJsonp([1,0],[
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _kaoqin = __webpack_require__(38);
+	var _kaoqin = __webpack_require__(2);
 
 	var _kaoqin2 = _interopRequireDefault(_kaoqin);
 
@@ -625,12 +1306,12 @@ webpackJsonp([1,0],[
 	                    { className: 'step' },
 	                    _react2.default.createElement(
 	                        'div',
-	                        { className: 's-left-end' },
+	                        { className: 's-left s-j-center' },
 	                        '\u65E5\u5584300'
 	                    ),
 	                    _react2.default.createElement(
 	                        'div',
-	                        { className: 's-right-1' },
+	                        { className: 's-right s-j-center s-right-1' },
 	                        '\u6350\u6B3E100'
 	                    )
 	                ),
@@ -694,7 +1375,7 @@ webpackJsonp([1,0],[
 	exports.default = UserInfo;
 
 /***/ },
-/* 20 */
+/* 24 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -744,7 +1425,7 @@ webpackJsonp([1,0],[
 	exports.default = AlmsDetail;
 
 /***/ },
-/* 21 */
+/* 25 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -794,7 +1475,7 @@ webpackJsonp([1,0],[
 	exports.default = CommentLists;
 
 /***/ },
-/* 22 */
+/* 26 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -844,7 +1525,7 @@ webpackJsonp([1,0],[
 	exports.default = FocusLists;
 
 /***/ },
-/* 23 */
+/* 27 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -894,7 +1575,7 @@ webpackJsonp([1,0],[
 	exports.default = MessageBoard;
 
 /***/ },
-/* 24 */
+/* 28 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -944,7 +1625,7 @@ webpackJsonp([1,0],[
 	exports.default = PayHistory;
 
 /***/ },
-/* 25 */
+/* 29 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -994,7 +1675,7 @@ webpackJsonp([1,0],[
 	exports.default = PayMoney;
 
 /***/ },
-/* 26 */
+/* 30 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1044,7 +1725,7 @@ webpackJsonp([1,0],[
 	exports.default = PaySuccess;
 
 /***/ },
-/* 27 */
+/* 31 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1094,7 +1775,7 @@ webpackJsonp([1,0],[
 	exports.default = SelectMoney;
 
 /***/ },
-/* 28 */
+/* 32 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1144,7 +1825,7 @@ webpackJsonp([1,0],[
 	exports.default = TempleDetail;
 
 /***/ },
-/* 29 */
+/* 33 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1160,11 +1841,11 @@ webpackJsonp([1,0],[
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _index = __webpack_require__(33);
+	var _index = __webpack_require__(37);
 
-	var _reactRedux = __webpack_require__(4);
+	var _reactRedux = __webpack_require__(6);
 
-	var _redux = __webpack_require__(3);
+	var _redux = __webpack_require__(5);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -1232,7 +1913,7 @@ webpackJsonp([1,0],[
 	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Index);
 
 /***/ },
-/* 30 */
+/* 34 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -1596,7 +2277,7 @@ webpackJsonp([1,0],[
 	}();
 
 /***/ },
-/* 31 */
+/* 35 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1611,73 +2292,81 @@ webpackJsonp([1,0],[
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactRouter = __webpack_require__(5);
+	var _reactRouter = __webpack_require__(3);
 
-	var _index = __webpack_require__(29);
+	var _index = __webpack_require__(33);
 
 	var _index2 = _interopRequireDefault(_index);
 
-	var _Feedbackpro = __webpack_require__(14);
+	var _Feedbackpro = __webpack_require__(17);
 
 	var _Feedbackpro2 = _interopRequireDefault(_Feedbackpro);
 
-	var _PersonalInfo = __webpack_require__(17);
+	var _PersonalInfo = __webpack_require__(21);
 
 	var _PersonalInfo2 = _interopRequireDefault(_PersonalInfo);
 
-	var _UserInfo = __webpack_require__(19);
+	var _UserInfo = __webpack_require__(23);
 
 	var _UserInfo2 = _interopRequireDefault(_UserInfo);
 
-	var _Setting = __webpack_require__(18);
+	var _Setting = __webpack_require__(22);
 
 	var _Setting2 = _interopRequireDefault(_Setting);
 
-	var _PayInfo = __webpack_require__(16);
+	var _PayInfo = __webpack_require__(20);
 
 	var _PayInfo2 = _interopRequireDefault(_PayInfo);
 
-	var _DayGoods = __webpack_require__(13);
+	var _DayGoods = __webpack_require__(16);
 
 	var _DayGoods2 = _interopRequireDefault(_DayGoods);
 
-	var _MyMain = __webpack_require__(15);
+	var _MyMain = __webpack_require__(19);
 
 	var _MyMain2 = _interopRequireDefault(_MyMain);
 
-	var _TempleDetail = __webpack_require__(28);
+	var _MyAlms = __webpack_require__(18);
+
+	var _MyAlms2 = _interopRequireDefault(_MyAlms);
+
+	var _Temple = __webpack_require__(15);
+
+	var _Temple2 = _interopRequireDefault(_Temple);
+
+	var _TempleDetail = __webpack_require__(32);
 
 	var _TempleDetail2 = _interopRequireDefault(_TempleDetail);
 
-	var _PaySuccess = __webpack_require__(26);
+	var _PaySuccess = __webpack_require__(30);
 
 	var _PaySuccess2 = _interopRequireDefault(_PaySuccess);
 
-	var _PayMoney = __webpack_require__(25);
+	var _PayMoney = __webpack_require__(29);
 
 	var _PayMoney2 = _interopRequireDefault(_PayMoney);
 
-	var _FocusLists = __webpack_require__(22);
+	var _FocusLists = __webpack_require__(26);
 
 	var _FocusLists2 = _interopRequireDefault(_FocusLists);
 
-	var _MessageBoard = __webpack_require__(23);
+	var _MessageBoard = __webpack_require__(27);
 
 	var _MessageBoard2 = _interopRequireDefault(_MessageBoard);
 
-	var _PayHistory = __webpack_require__(24);
+	var _PayHistory = __webpack_require__(28);
 
 	var _PayHistory2 = _interopRequireDefault(_PayHistory);
 
-	var _AlmsDetail = __webpack_require__(20);
+	var _AlmsDetail = __webpack_require__(24);
 
 	var _AlmsDetail2 = _interopRequireDefault(_AlmsDetail);
 
-	var _SelectMoney = __webpack_require__(27);
+	var _SelectMoney = __webpack_require__(31);
 
 	var _SelectMoney2 = _interopRequireDefault(_SelectMoney);
 
-	var _CommentLists = __webpack_require__(21);
+	var _CommentLists = __webpack_require__(25);
 
 	var _CommentLists2 = _interopRequireDefault(_CommentLists);
 
@@ -1738,6 +2427,7 @@ webpackJsonp([1,0],[
 	        _react2.default.createElement(_reactRouter.Route, { path: '/PayInfo', component: _PayInfo2.default }),
 	        _react2.default.createElement(_reactRouter.Route, { path: '/DayGoods', component: _DayGoods2.default }),
 	        _react2.default.createElement(_reactRouter.Route, { path: '/MyMain', component: _MyMain2.default }),
+	        _react2.default.createElement(_reactRouter.Route, { path: '/MyAlms', component: _MyAlms2.default }),
 	        _react2.default.createElement(_reactRouter.Route, { path: '/TempleDetail', component: _TempleDetail2.default }),
 	        _react2.default.createElement(_reactRouter.Route, { path: '/PaySuccess', component: _PaySuccess2.default }),
 	        _react2.default.createElement(_reactRouter.Route, { path: '/PayMoney', component: _PayMoney2.default }),
@@ -1746,7 +2436,8 @@ webpackJsonp([1,0],[
 	        _react2.default.createElement(_reactRouter.Route, { path: '/PayHistory', component: _PayHistory2.default }),
 	        _react2.default.createElement(_reactRouter.Route, { path: '/AlmsDetail', component: _AlmsDetail2.default }),
 	        _react2.default.createElement(_reactRouter.Route, { path: '/SelectMoney', component: _SelectMoney2.default }),
-	        _react2.default.createElement(_reactRouter.Route, { path: '/CommentLists', component: _CommentLists2.default })
+	        _react2.default.createElement(_reactRouter.Route, { path: '/CommentLists', component: _CommentLists2.default }),
+	        _react2.default.createElement(_reactRouter.Route, { path: '/Temple', component: _Temple2.default })
 	    )
 	);
 
@@ -1755,7 +2446,7 @@ webpackJsonp([1,0],[
 	// var history = process.env.NODE_ENV !== 'production' ? browserHistory : hashHistory;
 
 /***/ },
-/* 32 */
+/* 36 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1765,7 +2456,7 @@ webpackJsonp([1,0],[
 	});
 	exports.config = exports.Tool = undefined;
 
-	var _Config = __webpack_require__(6);
+	var _Config = __webpack_require__(7);
 
 	var config = _interopRequireWildcard(_Config);
 
@@ -1975,7 +2666,7 @@ webpackJsonp([1,0],[
 	exports.config = config;
 
 /***/ },
-/* 33 */
+/* 37 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -2002,9 +2693,9 @@ webpackJsonp([1,0],[
 	exports.scanDevice = scanDevice;
 	exports.getSafeRegions = getSafeRegions;
 
-	var _Http = __webpack_require__(30);
+	var _Http = __webpack_require__(34);
 
-	var _ActionTypes = __webpack_require__(2);
+	var _ActionTypes = __webpack_require__(4);
 
 	var types = _interopRequireWildcard(_ActionTypes);
 
@@ -2689,7 +3380,7 @@ webpackJsonp([1,0],[
 	}
 
 /***/ },
-/* 34 */
+/* 38 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2698,29 +3389,29 @@ webpackJsonp([1,0],[
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactDom = __webpack_require__(39);
+	var _reactDom = __webpack_require__(42);
 
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 
-	var _reactRouter = __webpack_require__(5);
+	var _reactRouter = __webpack_require__(3);
 
-	var _reactRedux = __webpack_require__(4);
+	var _reactRedux = __webpack_require__(6);
 
-	var _store = __webpack_require__(8);
+	var _store = __webpack_require__(9);
 
 	var _store2 = _interopRequireDefault(_store);
 
-	var _Route = __webpack_require__(31);
+	var _Route = __webpack_require__(35);
 
 	var _Route2 = _interopRequireDefault(_Route);
 
-	__webpack_require__(7);
+	__webpack_require__(8);
 
-	__webpack_require__(12);
-
-	__webpack_require__(10);
+	__webpack_require__(13);
 
 	__webpack_require__(11);
+
+	__webpack_require__(12);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -2737,7 +3428,7 @@ webpackJsonp([1,0],[
 	), document.getElementById('content'));
 
 /***/ },
-/* 35 */
+/* 39 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -2749,13 +3440,13 @@ webpackJsonp([1,0],[
 	  value: true
 	});
 
-	var _redux = __webpack_require__(3);
+	var _redux = __webpack_require__(5);
 
-	var _user = __webpack_require__(37);
+	var _user = __webpack_require__(41);
 
 	var _user2 = _interopRequireDefault(_user);
 
-	var _safetyarea = __webpack_require__(36);
+	var _safetyarea = __webpack_require__(40);
 
 	var _safetyarea2 = _interopRequireDefault(_safetyarea);
 
@@ -2767,7 +3458,7 @@ webpackJsonp([1,0],[
 	exports.default = rootReducer;
 
 /***/ },
-/* 36 */
+/* 40 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2778,7 +3469,7 @@ webpackJsonp([1,0],[
 	});
 	exports.default = safe;
 
-	var _ActionTypes = __webpack_require__(2);
+	var _ActionTypes = __webpack_require__(4);
 
 	var types = _interopRequireWildcard(_ActionTypes);
 
@@ -2808,7 +3499,7 @@ webpackJsonp([1,0],[
 	}
 
 /***/ },
-/* 37 */
+/* 41 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2819,11 +3510,11 @@ webpackJsonp([1,0],[
 	});
 	exports.default = login;
 
-	var _ActionTypes = __webpack_require__(2);
+	var _ActionTypes = __webpack_require__(4);
 
 	var types = _interopRequireWildcard(_ActionTypes);
 
-	var _Tool = __webpack_require__(32);
+	var _Tool = __webpack_require__(36);
 
 	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
@@ -2963,13 +3654,7 @@ webpackJsonp([1,0],[
 	}
 
 /***/ },
-/* 38 */
-/***/ function(module, exports) {
-
-	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAsCAYAAAAehFoBAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6QzFCMDdCRTc5MDJDMTFFNjkzRjc5Qjk4ODcyN0I3NTciIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6QzFCMDdCRTg5MDJDMTFFNjkzRjc5Qjk4ODcyN0I3NTciPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpDMUIwN0JFNTkwMkMxMUU2OTNGNzlCOTg4NzI3Qjc1NyIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpDMUIwN0JFNjkwMkMxMUU2OTNGNzlCOTg4NzI3Qjc1NyIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PvaNYU8AAAKwSURBVHja7JhNaBNBFMffzH5ZU6vYKGpFD3qQ1vqBol6UXrQR67knTxa8CF5L9VKoHgQvglAKehUPImgLirceelEPDTUItqDWatVUxbQ1yezs+Ha7SDUkzayTzYgOPFheJvN+efnPmzdLhBCwfOQfE9BprDr+Kx+tMDeF9hSNoYmYjIUxU+WgygF3og2jHUAzY0yoGcYcDhmqBh5AM+qoBCNkqBp4jwby3SsDbGsAbMkAazuUAtOmg2DvewBORxZtDuz9I0DXHlYKTMrUYSEN29yJsPfx4Tc1CQYs3Q38471IfDJ1WILWBqvtZilsENICs+0WEHOdPpKgzSeAOC3l04SwdFO3RsCJ3VXpW59NZzZVcRSs1gdYFD+sPIkvagS8kFl5zuKkPsDel1GsXnOVE5wd0UjDXgH4q6vlP0ZYMT+h10nnvr4GfPZ2qRS+TwHLnFPaf6oZggObOBPkwAhrrq/t4pOjKJfPevYSILySHyG8vIbND6F42qXAPjT2M7uBu7EdnCPjSz5iadD80AYwWnrA3H4BSMOOyskvzAB/Owh8ehAlko3c/EQGphu6wNp1A1fcJqcahHVfnMcNeicScKRN52fVah3y15P/S60kWO1YTTwXW8678WjY3HklEuwybFzjcoybjii4UNsb4wPmM0N/zMunr8cH7L7sA3eyD6PORyBdwO/3gjvVX4eyZiTASJ4Cur4DSKIVt/RW9K1BxTQu9b/uNzw7ciDyb0Dk0uB9HQP+Ce92bi7+shbTqNEl9G99L/Ef+J8DpsmT4Bx7F5j/rNqvvKz5AYizOey+3kNhdItSf22rBCG19auQBMv0gCjOBr0te35Wub/2J51GBwfTAJbJSGJcA+C0DPAlv6+qI6wf+6IM8CO0LrRnMYPzMObpkEHqRcrD0LQaPwQYAI7XQ4Yq1BOPAAAAAElFTkSuQmCC"
-
-/***/ },
-/* 39 */
+/* 42 */
 /***/ function(module, exports) {
 
 	module.exports = ReactDOM;

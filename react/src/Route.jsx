@@ -14,6 +14,11 @@ import MyMain from './Component/My/MyMain';
 import MyAlms from './Component/My/MyAlms';
 
 
+
+
+import Temple from './Component/Message/Temple';
+
+
 //Temple
 
 
@@ -69,6 +74,11 @@ const RouteConfig = (
             <Route path="/AlmsDetail" component={AlmsDetail} />
             <Route path="/SelectMoney" component={SelectMoney} />
             <Route path="/CommentLists" component={CommentLists} />
+
+
+
+
+            <Route path="/Temple" component={Temple} />
 
         </Route>
     </Router>
