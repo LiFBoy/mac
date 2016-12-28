@@ -4,7 +4,11 @@ import React from 'react';
 
 
 import Foot from '../Foot'
-import kaoqin from '../../../src/images/kaoqin.png'
+import feedbackpro from '../../../src/images/my/feedbackpro.png'
+import myalms from '../../../src/images/my/myalms.png'
+import setting from '../../../src/images/my/setting.png'
+import payinfo from '../../../src/images/my/payinfo.png'
+import jt from '../../../src/images/my/jt.png'
 
 import {Router, Route, IndexRoute, browserHistory, Link} from 'react-router';
 
@@ -12,57 +16,69 @@ class MyMain extends React.Component {
     constructor() {
         super();
     }
-
-    render(){
+    render() {
         return (
             <div className="app-container">
 
-                <div className="step app-white-chunk">
-                    <div className="s-left s-j-center"><img src={kaoqin}/></div>
-                    <div className="s-right s-j-center" style={{flexDirection:'column',alignItems:'flex-start'}}>
-                        <div>草木一秋</div>
-                        <div>时光自有时光，时光自有时光。</div>
+                <div className="step app-padding-lr24 my-main">
+                    <div className="s-left s-j-center">
+                        <div className="img"></div>
+                    </div>
+                    <div className="s-right s-j-center" style={{flexDirection: 'column', alignItems: 'flex-start'}}>
+                        <div className="app-333-font30">草木一秋</div>
+                        <div className="app-999-font22" style={{paddingTop:'24px'}}>时光自有时光，时光自有时光。</div>
                     </div>
                 </div>
 
                 <div className="app-margin-tb20"></div>
                 <Link to="/MyAlms">
-                <div className="step app-white-chunk border-bottom">
-                    <div className="s-left"><img src={kaoqin}/></div>
-                    <div className="s-right">我的日善</div>
-                    <div className="s-right s-j-end">s</div>
-                </div>
+                    <div className="step app-padding-lr24 app-white-chunk border-bottom">
+                        <div className="s-flex2"><img className="app-wh-45" src={myalms}/>
+                            <div className="app-333-font28 app-padding-l24">我的日善</div>
+                        </div>
+
+                        <div className="s-flex1 s-j-end"><img className="app-wh-45" src={jt}/></div>
+                    </div>
                 </Link>
                 <Link to="/PayInfo">
-                <div className="step app-white-chunk">
-                    <div className="s-left"><img src={kaoqin}/></div>
-                    <div className="s-right">我的供养</div>
-                    <div className="s-right s-j-end">s</div>
-                </div>
+                    <div className="step app-padding-lr24 app-white-chunk">
+                        <div className="s-flex2"><img className="app-wh-45" src={payinfo}/>
+                            <div className=" app-333-font28 app-padding-l24">我的供养</div>
+                        </div>
+
+                        <div className="s-flex1 s-j-end"><img className="app-wh-45" src={jt}/></div>
+                    </div>
                 </Link>
                 <div className="app-margin-tb20"></div>
 
                 <Link to="/Feedbackpro">
-                    <div className="step app-white-chunk border-bottom">
-                        <div className="s-left"><img src={kaoqin}/></div>
-                        <div className="s-right">反馈问题</div>
-                        <div className="s-right s-j-end">s</div>
+                    <div className="step app-padding-lr24 app-white-chunk border-bottom">
+                        <div className="s-flex2">
+
+                            <img className="app-wh-45" src={feedbackpro}/>
+                            <div className="app-333-font28 app-padding-l24">反馈问题</div>
+
+                        </div>
+
+                        <div className="s-flex1 s-j-end"><img className="app-wh-45" src={jt}/></div>
                     </div>
                 </Link>
 
                 <Link to="/Setting">
-                    <div className="step app-white-chunk">
+                    <div className="step app-padding-lr24 app-white-chunk">
 
 
-                        <div className="s-left"><img src={kaoqin}/></div>
-                        <div className="s-right">设置</div>
-                        <div className="s-right s-j-end">s</div>
+                        <div className="s-flex2"><img className="app-wh-45" src={setting}/>
+                            <div className="app-333-font28 app-padding-l24">设置</div>
+                        </div>
+
+                        <div className="s-flex1 s-j-end"><img className="app-wh-45" src={jt}/></div>
 
                     </div>
 
                 </Link>
 
-                <Foot></Foot>
+                <Foot type="3"></Foot>
             </div>
         )
     }
