@@ -18,20 +18,58 @@ import alms from '../../src/images/index/alms.png'
 
 
 
+
+
 class Index extends React.Component {
     constructor() {
         super();
+
+        this.state={
+            swiper:[]
+        }
+
     }
+
+    componentDidMount(){
+
+
+        this.initBannerSwiper();
+
+
+    }
+
+    initBannerSwiper () {
+    //下面是在table render完成后执行的js
+    this.state.swiper = new Swiper('.swiper-container', {
+        pagination: '.swiper-pagination',
+        paginationClickable: true,
+        //loop: true,
+        autoplay: 5000
+    });
+    //初始化banner图的swiper
+};
+
 
     render(){
         return (
             <div className="app-container">
 
                 <div className="index-container">
+                    <div className="banner">
+                        <div className="swiper-container">
+                            <div className="swiper-wrapper">
+                                <div className="swiper-slide">
+                                    <img src="http://pic6.huitu.com/res/20130116/84481_20130116142820494200_1.jpg" alt=""/>
+                                </div>
+                                <div className="swiper-slide">
+                                    <img src="http://pic6.huitu.com/res/20130116/84481_20130116142820494200_1.jpg" alt=""/>
+                                </div>
+                            </div>
 
-                    <div className="swipe-content">
-
+                            <div className="swiper-pagination"></div>
+                        </div>
                     </div>
+
                     <div className="app-margin-tb20"></div>
                     <Link to="/TempleDetail">
                         <div className="temple-content">
@@ -62,80 +100,14 @@ class Index extends React.Component {
                                 <div className="s-flex1 app-333-font28">灵隐寺最新消息</div>
                                 <div className="s-flex1 s-j-end app-333-font24">
                                     <spn>
-                                        2220
+                                        20km
                                     </spn>
                                 </div>
                             </div>
                         </div>
                     </Link>
-                    <div className="app-margin-tb20"></div>
-                    <div className="temple-content">
-                        <div className="con-img">
-                            <div className="con-bar step">
-
-                                <div className="s-flex1 bar-left">杭州灵隐寺</div>
-                                <div className="s-flex1 s-j-end">
-
-                                    <img className="img" src={alms}/>
-                                    <div className="number padding-right-32">50562</div>
 
 
-
-                                    <img className="img" src={like}/>
-                                    <div className="number">789</div>
-
-                                </div>
-                                {/*<div className="s-flex2 s-j-end">*/}
-                                {/*<img className="img" src={like}/>*/}
-                                {/*<div className="number">789</div>*/}
-                                {/*</div>*/}
-
-                            </div>
-                        </div>
-
-                        <div className="con-content step">
-                            <div className="s-flex1 app-333-font28">灵隐寺最新消息</div>
-                            <div className="s-flex1 s-j-end app-333-font24">
-                                <spn>
-                                    2220
-                                </spn>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="app-margin-tb20"></div>
-                    <div className="temple-content">
-                        <div className="con-img">
-                            <div className="con-bar step">
-
-                                <div className="s-flex1 bar-left">杭州灵隐寺</div>
-                                <div className="s-flex1 s-j-end">
-
-                                    <img className="img" src={alms}/>
-                                    <div className="number padding-right-32">50562</div>
-
-
-
-                                    <img className="img" src={like}/>
-                                    <div className="number">789</div>
-
-                                </div>
-                                {/*<div className="s-flex2 s-j-end">*/}
-                                {/*<img className="img" src={like}/>*/}
-                                {/*<div className="number">789</div>*/}
-                                {/*</div>*/}
-
-                            </div>
-                        </div>
-
-                        <div className="con-content step">
-                            <div className="s-flex1 app-333-font28">灵隐寺最新消息</div>
-                            <div className="s-flex1 s-j-end app-333-font24">
-                                <spn>
-                                    2220
-                                </spn>
-                            </div>
-                        </div>
-                    </div>
                     <div className="app-margin-tb20"></div>
                 </div>
 
