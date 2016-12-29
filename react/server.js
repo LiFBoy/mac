@@ -35,11 +35,11 @@ var server = new WebpackDevServer(webpack(config), {
 });
 
 //将其他路由，全部返回index.html
-server.app.get('*', function (req, res) {
-    res.sendFile(__dirname + '/index.html')
-});
+// server.app.get('*', function (req, res) {
+//     res.sendFile(__dirname + '/index.html')
+// });
 
-server.listen(3003,'192.198.0.116');
+server.listen(3000);
 
 
 

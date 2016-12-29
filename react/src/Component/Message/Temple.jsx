@@ -33,7 +33,7 @@ class Temple extends React.Component {
                     <div className="dynamic-content app-padding-lr24">
                         <div className="step temple-name">
                             <div>
-                                <div className="temple-img"></div>
+                                <div className="temple-img"><img className="app-wh100-all-radius" src="http://pic.58pic.com/58pic/11/52/20/45s58PICVat.jpg"/></div>
                             </div>
                             <div className="s-right s-j-center" style={{flexDirection: 'column', alignItems: 'flex-start'}}>
                                 <div className="app-333-font28">灵隐寺</div>
@@ -49,10 +49,16 @@ class Temple extends React.Component {
                             </div>
 
                             <div className="step" style={{paddingTop:'24px'}}>
-                                <div className="s-flex1">
-                                    <div className="upload-img"></div>
-                                    <div className="upload-img"></div>
-                                    <div className="upload-img"></div>
+                                <div className="s-flex1" style={{flexWrap:'wrap'}}>
+                                    <div className="upload-img">
+                                        <img src="http://pic17.nipic.com/20111003/5847249_214945441162_2.jpg" className="app-wh100-all" />
+                                    </div>
+                                    <div className="upload-img">
+                                        <img src="http://pic3.nipic.com/20090706/2082016_155756000_2.jpg" className="app-wh100-all" />
+                                    </div>
+                                    <div className="upload-img">
+                                        <img src="http://pic17.nipic.com/20111003/5847249_214945441162_2.jpg" className="app-wh100-all" />
+                                    </div>
                                 </div>
                             </div>
                         </div>

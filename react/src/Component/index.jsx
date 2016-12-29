@@ -59,10 +59,13 @@ class Index extends React.Component {
                         <div className="swiper-container">
                             <div className="swiper-wrapper">
                                 <div className="swiper-slide">
-                                    <img src="http://pic6.huitu.com/res/20130116/84481_20130116142820494200_1.jpg" alt=""/>
+                                    <img src="http://img0.imgtn.bdimg.com/it/u=2152422253,1846971893&fm=23&gp=0.jpg"/>
                                 </div>
                                 <div className="swiper-slide">
-                                    <img src="http://pic6.huitu.com/res/20130116/84481_20130116142820494200_1.jpg" alt=""/>
+                                    <img src="http://pic6.huitu.com/res/20130116/84481_20130116142820494200_1.jpg"/>
+                                </div>
+                                <div className="swiper-slide">
+                                    <img src="http://img.taopic.com/uploads/allimg/120222/34250-12022209414087.jpg"/>
                                 </div>
                             </div>
 
@@ -74,25 +77,61 @@ class Index extends React.Component {
                     <Link to="/TempleDetail">
                         <div className="temple-content">
                             <div className="con-img">
+                                <div className="img-content"><img className="app-wh100-all" src="http://scimg.jb51.net/allimg/140708/11-140FQ53531Q9.jpg"/></div>
                                 <div className="con-bar step">
 
+
+                                </div>
+                                <div className="con-bar-content step">
                                     <div className="s-flex1 bar-left">杭州灵隐寺</div>
                                     <div className="s-flex1 s-j-end">
 
                                         <img className="img" src={alms}/>
-                                        <div className="number padding-right-32">50562</div>
+                                        <div className="number padding-right-32">3333</div>
 
 
 
                                         <img className="img" src={like}/>
-                                        <div className="number">789</div>
+                                        <div className="number">33333</div>
 
                                     </div>
-                                    {/*<div className="s-flex2 s-j-end">*/}
-                                    {/*<img className="img" src={like}/>*/}
-                                    {/*<div className="number">789</div>*/}
-                                    {/*</div>*/}
+                                </div>
+                            </div>
 
+                            <div className="con-content step">
+                                <div className="s-flex1 app-333-font28">灵隐寺最新消息</div>
+                                <div className="s-flex1 s-j-end app-333-font24">
+                                    <spn>
+                                        20km
+                                    </spn>
+                                </div>
+                            </div>
+                        </div>
+                    </Link>
+
+
+                    <div className="app-margin-tb20"></div>
+                    <Link to="/TempleDetail">
+                        <div className="temple-content">
+                            <div className="con-img">
+                                <div className="img-content"><img className="app-wh100-all"  src="http://img0.imgtn.bdimg.com/it/u=2152422253,1846971893&fm=23&gp=0.jpg"/></div>
+                                <div className="con-bar step">
+
+
+                                </div>
+                                <div className="con-bar-content step">
+                                    <div className="s-flex1 bar-left">杭州灵隐寺</div>
+                                    <div className="s-flex1 s-j-end">
+
+                                        <img className="img" src={alms}/>
+                                        <div className="number padding-right-32"></div>
+
+
+
+                                        <img className="img" src={like}/>
+                                        <div className="number"></div>
+
+                                    </div>
                                 </div>
                             </div>
 

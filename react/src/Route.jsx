@@ -17,6 +17,9 @@ import MyAlms from './Component/My/MyAlms';
 
 
 import Temple from './Component/Message/Temple';
+import ChanYu from './Component/Message/ChanYu';
+import Notice from './Component/Message/Notice';
+import Coments from './Component/Message/Coments';
 
 
 //Temple
@@ -79,6 +82,9 @@ const RouteConfig = (
 
 
             <Route path="/Temple" component={Temple} />
+            <Route path="/Notice" component={Notice} />
+            <Route path="/ChanYu" component={ChanYu} />
+            <Route path="/Coments" component={Coments} />
 
         </Route>
     </Router>

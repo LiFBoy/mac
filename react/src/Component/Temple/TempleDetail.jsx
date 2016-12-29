@@ -22,7 +22,9 @@ class TempleDetail extends React.Component {
                 <div className="top app-padding-lr24">
                     <div className="step">
                         <div className="s-center temple-title">
-                            <div style={{width:'200px',height:'200px'}}></div>
+                            <div style={{width:'200px',height:'200px'}}>
+                                <img src="http://img4.imgtn.bdimg.com/it/u=398347842,2770887580&fm=23&gp=0.jpg" className="app-wh100-all-radius"/>
+                            </div>
                         </div>
 
                     </div>
@@ -105,11 +107,11 @@ class TempleDetail extends React.Component {
                         <div className="s-center">
 
                             <div className="step">
-                                <div className="chunk s-flex1 s-j-center">捐款记录</div>
+                                <div className="chunk app-666-font28 s-flex1 s-j-center">捐款记录</div>
                                 <div className="app-padding-lr20"></div>
-                                <div className="chunk s-flex1 s-j-center">了解详情</div>
+                                <div className="chunk app-666-font28 s-flex1 s-j-center">了解详情</div>
                                 <div className="app-padding-lr20"></div>
-                                <div className="chunk s-flex1 s-j-center">发善心</div>
+                                <div className="chunk app-666-font28 s-flex1 s-j-center">发善心</div>
                             </div>
 
                         </div>
@@ -125,7 +127,9 @@ class TempleDetail extends React.Component {
                     <div className="dynamic-content app-padding-lr24">
                         <div className="step temple-name">
                             <div>
-                                <div className="temple-img"></div>
+                                <div className="temple-img">
+                                    <img src="http://img4.imgtn.bdimg.com/it/u=398347842,2770887580&fm=23&gp=0.jpg" className="app-wh100-all-radius"/>
+                                </div>
                             </div>
                             <div className="s-right s-j-center" style={{flexDirection: 'column', alignItems: 'flex-start'}}>
                                 <div className="app-333-font28">灵隐寺</div>
@@ -158,7 +162,9 @@ class TempleDetail extends React.Component {
                     <div className="dynamic-content app-padding-lr24">
                         <div className="step temple-name">
                             <div>
-                                <div className="temple-img"></div>
+                                <div className="temple-img">
+                                    <img src="http://img4.imgtn.bdimg.com/it/u=398347842,2770887580&fm=23&gp=0.jpg" className="app-wh100-all-radius"/>
+                                </div>
                             </div>
                             <div className="s-right s-j-center" style={{flexDirection: 'column', alignItems: 'flex-start'}}>
                                 <div className="app-333-font28">灵隐寺</div>
