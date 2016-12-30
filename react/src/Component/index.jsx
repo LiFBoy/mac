@@ -74,7 +74,7 @@ class Index extends React.Component {
                     </div>
 
                     <div className="app-margin-tb20"></div>
-                    <Link to="/TempleDetail">
+                    <Link to="/TempleDetail" className="app-a">
                         <div className="temple-content">
                             <div className="con-img">
                                 <div className="img-content"><img className="app-wh100-all" src="http://scimg.jb51.net/allimg/140708/11-140FQ53531Q9.jpg"/></div>
@@ -111,7 +111,7 @@ class Index extends React.Component {
 
 
                     <div className="app-margin-tb20"></div>
-                    <Link to="/TempleDetail">
+                    <Link to="/TempleDetail" className="app-a">
                         <div className="temple-content">
                             <div className="con-img">
                                 <div className="img-content"><img className="app-wh100-all"  src="http://img0.imgtn.bdimg.com/it/u=2152422253,1846971893&fm=23&gp=0.jpg"/></div>

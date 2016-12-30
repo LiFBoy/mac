@@ -5,7 +5,7 @@ import React from 'react';
 
 import pac from '../../../src/images/temple/praise－active.png'
 import comments from '../../../src/images/temple/comments.png'
-
+import {Router, Route, IndexRoute, browserHistory, Link} from 'react-router';
 
 class CommentLists extends React.Component {
     constructor() {
@@ -88,7 +88,7 @@ class CommentLists extends React.Component {
                                     </div>
                                 </div>
                                 <div className="s-flex1 s-j-center" style={{flexDirection: 'column', alignItems: 'flex-start'}}>
-                                    <div className="app-333-font28">灵隐寺</div>
+                                    <Link to="/UserInfo" className="app-a"><div className="app-333-font28">小明</div></Link>
                                     <div className="app-999-font24" style={{paddingTop:'12px'}}>2分钟前</div>
                                 </div>
 
@@ -120,7 +120,7 @@ class CommentLists extends React.Component {
                                     </div>
                                 </div>
                                 <div className="s-flex1 s-j-center" style={{flexDirection: 'column', alignItems: 'flex-start'}}>
-                                    <div className="app-333-font28">灵隐寺</div>
+                                    <Link to="/UserInfo" className="app-a"><div className="app-333-font28">小明</div></Link>
                                     <div className="app-999-font24" style={{paddingTop:'12px'}}>2分钟前</div>
                                 </div>
 
@@ -159,7 +159,7 @@ class CommentLists extends React.Component {
                                     </div>
                                 </div>
                                 <div className="s-flex1 s-j-center" style={{flexDirection: 'column', alignItems: 'flex-start'}}>
-                                    <div className="app-333-font28">灵隐寺</div>
+                                    <Link to="/UserInfo" className="app-a"><div className="app-333-font28">小明</div></Link>
                                     <div className="app-999-font24" style={{paddingTop:'12px'}}>2分钟前</div>
                                 </div>
 
@@ -189,7 +189,7 @@ class CommentLists extends React.Component {
                                     </div>
                                 </div>
                                 <div className="s-flex1 s-j-center" style={{flexDirection: 'column', alignItems: 'flex-start'}}>
-                                    <div className="app-333-font28">灵隐寺</div>
+                                    <Link to="/UserInfo" className="app-a"><div className="app-333-font28">小明</div></Link>
                                     <div className="app-999-font24" style={{paddingTop:'12px'}}>2分钟前</div>
                                 </div>
 

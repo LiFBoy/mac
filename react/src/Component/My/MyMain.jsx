@@ -31,7 +31,7 @@ class MyMain extends React.Component {
                 </div>
 
                 <div className="app-margin-tb20"></div>
-                <Link to="/MyAlms">
+                <Link to="/MyAlms" className="app-a">
                     <div className="step app-padding-lr24 app-white-chunk border-bottom">
                         <div className="s-flex2"><img className="app-wh-45" src={myalms}/>
                             <div className="app-333-font28 app-padding-l24">我的日善</div>
@@ -40,7 +40,7 @@ class MyMain extends React.Component {
                         <div className="s-flex1 s-j-end"><img className="app-wh-45" src={jt}/></div>
                     </div>
                 </Link>
-                <Link to="/PayInfo">
+                <Link to="/PayInfo" className="app-a">
                     <div className="step app-padding-lr24 app-white-chunk">
                         <div className="s-flex2"><img className="app-wh-45" src={payinfo}/>
                             <div className=" app-333-font28 app-padding-l24">我的供养</div>
@@ -51,7 +51,7 @@ class MyMain extends React.Component {
                 </Link>
                 <div className="app-margin-tb20"></div>
 
-                <Link to="/Feedbackpro">
+                <Link to="/Feedbackpro" className="app-a">
                     <div className="step app-padding-lr24 app-white-chunk border-bottom">
                         <div className="s-flex2">
 
@@ -64,7 +64,7 @@ class MyMain extends React.Component {
                     </div>
                 </Link>
 
-                <Link to="/Setting">
+                <Link to="/Setting" className="app-a">
                     <div className="step app-padding-lr24 app-white-chunk">
 
 

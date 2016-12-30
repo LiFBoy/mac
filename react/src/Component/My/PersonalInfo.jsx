@@ -10,26 +10,26 @@ class PersonalInfo extends React.Component {
 
     render(){
         return (
-            <div className="container">
+            <div className="app-padding-lr24" style={{paddingTop:'80px'}}>
                 <div className="step app-padding-tb20">
-                    <div className="s-left">用户名</div>
-                    <div className="s-right"><input type="text"/></div>
+                    <div className="s-left app-666-font32">用户名：</div>
+                    <div className="s-right"><input className="app-input" type="text"/></div>
                 </div>
                 <div className="step app-padding-tb20">
-                    <div className="s-left">性别</div>
-                    <div className="s-right"><input type="text"/></div>
+                    <div className="s-left app-666-font32">性别：</div>
+                    <div className="s-right"><input className="app-input" type="text"/></div>
                 </div>
                 <div className="step app-padding-tb20">
-                    <div className="s-left">年龄</div>
-                    <div className="s-right"><input type="text"/></div>
+                    <div className="s-left app-666-font32">年龄：</div>
+                    <div className="s-right"><input className="app-input" type="text"/></div>
                 </div>
                 <div className="step app-padding-tb20">
-                    <div className="s-left">居住地</div>
-                    <div className="s-right"><input type="text"/></div>
+                    <div className="s-left app-666-font32">居住地：</div>
+                    <div className="s-right"><input className="app-input" type="text"/></div>
                 </div>
                 <div className="step app-padding-tb20">
-                    <div className="s-left">禅语</div>
-                    <div className="s-right"><input type="text"/></div>
+                    <div className="s-left app-666-font32">禅语：</div>
+                    <div className="s-right"><input className="app-input" type="text"/></div>
                 </div>
 
             </div>

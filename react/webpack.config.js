@@ -22,7 +22,7 @@ var plugins = [];
 
 
 
- // plugins.push(new webpack.optimize.UglifyJsPlugin());//代码压缩
+ plugins.push(new webpack.optimize.UglifyJsPlugin());//代码压缩
  plugins.push(
      new webpack.DefinePlugin({
      'process.env': {

@@ -9,11 +9,25 @@ import chunk2 from '../../../src/images/temple/chunk2.png'
 import chunk3 from '../../../src/images/temple/chunk3.png'
 import pac from '../../../src/images/temple/praise－active.png'
 import comments from '../../../src/images/temple/comments.png'
+import {Router, Route, IndexRoute, browserHistory, Link} from 'react-router';
 
 
 class TempleDetail extends React.Component {
     constructor() {
         super();
+    }
+
+
+    changeType(type) {
+        if (type == 1) {
+            window.location.href = "/index.html#/FocusLists"
+        } else if (type == 2) {
+            window.location.href = "/index.html#/MessageBoard"
+        } else if (type == 3) {
+            window.location.href = "/index.html#/PayRecord"
+        }
+
+
     }
 
     render(){
@@ -31,29 +45,31 @@ class TempleDetail extends React.Component {
                     <div className="step">
                         <div className="s-center">
                             <div className="app-666-font28">今日日善</div>
-                            <div className="app-333-font28 app-padding-l20">5000</div>
+                            <div className="app-333-font28 app-padding-l24">5000</div>
                         </div>
                     </div>
                     <div className="step">
                         <div className="s-center">
                             <div className="goAlms step">
+                                <Link to="/DayPay" className="app-a s-flex1">
                                 <div className="s-flex1 app-padding-l24">
                                     <div><img className="img" src={myalms}/></div>
                                     <div className="app-333-font28" style={{paddingLeft:'14px'}}>去日善></div>
                                 </div>
+                                </Link>
                             </div>
                         </div>
                     </div>
 
                     <div className="step">
                         <div className="s-center">
-                            <div className="app-666-font24">所在地:</div>
+                            <div className="app-999-font24">所在地:</div>
                             <div className="app-333-font24">杭州</div>
 
                             <div className="app-padding-lr24"></div>
 
 
-                            <div className="app-666-font24">现住持:</div>
+                            <div className="app-999-font24">现住持:</div>
                             <div className="app-333-font24">光泉法师</div>
                         </div>
 
@@ -61,25 +77,28 @@ class TempleDetail extends React.Component {
 
 
                     <div className="step h-border">
-                        <div className="s-flex1 s-j-center s-flex-d">
-                            <div><img src={chunk1}/></div>
-                            <div className="pdt app-666-font24">222</div>
-                        </div>
-                        <div className="s-flex1 s-j-center s-flex-d">
+
+                            <div className="s-flex1 s-j-center s-flex-d" onClick={this.changeType.bind(this,1)}>
+                                <div><img src={chunk1}/></div>
+                                <div className="pdt app-666-font24">222</div>
+                            </div>
+                        <div className="s-flex1 s-j-center s-flex-d" onClick={this.changeType.bind(this,2)}>
                             <div><img src={chunk2}/></div>
                             <div className="pdt app-666-font24">111</div>
                         </div>
-                        <div className="s-flex1 s-j-center s-flex-d">
+                        <div className="s-flex1 s-j-center s-flex-d" onClick={this.changeType.bind(this,3)}>
                             <div><img src={chunk3}/></div>
                             <div className="pdt app-666-font24">3333</div>
                         </div>
                     </div>
 
-                    <div className="step h-80">
-                        <div className="s-center s-j-center app-999-font24">
-                            更多资料>
+                    <Link to="/AlmsDetail" className="app-a">
+                        <div className="step h-80">
+                            <div className="s-center s-j-center app-999-font24">
+                                更多资料>
+                            </div>
                         </div>
-                    </div>
+                    </Link>
 
 
 
@@ -107,11 +126,11 @@ class TempleDetail extends React.Component {
                         <div className="s-center">
 
                             <div className="step">
-                                <div className="chunk app-666-font28 s-flex1 s-j-center">捐款记录</div>
+                                <Link to="/PayRecord" className="app-a s-flex1"><div className="chunk app-666-font28 s-flex1 s-j-center">捐款记录</div></Link>
                                 <div className="app-padding-lr20"></div>
-                                <div className="chunk app-666-font28 s-flex1 s-j-center">了解详情</div>
+                                <Link to="/UnderstandDetail" className="app-a s-flex1"><div className="chunk app-666-font28 s-flex1 s-j-center">了解详情</div></Link>
                                 <div className="app-padding-lr20"></div>
-                                <div className="chunk app-666-font28 s-flex1 s-j-center">发善心</div>
+                                <Link to="/Pay" className="app-a s-flex1"><div className="chunk app-666-font28 s-flex1 s-j-center">发善心</div></Link>
                             </div>
 
                         </div>
@@ -147,9 +166,11 @@ class TempleDetail extends React.Component {
 
                             <div className="s-flex1 s-j-end">
 
+                                <Link to="/CommentLists"  className="step app-a" >
+
                                 <img className="img" src={pac}/>
                                 <div className="number app-999-font24 padding-right-40">50562</div>
-
+                                </Link>
 
 
                                 <img className="img" src={comments}/>
@@ -181,10 +202,10 @@ class TempleDetail extends React.Component {
                         <div className="step right-corner">
 
                             <div className="s-flex1 s-j-end">
-
+                                <Link to="/CommentLists"  className="step app-a" >
                                 <img className="img" src={pac}/>
                                 <div className="number app-999-font24 padding-right-40"></div>
-
+                                </Link>
 
 
                                 <img className="img" src={comments}/>

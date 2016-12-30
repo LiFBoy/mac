@@ -14,13 +14,21 @@ class MyAlms extends React.Component {
 
     createLogin(){
         return (
-            <div className="app-container-padding">
-                <div className="step border-bottom app-white-chunk">
-                    <div className="s-left" style={{flexDirection: 'column', alignItems: 'flex-start'}}>
-                        <div>灵隐寺扩建</div>
-                        <div>200022</div>
+            <div className="app-padding-l24 ">
+                <div className="step border-bottom app-wh-120 app-white">
+                    <div className="s-flex2 s-j-center" style={{flexDirection: 'column', alignItems: 'flex-start'}}>
+                        <div className="app-333-font32">灵隐寺日善</div>
+                        <div className="app-999-font24" style={{paddingTop:'10px'}}>2016-12-19 20:22</div>
                     </div>
-                    <div className="s-right s-right-1 s-j-end">1元</div>
+                    <div className="s-flex1 s-j-end app-padding-r24 app-333-font32">1元</div>
+                </div>
+                <div className="step border-bottom app-wh-160  app-white">
+                    <div className="s-flex2 s-j-center" style={{flexDirection: 'column', alignItems: 'flex-start'}}>
+                        <div className="app-333-font32">灵隐寺日善</div>
+                        <div className="app-666-font24 pb16" style={{paddingTop:'20px'}}>我我我我我我我我我我多我我我我我</div>
+                        <div className="app-999-font24">2016-12-19 20:22</div>
+                    </div>
+                    <div className="s-flex1 s-j-end app-padding-r24 app-333-font32">1元</div>
                 </div>
             </div>
         )
@@ -38,44 +46,73 @@ class MyAlms extends React.Component {
             <div>
                 <ul>
                     <li>
-                        <div className="step app-white-chunk">
-                            <div className="s-left">总日善次数</div>
-                            <div className="s-left s-j-end">200次</div>
+                        <div className="app-padding-l24">
+                            <div className="step app-white-chunk border-bottom app-666-font30">
+                                <div className="s-left">总日善次数</div>
+                                <div className="s-left s-j-end app-padding-r24">200次</div>
+                            </div>
                         </div>
 
                     </li>
 
                     <li>
-                        <div className="step app-white-chunk">
-                            <div className="s-left">总日善天数</div>
-                            <div className="s-left s-j-end">200天</div>
+                        <div className="app-padding-l24">
+                            <div className="step app-white-chunk border-bottom app-666-font30">
+                                <div className="s-left">总日善天数</div>
+                                <div className="s-left s-j-end app-padding-r24">200天</div>
+                            </div>
                         </div>
                     </li>
                 </ul>
 
-                <div className="container">
+                <div className="app-height-20"></div>
 
-                    <div className="step">
-                        <div className="s-left s-j-center">捐献排行</div>
+                <div className="app-padding-lr24">
+
+                    <div className="step border-bottom app-wh80">
+                        <div className="s-left s-j-center app-666-font30">捐献排行</div>
                     </div>
 
 
 
-                    <div className="step border-bottom app-padding-tb20">
-                        <div className="s-left">N01</div>
-                        <div className="s-left"><img src={kaoqin}/></div>
-                        <div className="s-left">灵隐寺</div>
-                        <div className="s-right s-j-end">6000</div>
+                    <div className="step border-bottom app-wh120">
+                        <div className="app-padding-r24 app-active-font28 s-j-center">NO1</div>
+                        <div className="app-wh-80 app-margin-right24">
+                            <img className="app-wh100-all-radius" src="http://img4.imgtn.bdimg.com/it/u=398347842,2770887580&fm=23&gp=0.jpg"/>
+                        </div>
+
+                        <div className="s-flex1 app-666-font30">
+                            灵隐寺
+                        </div>
+                        <div className="s-flex1 s-j-end app-666-font30">
+                            6000天
+                        </div>
                     </div>
+                    <div className="step border-bottom app-wh120">
+                        <div className="app-padding-r24 app-active-font28 s-j-center">NO2</div>
+                        <div className="app-wh-80 app-margin-right24">
+                            <img className="app-wh100-all-radius" src="http://img4.imgtn.bdimg.com/it/u=398347842,2770887580&fm=23&gp=0.jpg"/>
+                        </div>
 
+                        <div className="s-flex1 app-666-font30">
+                            灵隐寺
+                        </div>
+                        <div className="s-flex1 s-j-end app-666-font30">
+                            6000天
+                        </div>
+                    </div>
+                    <div className="step border-bottom app-wh120">
+                        <div className="app-padding-r24 app-active-font28 s-j-center">NO3</div>
+                        <div className="app-wh-80 app-margin-right24">
+                            <img className="app-wh100-all-radius" src="http://img4.imgtn.bdimg.com/it/u=398347842,2770887580&fm=23&gp=0.jpg"/>
+                        </div>
 
-
-
-                    <div className="step border-bottom app-padding-tb20">
-                        <div className="s-left">N01</div>
-                        <div className="s-left"><img src={kaoqin}/></div>
-                        <div className="s-left">灵隐寺</div>
-                        <div className="s-right s-j-end">6000</div>
+                        <div className="s-flex1 app-666-font30">
+                            灵隐寺
+                        </div>
+                        <div className="s-flex1 s-j-end app-666-font30">
+                            6000天
+                        </div>
                     </div>
 
                 </div>
@@ -94,10 +131,10 @@ class MyAlms extends React.Component {
             }
         };
         return (
-            <div>
-                <div className="step app-white-chunk">
-                    <div className="s-left s-center" style={{color:this.state.type==1?'red':''}} onClick={this.changeType.bind(this,1)}>最近日善</div>
-                    <div className="s-right s-right-1 s-center" style={{color:this.state.type==2?'red':''}} onClick={this.changeType.bind(this,2)}>日善历史</div>
+            <div className="my-alms">
+                <div className="step app-white-chunk app-wh80 border-bottom">
+                    <div className="s-flex1 s-j-center app-666-font32" style={{color:this.state.type==1?'#FFBB3A':'',borderBottom:this.state.type==1?'3px solid #FFBB3A':'0'}} onClick={this.changeType.bind(this,1)}>最近日善</div>
+                    <div className="s-flex1 s-j-center app-666-font32" style={{color:this.state.type==2?'#FFBB3A':'',borderBottom:this.state.type==2?'3px solid #FFBB3A':'0'}} onClick={this.changeType.bind(this,2)}>日善历史</div>
                 </div>
 
                 {stateType()}

@@ -18,8 +18,40 @@
   font-size: 30px;
   color: @color-333;
 }
+.app-333-font32{
+  font-size: 32px;
+  color: @color-333;
+}
+.app-333-font36{
+  font-size: 36px;
+  color: @color-333;
+}
 .app-666-font28{
   font-size: 28px;
+  color: @color-666;
+}
+.app-active-font30{
+  font-size: 30px;
+  color: @color-active;
+}
+.app-active-font36{
+  font-size: 36px;
+  color: @color-active;
+}
+.app-active-font28{
+  font-size: 28px;
+  color: @color-active;
+}
+.app-active-font28{
+  font-size: 30px;
+  color: @color-active;
+}
+.app-666-font30{
+  font-size: 30px;
+  color: @color-666;
+}
+.app-666-font32{
+  font-size: 32px;
   color: @color-666;
 }
 
@@ -51,12 +83,50 @@
   font-size: 24px;
   color: @color-999;
 }
+.app-999-font28{
+  font-size: 28px;
+  color: @color-999;
+}
 
 
 
 .app-wh-45{
   width:45px;
   height: 45px;
+}
+.app-wh-80{
+  width:80px;
+  height: 80px;
+}
+.app-wh-100{
+  width:100px;
+  height: 100px;
+}
+
+
+.app-wh80{
+  width: 100%;
+  height: 80px;
+}
+
+.app-wh120{
+  width: 100%;
+  height: 120px;
+  line-height: 120px;
+}
+
+
+.app-wh-120{
+  width: 100%;
+  height: 120px;
+}
+.app-wh-140{
+  width: 100%;
+  height: 140px;
+}
+.app-wh-160{
+  width: 100%;
+  height: 160px;
 }
 
 
@@ -66,8 +136,13 @@
 .step {
   display: flex;
   overflow: hidden;
+  box-sizing: border-box;
 
-
+  .s-flex-zero{
+    display: flex;
+    flex: 0;
+    align-items: center;
+  }
 
   .s-flex1{
     display: flex;
@@ -103,12 +178,6 @@
     display: flex;
     flex: 4;
     align-items: center;
-    input {
-      width: 100%;
-      border: 1px solid #ddd;
-      border-radius: 3px;
-      padding: 5px;
-    }
   }
 
   .s-flex-d{
@@ -173,6 +242,8 @@
     .menu-select{
       color: @color-active;
     }
+
+
 
 
 }
@@ -450,5 +521,100 @@
 
   }
 }
+
+
+.pay-history,.my-alms,.pay-info{
+
+  .pt30{
+    padding-top: 30px;
+  }
+
+  .pb12{
+    padding-bottom: 12px;
+  }
+  .pb16{
+    padding-bottom: 16px;
+  }
+
+  .pb26{
+    padding-bottom: 26px;
+  }
+
+  pb{
+    padding-bottom: 16px;
+  }
+
+
+
+  .img-chunk{
+    width: 30px;
+    height: 30px;
+  }
+
+}
+
+
+.user-info{
+  .user-title,.user-two {
+    padding-top: 32px;
+    padding-bottom: 32px;
+
+
+  }
+}
+
+
+.pay{
+
+  .pay-title{
+    padding-top: 32px;
+    padding-bottom: 32px;
+  }
+
+
+  .pay-select-type {
+    padding-top: 100px;
+    padding-bottom: 80px;
+  }
+
+  .pay-success{
+    padding-top: 142px;
+    padding-bottom: 72px;
+  }
+
+  .day-pay-select{
+    padding-top: 120px;
+    padding-bottom: 48px;
+  }
+
+  .day-pay-type{
+    border: 1px solid #FFBB3A;
+    background: #fff2D9;
+    border-radius: 4px;
+
+    width: 160px !important;
+    height: 80px;
+
+  }
+
+    .pay-chunk{
+      border: 1px solid #bbb;
+      background: #ffffff;
+      border-radius: 4px;
+      height: 80px;
+    }
+
+    .pay-active-chunk{
+      border: 1px solid #FFBB3A;
+      background: #fff2D9;
+      border-radius: 4px;
+    }
+
+
+
+
+
+}
+
 
 

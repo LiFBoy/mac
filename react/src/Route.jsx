@@ -34,6 +34,12 @@ import PayHistory from './Component/Temple/PayHistory';
 import AlmsDetail from './Component/Temple/AlmsDetail';
 import SelectMoney from './Component/Temple/SelectMoney';
 import CommentLists from './Component/Temple/CommentLists';
+import DayPay from './Component/Temple/DayPay';
+import UnderstandDetail from './Component/Temple/UnderstandDetail';
+import Pay from './Component/Temple/Pay';
+import PayRecord from './Component/Temple/PayRecord';
+
+
 
 
 /**
@@ -79,12 +85,14 @@ const RouteConfig = (
             <Route path="/CommentLists" component={CommentLists} />
 
 
-
-
             <Route path="/Temple" component={Temple} />
             <Route path="/Notice" component={Notice} />
             <Route path="/ChanYu" component={ChanYu} />
             <Route path="/Coments" component={Coments} />
+            <Route path="/DayPay" component={DayPay} />
+            <Route path="/UnderstandDetail" component={UnderstandDetail} />
+            <Route path="/Pay" component={Pay} />
+            <Route path="/PayRecord" component={PayRecord} />
 
         </Route>
     </Router>

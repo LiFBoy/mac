@@ -3,13 +3,20 @@
 import React from 'react';
 
 
-class PaySuccess extends React.Component {
+
+import {Router, Route, IndexRoute, browserHistory, Link} from 'react-router';
+class DayPay extends React.Component {
     constructor() {
         super();
     }
 
-    render(){
+
+
+    render() {
+
+
         return (
+
             <div className="pay app-padding-lr24">
                 <div>
 
@@ -37,10 +44,14 @@ class PaySuccess extends React.Component {
 
 
 
-                <div className="pay-success">
+                <div className="day-pay-select">
 
                     <div className="step">
-                        <div className="s-center app-active-font36">捐献成功~</div>
+                        <div className="s-center">
+                            <div className="step day-pay-type">
+                                <div className="s-flex1 s-j-center s-j-center"><span className="app-333-font36">1</span><span className="app-333-font24">元</span></div>
+                            </div>
+                        </div>
                     </div>
 
 
@@ -56,4 +67,4 @@ class PaySuccess extends React.Component {
 }
 
 
-export default PaySuccess
+export default DayPay
