@@ -13,18 +13,13 @@ class PayHistory extends React.Component {
             <div className="app-container">
 
                 <div className="pay-history ">
-                    <div className="step">
-                        <div className="app-padding-lr24">NO1</div>
-                        <div className="img-chunk app-margin-right24">
-                            <img className="app-wh100-all" src="http://img4.imgtn.bdimg.com/it/u=398347842,2770887580&fm=23&gp=0.jpg"/>
+                    <div className="step border-bottom app-wh-120 app-padding-lr24 app-white">
+                        <div className="s-flex1 s-j-center s-flex-d app-666-font30" style={{alignItems: 'flex-start'}}>
+                            <div className="app-333-font28">大师</div>
+                            <div className="app-999-font24" style={{paddingTop:'15px'}}>2小时前</div>
                         </div>
-
-                        <div className="s-flex1 s-flex-d" style={{alignItems: 'flex-start'}}>
-                            <div>唐僧大师</div>
-                            <div>2小时前</div>
-                        </div>
-                        <div className="s-flex1 s-j-end">
-                            日善200天
+                        <div className="s-flex1 s-j-end app-333-font28">
+                            募捐金额：20000元
                         </div>
                     </div>
                 </div>

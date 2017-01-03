@@ -14,7 +14,7 @@ let store = createStore();
 import routes from './Route'; //路由配置
 
 import './auto-set-rem'
-import './less/my.bootstrap.min.css'
+// import './less/my.bootstrap.min.css'
 import './less/common.less'
 import './less/my.less'
 

@@ -108,7 +108,9 @@ class TempleDetail extends React.Component {
                 <div className="middle">
                     <div className="step h-88-b">
                         <div className="s-flex2 s-j-center app-333-font32">大熊宝寺重修</div>
-                        {/*<div className="s-flex1 s-j-end">往期></div>*/}
+                        <Link to="/PayHistory">
+                            <div className="app-padding-r24 app-666-font24" style={{position:'absolute',right:'0',lineHeight:'88px'}}>往期></div>
+                        </Link>
                     </div>
 
                     <div className="app-padding-lr40">

@@ -2,6 +2,7 @@ import React, {Component, PropTypes} from 'react';
 import {Router, Route, IndexRoute, browserHistory, hashHistory} from 'react-router';
 
 import Index from './Component/index'; //首页
+import NearBy from './Component/NearBy'; //
 
 
 import Feedbackpro from './Component/My/Feedbackpro';
@@ -63,6 +64,7 @@ const RouteConfig = (
     <Router history={history}>
         <Route path="/" component={Roots}>
             <Route path="/index" component={Index} />
+            <Route path="/NearBy" component={NearBy} />
             <Route path="/Feedbackpro" component={Feedbackpro} />
             <Route path="/PersonalInfo" component={PersonalInfo} />
             <Route path="/UserInfo" component={UserInfo} />

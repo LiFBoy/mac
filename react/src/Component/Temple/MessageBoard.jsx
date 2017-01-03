@@ -11,6 +11,7 @@ import chunk2 from '../../../src/images/temple/chunk2.png'
 import chunk3 from '../../../src/images/temple/chunk3.png'
 import pac from '../../../src/images/temple/praise－active.png'
 import comments from '../../../src/images/temple/comments.png'
+import face from '../../../src/images/temple/face.png'
 
 
 class MessageBoard extends React.Component {
@@ -170,6 +171,22 @@ class MessageBoard extends React.Component {
                         </div>
 
                     </div>
+                </div>
+
+
+                <div className="step face app-padding-lr24" style={{height:'100px'}}>
+
+
+                    <div className="s-flex1">
+                        <input type="text" placeholder="留下你的意见..." className="face-input"/>
+                    </div>
+
+                    <div className="s-flex-zero app-padding-l24" >
+                        <img className="face-img" src={face} />
+                    </div>
+
+
+
                 </div>
 
 

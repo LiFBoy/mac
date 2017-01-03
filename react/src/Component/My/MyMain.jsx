@@ -21,11 +21,13 @@ class MyMain extends React.Component {
             <div className="app-container">
 
                 <div className="step app-padding-lr24 my-main">
-
+                    <Link to="/PersonalInfo" className="app-a">
                         <div className="img"><img src="http://img4.imgtn.bdimg.com/it/u=398347842,2770887580&fm=23&gp=0.jpg" className="app-wh100-all-radius"/></div>
-
+                    </Link>
                     <div className="s-right s-j-center" style={{flexDirection: 'column', alignItems: 'flex-start'}}>
-                        <div className="app-333-font30">草木一秋</div>
+                        <Link to="/PersonalInfo" className="app-a">
+                            <div className="app-333-font30">草木一秋</div>
+                        </Link>
                         <div className="app-999-font22" style={{paddingTop:'24px'}}>时光自有时光，时光自有时光。</div>
                     </div>
                 </div>

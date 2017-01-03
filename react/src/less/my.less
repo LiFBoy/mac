@@ -362,8 +362,29 @@
     border-radius: 50%;
     margin-right: 32px;
   }
+
+
 }
 
+
+.face{
+
+  .face-input{
+    width: 100%;
+    height: 64px;
+    border: 1px solid @border;
+    font-size: 28px;
+    color: #999999;
+    padding-left: 24px;
+    outline: none;
+  }
+
+  .face-image{
+    width: 42px;
+    height: 42px;
+  }
+
+}
 
 
 .temple-container{
@@ -617,4 +638,131 @@
 }
 
 
+.near-by{
 
+
+  .near-by-content{
+    width: 345px;
+
+    padding-left: 20px;
+    padding-top: 20px;
+
+      .near-by-img{
+        width: 100%;
+        height: 345px;
+
+      }
+
+
+      .detail{
+
+        width: 100%;
+        height: 80px;
+
+      }
+  }
+
+}
+
+
+
+
+
+
+.popup_zindex{
+  position: absolute;
+  width: 100%;
+  height:100%;
+  z-index: 400;
+  top: 0;
+  left:0;
+  background-color: #000000;
+  opacity: 0.5;
+}
+
+
+
+
+
+.popup_content{
+
+  position: absolute;
+  width: 80%;
+  min-height: 20%;
+  left: 0;
+  right: 0;
+  top: 35%;
+  bottom: 40%;
+
+  margin: auto;
+  z-index: 402;
+
+
+  //display: flex;
+  //justify-content: center;
+  //align-items: center;
+  //flex: 1;
+
+  .header{
+    height: 80px;
+    background-color: #ffffff;
+    /*line-height: 100%;*/
+    /*padding: 2rem 0;*/
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+
+    .close{
+      position: absolute;
+      left: 0;
+    }
+    .popup_title{
+
+    }
+  }
+
+  .popup_content2{
+    background-color: #FFFFff;
+    height: auto;
+    position: relative;
+    padding: 40px 30px 32px 30px;
+
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+
+
+
+  }
+  .foot{
+
+    color:#01b4ee;
+    font-size: 1.4rem;
+
+    height: 30%;
+    text-align: center;
+    background-color: #FFFFff;
+    /*padding: 1.5rem 0;*/
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    display: flex;
+
+    .cancel_btn{
+      display: flex;
+      flex: 1;
+      justify-content: center;
+      align-items: center;
+      border-right: 1px solid #EEEEEE;
+    }
+    .sure_btn{
+      display: flex;
+      flex: 1;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+
+}
