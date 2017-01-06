@@ -1,0 +1,33 @@
+http://106.14.39.234/index.html#/index    热门
+http://106.14.39.234/index.html#/NearBy    附近
+http://106.14.39.234/index.html#/IndexFocus    关注
+
+
+http://106.14.39.234/index.html#/Temple    寺庙
+http://106.14.39.234/index.html#/ChanYu    禅语
+http://106.14.39.234/index.html#/Coments    评论
+http://106.14.39.234/index.html#/Notice    通知
+
+
+http://106.14.39.234/index.html#/MyAlms    我的日善
+http://106.14.39.234/index.html#/PayInfo    我的供养
+http://106.14.39.234/index.html#/PersonlInfo    个人资料
+http://106.14.39.234/index.html#/PersonlEdit    个人资料编辑
+http://106.14.39.234/index.html#/UserInfo    个人页面
+http://106.14.39.234/index.html#/MyMain    我的主页面
+http://106.14.39.234/index.html#/Feedbackpro    反馈问题
+http://106.14.39.234/index.html#/Setting    设置
+
+
+
+http://106.14.39.234/index.html#/TempleDetail    寺庙详情
+http://106.14.39.234/index.html#/DayPay    去日善
+http://106.14.39.234/index.html#/PaySuccess    捐献成功
+http://106.14.39.234/index.html#/FocusLists    关注列表
+http://106.14.39.234/index.html#/CommentLists    评论列表
+http://106.14.39.234/index.html#/MessageBoard    留言板
+http://106.14.39.234/index.html#/PayRecord    捐款历史
+http://106.14.39.234/index.html#/UnderstandDetail    化缘详情
+http://106.14.39.234/index.html#/Pay    发善心   弹框点其它
+http://106.14.39.234/index.html#/PayHistory    化缘历史
+http://106.14.39.234/index.html#/AlmsDetail    更多资料

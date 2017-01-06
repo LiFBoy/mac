@@ -2,11 +2,13 @@ import React, {Component, PropTypes} from 'react';
 import {Router, Route, IndexRoute, browserHistory, hashHistory} from 'react-router';
 
 import Index from './Component/index'; //首页
+import IndexFocus from './Component/IndexFocus'; //首页
 import NearBy from './Component/NearBy'; //
 
 
 import Feedbackpro from './Component/My/Feedbackpro';
 import PersonalInfo from './Component/My/PersonalInfo';
+import PersonalEdit from './Component/My/PersonalEdit';
 import UserInfo from './Component/My/UserInfo';
 import Setting from './Component/My/Setting';
 import PayInfo from './Component/My/PayInfo';
@@ -64,9 +66,11 @@ const RouteConfig = (
     <Router history={history}>
         <Route path="/" component={Roots}>
             <Route path="/index" component={Index} />
+            <Route path="/IndexFocus" component={IndexFocus} />
             <Route path="/NearBy" component={NearBy} />
             <Route path="/Feedbackpro" component={Feedbackpro} />
             <Route path="/PersonalInfo" component={PersonalInfo} />
+            <Route path="/PersonalEdit" component={PersonalEdit} />
             <Route path="/UserInfo" component={UserInfo} />
             <Route path="/Setting" component={Setting} />
             <Route path="/PayInfo" component={PayInfo} />

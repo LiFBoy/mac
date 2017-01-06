@@ -20,7 +20,7 @@ import alms from '../../src/images/index/alms.png'
 
 
 
-class Index extends React.Component {
+class IndexFocus extends React.Component {
     constructor() {
         super();
 
@@ -39,15 +39,15 @@ class Index extends React.Component {
     }
 
     initBannerSwiper () {
-    //下面是在table render完成后执行的js
-    this.state.swiper = new Swiper('.swiper-container', {
-        pagination: '.swiper-pagination',
-        paginationClickable: true,
-        //loop: true,
-        autoplay: 5000
-    });
-    //初始化banner图的swiper
-};
+        //下面是在table render完成后执行的js
+        this.state.swiper = new Swiper('.swiper-container', {
+            pagination: '.swiper-pagination',
+            paginationClickable: true,
+            //loop: true,
+            autoplay: 5000
+        });
+        //初始化banner图的swiper
+    };
 
 
     render(){
@@ -55,25 +55,6 @@ class Index extends React.Component {
             <div className="app-container">
 
                 <div className="index-container">
-                    <div className="banner">
-                        <div className="swiper-container">
-                            <div className="swiper-wrapper">
-                                <div className="swiper-slide">
-                                    <img src="http://img0.imgtn.bdimg.com/it/u=2152422253,1846971893&fm=23&gp=0.jpg"/>
-                                </div>
-                                <div className="swiper-slide">
-                                    <img src="http://pic6.huitu.com/res/20130116/84481_20130116142820494200_1.jpg"/>
-                                </div>
-                                <div className="swiper-slide">
-                                    <img src="http://img.taopic.com/uploads/allimg/120222/34250-12022209414087.jpg"/>
-                                </div>
-                            </div>
-
-                            <div className="swiper-pagination"></div>
-                        </div>
-                    </div>
-
-                    <div className="app-margin-tb20"></div>
                     <Link to="/TempleDetail" className="app-a">
                         <div className="temple-content">
                             <div className="con-img">
@@ -149,8 +130,6 @@ class Index extends React.Component {
 
                     <div className="app-margin-tb20"></div>
                 </div>
-
-                {/*<Foot type="1"></Foot>*/}
             </div>
         )
     }
@@ -191,4 +170,4 @@ const mapDispatchToProps = (dispatch) => {
         exportMap: exportMap,
     }, dispatch);
 };
-export default connect(mapStateToProps, mapDispatchToProps)(Index);
+export default connect(mapStateToProps, mapDispatchToProps)(IndexFocus);

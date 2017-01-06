@@ -80,7 +80,7 @@ class MyMain extends React.Component {
 
                 </Link>
 
-                <Foot type="3"></Foot>
+                {/*<Foot type="3"></Foot>*/}
             </div>
         )
     }

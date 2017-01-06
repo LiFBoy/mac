@@ -81,7 +81,7 @@ class ChanYu extends React.Component {
 
                 </div>
 
-                <Foot type="2"></Foot>
+                {/*<Foot type="2"></Foot>*/}
 
 
             </div>

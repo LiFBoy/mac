@@ -59,7 +59,7 @@ class MessageBoard extends React.Component {
 
 
                                 <img className="img" src={comments}/>
-                                <div className="number app-999-font24">789</div>
+                                <div className="number app-999-font24"></div>
                             </div>
                         </div>
 
@@ -86,12 +86,12 @@ class MessageBoard extends React.Component {
 
                             <div className="s-flex1 message-board-number s-j-end">
                                 <img className="img" src={pac}/>
-                                <div className="number app-999-font24 padding-right-40">50562</div>
+                                <div className="number app-999-font24 padding-right-40"></div>
 
 
 
                                 <img className="img" src={comments}/>
-                                <div className="number app-999-font24">789</div>
+                                <div className="number app-999-font24"></div>
                             </div>
                         </div>
 
