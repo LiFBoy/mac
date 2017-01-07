@@ -30,4 +30,10 @@ http://106.14.39.234/index.html#/PayRecord    捐款历史
 http://106.14.39.234/index.html#/UnderstandDetail    化缘详情
 http://106.14.39.234/index.html#/Pay    发善心   弹框点其它
 http://106.14.39.234/index.html#/PayHistory    化缘历史
+
 http://106.14.39.234/index.html#/AlmsDetail    更多资料
+
+
+
+
+
