@@ -62,11 +62,6 @@ class Temple extends React.Component {
                                 </div>
                             </div>
                         </div>
-
-
-
-
-
                         <div className="step right-corner">
 
                             <div className="s-flex1 s-j-end">
@@ -82,12 +77,6 @@ class Temple extends React.Component {
                             </div>
                         </div>
                     </div>
-
-
-
-
-
-
                 </div>
 
                 {/*<Foot type="2"></Foot>*/}

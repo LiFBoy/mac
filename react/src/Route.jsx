@@ -4,6 +4,7 @@ import {Router, Route, IndexRoute, browserHistory, hashHistory} from 'react-rout
 import Index from './Component/index'; //首页
 import IndexFocus from './Component/IndexFocus'; //首页
 import NearBy from './Component/NearBy'; //
+import Login from './Component/Login'; //
 
 
 import Feedbackpro from './Component/My/Feedbackpro';
@@ -41,6 +42,7 @@ import DayPay from './Component/Temple/DayPay';
 import UnderstandDetail from './Component/Temple/UnderstandDetail';
 import Pay from './Component/Temple/Pay';
 import PayRecord from './Component/Temple/PayRecord';
+import wish from './Component/Temple/wish';
 
 
 
@@ -65,6 +67,7 @@ var history = hashHistory;
 const RouteConfig = (
     <Router history={history}>
         <Route path="/" component={Roots}>
+            <Route path="/Login" component={Login} />
             <Route path="/index" component={Index} />
             <Route path="/IndexFocus" component={IndexFocus} />
             <Route path="/NearBy" component={NearBy} />
@@ -89,6 +92,7 @@ const RouteConfig = (
             <Route path="/AlmsDetail" component={AlmsDetail} />
             <Route path="/SelectMoney" component={SelectMoney} />
             <Route path="/CommentLists" component={CommentLists} />
+            <Route path="/wish" component={wish} />
 
 
             <Route path="/Temple" component={Temple} />

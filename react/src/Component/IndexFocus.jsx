@@ -81,7 +81,7 @@ class IndexFocus extends React.Component {
 
                             <div className="con-content step">
                                 <div className="s-flex1 app-333-font28">灵隐寺最新消息</div>
-                                <div className="s-flex1 s-j-end app-333-font24">
+                                <div className="s-flex1 s-j-end app-666-font24">
                                     <spn>
                                         20km
                                     </spn>
@@ -118,7 +118,7 @@ class IndexFocus extends React.Component {
 
                             <div className="con-content step">
                                 <div className="s-flex1 app-333-font28">灵隐寺最新消息</div>
-                                <div className="s-flex1 s-j-end app-333-font24">
+                                <div className="s-flex1 s-j-end app-666-font24">
                                     <spn>
                                         20km
                                     </spn>

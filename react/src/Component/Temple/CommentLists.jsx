@@ -52,7 +52,7 @@ class CommentLists extends React.Component {
                                 </div>
 
 
-                                <div className="step app-padding-tb20">
+                                <div className="step" style={{paddingTop:'24px',paddingBottom:'36px'}}>
                                     <div className="s-flex1" style={{flexWrap:'wrap'}}>
                                         <div className="upload-img">
                                             <img src="http://pic17.nipic.com/20111003/5847249_214945441162_2.jpg" className="app-wh100-all" />

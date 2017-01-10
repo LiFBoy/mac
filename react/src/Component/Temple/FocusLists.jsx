@@ -19,7 +19,7 @@ class FocusLists extends React.Component {
                     </div>
                     <div className="s-flex2 s-j-center" style={{flexDirection: 'column', alignItems: 'flex-start'}}>
                         <Link to="/UserInfo" className="app-a"><div className="app-333-font28">大师</div></Link>
-                        <div className="app-999-font24" style={{paddingTop:'10px'}}>空侬倥侬人空倥</div>
+                        <div className="app-999-font24" style={{paddingTop:'20px'}}>空侬倥侬人空倥</div>
                     </div>
                 </div>
                 <div className="step app-white border-bottom app-padding-l24  app-wh-140">
@@ -28,7 +28,7 @@ class FocusLists extends React.Component {
                     </div>
                     <div className="s-flex2 s-j-center" style={{flexDirection: 'column', alignItems: 'flex-start'}}>
                         <Link to="/UserInfo" className="app-a"><div className="app-333-font28">大师</div></Link>
-                        <div className="app-999-font24" style={{paddingTop:'10px'}}></div>
+                        <div className="app-999-font24" style={{paddingTop:'20px'}}></div>
                     </div>
                 </div>
             </div>

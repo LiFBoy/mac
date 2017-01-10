@@ -41,7 +41,7 @@ class NearBy extends React.Component {
                             <div className="near-by-img"><img className="app-wh100-all" src="http://img.taopic.com/uploads/allimg/120222/34250-12022209414087.jpg"/></div>
                             <div className="detail step app-padding-lr24 app-white">
                                 <div className="s-flex1 app-333-font28">灵隐寺</div>
-                                <div className="s-flex1 s-j-end app-333-font24">20km</div>
+                                <div className="s-flex1 s-j-end app-666-font24">20km</div>
 
                             </div>
                         </div>
@@ -49,7 +49,7 @@ class NearBy extends React.Component {
                             <div className="near-by-img"><img className="app-wh100-all" src="http://img.taopic.com/uploads/allimg/120222/34250-12022209414087.jpg"/></div>
                             <div className="detail step app-padding-lr24 app-white">
                                 <div className="s-flex1 app-333-font28">灵隐寺</div>
-                                <div className="s-flex1 s-j-end app-333-font24">20km</div>
+                                <div className="s-flex1 s-j-end app-666-font24">20km</div>
 
                             </div>
                         </div>
@@ -57,7 +57,7 @@ class NearBy extends React.Component {
                             <div className="near-by-img"><img className="app-wh100-all" src="http://img.taopic.com/uploads/allimg/120222/34250-12022209414087.jpg"/></div>
                             <div className="detail step app-padding-lr24 app-white">
                                 <div className="s-flex1 app-333-font28">灵隐寺</div>
-                                <div className="s-flex1 s-j-end app-333-font24"> 20km</div>
+                                <div className="s-flex1 s-j-end app-666-font24"> 20km</div>
 
                             </div>
                         </div>

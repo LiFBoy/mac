@@ -16,11 +16,13 @@
 
 .app-333-font30{
   font-size: 30px;
+
   color: @color-333;
 }
 .app-333-font32{
   font-size: 32px;
   color: @color-333;
+
 }
 .app-333-font36{
   font-size: 36px;
@@ -33,10 +35,12 @@
 .app-active-font30{
   font-size: 30px;
   color: @color-active;
+
 }
 .app-active-font36{
   font-size: 36px;
   color: @color-active;
+
 }
 .app-active-font28{
   font-size: 28px;
@@ -58,6 +62,7 @@
 .app-666-font24{
   font-size: 24px;
   color: @color-666;
+
 }
 
 
@@ -72,6 +77,7 @@
 .app-333-font32{
   font-size: 32px;
   color: @color-333;
+
 }
 
 
@@ -85,6 +91,10 @@
 }
 .app-999-font28{
   font-size: 28px;
+  color: @color-999;
+}
+.app-999-font30{
+  font-size: 30px;
   color: @color-999;
 }
 
@@ -127,6 +137,42 @@
 .app-wh-160{
   width: 100%;
   height: 160px;
+}
+
+.app-login{
+  min-height: 100%;
+
+  background-image: url('/dist/bg/login-bg.png');
+
+  .login-img{
+    width: 170px;
+    height: 170px;
+    padding-top: 120px;
+    padding-bottom: 100px;
+  }
+
+  .login-input{
+    background: none;
+    outline: none;
+    border: 0;
+    height: 100%;
+    width: 100%;
+  }
+  .login-code{
+    width: 160px;
+    height: 60px;
+    border-radius: 10px;
+    border: 1px solid @color-active;
+    color: @color-active;
+    font-size: 24px;
+  }
+
+  .login-btn{
+    margin-top: 88px;
+    height: 100px;
+
+  }
+
 }
 
 
@@ -216,10 +262,6 @@
   font-size: 20px;
   z-index: 3;
 
-
-
-
-
     .menu-option {
 
       width: 33.33%;
@@ -242,8 +284,6 @@
     .menu-select{
       color: @color-active;
     }
-
-
 
 
 }
@@ -298,7 +338,7 @@
         left: 0;
         background: #000000;
         z-index: 2;
-        opacity: 0.4;
+        opacity: 0.5;
       }
 
       .con-bar-content{
@@ -484,8 +524,8 @@
     border-bottom: 1px solid @border;
 
     .temple-name{
-      padding: 36px 0;
-
+      padding-top:36px;
+      padding-bottom: 32px;
       .message-board-number{
 
       }
@@ -547,23 +587,39 @@
 .pay-history,.my-alms,.pay-info{
 
   .pt30{
-    padding-top: 30px;
+    padding-top: 26px;
+  }
+  .pt12{
+    padding-top: 10px;
+  }
+  .pt20{
+    padding-top: 16px;
+  }
+
+  .pt24-20{
+    padding-top: 20px;
+
+  }
+  .pt24{
+    padding-top: 22px;
+  }
+  .pb24{
+    padding-bottom: 22px;
+
   }
 
   .pb12{
-    padding-bottom: 12px;
+    padding-bottom: 10px;
   }
   .pb16{
-    padding-bottom: 16px;
+    padding-bottom: 12px;
   }
 
   .pb26{
-    padding-bottom: 26px;
+    padding-bottom: 22px;
   }
 
-  pb{
-    padding-bottom: 16px;
-  }
+
 
 
 
@@ -639,14 +695,10 @@
 
 
 .near-by{
-
-
   .near-by-content{
     width: 345px;
-
     padding-left: 20px;
     padding-top: 20px;
-
       .near-by-img{
         width: 100%;
         height: 345px;
@@ -660,6 +712,53 @@
         height: 80px;
 
       }
+  }
+
+}
+
+
+.wish-container{
+  .wish-img{
+    width: 520px;
+    height: 520px;
+    padding-top: 60px;
+  }
+
+  .wish-text{
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+
+  .wish-money{
+    width: 160px;
+    height: 80px;
+    border: 1px solid #FFBB3A;
+    background: #fff2D9;
+    border-radius: 4px;
+    text-align: center;
+    line-height: 80px;
+
+  }
+  .wish-input-content{
+    width: 100%;
+    height: 100px;
+    background: #FFFFff;
+    border: 1px solid #bbbbbb;
+    border-radius: 10px;
+    line-height: 100px;
+    margin-top: 48px;
+    margin-bottom: 48px;
+  }
+
+  .wish-input{
+    background: none;
+    outline: none;
+    border: 0;
+    height: 100%;
+    width: 100%;
+    font-size: 32px;
+    color: #bbb;
+
   }
 
 }

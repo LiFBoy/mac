@@ -23,7 +23,7 @@ class PayRecord extends React.Component {
                     </div>
                     <div className="s-flex2 s-j-center" style={{flexDirection: 'column', alignItems: 'flex-start'}}>
                         <div className="app-333-font28">大师</div>
-                        <div className="app-999-font24" style={{paddingTop:'10px'}}>2小时前</div>
+                        <div className="app-999-font24" style={{paddingTop:'20px'}}>2小时前</div>
                     </div>
                     <div className="s-flex1 s-j-end app-padding-r24 app-333-font32">捐款1元</div>
                 </div>
@@ -33,7 +33,7 @@ class PayRecord extends React.Component {
                     </div>
                     <div className="s-flex2 s-j-center" style={{flexDirection: 'column', alignItems: 'flex-start'}}>
                         <div className="app-333-font28">大师</div>
-                        <div className="app-999-font24" style={{paddingTop:'10px'}}>2小时前</div>
+                        <div className="app-999-font24" style={{paddingTop:'20px'}}>2小时前</div>
                     </div>
                     <div className="s-flex1 s-j-end app-padding-r24 app-333-font32">捐款1元</div>
                 </div>
@@ -65,7 +65,7 @@ class PayRecord extends React.Component {
 
                         <div className="s-flex1 s-j-center s-flex-d app-666-font30" style={{alignItems: 'flex-start'}}>
                             <div className="app-333-font28">大师</div>
-                            <div className="app-999-font24" style={{paddingTop:'10px'}}>2小时前</div>
+                            <div className="app-999-font24" style={{paddingTop:'20px'}}>2小时前</div>
                         </div>
                         <div className="s-flex1 s-j-end app-666-font30">
                             6000天
@@ -78,7 +78,7 @@ class PayRecord extends React.Component {
 
                         <div className="s-flex1 s-j-center s-flex-d app-666-font30" style={{alignItems: 'flex-start'}}>
                             <div className="app-333-font28">大师</div>
-                            <div className="app-999-font24" style={{paddingTop:'10px'}}>2小时前</div>
+                            <div className="app-999-font24" style={{paddingTop:'20px'}}>2小时前</div>
                         </div>
                         <div className="s-flex1 s-j-end app-666-font30">
                             6000天
@@ -91,7 +91,7 @@ class PayRecord extends React.Component {
 
                         <div className="s-flex1 s-j-center s-flex-d app-666-font30" style={{alignItems: 'flex-start'}}>
                             <div className="app-333-font28">大师</div>
-                            <div className="app-999-font24" style={{paddingTop:'10px'}}>2小时前</div>
+                            <div className="app-999-font24" style={{paddingTop:'20px'}}>2小时前</div>
                         </div>
                         <div className="s-flex1 s-j-end app-666-font30">
                             6000天
