@@ -36,8 +36,8 @@ class ChanYu extends React.Component {
                             </div>
                             <div className="s-right s-j-center"
                                  style={{flexDirection: 'column', alignItems: 'flex-start'}}>
-                                <div className="app-333-font28">每日一句</div>
-                                <div className="app-999-font24" style={{paddingTop: '12px'}}>2分钟前</div>
+                                <div className="app-333-font28 app-line-height-one">每日一句</div>
+                                <div className="app-999-font24 app-line-height-one" style={{paddingTop: '12px'}}>2分钟前</div>
                             </div>
                         </div>
 
@@ -61,8 +61,8 @@ class ChanYu extends React.Component {
                             </div>
                             <div className="s-right s-j-center"
                                  style={{flexDirection: 'column', alignItems: 'flex-start'}}>
-                                <div className="app-333-font28">每日一句</div>
-                                <div className="app-999-font24" style={{paddingTop: '12px'}}>2分钟前</div>
+                                <div className="app-333-font28 app-line-height-one">每日一句</div>
+                                <div className="app-999-font24 app-line-height-one" style={{paddingTop: '12px'}}>2分钟前</div>
                             </div>
                         </div>
 

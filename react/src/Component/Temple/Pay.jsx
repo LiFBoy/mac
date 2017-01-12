@@ -27,8 +27,8 @@ class Pay extends React.Component {
             </div>,
             content: <div>
                 <div className="step app-popup-pay">
-                    <div className="app-padding-lr24 app-333-font32" style={{lineHeight:'80px'}}>金额(元)</div>
-                    <div className="s-flex2">
+                    <div className="app-padding-l24 app-333-font32" style={{lineHeight:'40px',height:'40px'}}>金额(元)</div>
+                    <div className="">
                         <input type="text" className="app-popup-pay-input" placeholder="可填写1-2000"/>
                     </div>
 

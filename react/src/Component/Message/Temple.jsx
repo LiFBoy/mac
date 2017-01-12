@@ -36,8 +36,8 @@ class Temple extends React.Component {
                                 <div className="temple-img"><img className="app-wh100-all-radius" src="http://pic.58pic.com/58pic/11/52/20/45s58PICVat.jpg"/></div>
                             </div>
                             <div className="s-right s-j-center" style={{flexDirection: 'column', alignItems: 'flex-start'}}>
-                                <div className="app-333-font28">灵隐寺</div>
-                                <div className="app-999-font24" style={{paddingTop:'12px'}}>2分钟前</div>
+                                <div className="app-333-font28 app-line-height-one">灵隐寺</div>
+                                <div className="app-999-font24 app-line-height-one" style={{paddingTop:'12px'}}>2分钟前</div>
                             </div>
                         </div>
 

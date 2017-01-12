@@ -36,8 +36,8 @@ class Coments extends React.Component {
                             </div>
                             <div className="s-right s-j-center"
                                  style={{flexDirection: 'column', alignItems: 'flex-start'}}>
-                                <div className="app-333-font28">灵隐寺</div>
-                                <div className="app-999-font24" style={{paddingTop: '12px'}}>10-12 09:00</div>
+                                <div className="app-333-font28 app-line-height-one">灵隐寺</div>
+                                <div className="app-999-font24 app-line-height-one" style={{paddingTop: '12px'}}>10-12 09:00</div>
                             </div>
                         </div>
 
@@ -68,8 +68,8 @@ class Coments extends React.Component {
                             </div>
                             <div className="s-right s-j-center"
                                  style={{flexDirection: 'column', alignItems: 'flex-start'}}>
-                                <div className="app-333-font28">悟空</div>
-                                <div className="app-999-font24" style={{paddingTop: '12px'}}>10-12 09:00</div>
+                                <div className="app-333-font28 app-line-height-one">悟空</div>
+                                <div className="app-999-font24 app-line-height-one" style={{paddingTop: '12px'}}>10-12 09:00</div>
                             </div>
                         </div>
 

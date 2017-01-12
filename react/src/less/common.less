@@ -74,8 +74,13 @@ li{
 }
 
 
-a,button,input,textarea{-webkit-tap-highlight-color: rgba(0,0,0,0);
-  -webkit-appearance: none;-webkit-user-modify:read-write-plaintext-only;  }
+a,button,input,textarea {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-appearance: none;-webkit-user-modify:read-write-plaintext-only;
+}
+
+
+
 
 
 
@@ -96,6 +101,11 @@ a,button,input,textarea{-webkit-tap-highlight-color: rgba(0,0,0,0);
 .app-a{
   text-decoration: none;
 
+}
+
+
+.app-line-height-one{
+  line-height: 1;
 }
 
 
@@ -170,22 +180,33 @@ a,button,input,textarea{-webkit-tap-highlight-color: rgba(0,0,0,0);
   padding-top: 24px;
 }
 
-
-.app-input{
+.app-input-edit{
   outline: none;
-  border: 1px solid @border;
   background: @bg;
-  padding-left: 24px;
+
   height: 70px;
   border-radius: 10px;
   width: 100%;
+
+}
+
+
+.app-input{
+  line-height: 40px;
+  height: 40px;
+  padding-left: 24px;
+  background: @bg;
   font-size: 32px;
   color: #333;
+  border: 0;
+  outline: none;
 
 }
 
 .app-popup-pay{
-  height: 80px;
+  width: 100%;
+  padding-top: 20px;
+  padding-bottom: 20px;
   border:1px solid @border;
 }
 
@@ -193,7 +214,8 @@ a,button,input,textarea{-webkit-tap-highlight-color: rgba(0,0,0,0);
   outline: none;
   border: 0;
   padding-left: 24px;
-  height: 70px;
+  height: 40px;
+  line-height: 40px;
   border-radius: 10px;
   width: 100%;
   font-size: 32px;

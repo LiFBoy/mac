@@ -39,8 +39,8 @@ class CommentLists extends React.Component {
                                 </div>
                                 <div className="s-right s-j-center"
                                      style={{flexDirection: 'column', alignItems: 'flex-start'}}>
-                                    <div className="app-333-font28">灵隐寺</div>
-                                    <div className="app-999-font24" style={{paddingTop: '12px'}}>10-12 09:00</div>
+                                    <div className="app-333-font28 app-line-height-one">灵隐寺</div>
+                                    <div className="app-999-font24 app-line-height-one" style={{paddingTop: '12px'}}>10-12 09:00</div>
                                 </div>
                             </div>
 
@@ -88,8 +88,8 @@ class CommentLists extends React.Component {
                                     </div>
                                 </div>
                                 <div className="s-flex1 s-j-center" style={{flexDirection: 'column', alignItems: 'flex-start'}}>
-                                    <Link to="/UserInfo" className="app-a"><div className="app-333-font28">小明</div></Link>
-                                    <div className="app-999-font24" style={{paddingTop:'12px'}}>2分钟前</div>
+                                    <Link to="/UserInfo" className="app-a"><div className="app-333-font28 app-line-height-one">小明</div></Link>
+                                    <div className="app-999-font24 app-line-height-one" style={{paddingTop:'12px'}}>2分钟前</div>
                                 </div>
 
                                 <div className="s-flex1 message-board-number s-j-end">
@@ -120,8 +120,8 @@ class CommentLists extends React.Component {
                                     </div>
                                 </div>
                                 <div className="s-flex1 s-j-center" style={{flexDirection: 'column', alignItems: 'flex-start'}}>
-                                    <Link to="/UserInfo" className="app-a"><div className="app-333-font28">小明</div></Link>
-                                    <div className="app-999-font24" style={{paddingTop:'12px'}}>2分钟前</div>
+                                    <Link to="/UserInfo" className="app-a"><div className="app-333-font28 app-line-height-one">小明</div></Link>
+                                    <div className="app-999-font24 app-line-height-one" style={{paddingTop:'12px'}}>2分钟前</div>
                                 </div>
 
                                 <div className="s-flex1 message-board-number s-j-end">
@@ -159,8 +159,8 @@ class CommentLists extends React.Component {
                                     </div>
                                 </div>
                                 <div className="s-flex1 s-j-center" style={{flexDirection: 'column', alignItems: 'flex-start'}}>
-                                    <Link to="/UserInfo" className="app-a"><div className="app-333-font28">小明</div></Link>
-                                    <div className="app-999-font24" style={{paddingTop:'12px'}}>2分钟前</div>
+                                    <Link to="/UserInfo" className="app-a"><div className="app-333-font28 app-line-height-one">小明</div></Link>
+                                    <div className="app-999-font24 app-line-height-one" style={{paddingTop:'12px'}}>2分钟前</div>
                                 </div>
 
                                 <div className="s-flex1 message-board-number s-j-end">
@@ -189,8 +189,8 @@ class CommentLists extends React.Component {
                                     </div>
                                 </div>
                                 <div className="s-flex1 s-j-center" style={{flexDirection: 'column', alignItems: 'flex-start'}}>
-                                    <Link to="/UserInfo" className="app-a"><div className="app-333-font28">小明</div></Link>
-                                    <div className="app-999-font24" style={{paddingTop:'12px'}}>2分钟前</div>
+                                    <Link to="/UserInfo" className="app-a"><div className="app-333-font28 app-line-height-one">小明</div></Link>
+                                    <div className="app-999-font24 app-line-height-one" style={{paddingTop:'12px'}}>2分钟前</div>
                                 </div>
 
                                 <div className="s-flex1 message-board-number s-j-end">

@@ -35,8 +35,8 @@ class Notice extends React.Component {
                             </div>
                             <div className="s-right s-j-center"
                                  style={{flexDirection: 'column', alignItems: 'flex-start'}}>
-                                <div className="app-333-font28">悟空  <span className="app-666-font28">赞了</span></div>
-                                <div className="app-999-font24" style={{paddingTop: '12px'}}>12-10 09:32</div>
+                                <div className="app-333-font28 app-line-height-one">悟空  <span className="app-666-font28">赞了</span></div>
+                                <div className="app-999-font24 app-line-height-one" style={{paddingTop: '12px'}}>12-10 09:32</div>
                             </div>
                         </div>
 
@@ -61,8 +61,8 @@ class Notice extends React.Component {
                             </div>
                             <div className="s-right s-j-center"
                                  style={{flexDirection: 'column', alignItems: 'flex-start'}}>
-                                <div className="app-333-font28">悟空  <span className="app-666-font28">赞了</span></div>
-                                <div className="app-999-font24" style={{paddingTop: '12px'}}>12-10 09:32</div>
+                                <div className="app-333-font28 app-line-height-one">悟空  <span className="app-666-font28">赞了</span></div>
+                                <div className="app-999-font24 app-line-height-one" style={{paddingTop: '12px'}}>12-10 09:32</div>
                             </div>
                         </div>
 

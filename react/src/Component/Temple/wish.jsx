@@ -7,6 +7,8 @@ import React from 'react';
 import {Router, Route, IndexRoute, browserHistory, Link} from 'react-router';
 
 
+
+
 class wish extends React.Component {
     constructor() {
         super();
@@ -21,7 +23,7 @@ class wish extends React.Component {
                 <div className="step">
                     <div className="s-center">
                         <div className="wish-img">
-                            <img src="http://img4.imgtn.bdimg.com/it/u=398347842,2770887580&fm=23&gp=0.jpg" className="app-wh100-all"/>
+                            <img src='/dist/bg/wish.png' className="app-wh100-all"/>
                         </div>
                     </div>
                 </div>
@@ -38,8 +40,8 @@ class wish extends React.Component {
                     </div>
                 </div>
                 <div className="step wish-input-content">
-                    <div className="app-padding-lr24 app-333-font32">祈愿</div>
-                    <div className="s-flex1">
+                    <div className="app-padding-lr24 app-333-font32" style={{height:'40px',lineHeight:'40px'}}>祈愿</div>
+                    <div>
                         <input type="text" className="wish-input" placeholder="保佑平安，万事如意"/>
                     </div>
                 </div>

@@ -17,16 +17,16 @@ class MyAlms extends React.Component {
             <div className="app-padding-l24 ">
                 <div className="step border-bottom app-white">
                     <div className="s-flex2" style={{flexDirection: 'column', alignItems: 'flex-start'}}>
-                        <div className="app-333-font32 pt30">灵隐寺日善</div>
-                        <div className="app-999-font24 pt12 pb26">2016-12-19 20:22</div>
+                        <div className="app-333-font32 pt30 app-line-height-one">灵隐寺日善</div>
+                        <div className="app-999-font24 pt12 pb26 app-line-height-one">2016-12-19 20:22</div>
                     </div>
                     <div className="s-flex1 s-j-end app-padding-r24 app-333-font32">1元</div>
                 </div>
                 <div className="step border-bottom app-white">
                     <div className="s-flex2" style={{flexDirection: 'column', alignItems: 'flex-start'}}>
-                        <div className="app-333-font32 pt24">灵隐寺日善</div>
-                        <div className="app-666-font24 pt24-20 pb16">我我我我我我我我我我多我我我我我</div>
-                        <div className="app-999-font24 pb24">2016-12-19 20:22</div>
+                        <div className="app-333-font32 pt24 app-line-height-one">灵隐寺日善</div>
+                        <div className="app-666-font24 pt20 pb16 app-line-height-one">我我我我我我我我我我多我我我我我</div>
+                        <div className="app-999-font24 pb24 app-line-height-one">2016-12-19 20:22</div>
                     </div>
                     <div className="s-flex1 s-j-end app-padding-r24 app-333-font32">1元</div>
                 </div>

@@ -26,9 +26,9 @@ class MyMain extends React.Component {
                     </Link>
                     <div className="s-right s-j-center" style={{flexDirection: 'column', alignItems: 'flex-start'}}>
                         {/*<Link to="/PersonalInfo" className="app-a">*/}
-                            <div className="app-333-font30">草木一秋</div>
+                            <div className="app-333-font30 app-line-height-one">草木一秋</div>
                         {/*</Link>*/}
-                        <div className="app-999-font22" style={{paddingTop:'24px'}}>时光自有时光，时光自有时光。</div>
+                        <div className="app-999-font22 app-line-height-one" style={{paddingTop:'24px'}}>时光自有时光，时光自有时光。</div>
                     </div>
                 </div>
 

@@ -28,8 +28,8 @@ class MessageBoard extends React.Component {
                         <div className="img"><img src="http://img4.imgtn.bdimg.com/it/u=398347842,2770887580&fm=23&gp=0.jpg" className="app-wh100-all-radius"/></div>
 
                     <div className="s-right s-j-center" style={{flexDirection: 'column', alignItems: 'flex-start'}}>
-                        <div className="app-333-font30">草木一秋</div>
-                        <div className="app-999-font22" style={{paddingTop:'24px'}}>时光自有时光，时光自有时光。</div>
+                        <div className="app-333-font30 app-line-height-one">草木一秋</div>
+                        <div className="app-999-font22 app-line-height-one" style={{paddingTop:'24px'}}>时光自有时光，时光自有时光。</div>
                     </div>
                 </div>
 
@@ -48,8 +48,8 @@ class MessageBoard extends React.Component {
                                 </div>
                             </div>
                             <div className="s-flex1 s-j-center" style={{flexDirection: 'column', alignItems: 'flex-start'}}>
-                                <div className="app-333-font28">灵隐寺</div>
-                                <div className="app-999-font24" style={{paddingTop:'12px'}}>2分钟前</div>
+                                <div className="app-333-font28 app-line-height-one">灵隐寺</div>
+                                <div className="app-999-font24 app-line-height-one" style={{paddingTop:'12px'}}>2分钟前</div>
                             </div>
 
                             <div className="s-flex1 message-board-number s-j-end">
@@ -80,8 +80,8 @@ class MessageBoard extends React.Component {
                                 </div>
                             </div>
                             <div className="s-flex1 s-j-center" style={{flexDirection: 'column', alignItems: 'flex-start'}}>
-                                <div className="app-333-font28">灵隐寺</div>
-                                <div className="app-999-font24" style={{paddingTop:'12px'}}>2分钟前</div>
+                                <div className="app-333-font28 app-line-height-one">灵隐寺</div>
+                                <div className="app-999-font24 app-line-height-one" style={{paddingTop:'12px'}}>2分钟前</div>
                             </div>
 
                             <div className="s-flex1 message-board-number s-j-end">
@@ -119,8 +119,8 @@ class MessageBoard extends React.Component {
                                 </div>
                             </div>
                             <div className="s-flex1 s-j-center" style={{flexDirection: 'column', alignItems: 'flex-start'}}>
-                                <div className="app-333-font28">灵隐寺</div>
-                                <div className="app-999-font24" style={{paddingTop:'12px'}}>2分钟前</div>
+                                <div className="app-333-font28 app-line-height-one">灵隐寺</div>
+                                <div className="app-999-font24 app-line-height-one" style={{paddingTop:'12px'}}>2分钟前</div>
                             </div>
 
                             <div className="s-flex1 message-board-number s-j-end">
@@ -149,8 +149,8 @@ class MessageBoard extends React.Component {
                                 </div>
                             </div>
                             <div className="s-flex1 s-j-center" style={{flexDirection: 'column', alignItems: 'flex-start'}}>
-                                <div className="app-333-font28">灵隐寺</div>
-                                <div className="app-999-font24" style={{paddingTop:'12px'}}>2分钟前</div>
+                                <div className="app-333-font28 app-line-height-one">灵隐寺</div>
+                                <div className="app-999-font24 app-line-height-one" style={{paddingTop:'12px'}}>2分钟前</div>
                             </div>
 
                             <div className="s-flex1 message-board-number s-j-end">

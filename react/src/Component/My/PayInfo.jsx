@@ -7,58 +7,44 @@ class PayInfo extends React.Component {
     constructor() {
         super();
 
-        this.state ={
-            type:1
+        this.state = {
+            type: 1
         };
     }
 
-    createLogin(){
+    createLogin() {
         return (
+            <div className="app-padding-l24 ">
 
-
-
-
-
-                        <div className="app-padding-l24 ">
-                            <div className="step border-bottom app-white">
-                                <div className="s-flex2" style={{flexDirection: 'column', alignItems: 'flex-start'}}>
-                                    <div className="app-333-font32 pt30">灵隐寺扩建</div>
-                                    <div className="app-999-font24 pt12 pb26">2016-12-19 20:22</div>
-                                </div>
-                                <div className="s-flex1 s-j-end app-padding-r24 app-333-font32">1元</div>
-                            </div>
-
-
-                            <div className="step border-bottom app-white">
-                                <div className="s-flex2" style={{flexDirection: 'column', alignItems: 'flex-start'}}>
-                                    <div className="app-333-font32 pt24">灵隐寺扩建</div>
-                                    <div className="app-666-font24 pt24-20 pb16">我我我我我我我我我我多我我我我我</div>
-                                    <div className="app-999-font24 pb24">2016-12-19 20:22</div>
-                                </div>
-                                <div className="s-flex1 s-j-end app-padding-r24 app-333-font32">1元</div>
-                            </div>
+                    <div className="step border-bottom app-white">
+                        <div className="s-flex2" style={{flexDirection: 'column', alignItems: 'flex-start'}}>
+                            <div className="app-333-font32 pt30 app-line-height-one">灵隐寺扩建</div>
+                            <div className="app-999-font24 pt12 pb26 app-line-height-one">2016-12-19 20:22</div>
                         </div>
-
-
-
-
-
-
+                        <div className="s-flex1 s-j-end app-padding-r24 app-333-font32">1元</div>
+                    </div>
+                    <div className="step border-bottom app-white">
+                        <div className="s-flex2" style={{flexDirection: 'column', alignItems: 'flex-start'}}>
+                            <div className="app-333-font32 pt24 app-line-height-one">灵隐寺扩建</div>
+                            <div className="app-666-font24 pt20 pb16 app-line-height-one">我我我我我我我我我我多我我我我我</div>
+                            <div className="app-999-font24 pb24 app-line-height-one">2016-12-19 20:22</div>
+                        </div>
+                        <div className="s-flex1 s-j-end app-padding-r24 app-333-font32">1元</div>
+                    </div>
+            </div>
         )
     }
 
-    changeType(type){
+    changeType(type) {
         this.setState({
-            type:type
+            type: type
         })
     }
 
 
-    createRegistered(){
+    createRegistered() {
         return (
             <div>
-
-
                 <ul>
                     <li>
                         <div className="app-padding-l24">
@@ -84,51 +70,53 @@ class PayInfo extends React.Component {
 
                 <div className="app-padding-lr24">
 
-                        <div className="step border-bottom app-wh80">
-                            <div className="s-left s-j-center app-666-font30">捐献排行</div>
-                        </div>
+                    <div className="step border-bottom app-wh80">
+                        <div className="s-left s-j-center app-666-font30">捐献排行</div>
+                    </div>
 
 
-
-                        <div className="step border-bottom app-wh120">
-                            <div className="app-padding-r24 app-active-font28 s-j-center">NO1</div>
-                            <div className="app-wh-80 app-margin-right24">
-                                <img className="app-wh100-all-radius" src="http://img4.imgtn.bdimg.com/it/u=398347842,2770887580&fm=23&gp=0.jpg"/>
-                            </div>
-
-                            <div className="s-flex1 app-666-font30">
-                                灵隐寺
-                            </div>
-                            <div className="s-flex1 s-j-end app-666-font30">
-                                6000元
-                            </div>
-                        </div>
                     <div className="step border-bottom app-wh120">
-                            <div className="app-padding-r24 app-active-font28 s-j-center">NO2</div>
-                            <div className="app-wh-80 app-margin-right24">
-                                <img className="app-wh100-all-radius" src="http://img4.imgtn.bdimg.com/it/u=398347842,2770887580&fm=23&gp=0.jpg"/>
-                            </div>
-
-                            <div className="s-flex1 app-666-font30">
-                                灵隐寺
-                            </div>
-                            <div className="s-flex1 s-j-end app-666-font30">
-                                6000元
-                            </div>
+                        <div className="app-padding-r24 app-active-font28 s-j-center">NO1</div>
+                        <div className="app-wh-80 app-margin-right24">
+                            <img className="app-wh100-all-radius"
+                                 src="http://img4.imgtn.bdimg.com/it/u=398347842,2770887580&fm=23&gp=0.jpg"/>
                         </div>
+
+                        <div className="s-flex1 app-666-font30">
+                            灵隐寺
+                        </div>
+                        <div className="s-flex1 s-j-end app-666-font30">
+                            6000元
+                        </div>
+                    </div>
                     <div className="step border-bottom app-wh120">
-                            <div className="app-padding-r24 app-active-font28 s-j-center">NO3</div>
-                            <div className="app-wh-80 app-margin-right24">
-                                <img className="app-wh100-all-radius" src="http://img4.imgtn.bdimg.com/it/u=398347842,2770887580&fm=23&gp=0.jpg"/>
-                            </div>
-
-                            <div className="s-flex1 app-666-font30">
-                                灵隐寺
-                            </div>
-                            <div className="s-flex1 s-j-end app-666-font30">
-                                6000元
-                            </div>
+                        <div className="app-padding-r24 app-active-font28 s-j-center">NO2</div>
+                        <div className="app-wh-80 app-margin-right24">
+                            <img className="app-wh100-all-radius"
+                                 src="http://img4.imgtn.bdimg.com/it/u=398347842,2770887580&fm=23&gp=0.jpg"/>
                         </div>
+
+                        <div className="s-flex1 app-666-font30">
+                            灵隐寺
+                        </div>
+                        <div className="s-flex1 s-j-end app-666-font30">
+                            6000元
+                        </div>
+                    </div>
+                    <div className="step border-bottom app-wh120">
+                        <div className="app-padding-r24 app-active-font28 s-j-center">NO3</div>
+                        <div className="app-wh-80 app-margin-right24">
+                            <img className="app-wh100-all-radius"
+                                 src="http://img4.imgtn.bdimg.com/it/u=398347842,2770887580&fm=23&gp=0.jpg"/>
+                        </div>
+
+                        <div className="s-flex1 app-666-font30">
+                            灵隐寺
+                        </div>
+                        <div className="s-flex1 s-j-end app-666-font30">
+                            6000元
+                        </div>
+                    </div>
 
                 </div>
             </div>
@@ -137,19 +125,27 @@ class PayInfo extends React.Component {
         )
     }
 
-    render(){
-        let stateType =()=>{
-            if(this.state.type == 1){
+    render() {
+        let stateType = () => {
+            if (this.state.type == 1) {
                 return this.createLogin()
-            }else{
+            } else {
                 return this.createRegistered();
             }
         };
         return (
             <div className="pay-info">
                 <div className="step app-white-chunk app-wh80 border-bottom">
-                    <div className="s-flex1 s-j-center app-666-font32" style={{color:this.state.type==1?'#FFBB3A':'',borderBottom:this.state.type==1?'3px solid #FFBB3A':'0'}} onClick={this.changeType.bind(this,1)}>最近供养</div>
-                    <div className="s-flex1 s-j-center app-666-font32" style={{color:this.state.type==2?'#FFBB3A':'',borderBottom:this.state.type==2?'3px solid #FFBB3A':'0'}} onClick={this.changeType.bind(this,2)}>最近供养</div>
+                    <div className="s-flex1 s-j-center app-666-font32" style={{
+                        color: this.state.type == 1 ? '#FFBB3A' : '',
+                        borderBottom: this.state.type == 1 ? '3px solid #FFBB3A' : '0'
+                    }} onClick={this.changeType.bind(this, 1)}>最近供养
+                    </div>
+                    <div className="s-flex1 s-j-center app-666-font32" style={{
+                        color: this.state.type == 2 ? '#FFBB3A' : '',
+                        borderBottom: this.state.type == 2 ? '3px solid #FFBB3A' : '0'
+                    }} onClick={this.changeType.bind(this, 2)}>最近供养
+                    </div>
                 </div>
 
                 {stateType()}
