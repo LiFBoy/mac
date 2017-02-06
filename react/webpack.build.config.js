@@ -8,6 +8,26 @@ var CompressionPlugin = require("compression-webpack-plugin");
 var publicPath = '/dist/'; //服务器路径
 
 var plugins = [];
+
+// if (process.argv.indexOf('-p') > -1) { //生产环境
+//     plugins.push(new webpack.DefinePlugin({ //编译成生产版本
+//         'process.env': {
+//             NODE_ENV: JSON.stringify('production')
+//         }
+//     }));
+//     publicPath = '/react-cnode/dist/';
+//     path = __dirname + '/react-cnode/dist/';
+// }
+// plugins.push(new webpack.optimize.UglifyJsPlugin({compress: {warnings: false, drop_console: true}}));//代码压缩
+
+
+plugins.push(new webpack.optimize.UglifyJsPlugin());//代码压缩
+plugins.push(
+    new webpack.DefinePlugin({
+        'process.env': {
+            'NODE_ENV': JSON.stringify('production')
+        }
+    }));
 plugins.push(new webpack.optimize.DedupePlugin());
 plugins.push(new webpack.optimize.OccurenceOrderPlugin());
 
@@ -27,6 +47,7 @@ plugins.push(new webpack.optimize.CommonsChunkPlugin({
     name: 'vendors', // 将公共模块提取，生成名为`vendors`的chunk chunks: chunks, minChunks: chunks.length // 提取所有entry共同依赖的模块 }),
     minChunks: Infinity
 }));
+
 
 
 // plugins.push(new CompressionPlugin({
@@ -63,7 +84,7 @@ module.exports = {
                 test: /\.js$/,
                 exclude: /^node_modules$/,
                 loader: 'babel',
-                query: {compact: false}
+                query:{compact:false}
             }, {
                 test: /\.css$/,
                 exclude: /^node_modules$/,
@@ -106,17 +127,17 @@ module.exports = {
                 include: path.join(__dirname, 'src')
             },
             {
-                test: /\.(css|js|less)$/,
-                loader: 'webpack-px-to-rem',
+                test:/\.(css|js|less)$/,
+                loader:'webpack-px-to-rem',
                 //这个配置是可选的
-                query: {
+                query:{
                     // 1rem=npx 默认为 10
-                    basePx: 20,
+                    basePx:20,
                     //只会转换大于min的px 默认为0
                     //因为很小的px（比如border的1px）转换为rem后在很小的设备上结果会小于1px，有的设备就会不显示
-                    min: 1,
+                    min:1,
                     //转换后的rem值保留的小数点后位数 默认为3
-                    floatWidth: 3
+                    floatWidth:3
                 }
             }
         ]

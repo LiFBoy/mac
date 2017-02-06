@@ -18,6 +18,11 @@ import './auto-set-rem'
 import './less/common.less'
 import './less/my.less'
 
+
+import HttpService from './Http';
+import LocalStorage from './LocalStorage';
+
+
 render(
 
     <Provider store={store}>

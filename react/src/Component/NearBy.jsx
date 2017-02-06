@@ -16,7 +16,7 @@ import Foot from './Foot';
 import like from '../../src/images/index/like.png'
 import alms from '../../src/images/index/alms.png'
 
-
+import {HttpService} from '../Http'
 
 
 
@@ -24,10 +24,27 @@ class NearBy extends React.Component {
     constructor() {
         super();
 
-        this.state = {
-            swiper: []
-        }
+    }
 
+    componentWillMount(){
+
+        this.focus();
+
+
+    }
+
+
+    focus(){
+
+
+        HttpService.query({
+            url:'/v1/temple/get/near/temples',
+            data:{longitude:'',latitude:''}
+        }).then((res)=>{
+            console.log(res)
+        },(error)=>{
+            console.log(error)
+        });
     }
 
     render(){

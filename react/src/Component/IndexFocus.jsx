@@ -17,6 +17,7 @@ import like from '../../src/images/index/like.png'
 import alms from '../../src/images/index/alms.png'
 
 
+import {HttpService} from '../Http'
 
 
 
@@ -24,30 +25,33 @@ class IndexFocus extends React.Component {
     constructor() {
         super();
 
-        this.state={
-            swiper:[]
-        }
 
     }
 
+    componentWillMount(){
+
+        this.focus();
+
+
+    }
     componentDidMount(){
 
 
-        this.initBannerSwiper();
-
 
     }
 
-    initBannerSwiper () {
-        //下面是在table render完成后执行的js
-        this.state.swiper = new Swiper('.swiper-container', {
-            pagination: '.swiper-pagination',
-            paginationClickable: true,
-            //loop: true,
-            autoplay: 5000
+    focus(){
+
+
+        HttpService.query({
+            url:'/v1/temple/get/focus/temples',
+        }).then((res)=>{
+            console.log(res)
+        },(error)=>{
+            console.log(error)
         });
-        //初始化banner图的swiper
-    };
+    }
+
 
 
     render(){

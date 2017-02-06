@@ -1,35 +1,52 @@
 'usr strict';
 export  class HttpService {
     static query(config) {
-        console.log();
-        config = config || {};
-        var params = HttpService.formatParams(config.data);
-
-        var request = new XMLHttpRequest();
-        request.onreadystatechange = function () {
-            if (request.readyState == 4) {
-                var status = request.status;
-                if (status >= 200 && status < 300) {
-                    var res = JSON.parse(request.responseText);
-
-                    if(res){
-                        config.success && config.success(res);
-                    }
-                    // if (res.result == 0) {
-                    //     config.success && config.success(res.data);
-                    // } else if (res.result == 1013) {
-                    //     window.localStorage.referer = window.location.href;
-                    //     window.location.href = 'login.html'
-                    // } else {
-                    //     return config.error && config.error(res.result, res.msg)
-                    // }
-                } else {
-                    return config.fail && config.fail(status);
+            return new Promise((resolve,reject)=>{
+                config = config || {};
+                var params = HttpService.formatParams(config.data);
+                var request = new XMLHttpRequest();
+                request.onreadystatechange =()=>{
+                    if (request.readyState === 4) {
+                        if (request.status === 200) {
+                            resolve(JSON.parse(request.responseText));
+                        } else {
+                            reject();
+                        }
                 }
-            }
-        };
-        request.open('GET', config.url + "?" + params, true);
-        request.send(null);
+
+            };
+                request.open("GET", config.url + "?" + params, true);
+                request.send(null);
+    })
+}
+        // config = config || {};
+        // var params = HttpService.formatParams(config.data);
+        //
+        // var request = new XMLHttpRequest();
+        // request.onreadystatechange = function () {
+        //     if (request.readyState == 4) {
+        //         var status = request.status;
+        //         if (status >= 200 && status < 300) {
+        //             var res = JSON.parse(request.responseText);
+        //
+        //         //     if(res){
+        //         //         config.success && config.success(res);
+        //         //     }
+        //         //     // if (res.result == 0) {
+        //         //     //     config.success && config.success(res.data);
+        //         //     // } else if (res.result == 1013) {
+        //         //     //     window.localStorage.referer = window.location.href;
+        //         //     //     window.location.href = 'login.html'
+        //         //     // } else {
+        //         //     //     return config.error && config.error(res.result, res.msg)
+        //         //     // }
+        //         // } else {
+        //         //     return config.fail && config.fail(status);
+        //         // }
+        //     }
+        // };
+        // request.open('GET', config.url + "?" + params, true);
+        // request.send(null);
 
 
         // setTimeout(CheckRequest,"0");
@@ -45,42 +62,63 @@ export  class HttpService {
 
 
 
-    }
+
 
     static save(config) {
-        config = config || {};
 
-        var params = HttpService.formatParams(config.data);
 
-        var request = new XMLHttpRequest();
-        request.onreadystatechange = function () {
-            if (request.readyState == 4) {
-                var status = request.status;
-                if (status >= 200 && status < 300) {
-                    var res = JSON.parse(request.responseText);
-
-                    if(res){
-                        config.success && config.success(res);
+        return new Promise((resolve,reject)=>{
+            config = config || {};
+            var params = HttpService.formatParams(config.data);
+            var request = new XMLHttpRequest();
+            request.onreadystatechange =()=>{
+                if (request.readyState === 4) {
+                    if (request.status === 200) {
+                        resolve(JSON.parse(request.responseText));
+                    } else {
+                        reject();
                     }
-
-                   //  console.log(res.msg)
-                   // // Toast.toaster(res.msg);
-                   //  if (res.result == 0) {
-                   //      config.success && config.success(res.data);
-                   //  } else if (res.result == 1013) {
-                   //      window.localStorage.referer = window.location.href;
-                   //      window.location.href = 'login.html'
-                   //  } else {
-                   //      config.error && config.error(res.result, res.msg)
-                   //  }
-                } else {
-                    config.fail && config.fail(status);
                 }
-            }
-        };
-        request.open("POST", config.url, true);
-        request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        request.send(params);
+
+            };
+            request.open("POST", config.url, true);
+            // request.setRequestHeader("Content-Type", "application/json");
+             request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            request.send(params);
+        });
+        // config = config || {};
+        //
+        // var params = HttpService.formatParams(config.data);
+        //
+        // var request = new XMLHttpRequest();
+        // request.onreadystatechange = function () {
+        //     if (request.readyState == 4) {
+        //         var status = request.status;
+        //         if (status >= 200 && status < 300) {
+        //             var res = JSON.parse(request.responseText);
+        //
+        //             if(res){
+        //                 config.success && config.success(res);
+        //             }
+        //
+        //            //  console.log(res.msg)
+        //            // // Toast.toaster(res.msg);
+        //            //  if (res.result == 0) {
+        //            //      config.success && config.success(res.data);
+        //            //  } else if (res.result == 1013) {
+        //            //      window.localStorage.referer = window.location.href;
+        //            //      window.location.href = 'login.html'
+        //            //  } else {
+        //            //      config.error && config.error(res.result, res.msg)
+        //            //  }
+        //         } else {
+        //             config.fail && config.fail(status);
+        //         }
+        //     }
+        // };
+        // request.open("POST", config.url, true);
+        // request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        // request.send(params);
 
     }
 
@@ -127,6 +165,11 @@ export class GetCurrentDate{
         return hour + ":" + minute  ;
     }
 }
+
+
+
+
+
 
 export class Md5{
     static MD5(s) {

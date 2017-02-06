@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "node server.js",
+    "build": "webpack -p --config webpack.build.config.js --progress --colors  --profile",
     "webpack": "webpack-dev-server --hot --inline"
   },
   "author": "",

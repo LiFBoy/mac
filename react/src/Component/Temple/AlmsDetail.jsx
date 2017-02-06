@@ -3,11 +3,54 @@
 import React from 'react';
 
 
+import HttpService from '../../Http';
+import LocalStorage from '../../LocalStorage';
+
+
 class AlmsDetail extends React.Component {
     constructor() {
         super();
     }
+    // componentWillMount(){
+    //
+    //     this.info();
+    // }
+    //
+    // info(){
+    //
+    //     HttpService.query({
+    //         url:'http://121.40.128.121:9080/v1/temple/info?id=1',
+    //         data:{id:1}
+    //     }).then((res)=>{
+    //         console.log(res)
+    //
+    //     },(error)=>{
+    //
+    //     })
 
+    // }
+
+
+    componentWillMount(){
+
+        // this.editInfo();
+    }
+
+    editInfo(){
+
+        console.log(LocalStorage.get('token'));
+        HttpService.save({
+            url:'/v1/p/user/edit/info',
+            // data:{age:'11',residence:'11',sex:'11',username:'11',zens:'11',accessToken:LocalStorage.get('token')}
+             data:{accessToken:LocalStorage.get('token')}
+        }).then((res)=>{
+            console.log(res)
+
+        },(error)=>{
+
+        })
+
+    }
 
 
     render(){

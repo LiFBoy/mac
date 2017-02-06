@@ -15,22 +15,27 @@ import Foot from './Foot';
 
 import like from '../../src/images/index/like.png'
 import alms from '../../src/images/index/alms.png'
-
-
-
+import {HttpService} from '../Http'
 
 
 class Index extends React.Component {
     constructor() {
         super();
 
-        this.state={
-            swiper:[]
+        this.state = {
+            swiper: []
         }
 
     }
 
-    componentDidMount(){
+    componentWillMount() {
+
+        this.hot();
+
+    }
+
+
+    componentDidMount() {
 
 
         this.initBannerSwiper();
@@ -38,19 +43,32 @@ class Index extends React.Component {
 
     }
 
-    initBannerSwiper () {
-    //下面是在table render完成后执行的js
-    this.state.swiper = new Swiper('.swiper-container', {
-        pagination: '.swiper-pagination',
-        paginationClickable: true,
-        //loop: true,
-        autoplay: 5000
-    });
-    //初始化banner图的swiper
-};
+
+    hot() {
 
 
-    render(){
+        HttpService.query({
+            url: '/v1/temple/get/hot/temples',
+        }).then((res) => {
+            console.log(res)
+        }, (error) => {
+            console.log(error)
+        });
+    }
+
+    initBannerSwiper() {
+        //下面是在table render完成后执行的js
+        this.state.swiper = new Swiper('.swiper-container', {
+            pagination: '.swiper-pagination',
+            paginationClickable: true,
+            //loop: true,
+            autoplay: 5000
+        });
+        //初始化banner图的swiper
+    };
+
+
+    render() {
         return (
             <div className="app-container">
 
@@ -77,7 +95,9 @@ class Index extends React.Component {
                     <Link to="/TempleDetail" className="app-a">
                         <div className="temple-content">
                             <div className="con-img">
-                                <div className="img-content"><img className="app-wh100-all" src="http://scimg.jb51.net/allimg/140708/11-140FQ53531Q9.jpg"/></div>
+                                <div className="img-content"><img className="app-wh100-all"
+                                                                  src="http://scimg.jb51.net/allimg/140708/11-140FQ53531Q9.jpg"/>
+                                </div>
                                 <div className="con-bar step">
 
 
@@ -88,7 +108,6 @@ class Index extends React.Component {
 
                                         <img className="img" src={alms}/>
                                         <div className="number padding-right-32">3333</div>
-
 
 
                                         <img className="img" src={like}/>
@@ -114,7 +133,9 @@ class Index extends React.Component {
                     <Link to="/TempleDetail" className="app-a">
                         <div className="temple-content">
                             <div className="con-img">
-                                <div className="img-content"><img className="app-wh100-all"  src="http://img0.imgtn.bdimg.com/it/u=2152422253,1846971893&fm=23&gp=0.jpg"/></div>
+                                <div className="img-content"><img className="app-wh100-all"
+                                                                  src="http://img0.imgtn.bdimg.com/it/u=2152422253,1846971893&fm=23&gp=0.jpg"/>
+                                </div>
                                 <div className="con-bar step">
 
 
@@ -125,7 +146,6 @@ class Index extends React.Component {
 
                                         <img className="img" src={alms}/>
                                         <div className="number padding-right-32"></div>
-
 
 
                                         <img className="img" src={like}/>
@@ -155,8 +175,6 @@ class Index extends React.Component {
         )
     }
 }
-
-
 
 
 const mapStateToProps = state => {

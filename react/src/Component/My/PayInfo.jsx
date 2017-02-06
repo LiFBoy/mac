@@ -3,13 +3,37 @@
 import React, {Component, PropTypes}  from 'react';
 
 import kaoqin from '../../../src/images/kaoqin.png'
+import HttpService from '../../Http';
+import LocalStorage from '../../LocalStorage'
 class PayInfo extends React.Component {
     constructor() {
         super();
 
         this.state = {
-            type: 1
-        };
+            type: 1,
+            records: []
+        }
+    }
+    componentWillMount(){
+
+        this.history();
+    }
+
+    history(){
+        console.log(LocalStorage.get('token'))
+        HttpService.query({
+            url:'/v1/p/user/donation/history',
+            data:{accessToken:LocalStorage.get('token')}
+        }).then((res)=>{
+            console.log(res)
+
+            this.setState({
+                records:res.records
+            })
+
+        },(error)=>{
+
+        })
     }
 
     createLogin() {
@@ -73,6 +97,15 @@ class PayInfo extends React.Component {
                     <div className="step border-bottom app-wh80">
                         <div className="s-left s-j-center app-666-font30">捐献排行</div>
                     </div>
+
+
+                    {
+                        this.state.records.map((json=>{
+                            return <div >
+
+                            </div>
+                        }))
+                    }
 
 
                     <div className="step border-bottom app-wh120">
@@ -144,7 +177,7 @@ class PayInfo extends React.Component {
                     <div className="s-flex1 s-j-center app-666-font32" style={{
                         color: this.state.type == 2 ? '#FFBB3A' : '',
                         borderBottom: this.state.type == 2 ? '3px solid #FFBB3A' : '0'
-                    }} onClick={this.changeType.bind(this, 2)}>最近供养
+                    }} onClick={this.changeType.bind(this, 2)}>供养历史
                     </div>
                 </div>
 
