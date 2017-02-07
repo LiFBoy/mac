@@ -1,7 +1,7 @@
 'usr strict';
 
 import React from 'react';
-import HttpService from '../../Http';
+import {HttpService} from '../../Http';
 import LocalStorage from '../../LocalStorage'
 
 
@@ -29,7 +29,9 @@ class PersonalInfo extends React.Component {
                 userInfo:{
                     username:res.username,
                     sex:res.sex,
-                    age:res.age
+                    age:res.age,
+                    residence:res.residence,
+                    zen:res.zen
                 }
             })
 
@@ -50,7 +52,12 @@ class PersonalInfo extends React.Component {
                 </div>
                 <div className="step app-wh120 border-bottom">
                     <div className="s-left app-666-font32">性别:</div>
-                    <div className="s-right app-666-font32">{userInfo.sex}</div>
+                    <div className="s-right app-666-font32">
+
+                        {
+                            userInfo.sex=='0'?'未知':userInfo.sex=='1'?'男':userInfo.sex=='2'?'女':''
+                        }
+                    </div>
                 </div>
                 <div className="step app-wh120 border-bottom">
                     <div className="s-left app-666-font32">年龄:</div>
@@ -58,11 +65,11 @@ class PersonalInfo extends React.Component {
                 </div>
                 <div className="step app-wh120 border-bottom">
                     <div className="s-left app-666-font32">居住地:</div>
-                    <div className="s-right app-666-font32">浙江杭州</div>
+                    <div className="s-right app-666-font32">{userInfo.residence}</div>
                 </div>
                 <div className="step app-wh120 border-bottom">
                     <div className="s-left app-666-font32">禅语:</div>
-                    <div className="s-right app-666-font32">我的禅语</div>
+                    <div className="s-right app-666-font32">{userInfo.zen}</div>
                 </div>
 
             </div>

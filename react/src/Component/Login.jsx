@@ -33,6 +33,10 @@ class Login extends React.Component {
 
     changeValue(e) {
 
+        // if(this.check_phone(e.target.value)){
+        //
+        // }
+
         this.check_phone(e.target.value);
 
     }
@@ -121,8 +125,8 @@ class Login extends React.Component {
 
 
 
-        if (!code) {
-            Toast.toast('请先获取验证码', 3000);
+        if (!phone||!code) {
+            // Toast.toast('请先获取验证码', 3000);
             return;
         }
         HttpService.save({

@@ -23,7 +23,8 @@ class Index extends React.Component {
         super();
 
         this.state = {
-            swiper: []
+            swiper: [],
+            temples:[]
         }
 
     }
@@ -46,11 +47,13 @@ class Index extends React.Component {
 
     hot() {
 
-
         HttpService.query({
             url: '/v1/temple/get/hot/temples',
         }).then((res) => {
-            console.log(res)
+            console.log(res);
+            this.setState({
+                temples:res.temples
+            })
         }, (error) => {
             console.log(error)
         });
@@ -67,8 +70,11 @@ class Index extends React.Component {
         //初始化banner图的swiper
     };
 
-
     render() {
+
+        let {temples} = this.state;
+
+        console.log(temples);
         return (
             <div className="app-container">
 
@@ -91,42 +97,52 @@ class Index extends React.Component {
                         </div>
                     </div>
 
+
+
+
                     <div className="app-margin-tb20"></div>
-                    <Link to="/TempleDetail" className="app-a">
-                        <div className="temple-content">
-                            <div className="con-img">
-                                <div className="img-content"><img className="app-wh100-all"
-                                                                  src="http://scimg.jb51.net/allimg/140708/11-140FQ53531Q9.jpg"/>
-                                </div>
-                                <div className="con-bar step">
+
+                    {
+                        temples.map((json,index)=>{
+                            return (
+                                <Link to="/TempleDetail" className="app-a" key={index}>
+                                    <div className="temple-content">
+                                        <div className="con-img">
+                                            <div className="img-content"><img className="app-wh100-all" src={json.picture}/>
+                                            </div>
+                                            <div className="con-bar step">
 
 
-                                </div>
-                                <div className="con-bar-content step">
-                                    <div className="s-flex1 bar-left">杭州灵隐寺</div>
-                                    <div className="s-flex1 s-j-end">
+                                            </div>
+                                            <div className="con-bar-content step">
+                                                <div className="s-flex1 bar-left">杭州灵隐寺</div>
+                                                <div className="s-flex1 s-j-end">
 
-                                        <img className="img" src={alms}/>
-                                        <div className="number padding-right-32">3333</div>
+                                                    <img className="img" src={alms}/>
+                                                    <div className="number padding-right-32">{json.dailyNumber}</div>
 
 
-                                        <img className="img" src={like}/>
-                                        <div className="number">33333</div>
+                                                    <img className="img" src={like}/>
+                                                    <div className="number">{json.fansNumber}</div>
 
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div className="con-content step">
+                                            <div className="s-flex1 app-333-font28">灵隐寺最新消息</div>
+                                            <div className="s-flex1 s-j-end app-666-font24">
+                                                <spn>
+                                                    {json.distance}
+                                                </spn>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
+                                </Link>
+                            )
+                        })
+                    }
 
-                            <div className="con-content step">
-                                <div className="s-flex1 app-333-font28">灵隐寺最新消息</div>
-                                <div className="s-flex1 s-j-end app-666-font24">
-                                    <spn>
-                                        20km
-                                    </spn>
-                                </div>
-                            </div>
-                        </div>
-                    </Link>
 
 
                     <div className="app-margin-tb20"></div>

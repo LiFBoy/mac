@@ -63,13 +63,17 @@ export  class HttpService {
 
 
 
-
     static save(config) {
 
 
         return new Promise((resolve,reject)=>{
             config = config || {};
             var params = HttpService.formatParams(config.data);
+
+            console.log(params)
+
+
+            console.log(config.data)
             var request = new XMLHttpRequest();
             request.onreadystatechange =()=>{
                 if (request.readyState === 4) {
@@ -82,8 +86,7 @@ export  class HttpService {
 
             };
             request.open("POST", config.url, true);
-            // request.setRequestHeader("Content-Type", "application/json");
-             request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
             request.send(params);
         });
         // config = config || {};
@@ -122,6 +125,32 @@ export  class HttpService {
 
     }
 
+
+
+    static save2(config) {
+
+
+        return new Promise((resolve,reject)=>{
+            config = config || {};
+            var params = JSON.stringify(config.data);
+            var request = new XMLHttpRequest();
+            request.onreadystatechange =()=>{
+                if (request.readyState === 4) {
+                    if (request.status === 200) {
+                        resolve(JSON.parse(request.responseText));
+                    } else {
+                        reject();
+                    }
+                }
+
+            };
+            request.open("POST", config.url, true);
+            request.setRequestHeader("Content-Type", "application/json");
+            request.send(params);
+        });
+
+    }
+
     static formatParams(data) {
         var arr = [];
         for (var name in data) {
@@ -150,6 +179,27 @@ export  class Toast{
         }, duration);
     }
 }
+
+
+export class Tool{
+    static assign(...args){
+        if(Object.assign){
+         return Object.assign({},...args)
+         }
+        let from,
+            target = args[0] || {},
+            length = args.length;
+        for (let i = 0; i < length; i++) {
+            if ((from = args[i]) != null) {
+                for (let key in from) {
+                    target[key] = from[key];
+                }
+            }
+        }
+        return target;
+    }
+}
+
 
 
 export class GetCurrentDate{
