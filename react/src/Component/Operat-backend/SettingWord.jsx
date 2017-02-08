@@ -19,7 +19,7 @@ class SettingWord extends React.Component {
     }
     render() {
         return (
-            <div className="app-padding-lr24" style={{paddingTop: '80px'}}>
+            <div className="app-padding-lr24">
 
                 <form>
                     <div className="step app-padding-tb20">
