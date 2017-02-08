@@ -23,16 +23,16 @@ class SettingWord extends React.Component {
 
                 <form>
                     <div className="step app-padding-tb20">
-                        <div className="s-left app-666-font32">用户名：</div>
+                        <div className="s-left app-666-font32">时间：</div>
                         <div className="s-right app-input-edit">
-                            <input className="app-input"   placeholder="用户名" type="text"/>
+                            <input className="app-input" placeholder="时间" type="date"/>
                         </div>
                     </div>
 
                     <div className="step" style={{height:'15rem'}}>
-                        <div className="s-left app-666-font32" style={{height:'15rem'}}>年龄：</div>
-                        <div className="s-right app-input-edit" style={{height:'15rem'}}>
-                            <textarea  className="s-flex1 app-999-font28 app-setting-textarea-word"  placeholder="请输入你的问题"></textarea>
+                        <div className="s-left app-666-font32" style={{height:'15rem'}}>内容：</div>
+                        <div className="s-right" style={{height:'15rem'}}>
+                            <textarea  className="s-flex1 app-999-font28 app-setting-textarea-word"  placeholder="内容"></textarea>
                         </div>
                     </div>
 
@@ -41,7 +41,7 @@ class SettingWord extends React.Component {
                         <div className="s-center" onClick={this.editInfo.bind(this)}>添加每日一句</div>
                     </div>
 
-                    <div className="step">
+                    <div className="step app-padding-tb20 border-bottom">
                         <div className="s-flex1 app-666-font32">最近设置每日一句</div>
                     </div>
 

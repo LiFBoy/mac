@@ -59,6 +59,9 @@ import AppInfo from './Component/Operat-backend/AppInfo';
 
 
 import TempleIndex from './Component/Temple-backend/TempleIndex';
+import dynamic from './Component/Temple-backend/dynamic';
+import TempleEdit from './Component/Temple-backend/TempleEdit';
+import Donations from './Component/Temple-backend/Donations';
 // /**
 //  * (路由根目录组件，显示当前符合条件的组件)
 //  *
@@ -126,6 +129,9 @@ const RouteConfig = (
 
 
             <Route path="/TempleIndex" component={TempleIndex} />
+            <Route path="/dynamic" component={dynamic} />
+            <Route path="/TempleEdit" component={TempleEdit} />
+            <Route path="/Donations" component={Donations} />
 
 
 

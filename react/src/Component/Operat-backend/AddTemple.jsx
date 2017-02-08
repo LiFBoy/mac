@@ -59,9 +59,25 @@ class AddTemple extends React.Component {
                     <div className="step border-bottom app-padding-tb20">
                         <div className="s-flex1 app-666-font32">图片展示</div>
                     </div>
-                    <div className="step" style={{height:'200px'}}>
 
+                    <div className="step app-666-font28" >
+
+                        <div className="s-flex1" style={{flexWrap:'wrap'}}>
+                            <div className="app-upload-img-temple-backend">
+                                <img src="http://pic17.nipic.com/20111003/5847249_214945441162_2.jpg" className="app-wh100-all" />
+                            </div>
+                            <div className="app-upload-img-temple-backend">
+                                <img src="http://pic17.nipic.com/20111003/5847249_214945441162_2.jpg" className="app-wh100-all" />
+                            </div>
+                            <div className="app-upload-img-temple-backend">
+                                <img src="http://pic17.nipic.com/20111003/5847249_214945441162_2.jpg" className="app-wh100-all" />
+                            </div>
+                            <div className="app-upload-img-temple-backend">
+                                <img src="http://pic17.nipic.com/20111003/5847249_214945441162_2.jpg" className="app-wh100-all" />
+                            </div>
+                        </div>
                     </div>
+
 
                     <div className="step border-bottom app-padding-tb20">
                         <div className="s-flex1 app-666-font32">主持信息</div>
