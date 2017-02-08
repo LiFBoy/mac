@@ -120,11 +120,29 @@ module.exports = {
             // {test: /\.(png|jpg)$/, exclude: /^node_modules$/,loader: 'base64-inline-loader'},
 
 
+            // {
+            //     test: /\.jsx?$/,
+            //     exclude: /node_modules/,
+            //     loaders: ['jsx?harmony', 'babel?presets[]=react,presets[]=es2015'],
+            //     include: path.join(__dirname, 'src')
+            // },
+
             {
+                loader: "babel-loader",
+
+                // Skip any files outside of your project's `src` directory
+                include: [
+                    path.resolve(__dirname, "src"),
+                ],
+
+                // Only run `.js` and `.jsx` files through Babel
                 test: /\.jsx?$/,
-                exclude: /node_modules/,
-                loaders: ['jsx?harmony', 'babel?presets[]=react,presets[]=es2015'],
-                include: path.join(__dirname, 'src')
+
+                // Options to configure babel with
+                query: {
+                    plugins: ['transform-runtime'],
+                    presets: ['es2015', 'stage-0', 'react'],
+                }
             },
             {
                 test:/\.(css|js|less)$/,

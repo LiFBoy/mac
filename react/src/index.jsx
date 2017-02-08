@@ -1,12 +1,14 @@
 /**
  * Created by ChinaHp on 2016/8/11.
  */
-
+require('babel-register')
 import React, {Component, PropTypes} from 'react';
 import ReactDOM, {render} from 'react-dom';
 import {Router,hashHistory,browserHistory} from 'react-router';
 
 import { Provider } from 'react-redux';
+
+
 
 import createStore from './store'
 let store = createStore();

@@ -45,18 +45,21 @@ class Index extends React.Component {
     }
 
 
-    hot() {
+    async hot() {
 
-        HttpService.query({
+        let hot=await HttpService.query({
             url: '/v1/temple/get/hot/temples',
-        }).then((res) => {
-            console.log(res);
-            this.setState({
-                temples:res.temples
-            })
-        }, (error) => {
-            console.log(error)
         });
+        console.log(hot);
+
+            // .then((res) => {
+            //     console.log(res);
+            //     this.setState({
+            //         temples:res.temples
+            //     })
+            // }, (error) => {
+            //     console.log(error)
+            // });
     }
 
     initBannerSwiper() {

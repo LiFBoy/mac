@@ -46,27 +46,39 @@ import wish from './Component/Temple/wish';
 
 
 
+//Operat-backend
 
-/**
- * (路由根目录组件，显示当前符合条件的组件)
- * 
- * @class Roots
- * @extends {Component}
- */
-class Roots extends Component {
-    render() {
-        return (
-            <div>{this.props.children}</div>
-        );
-    }
-}
+import OperatIndex from './Component/Operat-backend/OperatIndex';
+import SettingWord from './Component/Operat-backend/SettingWord';
+import ReplaceBanner from './Component/Operat-backend/ReplaceBanner';
+import TempleList from './Component/Operat-backend/TempleList';
+import AddTemple from './Component/Operat-backend/AddTemple';
+import AppInfo from './Component/Operat-backend/AppInfo';
+
+//Temple-backend
+
+
+import TempleIndex from './Component/Temple-backend/TempleIndex';
+// /**
+//  * (路由根目录组件，显示当前符合条件的组件)
+//  *
+//  * @class Roots
+//  * @extends {Component}
+//  */
+// class Roots extends Component {
+//     render() {
+//         return (
+//             <div>{this.props.children}</div>
+//         );
+//     }
+// }
 
 
 var history = hashHistory;
 
 const RouteConfig = (
     <Router history={history}>
-        <Route path="/" component={Roots}>
+        <Route path="/">
             <Route path="/Login" component={Login} />
             <Route path="/index" component={Index} />
             <Route path="/IndexFocus" component={IndexFocus} />
@@ -103,6 +115,19 @@ const RouteConfig = (
             <Route path="/UnderstandDetail" component={UnderstandDetail} />
             <Route path="/Pay" component={Pay} />
             <Route path="/PayRecord" component={PayRecord} />
+
+            <Route path="/OperatIndex" component={OperatIndex} />
+            <Route path="/SettingWord" component={SettingWord} />
+            <Route path="/ReplaceBanner" component={ReplaceBanner} />
+            <Route path="/TempleList" component={TempleList} />
+            <Route path="/AddTemple" component={AddTemple} />
+            <Route path="/AppInfo" component={AppInfo} />
+
+
+
+            <Route path="/TempleIndex" component={TempleIndex} />
+
+
 
         </Route>
     </Router>

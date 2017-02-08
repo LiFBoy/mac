@@ -79,6 +79,33 @@ class MyMain extends React.Component {
                     </div>
 
                 </Link>
+                <div className="app-margin-tb20"></div>
+
+                <Link to="/TempleIndex" className="app-a">
+                    <div className="step app-padding-lr24 app-white-chunk border-bottom">
+                        <div className="s-flex2">
+
+                            <div className="app-333-font28 app-padding-l24">寺庙后台</div>
+
+                        </div>
+
+                        <div className="s-flex1 s-j-end"><img className="app-wh-45" src={jt}/></div>
+                    </div>
+                </Link>
+
+                <Link to="/OperatIndex" className="app-a">
+                    <div className="step app-padding-lr24 app-white-chunk">
+
+
+                        <div className="s-flex2">
+                            <div className="app-333-font28 app-padding-l24">运营后台</div>
+                        </div>
+
+                        <div className="s-flex1 s-j-end"><img className="app-wh-45" src={jt}/></div>
+
+                    </div>
+
+                </Link>
 
                 {/*<Foot type="3"></Foot>*/}
             </div>

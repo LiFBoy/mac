@@ -3,7 +3,7 @@
 import React, {Component, PropTypes}  from 'react';
 
 import kaoqin from '../../../src/images/kaoqin.png'
-import HttpService from '../../Http';
+import {HttpService} from '../../Http';
 import LocalStorage from '../../LocalStorage'
 class PayInfo extends React.Component {
     constructor() {

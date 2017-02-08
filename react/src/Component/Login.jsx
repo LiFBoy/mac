@@ -14,6 +14,7 @@ import pwd from '../../src/images/login/pwd.png'
 import phoneImg from '../../src/images/login/phone.png'
 
 class Login extends React.Component {
+
     constructor() {
         super();
         this.state={
@@ -75,55 +76,70 @@ class Login extends React.Component {
 
 
 
-    getCode(phone){
+    async getCode(phone){
+
+        console.log(this.state.disabled)
 
         if(!this.check_phone(phone)){
             return;
         }
+        // if(!!this.state.disabled){
+        //     return;
+        // }
 
         let self = this;
-
-
-        HttpService.save({
-            url:"/v1/public/send/verify/code",
-            data:{phone:phone}
-        }).then((res)=>{
-            console.log(res);
-
-            self.setState({
-                disabled: true,
-                text: '59s后重新获取',
-                timer: 59,
+        try {
+            let code= await HttpService.save({
+                url:"/v1/public/send/verify/code",
+                data:{phone:phone}
             });
+            console.log(code);
+        } catch (err) {
+            // console.log(err); // 这里捕捉到错误 `error`
+        }
 
-            self.countdown = setInterval(function () {
-                var tt = self.state.timer - 1;
-                if (tt <= 0) {
-                    self.setState({
-                        disabled: false,
-                        text: '获取验证码',
-                        timer: 60,
-                    });
-                    clearInterval(self.countdown);
-                    return;
-                }
-                self.setState({
-                    disabled: true,
-                    text: tt + 's后重新获取',
-                    timer: tt,
-                })
-            }, 1000);
-        },(error)=>{
-            console.log(error)
-        })
+
+
+
+
+
+
+
+            // .then((res)=>{
+            //     console.log(res);
+            //
+            //     self.setState({
+            //         disabled: true,
+            //         text: '59s后重新获取',
+            //         timer: 59,
+            //     });
+            //
+            //     self.countdown = setInterval(function () {
+            //         var tt = self.state.timer - 1;
+            //         if (tt <= 0) {
+            //             self.setState({
+            //                 disabled: false,
+            //                 text: '获取验证码',
+            //                 timer: 60,
+            //             });
+            //             clearInterval(self.countdown);
+            //             return;
+            //         }
+            //         self.setState({
+            //             disabled: true,
+            //             text: tt + 's后重新获取',
+            //             timer: tt,
+            //         })
+            //     }, 1000);
+            // },(error)=>{
+            //     console.log(error)
+            // })
     }
 
     login(phone,code){
 
         console.log(phone);
         console.log(code);
-
-
 
         if (!phone||!code) {
             // Toast.toast('请先获取验证码', 3000);
