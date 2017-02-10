@@ -6,6 +6,10 @@ import React from 'react';
 import Foot from '../Foot'
 import jt from '../../../src/images/my/jt.png'
 
+import {HttpService} from '../../Http'
+
+import LocalStorage from '../../LocalStorage'
+
 import {Router, Route, IndexRoute, browserHistory, Link} from 'react-router';
 
 class SettingWord extends React.Component {
@@ -14,7 +18,23 @@ class SettingWord extends React.Component {
     }
 
 
-    editInfo(){
+    async editInfo(){
+
+
+        try {
+
+/*        let code= await HttpService.saveJson({
+            url:'/v1/ad/admin/create/daily/sentence?accessToken='+LocalStorage.get('token')+'',
+            data:{content:{
+
+            }}
+        })*/
+
+        }catch (error){
+
+        }
+
+
 
     }
     render() {

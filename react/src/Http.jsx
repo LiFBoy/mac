@@ -5,7 +5,6 @@ export  class HttpService {
                 config = config || {};
                 var params = HttpService.formatParams(config.data);
                 var request = new XMLHttpRequest();
-
                     request.onreadystatechange =()=>{
                         if (request.readyState === 4) {
                             if (request.status ===200) {
@@ -15,10 +14,10 @@ export  class HttpService {
                                 } catch (e) {
                                     reject(e);
                                 }
-                                if (response) {
-
-                                    console.log(response)
+                                if (response.code=='0') {
                                     resolve(response);
+                                }else{
+                                    reject(response)
                                 }
                             } else {
                                 reject(request);
@@ -153,7 +152,7 @@ export  class HttpService {
 
 
 
-    static save2(config) {
+    static saveJson(config) {
 
 
         return new Promise((resolve,reject)=>{
@@ -162,10 +161,20 @@ export  class HttpService {
             var request = new XMLHttpRequest();
             request.onreadystatechange =()=>{
                 if (request.readyState === 4) {
-                    if (request.status === 200) {
-                        resolve(JSON.parse(request.responseText));
+                    if (request.status ===200) {
+                        var response;
+                        try {
+                            response = JSON.parse(request.responseText);
+                        } catch (e) {
+                            reject(e);
+                        }
+                        if (response.code=='0') {
+                            resolve(response);
+                        }else{
+                            reject(response)
+                        }
                     } else {
-                        reject();
+                        reject(request);
                     }
                 }
 

@@ -30,22 +30,24 @@ class Notice extends React.Component {
         this.notifies();
     }
 
-    notifies(){
+   async notifies(){
         console.log(LocalStorage.get('token'))
-        HttpService.query({
-            url:'/v1/p/user/notifies',
-            data:{accessToken:LocalStorage.get('token')}
-        }).then((res)=>{
-            console.log(res);
-            this.setState({
-                notifies:res.notifies
+
+       try{
+            let code=await HttpService.query({
+                url:'/v1/p/notify/get/notifies',
+                data:{accessToken:LocalStorage.get('token')}
             })
 
+            console.log(code)
 
+           this.setState({
+               notifies:code.notifies
+           })
+       }catch (error){
 
-        },(error)=>{
+       }
 
-        })
     }
 
     render(){

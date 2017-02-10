@@ -46,7 +46,7 @@ var server = new WebpackDevServer(webpack(config), {
 //     res.sendFile(__dirname + '/index.html')
 // });
 
-server.listen(3001,'192.198.0.158');
+server.listen(3001);
 
 
 
