@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Popup from '../popup'
+import LocalStorage from '../../LocalStorage'
 
 
 import close from '../../../src/images/temple/close.png'
@@ -13,8 +14,22 @@ class Pay extends React.Component {
 
         this.state = {
             info: {},
-            admin: {}
+            admin: {},
+            money:{
+                one:1,
+                ten:10,
+                twenty:20,
+                fifty:50,
+
+                oneHundred:100,
+                twoHundred:200,
+                fiveHundred:500
+            }
         };
+
+        // this.state['outkey'] = {
+        //     value:''
+        // };
 
         this.config = {
             isSure: true,
@@ -30,15 +45,19 @@ class Pay extends React.Component {
                     <div className="app-padding-l24 app-333-font32" style={{lineHeight: '40px', height: '40px'}}>金额(元)
                     </div>
                     <div className="">
-                        <input type="text" className="app-popup-pay-input" placeholder="可填写1-2000"/>
+                        <input type="text" ref="InputMoney" className="app-popup-pay-input" placeholder="可填写1-2000"/>
                     </div>
 
                 </div>
+                <Link to="/wish" className="app-a">
                 <div className="step" style={{paddingTop: '32px'}}>
+
                     <div className="s-flex1 s-j-center app-yellow-radius-check-button" style={{height: '80px'}}
                          onClick={this.pay.bind(this)}>供养
                     </div>
+
                 </div>
+                </Link>
             </div>
 
 
@@ -64,6 +83,15 @@ class Pay extends React.Component {
 
     }
 
+
+    componentWillMount() {
+        //     this.setState({
+        //         value:{['outkey']:'sb'}
+        //     })
+        //
+        // console.log(this.state.value)
+    }
+
     close() {
         this.setState({
             admin: {
@@ -74,6 +102,7 @@ class Pay extends React.Component {
     }
 
     pay() {
+        LocalStorage.add('money', this.refs.InputMoney.value);
         this.setState({
             admin: {
                 flag: false,
@@ -83,6 +112,7 @@ class Pay extends React.Component {
     }
 
     otherMoney() {
+        this.refs.InputMoney.value='';
         this.setState({
             admin: {
                 flag: true,
@@ -94,7 +124,7 @@ class Pay extends React.Component {
 
     render() {
 
-        const {info, admin} =this.state;
+        const {info, admin,money} =this.state;
 
 
         return (
@@ -138,7 +168,7 @@ class Pay extends React.Component {
                             <div className=" pay-active-chunk ">
 
                                 <div className="s-flex1 s-center">
-                                    <span className="app-333-font36">1</span><span
+                                    <span className="app-333-font36">{money.one}</span><span
                                     className="app-333-font24">元</span></div>
 
 
@@ -146,38 +176,38 @@ class Pay extends React.Component {
                             <div className="app-padding-lr10"></div>
                             <div className=" pay-chunk ">
                                 <div className="s-flex1 s-center">
-                                    <span className="app-333-font36">10</span><span className="app-333-font24">元</span>
+                                    <span className="app-333-font36">{money.ten}</span><span className="app-333-font24">元</span>
                                 </div>
                             </div>
                             <div className="app-padding-lr10"></div>
                             <div className="  pay-chunk ">
                                 <div className="s-flex1 s-center">
-                                    <span className="app-333-font36">20</span><span className="app-333-font24">元</span>
+                                    <span className="app-333-font36">{money.twenty}</span><span className="app-333-font24">元</span>
                                 </div>
                             </div>
                             <div className="app-padding-lr10"></div>
                             <div className=" pay-chunk ">
                                 <div className="s-flex1 s-center">
-                                    <span className="app-333-font36">50</span><span className="app-333-font24">元</span>
+                                    <span className="app-333-font36">{money.fifty}</span><span className="app-333-font24">元</span>
                                 </div>
                             </div>
 
 
                             <div className=" pay-chunk ">
                                 <div className="s-flex1 s-center">
-                                    <span className="app-333-font36">100</span><span className="app-333-font24">元</span>
+                                    <span className="app-333-font36">{money.oneHundred}</span><span className="app-333-font24">元</span>
                                 </div>
                             </div>
                             <div className="app-padding-lr10"></div>
                             <div className=" pay-chunk ">
                                 <div className="s-flex1 s-center">
-                                    <span className="app-333-font36">200</span><span className="app-333-font24">元</span>
+                                    <span className="app-333-font36">{money.twoHundred}</span><span className="app-333-font24">元</span>
                                 </div>
                             </div>
                             <div className="app-padding-lr10"></div>
                             <div className=" pay-chunk ">
                                 <div className="s-flex1 s-center">
-                                    <span className="app-333-font36">500</span><span className="app-333-font24">元</span>
+                                    <span className="app-333-font36">{money.fiveHundred}</span><span className="app-333-font24">元</span>
                                 </div>
                             </div>
                             <div className="app-padding-lr10"></div>
@@ -189,10 +219,14 @@ class Pay extends React.Component {
                         </div>
                     </div>
                 </div>
-
+                <Link to="/wish" className="app-a">
                 <div className="step app-yellow-radius-check-button" style={{height: '100px'}}>
+
+
                     <div className="s-center">供养</div>
+
                 </div>
+                </Link>
             </div>
         )
     }

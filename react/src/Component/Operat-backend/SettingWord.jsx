@@ -21,18 +21,18 @@ class SettingWord extends React.Component {
     async editInfo(){
 
 
-        try {
 
-/*        let code= await HttpService.saveJson({
-            url:'/v1/ad/admin/create/daily/sentence?accessToken='+LocalStorage.get('token')+'',
-            data:{content:{
 
-            }}
-        })*/
+       let code= await HttpService.saveJson({
+           url: '/v1/ad/admin/create/daily/sentence?accessToken=' + LocalStorage.get('token') + '',
+           data: {
+               content: {}
+           }
+       })
+        console.log(code)
 
-        }catch (error){
 
-        }
+
 
 
 

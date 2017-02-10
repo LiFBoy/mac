@@ -17,10 +17,12 @@ export  class HttpService {
                                 if (response.code=='0') {
                                     resolve(response);
                                 }else{
-                                    reject(response)
+                                    Toast.toast(response.desc, 3000);
+                                    //reject(response)
                                 }
                             } else {
-                                reject(request);
+                                Toast.toast(JSON.parse(request.responseText).desc, 3000);
+                                //reject(request);
                             }
                         }
 
@@ -102,10 +104,12 @@ export  class HttpService {
                         if (response.code=='0') {
                             resolve(response);
                         }else{
-                            reject(response)
+                            Toast.toast(response.desc, 3000);
+                            //reject(response)
                         }
                     } else {
-                        reject(request);
+                        Toast.toast(JSON.parse(request.responseText).desc, 3000);
+                        //reject(request);
                     }
                 }
 
@@ -171,10 +175,12 @@ export  class HttpService {
                         if (response.code=='0') {
                             resolve(response);
                         }else{
-                            reject(response)
+                            Toast.toast(response.desc, 3000);
+                            //reject(response)
                         }
                     } else {
-                        reject(request);
+                        Toast.toast(JSON.parse(request.responseText).desc, 3000);
+                        //reject(request);
                     }
                 }
 
