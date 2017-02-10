@@ -48,13 +48,16 @@ export  default  class Popup extends React.Component{
 
 
                         <div className="popup_content">
-                            <div className="header app-333-font32 border-bottom">
-                                
-                                {
-                                    this.props.config.header
-                                }
-                            </div>
-                            <div className="popup_content2">
+
+                            {
+                                this.props.config.header==''?'':<div className="header app-333-font32 border-bottom">
+
+                                        {
+                                            this.props.config.header
+                                        }
+                                    </div>
+                            }
+                            <div className="popup_content2" style={this.props.config.contentCss}>
                                 {this.props.config.content}
                             </div>
                         </div>

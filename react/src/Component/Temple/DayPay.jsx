@@ -8,6 +8,18 @@ import {Router, Route, IndexRoute, browserHistory, Link} from 'react-router';
 class DayPay extends React.Component {
     constructor() {
         super();
+
+        this.state={
+            money:''
+        }
+    }
+
+    money(e){
+        let value=e.target.value;
+
+        this.setState({
+            money:value
+        })
     }
 
 
@@ -49,8 +61,18 @@ class DayPay extends React.Component {
                     <div className="step">
                         <div className="s-center">
                             <div className="step day-pay-type">
-                                <div className="s-flex1 s-j-center s-j-center"><span className="app-333-font36">1</span><span className="app-333-font24">元</span></div>
+                                <div className="s-flex1 s-j-center"><span className="app-333-font36">{this.state.money==''?1:this.state.money}</span><span className="app-333-font24">元</span></div>
                             </div>
+
+                            <div className="app-padding-lr20"></div>
+
+                            <div className="step day-pay-input">
+                                <div className="s-flex1">
+                                    <input className="app-input" placeholder="输入" onChange={this.money.bind(this)} type="number"/>
+                                </div>
+                            </div>
+
+
                         </div>
                     </div>
 

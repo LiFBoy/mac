@@ -27,20 +27,23 @@ class Pay extends React.Component {
             </div>,
             content: <div>
                 <div className="step app-popup-pay">
-                    <div className="app-padding-l24 app-333-font32" style={{lineHeight:'40px',height:'40px'}}>金额(元)</div>
+                    <div className="app-padding-l24 app-333-font32" style={{lineHeight: '40px', height: '40px'}}>金额(元)
+                    </div>
                     <div className="">
                         <input type="text" className="app-popup-pay-input" placeholder="可填写1-2000"/>
                     </div>
 
                 </div>
-                <div className="step" style={{paddingTop:'32px'}}>
-                    <div className="s-flex1 s-j-center app-yellow-radius-check-button" style={{height:'80px'}} onClick={this.pay.bind(this)}>供养</div>
+                <div className="step" style={{paddingTop: '32px'}}>
+                    <div className="s-flex1 s-j-center app-yellow-radius-check-button" style={{height: '80px'}}
+                         onClick={this.pay.bind(this)}>供养
+                    </div>
                 </div>
             </div>
 
 
-           ,
-            yes_cb: ()=> {
+            ,
+            yes_cb: () => {
 
                 //  alert(this.state.info.isadmin)
 
@@ -53,7 +56,7 @@ class Pay extends React.Component {
 
 
             },
-            no_cb: ()=> {
+            no_cb: () => {
                 this.context.router.goBack()
             }
         };
@@ -61,32 +64,32 @@ class Pay extends React.Component {
 
     }
 
-    close(){
+    close() {
         this.setState({
-            admin:{
-                flag:false,
-                _flag:false
+            admin: {
+                flag: false,
+                _flag: false
             }
         })
     }
 
-    pay(){
+    pay() {
         this.setState({
-            admin:{
-                flag:false,
-                _flag:false
-            }
-        })
-    }
-    otherMoney(){
-        this.setState({
-            admin:{
-                flag:true,
-                _flag:true
+            admin: {
+                flag: false,
+                _flag: false
             }
         })
     }
 
+    otherMoney() {
+        this.setState({
+            admin: {
+                flag: true,
+                _flag: true
+            }
+        })
+    }
 
 
     render() {
@@ -103,8 +106,9 @@ class Pay extends React.Component {
 
                     <div className="step">
                         <div className="s-center pay-title">
-                            <div style={{width:'200px',height:'200px'}}>
-                                <img src="http://img4.imgtn.bdimg.com/it/u=398347842,2770887580&fm=23&gp=0.jpg" className="app-wh100-all-radius"/>
+                            <div style={{width: '200px', height: '200px'}}>
+                                <img src="http://img4.imgtn.bdimg.com/it/u=398347842,2770887580&fm=23&gp=0.jpg"
+                                     className="app-wh100-all-radius"/>
                             </div>
 
                         </div>
@@ -116,7 +120,7 @@ class Pay extends React.Component {
                         </div>
                     </div>
 
-                    <div className="step" style={{paddingTop:'32px'}}>
+                    <div className="step" style={{paddingTop: '32px'}}>
                         <div className="s-center app-666-font28">
                             日积小德方成大德
                         </div>
@@ -124,31 +128,69 @@ class Pay extends React.Component {
                 </div>
 
 
-
                 <div className="pay-select-type">
 
 
                     <div className="step">
-                        <div className="s-flex1 pay-active-chunk s-j-center"><span className="app-333-font36">1</span><span className="app-333-font24">元</span></div>
-                        <div className="app-padding-lr10"></div>
-                        <div className="s-flex1 pay-chunk s-j-center"><span className="app-333-font36">10</span><span className="app-333-font24">元</span></div>
-                        <div className="app-padding-lr10"></div>
-                        <div className="s-flex1 pay-chunk s-j-center"><span className="app-333-font36">20</span><span className="app-333-font24">元</span></div>
-                        <div className="app-padding-lr10"></div>
-                        <div className="s-flex1 pay-chunk s-j-center"><span className="app-333-font36">50</span><span className="app-333-font24">元</span></div>
-                    </div>
-                    <div className="step" style={{paddingTop:'32px'}}>
-                        <div className="s-flex1 pay-chunk s-j-center"><span className="app-333-font36">100</span><span className="app-333-font24">元</span></div>
-                        <div className="app-padding-lr10"></div>
-                        <div className="s-flex1 pay-chunk s-j-center"><span className="app-333-font36">200</span><span className="app-333-font24">元</span></div>
-                        <div className="app-padding-lr10"></div>
-                        <div className="s-flex1 pay-chunk s-j-center"><span className="app-333-font36">500</span><span className="app-333-font24">元</span></div>
-                        <div className="app-padding-lr10"></div>
-                        <div className="s-flex1 pay-chunk s-j-center" onClick={this.otherMoney.bind(this)}><span className="app-333-font28">其它</span></div>
+                        <div className="s-flex1" style={{flexWrap: 'wrap'}}>
+
+
+                            <div className=" pay-active-chunk ">
+
+                                <div className="s-flex1 s-center">
+                                    <span className="app-333-font36">1</span><span
+                                    className="app-333-font24">元</span></div>
+
+
+                            </div>
+                            <div className="app-padding-lr10"></div>
+                            <div className=" pay-chunk ">
+                                <div className="s-flex1 s-center">
+                                    <span className="app-333-font36">10</span><span className="app-333-font24">元</span>
+                                </div>
+                            </div>
+                            <div className="app-padding-lr10"></div>
+                            <div className="  pay-chunk ">
+                                <div className="s-flex1 s-center">
+                                    <span className="app-333-font36">20</span><span className="app-333-font24">元</span>
+                                </div>
+                            </div>
+                            <div className="app-padding-lr10"></div>
+                            <div className=" pay-chunk ">
+                                <div className="s-flex1 s-center">
+                                    <span className="app-333-font36">50</span><span className="app-333-font24">元</span>
+                                </div>
+                            </div>
+
+
+                            <div className=" pay-chunk ">
+                                <div className="s-flex1 s-center">
+                                    <span className="app-333-font36">100</span><span className="app-333-font24">元</span>
+                                </div>
+                            </div>
+                            <div className="app-padding-lr10"></div>
+                            <div className=" pay-chunk ">
+                                <div className="s-flex1 s-center">
+                                    <span className="app-333-font36">200</span><span className="app-333-font24">元</span>
+                                </div>
+                            </div>
+                            <div className="app-padding-lr10"></div>
+                            <div className=" pay-chunk ">
+                                <div className="s-flex1 s-center">
+                                    <span className="app-333-font36">500</span><span className="app-333-font24">元</span>
+                                </div>
+                            </div>
+                            <div className="app-padding-lr10"></div>
+                            <div className=" pay-chunk " onClick={this.otherMoney.bind(this)}>
+                                <div className="s-flex1 s-center">
+                                    <span className="app-333-font28">其它</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <div className="step app-yellow-radius-check-button" style={{height:'100px'}}>
+                <div className="step app-yellow-radius-check-button" style={{height: '100px'}}>
                     <div className="s-center">供养</div>
                 </div>
             </div>

@@ -15,13 +15,80 @@ import comments from '../../../src/images/temple/comments.png'
 
 import {HttpService} from '../../Http';
 import LocalStorage from '../../LocalStorage'
+import Popup from '../popup'
 
 class Coments extends React.Component {
     constructor() {
         super();
         this.state={
-            comments:[]
-        }
+            comments:[],
+            admin:{}
+        };
+
+        this.config = {
+            isSure: true,
+            isCancel: true,
+            no: '返回',
+            yes: '确定',
+            header: '',
+            contentCss:{
+                borderTopRightRadius:'10px',
+                borderTopLeftRadius:'10px',
+                padding:'0'
+            },
+            content: <div>
+                <div className="step app-coments-popup border-bottom" onClick={this.close.bind(this)}>
+                    <ul className="s-center">
+                        <li className="app-333-font32">回复评论</li>
+                    </ul>
+
+
+                </div>
+                <div className="step app-coments-popup border-bottom">
+                    <ul className="s-center">
+                        <li className="app-333-font32">删除评论</li>
+                    </ul>
+
+
+                </div>
+                <div className="step app-coments-popup border-bottom">
+                    <ul className="s-center">
+                        <li className="app-333-font32">举报评论</li>
+                    </ul>
+
+
+                </div>
+                <div className="step app-coments-popup">
+                    <ul className="s-center">
+                        <li className="app-333-font32">查看详情</li>
+                    </ul>
+
+
+                </div>
+
+
+
+            </div>
+
+
+            ,
+            yes_cb: ()=> {
+
+                //  alert(this.state.info.isadmin)
+
+                //
+                // if (!!this.state.info.isadmin) {
+                //
+                // } else {
+                //
+                // }
+
+
+            },
+            no_cb: ()=> {
+                this.context.router.goBack()
+            }
+        };
     }
 
 
@@ -30,28 +97,61 @@ class Coments extends React.Component {
         this.comments();
     }
 
-    comments(){
-        console.log(LocalStorage.get('token'))
-        HttpService.query({
-            url:'/v1/p/user/comments',
-            data:{accessToken:LocalStorage.get('token')}
-        }).then((res)=>{
-            console.log(res);
-            this.setState({
-                comments:res.comments
-            })
-
-
-
-        },(error)=>{
-
+    close(){
+        this.setState({
+            admin:{
+                flag:false,
+                _flag:false
+            }
         })
     }
 
+    popup(){
+        this.setState({
+            admin:{
+                flag:true,
+                _flag:true
+            }
+        })
+    }
+
+    async comments(){
+
+        let code=await HttpService.query({
+            url:"/v1/p/user/comments",
+            data:{accessToken:LocalStorage.get('token')}
+
+        });
+
+        this.setState({
+                     comments:code.comments
+                 });
+
+
+        // console.log(LocalStorage.get('token'))
+        // HttpService.query({
+        //     url:'/v1/p/user/comments',
+        //     data:{accessToken:LocalStorage.get('token')}
+        // }).then((res)=>{
+        //     console.log(res);
+        //     this.setState({
+        //         comments:res.comments
+        //     })
+        //
+        //
+        //
+        // },(error)=>{
+        //
+        // })
+    }
+
     render() {
+
+        const {admin}=this.state;
         return (
 
             <div className="temple-container app-container">
+                <Popup config={this.config} blockOrNone={admin.flag} _flag={admin.flag}/>
 
 
                 <div className="middle">
@@ -119,7 +219,7 @@ class Coments extends React.Component {
                                 </div>
                             </div>
 
-                            <div className="step app-margin-tb24">
+                            <div className="step app-margin-tb24" onClick={this.popup.bind(this)}>
                                 <div className="comments s-flex1 s-flex-d s-j-center app-padding-l24"
                                      style={{alignItems: 'flex-start'}}>
                                     <div className="app-333-font28" style={{marginBottom: '16px'}}>唐僧大师</div>

@@ -160,19 +160,10 @@ class Login extends React.Component {
             console.log(error)
         });
 
-        this.usrInfo();
+
     }
 
-    usrInfo(){
-        HttpService.query({
-            url:"/v1/p/user/info",
-            data:{accessToken:LocalStorage.get('token')}
-        }).then((res)=>{
-            console.log(res)
-        },(error)=>{
-            console.log(error)
-        })
-    }
+
 
 
 
