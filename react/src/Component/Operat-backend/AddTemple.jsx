@@ -7,15 +7,22 @@ import Foot from '../Foot'
 import jt from '../../../src/images/my/jt.png'
 
 import {Router, Route, IndexRoute, browserHistory, Link} from 'react-router';
+import {HttpService} from '../../Http'
 
+import LocalStorage from '../../LocalStorage'
 class AddTemple extends React.Component {
     constructor() {
         super();
     }
 
 
-    editInfo(){
-
+   async editInfo(){
+        let code = await HttpService.saveJson({
+            url: '/v1/ad/admin/create/temple?accessToken=' + LocalStorage.get('token') + '',
+            data: {
+                content:''
+            }
+        });
     }
     render() {
         return (

@@ -4,18 +4,54 @@ import React from 'react';
 
 
 import pac from '../../../src/images/temple/praise－active.png'
-import comments from '../../../src/images/temple/comments.png'
+import _comments from '../../../src/images/temple/comments.png'
+import face from '../../../src/images/temple/face.png'
 import {Router, Route, IndexRoute, browserHistory, Link} from 'react-router';
+
+import {HttpService} from '../../Http'
+import LocalStorage from '../../LocalStorage'
 
 class CommentLists extends React.Component {
     constructor() {
         super();
+        this.state={
+            comments:[]
+        }
+    }
+
+    componentWillMount() {
+        this.comments();
+
+    }
+
+    async comments(){
+        let code = await HttpService.query({
+            url: '/v1/public/get/temple/status/comments',
+            data: {
+                contentId:1
+            }
+        });
+
+        this.setState({
+            comments:code.comments
+        })
+    }
+    async status(){
+        const content=document.getElementById('input-content').value;
+        let code = await HttpService.saveJson({
+            url: '/v1/p/comment/temple/status?accessToken=' + LocalStorage.get('token') + '',
+            data: {
+                contentId:1,
+                content:content
+            }
+        });
     }
 
     render(){
+        const {comments}=this.state;
         return (
             <div>
-                <div className="app-container">
+                <div className="app-container" style={{position:'relative'}}>
 
                     {/*<div className="step app-padding-lr24 message-board">*/}
 
@@ -76,141 +112,103 @@ class CommentLists extends React.Component {
 
                         <div className="step dynamic app-padding-lr24">
                             <div className="s-flex1  app-666-font28">
-                                最新留言
+                                最新评论
                             </div>
                         </div>
 
-                        <div className="dynamic-content app-padding-lr24" style={{borderBottom:'0'}}>
-                            <div className="step temple-name">
-                                <div>
-                                    <div className="temple-img">
-                                        <img src="http://img4.imgtn.bdimg.com/it/u=398347842,2770887580&fm=23&gp=0.jpg" className="app-wh100-all-radius"/>
+                        {
+                            comments.length!=0?comments.map((json,index)=>(
+                                    <div className="dynamic-content app-padding-lr24" style={{borderBottom:'0'}} key={index}>
+                                        <div className="step temple-name">
+                                            <div>
+                                                <div className="temple-img">
+                                                    <img src={json.senderHeadImgUrl} className="app-wh100-all-radius"/>
+                                                </div>
+                                            </div>
+                                            <div className="s-flex1 s-j-center" style={{flexDirection: 'column', alignItems: 'flex-start'}}>
+                                                <Link to="/UserInfo" className="app-a"><div className="app-333-font28 app-line-height-one">{json.sender}</div></Link>
+                                                <div className="app-999-font24 app-line-height-one" style={{paddingTop:'12px'}}>{json.timeStr}</div>
+                                            </div>
+
+                                            <div className="s-flex1 message-board-number s-j-end">
+                                                <img className="img" src={pac}/>
+                                                <div className="number app-999-font24 padding-right-40">{json.upvoteNumber}</div>
+
+
+
+                                                <img className="img" src={_comments} />
+                                                <div className="number app-999-font24">789</div>
+                                            </div>
+                                        </div>
+
+                                        <div className="step temple-content app-padding-b24 border-bottom">
+                                            <div className="s-flex1 app-333-font28">
+                                                {json.content}
+                                            </div>
+                                        </div>
+
                                     </div>
-                                </div>
-                                <div className="s-flex1 s-j-center" style={{flexDirection: 'column', alignItems: 'flex-start'}}>
-                                    <Link to="/UserInfo" className="app-a"><div className="app-333-font28 app-line-height-one">小明</div></Link>
-                                    <div className="app-999-font24 app-line-height-one" style={{paddingTop:'12px'}}>2分钟前</div>
-                                </div>
-
-                                <div className="s-flex1 message-board-number s-j-end">
-                                    <img className="img" src={pac}/>
-                                    <div className="number app-999-font24 padding-right-40">50562</div>
-
-
-
-                                    <img className="img" src={comments}/>
-                                    <div className="number app-999-font24">789</div>
-                                </div>
-                            </div>
-
-                            <div className="step temple-content app-padding-b24 border-bottom">
-                                <div className="s-flex1 app-333-font28">
-                                    下个月即将迎来观音圣诞，让我们为观音共同祈福，祈福，众生向善。
-                                </div>
-                            </div>
-
-                        </div>
-
-
-                        <div className="dynamic-content app-padding-lr24" style={{borderBottom:'0'}}>
-                            <div className="step temple-name">
-                                <div>
-                                    <div className="temple-img">
-                                        <img src="http://img4.imgtn.bdimg.com/it/u=398347842,2770887580&fm=23&gp=0.jpg" className="app-wh100-all-radius"/>
-                                    </div>
-                                </div>
-                                <div className="s-flex1 s-j-center" style={{flexDirection: 'column', alignItems: 'flex-start'}}>
-                                    <Link to="/UserInfo" className="app-a"><div className="app-333-font28 app-line-height-one">小明</div></Link>
-                                    <div className="app-999-font24 app-line-height-one" style={{paddingTop:'12px'}}>2分钟前</div>
-                                </div>
-
-                                <div className="s-flex1 message-board-number s-j-end">
-                                    <img className="img" src={pac}/>
-                                    <div className="number app-999-font24 padding-right-40">50562</div>
-
-
-
-                                    <img className="img" src={comments}/>
-                                    <div className="number app-999-font24">789</div>
-                                </div>
-                            </div>
-
-                            <div className="step temple-content app-padding-b24 border-bottom">
-                                <div className="s-flex1 app-333-font28">
-                                    下个月即将迎来观音圣诞，让我们为观音共同祈福，祈福，众生向善。
-                                </div>
-                            </div>
-
-                        </div>
-
-
+                                )):''
+                        }
                         <div className="step dynamic app-padding-lr24">
                             <div className="s-flex1  app-666-font28">
-                                热门留言
+                                热门评论
                             </div>
                         </div>
 
 
-                        <div className="dynamic-content app-padding-lr24" style={{borderBottom:'0'}}>
-                            <div className="step temple-name">
-                                <div>
-                                    <div className="temple-img">
-                                        <img src="http://img4.imgtn.bdimg.com/it/u=398347842,2770887580&fm=23&gp=0.jpg" className="app-wh100-all-radius"/>
+                        {
+                            comments.length!=0?comments.map((json,index)=>(
+                                    <div className="dynamic-content app-padding-lr24" style={{borderBottom:'0'}} key={index}>
+                                        <div className="step temple-name">
+                                            <div>
+                                                <div className="temple-img">
+                                                    <img src={json.senderHeadImgUrl} className="app-wh100-all-radius"/>
+                                                </div>
+                                            </div>
+                                            <div className="s-flex1 s-j-center" style={{flexDirection: 'column', alignItems: 'flex-start'}}>
+                                                <Link to="/UserInfo" className="app-a"><div className="app-333-font28 app-line-height-one">{json.sender}</div></Link>
+                                                <div className="app-999-font24 app-line-height-one" style={{paddingTop:'12px'}}>{json.timeStr}</div>
+                                            </div>
+
+                                            <div className="s-flex1 message-board-number s-j-end">
+                                                <img className="img" src={pac}/>
+                                                <div className="number app-999-font24 padding-right-40">{json.upvoteNumber}</div>
+
+
+
+                                                <img className="img" src={_comments}/>
+                                                <div className="number app-999-font24">789</div>
+                                            </div>
+                                        </div>
+
+                                        <div className="step temple-content app-padding-b24 border-bottom">
+                                            <div className="s-flex1 app-333-font28">
+                                                {json.content}
+                                            </div>
+                                        </div>
+
                                     </div>
-                                </div>
-                                <div className="s-flex1 s-j-center" style={{flexDirection: 'column', alignItems: 'flex-start'}}>
-                                    <Link to="/UserInfo" className="app-a"><div className="app-333-font28 app-line-height-one">小明</div></Link>
-                                    <div className="app-999-font24 app-line-height-one" style={{paddingTop:'12px'}}>2分钟前</div>
-                                </div>
-
-                                <div className="s-flex1 message-board-number s-j-end">
-                                    <img className="img" src={pac}/>
-                                    <div className="number app-999-font24 padding-right-40">50562</div>
+                                )):''
+                        }
 
 
 
-                                    <img className="img" src={comments}/>
-                                    <div className="number app-999-font24">789</div>
-                                </div>
-                            </div>
+                    </div>
 
-                            <div className="step temple-content app-padding-b24 border-bottom">
-                                <div className="s-flex1 app-333-font28">
-                                    下个月即将迎来观音圣诞，让我们为观音共同祈福，祈福，众生向善。
-                                </div>
-                            </div>
+                    <div className="step face app-padding-lr24" style={{height:'100px',position:'fixed',bottom:'0',width:'100%'}}>
 
+
+                        <div className="s-flex1">
+                            <input id="input-content" type="text" placeholder="你的评论..." className="face-input"/>
                         </div>
-                        <div className="dynamic-content app-padding-lr24" style={{borderBottom:'0'}}>
-                            <div className="step temple-name">
-                                <div>
-                                    <div className="temple-img">
-                                        <img src="http://img4.imgtn.bdimg.com/it/u=398347842,2770887580&fm=23&gp=0.jpg" className="app-wh100-all-radius"/>
-                                    </div>
-                                </div>
-                                <div className="s-flex1 s-j-center" style={{flexDirection: 'column', alignItems: 'flex-start'}}>
-                                    <Link to="/UserInfo" className="app-a"><div className="app-333-font28 app-line-height-one">小明</div></Link>
-                                    <div className="app-999-font24 app-line-height-one" style={{paddingTop:'12px'}}>2分钟前</div>
-                                </div>
 
-                                <div className="s-flex1 message-board-number s-j-end">
-                                    <img className="img" src={pac}/>
-                                    <div className="number app-999-font24 padding-right-40">50562</div>
-
-
-
-                                    <img className="img" src={comments}/>
-                                    <div className="number app-999-font24">789</div>
-                                </div>
-                            </div>
-
-                            <div className="step temple-content app-padding-b24 border-bottom">
-                                <div className="s-flex1 app-333-font28">
-                                    下个月即将迎来观音圣诞，让我们为观音共同祈福，祈福，众生向善。
-                                </div>
-                            </div>
-
+                        <div className="s-flex-zero app-padding-l24" onClick={this.status.bind(this)}>
+                            <img className="face-img" src={face} />
                         </div>
+
+
+
                     </div>
 
 

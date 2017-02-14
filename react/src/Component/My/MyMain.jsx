@@ -11,24 +11,53 @@ import payinfo from '../../../src/images/my/payinfo.png'
 import jt from '../../../src/images/my/jt.png'
 
 import {Router, Route, IndexRoute, browserHistory, Link} from 'react-router';
+import {HttpService} from '../../Http';
+import LocalStorage from '../../LocalStorage'
 
 class MyMain extends React.Component {
     constructor() {
         super();
+        this.state={
+            info:{}
+        }
     }
+
+    componentWillMount(){
+        this.info();
+    }
+
+    async info(){
+        console.log(LocalStorage.get('token'));
+        let code=await HttpService.query({
+            url:'/v1/p/user/info',
+            data:{accessToken:LocalStorage.get('token')}
+        });
+        this.setState({
+            info:{
+                headImgUrl:code.headImgUrl,
+                username:code.username,
+                residence:code.residence
+            }
+        })
+
+
+    }
+
+
     render() {
+        const {info}=this.state;
         return (
             <div className="app-container">
 
                 <div className="step app-padding-lr24 my-main">
                     <Link to="/PersonalInfo" className="app-a">
-                        <div className="img"><img src="http://img4.imgtn.bdimg.com/it/u=398347842,2770887580&fm=23&gp=0.jpg" className="app-wh100-all-radius"/></div>
+                        <div className="img"><img src={info.headImgUrl} className="app-wh100-all-radius"/></div>
                     </Link>
                     <div className="s-right s-j-center" style={{flexDirection: 'column', alignItems: 'flex-start'}}>
                         {/*<Link to="/PersonalInfo" className="app-a">*/}
-                            <div className="app-333-font30 app-line-height-one">草木一秋</div>
+                            <div className="app-333-font30 app-line-height-one">{info.username}</div>
                         {/*</Link>*/}
-                        <div className="app-999-font22 app-line-height-one" style={{paddingTop:'24px'}}>时光自有时光，时光自有时光。</div>
+                        <div className="app-999-font22 app-line-height-one" style={{paddingTop:'24px'}}>{info.residence}</div>
                     </div>
                 </div>
 

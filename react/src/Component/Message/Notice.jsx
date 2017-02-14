@@ -35,7 +35,7 @@ class Notice extends React.Component {
 
        try{
             let code=await HttpService.query({
-                url:'/v1/p/notify/get/notifies',
+                url:'/v1/p/notify/get/upvote/notifies',
                 data:{accessToken:LocalStorage.get('token')}
             })
 

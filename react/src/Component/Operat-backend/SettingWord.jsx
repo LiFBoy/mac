@@ -15,26 +15,28 @@ import {Router, Route, IndexRoute, browserHistory, Link} from 'react-router';
 class SettingWord extends React.Component {
     constructor() {
         super();
+        this.state={
+            content:null
+        }
     }
-
-
     async editInfo(){
 
+        const _content=document.getElementById('_content').value,
+            datetime=document.getElementById('datetime').value;
+        console.log(datetime)
 
 
+       // let code= await HttpService.saveJson({
+       //     url: '/v1/ad/admin/create/daily/sentence?accessToken=' + LocalStorage.get('token') + '',
+       //     data: {
+       //         content: _content,publicTime:22222
+       //     }
+       // });
+       //  console.log(code)
 
-       let code= await HttpService.saveJson({
-           url: '/v1/ad/admin/create/daily/sentence?accessToken=' + LocalStorage.get('token') + '',
-           data: {
-               content: {}
-           }
-       })
-        console.log(code)
+    }
 
-
-
-
-
+    content(e){
 
     }
     render() {
@@ -45,14 +47,14 @@ class SettingWord extends React.Component {
                     <div className="step app-padding-tb20">
                         <div className="s-left app-666-font32">时间：</div>
                         <div className="s-right app-input-edit">
-                            <input className="app-input" placeholder="时间" type="date"/>
+                            <input className="app-input" id="datetime" placeholder="时间" type="datetime-local"/>
                         </div>
                     </div>
 
                     <div className="step" style={{height:'15rem'}}>
                         <div className="s-left app-666-font32" style={{height:'15rem'}}>内容：</div>
                         <div className="s-right" style={{height:'15rem'}}>
-                            <textarea  className="s-flex1 app-999-font28 app-setting-textarea-word"  placeholder="内容"></textarea>
+                            <textarea id="_content" onChange={this.content.bind(this)}  className="s-flex1 app-999-font28 app-setting-textarea-word"  placeholder="内容"></textarea>
                         </div>
                     </div>
 

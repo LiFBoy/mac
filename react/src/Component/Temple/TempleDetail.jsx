@@ -11,10 +11,64 @@ import pac from '../../../src/images/temple/praise－active.png'
 import comments from '../../../src/images/temple/comments.png'
 import {Router, Route, IndexRoute, browserHistory, Link} from 'react-router';
 
-
+import {HttpService} from '../../Http'
 class TempleDetail extends React.Component {
     constructor() {
         super();
+        this.state={
+            templeStatuses:[],
+            info:{},
+            latestCollections:{}
+        }
+    }
+
+    componentWillMount() {
+        this.info();
+
+        this.status();
+        this.latestCollections()
+
+    }
+
+    async latestCollections(){
+
+        const code=await HttpService.query({
+            url:'/v1/temple/get/latest/collection',
+            data:{id:'1'}
+        });
+
+        this.setState({
+            latestCollections:code
+        })
+
+    }
+
+    async info(){
+        let code = await HttpService.query({
+            url: '/v1/temple/info',
+            data: {
+               id:'1'
+            }
+        });
+        console.log(code)
+        this.setState({
+            info:code
+        })
+
+    }
+
+    async status(){
+        let code = await HttpService.query({
+            url: '/v1/public/get/temple/status',
+            data: {
+                templeId:'1'
+            }
+        });
+        console.log(code)
+
+        this.setState({
+            templeStatuses:code.templeStatuses
+        })
     }
 
 
@@ -31,6 +85,8 @@ class TempleDetail extends React.Component {
     }
 
     render(){
+        const {templeStatuses,info,latestCollections}=this.state;
+
         return (
             <div className="temple-container app-container">
                 <div className="top app-padding-lr24">
@@ -45,7 +101,7 @@ class TempleDetail extends React.Component {
                     <div className="step">
                         <div className="s-center">
                             <div className="app-666-font28">今日日善</div>
-                            <div className="app-333-font28 app-padding-l24">5000</div>
+                            <div className="app-333-font28 app-padding-l24">{info.dailyNumber}</div>
                         </div>
                     </div>
                     <div className="step">
@@ -64,13 +120,13 @@ class TempleDetail extends React.Component {
                     <div className="step">
                         <div className="s-center">
                             <div className="app-999-font24">所在地:</div>
-                            <div className="app-333-font24">杭州</div>
+                            <div className="app-333-font24">{info.location}</div>
 
                             <div className="app-padding-lr24"></div>
 
 
                             <div className="app-999-font24">现住持:</div>
-                            <div className="app-333-font24">光泉法师</div>
+                            <div className="app-333-font24">{info.abbot}</div>
                         </div>
 
                     </div>
@@ -80,7 +136,7 @@ class TempleDetail extends React.Component {
 
                             <div className="s-flex1 s-j-center s-flex-d" onClick={this.changeType.bind(this,1)}>
                                 <div><img src={chunk1}/></div>
-                                <div className="pdt app-666-font24">222</div>
+                                <div className="pdt app-666-font24">{info.fansNumber}</div>
                             </div>
                         <div className="s-flex1 s-j-center s-flex-d" onClick={this.changeType.bind(this,2)}>
                             <div><img src={chunk2}/></div>
@@ -107,7 +163,7 @@ class TempleDetail extends React.Component {
                 <div className="app-margin-tb20"></div>
                 <div className="middle">
                     <div className="step h-88-b">
-                        <div className="s-flex2 s-j-center app-333-font32">大熊宝寺重修</div>
+                        <div className="s-flex2 s-j-center app-333-font32">{latestCollections.title}</div>
                         <Link to="/PayHistory">
                             <div className="app-padding-r24 app-666-font24" style={{position:'absolute',right:'0',lineHeight:'88px'}}>往期></div>
                         </Link>
@@ -119,8 +175,8 @@ class TempleDetail extends React.Component {
                         <div className="step">
 
 
-                            <div className="s-flex1 app-999-font24">1111元</div>
-                            <div className="s-flex1 s-j-end app-999-font24">2222元</div>
+                            <div className="s-flex1 app-999-font24">{latestCollections.currentAmount}元</div>
+                            <div className="s-flex1 s-j-end app-999-font24">{latestCollections.amount}元</div>
 
                         </div>
                     </div>
@@ -145,77 +201,48 @@ class TempleDetail extends React.Component {
                         </div>
                     </div>
 
-                    <div className="dynamic-content app-padding-lr24">
-                        <div className="step temple-name">
-                            <div>
-                                <div className="temple-img">
-                                    <img src="http://img4.imgtn.bdimg.com/it/u=398347842,2770887580&fm=23&gp=0.jpg" className="app-wh100-all-radius"/>
+                    {
+                        templeStatuses.length!=0?templeStatuses.map((json,index)=>(
+                                <div className="dynamic-content app-padding-lr24" key={index}>
+                                    <div className="step temple-name">
+                                        <div>
+                                            <div className="temple-img">
+                                                <img src="http://img4.imgtn.bdimg.com/it/u=398347842,2770887580&fm=23&gp=0.jpg" className="app-wh100-all-radius"/>
+                                            </div>
+                                        </div>
+                                        <div className="s-right s-j-center" style={{flexDirection: 'column', alignItems: 'flex-start'}}>
+                                            <div className="app-333-font28 app-line-height-one">灵隐寺</div>
+                                            <div className="app-999-font24 app-line-height-one" style={{paddingTop:'12px'}}>{json.timeStr}</div>
+                                        </div>
+                                    </div>
+
+                                    <div className="step temple-content">
+                                        <div className="s-flex1 app-333-font28">
+                                            {json.content}
+                                        </div>
+                                    </div>
+
+                                    <div className="step right-corner">
+
+                                        <div className="s-flex1 s-j-end">
+                                            <Link to="/CommentLists"  className="step app-a" >
+                                                <img className="img" src={pac}/>
+                                                <div className="number app-999-font24 padding-right-40">{json.upvoteNumber}</div>
+                                            </Link>
+
+
+                                            <img className="img" src={comments}/>
+                                            <div className="number app-999-font24">{json.commentNumber}</div>
+
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                            <div className="s-right s-j-center" style={{flexDirection: 'column', alignItems: 'flex-start'}}>
-                                <div className="app-333-font28 app-line-height-one">灵隐寺</div>
-                                <div className="app-999-font24 app-line-height-one" style={{paddingTop:'12px'}}>2分钟前</div>
-                            </div>
-                        </div>
-
-                        <div className="step temple-content">
-                            <div className="s-flex1 app-333-font28">
-                                下个月即将迎来观音圣诞，让我们为观音共同祈福，祈福，众生向善。
-                            </div>
-                        </div>
-
-                        <div className="step right-corner">
-
-                            <div className="s-flex1 s-j-end">
-
-                                <Link to="/CommentLists"  className="step app-a" >
-
-                                <img className="img" src={pac}/>
-                                <div className="number app-999-font24 padding-right-40">50562</div>
-                                </Link>
+                            )):''
+                    }
 
 
-                                <img className="img" src={comments}/>
-                                <div className="number app-999-font24">789</div>
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="dynamic-content app-padding-lr24">
-                        <div className="step temple-name">
-                            <div>
-                                <div className="temple-img">
-                                    <img src="http://img4.imgtn.bdimg.com/it/u=398347842,2770887580&fm=23&gp=0.jpg" className="app-wh100-all-radius"/>
-                                </div>
-                            </div>
-                            <div className="s-right s-j-center" style={{flexDirection: 'column', alignItems: 'flex-start'}}>
-                                <div className="app-333-font28 app-line-height-one">灵隐寺</div>
-                                <div className="app-999-font24 app-line-height-one" style={{paddingTop:'12px'}}>2分钟前</div>
-                            </div>
-                        </div>
-
-                        <div className="step temple-content">
-                            <div className="s-flex1 app-333-font28">
-                                下个月即将迎来观音圣诞，让我们为观音共同祈福，祈福，众生向善。
-                            </div>
-                        </div>
-
-                        <div className="step right-corner">
-
-                            <div className="s-flex1 s-j-end">
-                                <Link to="/CommentLists"  className="step app-a" >
-                                <img className="img" src={pac}/>
-                                <div className="number app-999-font24 padding-right-40"></div>
-                                </Link>
 
 
-                                <img className="img" src={comments}/>
-                                <div className="number app-999-font24"></div>
-
-                            </div>
-                        </div>
-                    </div>
 
 
 

@@ -20,9 +20,9 @@ import Popup from '../popup'
 class Coments extends React.Component {
     constructor() {
         super();
-        this.state={
-            comments:[],
-            admin:{}
+        this.state = {
+            comments: [],
+            admin: {}
         };
 
         this.config = {
@@ -31,10 +31,10 @@ class Coments extends React.Component {
             no: '返回',
             yes: '确定',
             header: '',
-            contentCss:{
-                borderTopRightRadius:'10px',
-                borderTopLeftRadius:'10px',
-                padding:'0'
+            contentCss: {
+                borderTopRightRadius: '10px',
+                borderTopLeftRadius: '10px',
+                padding: '0'
             },
             content: <div>
                 <div className="step app-coments-popup border-bottom" onClick={this.close.bind(this)}>
@@ -67,12 +67,11 @@ class Coments extends React.Component {
                 </div>
 
 
-
             </div>
 
 
             ,
-            yes_cb: ()=> {
+            yes_cb: () => {
 
                 //  alert(this.state.info.isadmin)
 
@@ -85,64 +84,47 @@ class Coments extends React.Component {
 
 
             },
-            no_cb: ()=> {
+            no_cb: () => {
                 this.context.router.goBack()
             }
         };
     }
 
 
-    componentWillMount(){
+    componentWillMount() {
 
         this.comments();
     }
 
-    close(){
+    close() {
         this.setState({
-            admin:{
-                flag:false,
-                _flag:false
+            admin: {
+                flag: false,
+                _flag: false
             }
         })
     }
 
-    popup(){
+    popup() {
         this.setState({
-            admin:{
-                flag:true,
-                _flag:true
+            admin: {
+                flag: true,
+                _flag: true
             }
         })
     }
 
-    async comments(){
+    async comments() {
 
-        let code=await HttpService.query({
-            url:"/v1/p/user/comments",
-            data:{accessToken:LocalStorage.get('token')}
-
+        let code = await HttpService.query({
+            url: "/v1/p/notify/get/reply/comment/notifies",
+            data: {accessToken: LocalStorage.get('token')}
         });
 
         this.setState({
-                     comments:code.comments
-                 });
+            comments: code.comments
+        });
 
-
-        // console.log(LocalStorage.get('token'))
-        // HttpService.query({
-        //     url:'/v1/p/user/comments',
-        //     data:{accessToken:LocalStorage.get('token')}
-        // }).then((res)=>{
-        //     console.log(res);
-        //     this.setState({
-        //         comments:res.comments
-        //     })
-        //
-        //
-        //
-        // },(error)=>{
-        //
-        // })
     }
 
     render() {
@@ -158,9 +140,9 @@ class Coments extends React.Component {
 
 
                     {
-                        this.state.comments.map((json=>{
+                        this.state.comments.map((json => {
                             return (
-                                <div className="dynamic-content app-padding-lr24 border-bottom">
+                                <div className="dynamic-content app-padding-lr24 border-bottom" key={json.userId}>
                                     <div className="step temple-name">
                                         <div>
                                             <div className="temple-img"><img className="app-wh100-all-radius"
@@ -169,23 +151,26 @@ class Coments extends React.Component {
                                         </div>
                                         <div className="s-right s-j-center"
                                              style={{flexDirection: 'column', alignItems: 'flex-start'}}>
-                                            <div className="app-333-font28 app-line-height-one">灵隐寺</div>
-                                            <div className="app-999-font24 app-line-height-one" style={{paddingTop: '12px'}}>10-12 09:00</div>
+                                            <div className="app-333-font28 app-line-height-one">{json.username}</div>
+                                            <div className="app-999-font24 app-line-height-one"
+                                                 style={{paddingTop: '12px'}}>{json.timeStr}
+                                            </div>
                                         </div>
                                     </div>
 
                                     <div className="temple-content">
                                         <div className="step ">
                                             <div className="s-flex1 app-333-font28">
-                                                下个月即将迎来观音圣诞。
+                                                {json.content}
                                             </div>
                                         </div>
 
                                         <div className="step app-margin-tb24">
                                             <div className="comments s-flex1 s-flex-d s-j-center app-padding-l24"
                                                  style={{alignItems: 'flex-start'}}>
-                                                <div className="app-333-font28" style={{marginBottom: '16px'}}>唐僧大师</div>
-                                                <div className="app-999-font24">灵隐寺美美呀</div>
+                                                <div className="app-333-font28" style={{marginBottom: '16px'}}>{json.username}
+                                                </div>
+                                                <div className="app-999-font24">{json.myComment}</div>
                                             </div>
                                         </div>
                                     </div>
@@ -195,41 +180,6 @@ class Coments extends React.Component {
                             )
                         }))
                     }
-
-
-
-                    <div className="dynamic-content app-padding-lr24 border-bottom">
-                        <div className="step temple-name">
-                            <div>
-                                <div className="temple-img"><img className="app-wh100-all-radius"
-                                                                 src="http://pic.58pic.com/58pic/11/52/20/45s58PICVat.jpg"/>
-                                </div>
-                            </div>
-                            <div className="s-right s-j-center"
-                                 style={{flexDirection: 'column', alignItems: 'flex-start'}}>
-                                <div className="app-333-font28 app-line-height-one">悟空</div>
-                                <div className="app-999-font24 app-line-height-one" style={{paddingTop: '12px'}}>10-12 09:00</div>
-                            </div>
-                        </div>
-
-                        <div className="temple-content">
-                            <div className="step ">
-                                <div className="s-flex1 app-333-font28">
-                                    师傅，您说的没错
-                                </div>
-                            </div>
-
-                            <div className="step app-margin-tb24" onClick={this.popup.bind(this)}>
-                                <div className="comments s-flex1 s-flex-d s-j-center app-padding-l24"
-                                     style={{alignItems: 'flex-start'}}>
-                                    <div className="app-333-font28" style={{marginBottom: '16px'}}>唐僧大师</div>
-                                    <div className="app-999-font24">灵隐寺美美呀</div>
-                                </div>
-                            </div>
-                        </div>
-
-
-                    </div>
 
 
 

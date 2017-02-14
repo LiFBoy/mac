@@ -24,42 +24,41 @@ class Index extends React.Component {
 
         this.state = {
             swiper: [],
-            temples:[]
+            temples: [],
+            banners:[]
         }
 
     }
 
     componentWillMount() {
-
         this.hot();
-
     }
 
 
     componentDidMount() {
-
-
         this.initBannerSwiper();
-
-
+        this.banners();
     }
+    async banners() {
 
+        let banners = await HttpService.query({
+            url: '/v1/public/get/banners',
+        });
+        this.setState({
+            banners: banners.banners
 
+        })
+    }
     async hot() {
 
-        let hot=await HttpService.query({
+        let hot = await HttpService.query({
             url: '/v1/temple/get/hot/temples',
         });
         console.log(hot);
+        this.setState({
+            temples: hot.temples
 
-            // .then((res) => {
-            //     console.log(res);
-            //     this.setState({
-            //         temples:res.temples
-            //     })
-            // }, (error) => {
-            //     console.log(error)
-            // });
+        })
     }
 
     initBannerSwiper() {
@@ -75,7 +74,7 @@ class Index extends React.Component {
 
     render() {
 
-        let {temples} = this.state;
+        let {temples,banners} = this.state;
 
         console.log(temples);
         return (
@@ -85,15 +84,13 @@ class Index extends React.Component {
                     <div className="banner">
                         <div className="swiper-container">
                             <div className="swiper-wrapper">
-                                <div className="swiper-slide">
-                                    <img src="http://img0.imgtn.bdimg.com/it/u=2152422253,1846971893&fm=23&gp=0.jpg"/>
-                                </div>
-                                <div className="swiper-slide">
-                                    <img src="http://pic6.huitu.com/res/20130116/84481_20130116142820494200_1.jpg"/>
-                                </div>
-                                <div className="swiper-slide">
-                                    <img src="http://img.taopic.com/uploads/allimg/120222/34250-12022209414087.jpg"/>
-                                </div>
+                                {
+                                    banners.length!=0?banners.map((json,index)=>(
+                                            <div className="swiper-slide" key={index}>
+                                                <img src={json.picture}/>
+                                            </div>
+                                        )):''
+                                }
                             </div>
 
                             <div className="swiper-pagination"></div>
@@ -101,92 +98,53 @@ class Index extends React.Component {
                     </div>
 
 
-
-
-                    <div className="app-margin-tb20"></div>
-
                     {
-                        temples.map((json,index)=>{
+                        temples.map((json, index) => {
                             return (
-                                <Link to="/TempleDetail" className="app-a" key={index}>
-                                    <div className="temple-content">
-                                        <div className="con-img">
-                                            <div className="img-content"><img className="app-wh100-all" src={json.picture}/>
+
+                                <div key={index}>
+                                    {/*<div className="app-margin-tb20"></div>*/}
+
+                                    <Link to="/TempleDetail" className="app-a" >
+                                        <div className="temple-content">
+                                            <div className="con-img">
+                                                <div className="img-content"><img className="app-wh100-all"
+                                                                                  src={json.picture}/>
+                                                </div>
+                                                <div className="con-bar step">
+
+
+                                                </div>
+                                                <div className="con-bar-content step">
+                                                    <div className="s-flex1 bar-left">杭州灵隐寺</div>
+                                                    <div className="s-flex1 s-j-end">
+
+                                                        <img className="img" src={alms}/>
+                                                        <div
+                                                            className="number padding-right-32">{json.dailyNumber}</div>
+
+
+                                                        <img className="img" src={like}/>
+                                                        <div className="number">{json.fansNumber}</div>
+
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <div className="con-bar step">
 
-
-                                            </div>
-                                            <div className="con-bar-content step">
-                                                <div className="s-flex1 bar-left">杭州灵隐寺</div>
-                                                <div className="s-flex1 s-j-end">
-
-                                                    <img className="img" src={alms}/>
-                                                    <div className="number padding-right-32">{json.dailyNumber}</div>
-
-
-                                                    <img className="img" src={like}/>
-                                                    <div className="number">{json.fansNumber}</div>
-
+                                            <div className="con-content step">
+                                                <div className="s-flex1 app-333-font28">灵隐寺最新消息</div>
+                                                <div className="s-flex1 s-j-end app-666-font24">
+                                                    <span>
+                                                        {json.distance}
+                                                    </span>
                                                 </div>
                                             </div>
                                         </div>
-
-                                        <div className="con-content step">
-                                            <div className="s-flex1 app-333-font28">灵隐寺最新消息</div>
-                                            <div className="s-flex1 s-j-end app-666-font24">
-                                                <spn>
-                                                    {json.distance}
-                                                </spn>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </Link>
+                                    </Link>
+                                </div>
                             )
                         })
                     }
-
-
-
-                    <div className="app-margin-tb20"></div>
-                    <Link to="/TempleDetail" className="app-a">
-                        <div className="temple-content">
-                            <div className="con-img">
-                                <div className="img-content"><img className="app-wh100-all"
-                                                                  src="http://img0.imgtn.bdimg.com/it/u=2152422253,1846971893&fm=23&gp=0.jpg"/>
-                                </div>
-                                <div className="con-bar step">
-
-
-                                </div>
-                                <div className="con-bar-content step">
-                                    <div className="s-flex1 bar-left">杭州灵隐寺</div>
-                                    <div className="s-flex1 s-j-end">
-
-                                        <img className="img" src={alms}/>
-                                        <div className="number padding-right-32"></div>
-
-
-                                        <img className="img" src={like}/>
-                                        <div className="number"></div>
-
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className="con-content step">
-                                <div className="s-flex1 app-333-font28">灵隐寺最新消息</div>
-                                <div className="s-flex1 s-j-end app-666-font24">
-                                    <spn>
-                                        20km
-                                    </spn>
-                                </div>
-                            </div>
-                        </div>
-                    </Link>
-
-
-                    <div className="app-margin-tb20"></div>
                 </div>
 
                 {/*<Foot type="1"></Foot>*/}
