@@ -48,7 +48,7 @@ class MessageBoard extends React.Component {
         let code = await HttpService.query({
             url: '/v1/public/get/temple/leave/messages',
             data: {
-                templeId:'1'
+                templeId: this.props.params.id
             }
         });
         this.setState({

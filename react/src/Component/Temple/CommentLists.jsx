@@ -28,7 +28,7 @@ class CommentLists extends React.Component {
         let code = await HttpService.query({
             url: '/v1/public/get/temple/status/comments',
             data: {
-                contentId:1
+                contentId:this.props.params.id
             }
         });
 
@@ -36,12 +36,21 @@ class CommentLists extends React.Component {
             comments:code.comments
         })
     }
+    async upvote(id){
+        let code = await HttpService.saveJson({
+            url: '/v1/p/comment/upvote?accessToken=' + LocalStorage.get('token') + '',
+            data: {
+                id:id
+            }
+        });
+        this.comments();
+    }
     async status(){
         const content=document.getElementById('input-content').value;
         let code = await HttpService.saveJson({
             url: '/v1/p/comment/temple/status?accessToken=' + LocalStorage.get('token') + '',
             data: {
-                contentId:1,
+                contentId:this.props.params.id,
                 content:content
             }
         });
@@ -131,10 +140,13 @@ class CommentLists extends React.Component {
                                             </div>
 
                                             <div className="s-flex1 message-board-number s-j-end">
+                                                <div className="step" onClick={this.upvote.bind(this,json.id)}>
+
+
                                                 <img className="img" src={pac}/>
                                                 <div className="number app-999-font24 padding-right-40">{json.upvoteNumber}</div>
 
-
+                                                </div>
 
                                                 <img className="img" src={_comments} />
                                                 <div className="number app-999-font24">789</div>

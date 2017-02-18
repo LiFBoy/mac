@@ -7,7 +7,8 @@ import myalms from '../../../src/images/temple/myalms.png'
 import chunk1 from '../../../src/images/temple/chunk1.png'
 import chunk2 from '../../../src/images/temple/chunk2.png'
 import chunk3 from '../../../src/images/temple/chunk3.png'
-import pac from '../../../src/images/temple/praise－active.png'
+import pacActive from '../../../src/images/temple/praise－active.png'
+import pac from '../../../src/images/temple/praise.png'
 import comments from '../../../src/images/temple/comments.png'
 import {Router, Route, IndexRoute, browserHistory, Link} from 'react-router';
 
@@ -18,7 +19,8 @@ class TempleDetail extends React.Component {
         this.state={
             templeStatuses:[],
             info:{},
-            latestCollections:{}
+            latestCollections:{},
+            bili:{}
         }
     }
 
@@ -30,16 +32,26 @@ class TempleDetail extends React.Component {
 
     }
 
+    componentDidMount(){
+
+
+            document.getElementById("bar").style.width=this.state.bili+"%";
+    }
+
     async latestCollections(){
 
         const code=await HttpService.query({
             url:'/v1/temple/get/latest/collection',
-            data:{id:'1'}
+            data:{id:this.props.params.id}
         });
 
         this.setState({
-            latestCollections:code
-        })
+            latestCollections:code,
+            bili:(2/code.amount)*100+'%'
+        });
+
+
+        console.log(this.state.bili)
 
     }
 
@@ -47,7 +59,7 @@ class TempleDetail extends React.Component {
         let code = await HttpService.query({
             url: '/v1/temple/info',
             data: {
-               id:'1'
+               id:this.props.params.id
             }
         });
         console.log(code)
@@ -61,7 +73,7 @@ class TempleDetail extends React.Component {
         let code = await HttpService.query({
             url: '/v1/public/get/temple/status',
             data: {
-                templeId:'1'
+                templeId:this.props.params.id
             }
         });
         console.log(code)
@@ -74,9 +86,9 @@ class TempleDetail extends React.Component {
 
     changeType(type) {
         if (type == 1) {
-            window.location.href = "/index.html#/FocusLists"
+            window.location.href = '/index.html#/FocusLists/'+ this.props.params.id + ''
         } else if (type == 2) {
-            window.location.href = "/index.html#/MessageBoard"
+            window.location.href = '/index.html#/MessageBoard/'+ this.props.params.id + ''
         } else if (type == 3) {
             window.location.href = "/index.html#/PayRecord"
         }
@@ -140,7 +152,7 @@ class TempleDetail extends React.Component {
                             </div>
                         <div className="s-flex1 s-j-center s-flex-d" onClick={this.changeType.bind(this,2)}>
                             <div><img src={chunk2}/></div>
-                            <div className="pdt app-666-font24">111</div>
+                            <div className="pdt app-666-font24">{info.leaveNumber}</div>
                         </div>
                         <div className="s-flex1 s-j-center s-flex-d" onClick={this.changeType.bind(this,3)}>
                             <div><img src={chunk3}/></div>
@@ -164,13 +176,15 @@ class TempleDetail extends React.Component {
                 <div className="middle">
                     <div className="step h-88-b">
                         <div className="s-flex2 s-j-center app-333-font32">{latestCollections.title}</div>
-                        <Link to="/PayHistory">
+                        <Link to={'/PayHistory/' + this.props.params.id + ''}>
                             <div className="app-padding-r24 app-666-font24" style={{position:'absolute',right:'0',lineHeight:'88px'}}>往期></div>
                         </Link>
                     </div>
 
                     <div className="app-padding-lr40">
-                        <div className="progress-bar"></div>
+                        <div className="progress-bar">
+                            <span className="bar" id="bar"></span>
+                        </div>
 
                         <div className="step">
 
@@ -186,7 +200,7 @@ class TempleDetail extends React.Component {
                             <div className="step">
                                 <Link to="/PayRecord" className="app-a s-flex1"><div className="chunk app-666-font28 s-flex1 s-j-center">捐款记录</div></Link>
                                 <div className="app-padding-lr20"></div>
-                                <Link to="/UnderstandDetail" className="app-a s-flex1"><div className="chunk app-666-font28 s-flex1 s-j-center">了解详情</div></Link>
+                                <Link  to={'/UnderstandDetail/' + latestCollections.id + ''}  className="app-a s-flex1"><div className="chunk app-666-font28 s-flex1 s-j-center">了解详情</div></Link>
                                 <div className="app-padding-lr20"></div>
                                 <Link to="/Pay" className="app-a s-flex1"><div className="chunk app-666-font28 s-flex1 s-j-center">发善心</div></Link>
                             </div>
@@ -207,7 +221,7 @@ class TempleDetail extends React.Component {
                                     <div className="step temple-name">
                                         <div>
                                             <div className="temple-img">
-                                                <img src="http://img4.imgtn.bdimg.com/it/u=398347842,2770887580&fm=23&gp=0.jpg" className="app-wh100-all-radius"/>
+                                                <img src="" className="app-wh100-all-radius"/>
                                             </div>
                                         </div>
                                         <div className="s-right s-j-center" style={{flexDirection: 'column', alignItems: 'flex-start'}}>
@@ -225,15 +239,16 @@ class TempleDetail extends React.Component {
                                     <div className="step right-corner">
 
                                         <div className="s-flex1 s-j-end">
-                                            <Link to="/CommentLists"  className="step app-a" >
+
                                                 <img className="img" src={pac}/>
+
                                                 <div className="number app-999-font24 padding-right-40">{json.upvoteNumber}</div>
-                                            </Link>
 
 
+                                        <Link  to={'/CommentLists/' + json.id + ''}  className="step app-a" >
                                             <img className="img" src={comments}/>
                                             <div className="number app-999-font24">{json.commentNumber}</div>
-
+                                        </Link>
                                         </div>
                                     </div>
                                 </div>

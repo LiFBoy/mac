@@ -14,14 +14,18 @@ let store = createStore();
 
 import routes from './Route'; //路由配置
 
+
+
 import './auto-set-rem'
 // import './less/my.bootstrap.min.css'
 import './less/common.less'
 import './less/my.less'
+import './less/lCalendar.css'
 
 
 import HttpService from './Http';
 import LocalStorage from './LocalStorage';
+
 
 
 render(

@@ -22,7 +22,7 @@ class PayHistory extends React.Component {
 
         const code=await HttpService.query({
             url:'/v1/temple/collections',
-            data:{id:'1'}
+            data:{id:this.props.params.id}
         });
 
         this.setState({

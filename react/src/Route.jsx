@@ -98,15 +98,15 @@ const RouteConfig = (
 
 
 
-            <Route path="/TempleDetail" component={TempleDetail} />
+            <Route path="/TempleDetail/:id" component={TempleDetail} />
             <Route path="/PaySuccess" component={PaySuccess} />
             <Route path="/PayMoney" component={PayMoney} />
-            <Route path="/FocusLists" component={FocusLists} />
-            <Route path="/MessageBoard" component={MessageBoard} />
-            <Route path="/PayHistory" component={PayHistory} />
+            <Route path="/FocusLists/:id" component={FocusLists} />
+            <Route path="/MessageBoard/:id" component={MessageBoard} />
+            <Route path="/PayHistory/:id" component={PayHistory} />
             <Route path="/AlmsDetail" component={AlmsDetail} />
             <Route path="/SelectMoney" component={SelectMoney} />
-            <Route path="/CommentLists" component={CommentLists} />
+            <Route path="/CommentLists/:id" component={CommentLists} />
             <Route path="/wish" component={wish} />
 
 
@@ -115,7 +115,7 @@ const RouteConfig = (
             <Route path="/ChanYu" component={ChanYu} />
             <Route path="/Coments" component={Coments} />
             <Route path="/DayPay" component={DayPay} />
-            <Route path="/UnderstandDetail" component={UnderstandDetail} />
+            <Route path="/UnderstandDetail/:id" component={UnderstandDetail} />
             <Route path="/Pay" component={Pay} />
             <Route path="/PayRecord" component={PayRecord} />
 

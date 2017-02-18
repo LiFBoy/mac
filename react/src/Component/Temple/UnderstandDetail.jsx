@@ -23,7 +23,7 @@ class UnderstandDetail extends React.Component {
 
         const code=await HttpService.query({
             url:'/v1/temple/get/collection',
-            data:{id:'2'}
+            data:{id:this.props.params.id}
         });
 
         this.setState({
@@ -65,7 +65,7 @@ class UnderstandDetail extends React.Component {
                     </div>
                     <div className="step app-padding-tb32 app-666-font28 app-padding-lr24" >
 
-                            <div>已募集 <span className="app-active-font28">{getCollections.currentAmount}元</span>,进度为 <span className="app-active-font28">50%</span></div>
+                            <div>已募集 <span className="app-active-font28">{getCollections.currentAmount}元</span>,进度为 <span className="app-active-font28">{(getCollections.currentAmount/getCollections.amount)*100}%</span></div>
 
                     </div>
                 </div>

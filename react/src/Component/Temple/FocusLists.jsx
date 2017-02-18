@@ -21,7 +21,7 @@ class FocusLists extends React.Component {
         let code = await HttpService.query({
             url: '/v1/temple/get/fans',
             data: {
-               id:'1'
+               id:this.props.params.id
             }
         });
         console.log(code)
@@ -38,7 +38,7 @@ class FocusLists extends React.Component {
             <div className="app-container">
                 {
                     fans.length!=0?fans.map((json,index)=>(
-                            <div className="step app-white border-bottom app-padding-l24  app-wh-140">
+                            <div className="step app-white border-bottom app-padding-l24  app-wh-140" key={index}>
                                 <div className="app-wh-100  app-margin-right24 app-margin-tb20">
                                     <img className="app-wh100-all-radius" src={json.userHeadImgUrl}/>
                                 </div>

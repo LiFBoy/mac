@@ -31,13 +31,18 @@ class Index extends React.Component {
     }
 
     componentWillMount() {
+
         this.hot();
+        this.banners();
     }
 
 
     componentDidMount() {
+
+
         this.initBannerSwiper();
-        this.banners();
+
+
     }
     async banners() {
 
@@ -84,6 +89,13 @@ class Index extends React.Component {
                     <div className="banner">
                         <div className="swiper-container">
                             <div className="swiper-wrapper">
+                                <div className="swiper-slide">
+                                    <img src="http://img4.imgtn.bdimg.com/it/u=2389140428,1315216178&fm=21&gp=0.jpg"/>
+                                </div><div className="swiper-slide">
+                                    <img src="http://img4.imgtn.bdimg.com/it/u=2389140428,1315216178&fm=21&gp=0.jpg"/>
+                                </div><div className="swiper-slide">
+                                    <img src="http://img4.imgtn.bdimg.com/it/u=2389140428,1315216178&fm=21&gp=0.jpg"/>
+                                </div>
                                 {
                                     banners.length!=0?banners.map((json,index)=>(
                                             <div className="swiper-slide" key={index}>
@@ -105,7 +117,7 @@ class Index extends React.Component {
                                 <div key={index}>
                                     {/*<div className="app-margin-tb20"></div>*/}
 
-                                    <Link to="/TempleDetail" className="app-a" >
+                                    <Link to={'/TempleDetail/' + json.id + ''} className="app-a" >
                                         <div className="temple-content">
                                             <div className="con-img">
                                                 <div className="img-content"><img className="app-wh100-all"
