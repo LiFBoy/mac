@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-import {HttpService} from '../../Http'
+import {HttpService} from '../../utils'
 class PayHistory extends React.Component {
     constructor() {
         super();

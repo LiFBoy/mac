@@ -7,7 +7,7 @@ import Foot from '../Foot'
 import jt from '../../../src/images/my/jt.png'
 
 import {Router, Route, IndexRoute, browserHistory, Link} from 'react-router';
-import {HttpService} from '../../Http'
+import {HttpService} from '../../utils'
 
 import LocalStorage from '../../LocalStorage'
 class AddTemple extends React.Component {

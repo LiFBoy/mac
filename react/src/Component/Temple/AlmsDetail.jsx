@@ -3,7 +3,7 @@
 import React from 'react';
 
 
-import {HttpService} from '../../Http';
+import {HttpService} from '../../utils';
 class AlmsDetail extends React.Component {
     constructor() {
         super();

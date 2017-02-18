@@ -1,7 +1,7 @@
 'usr strict';
 
 import React from 'react';
-import {HttpService,Tool} from '../../Http';
+import {HttpService,Tool} from '../../utils';
 import LocalStorage from '../../LocalStorage'
 
 

@@ -12,7 +12,7 @@ import chunk2 from '../../../src/images/temple/chunk2.png'
 import chunk3 from '../../../src/images/temple/chunk3.png'
 import pac from '../../../src/images/temple/praise－active.png'
 import comments from '../../../src/images/temple/comments.png'
-import {HttpService} from '../../Http';
+import {HttpService} from '../../utils';
 import LocalStorage from '../../LocalStorage'
 class ChanYu extends React.Component {
     constructor() {

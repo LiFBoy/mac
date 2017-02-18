@@ -8,7 +8,7 @@ import _comments from '../../../src/images/temple/comments.png'
 import face from '../../../src/images/temple/face.png'
 import {Router, Route, IndexRoute, browserHistory, Link} from 'react-router';
 
-import {HttpService} from '../../Http'
+import {HttpService} from '../../utils'
 import LocalStorage from '../../LocalStorage'
 
 class CommentLists extends React.Component {

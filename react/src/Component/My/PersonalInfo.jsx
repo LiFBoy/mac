@@ -1,7 +1,7 @@
 'usr strict';
 
 import React from 'react';
-import {HttpService} from '../../Http';
+import {HttpService,Toast} from '../../utils';
 import LocalStorage from '../../LocalStorage'
 
 
@@ -16,7 +16,36 @@ class PersonalInfo extends React.Component {
     componentWillMount(){
 
         this.getInfo();
+        this.listenEvent();
+        this.title()
     }
+
+
+    title(t){
+        window.g_bridge.callHandler('sendMessageToApp', {
+                type: 15, data: {title:'个人',
+                    rightNavigationBarItems:[{type: t||10000, title: !t ? '编辑' : 'baocun'}]}},
+            (response)=>{
+
+            })
+    }
+
+
+    listenEvent() {
+        window.g_bridge.registerHandler('sendMessageToHTML',  (msg,cb)  => {
+                Toast.toast(msg,2000);
+                if(msg=='10000'){
+                    this.title(10001)
+                }else {
+                    this.title()
+                }
+        })
+
+
+
+    }
+
+    
 
     getInfo(){
         HttpService.query({

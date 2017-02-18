@@ -13,7 +13,7 @@ import chunk3 from '../../../src/images/temple/chunk3.png'
 import pac from '../../../src/images/temple/praise－active.png'
 import comments from '../../../src/images/temple/comments.png'
 
-import {HttpService} from '../../Http';
+import {HttpService} from '../../utils';
 import LocalStorage from '../../LocalStorage'
 import Popup from '../popup'
 

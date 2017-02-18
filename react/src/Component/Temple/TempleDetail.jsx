@@ -12,7 +12,8 @@ import pac from '../../../src/images/temple/praise.png'
 import comments from '../../../src/images/temple/comments.png'
 import {Router, Route, IndexRoute, browserHistory, Link} from 'react-router';
 
-import {HttpService} from '../../Http'
+import {HttpService} from '../../utils'
+import LocalStorage  from '../../LocalStorage'
 class TempleDetail extends React.Component {
     constructor() {
         super();
@@ -69,6 +70,8 @@ class TempleDetail extends React.Component {
 
     }
 
+
+
     async status(){
         let code = await HttpService.query({
             url: '/v1/public/get/temple/status',
@@ -81,6 +84,20 @@ class TempleDetail extends React.Component {
         this.setState({
             templeStatuses:code.templeStatuses
         })
+    }
+
+
+    async upvoteStatus(id){
+        let code = await HttpService.saveJson({
+            url: '/v1/p/user/upvote/temple/status?accessToken=' + LocalStorage.get('token') + '',
+            data: {
+                id:id
+            }
+        });
+        console.log(code);
+        this.status();
+
+
     }
 
 
@@ -105,7 +122,7 @@ class TempleDetail extends React.Component {
                     <div className="step">
                         <div className="s-center temple-title">
                             <div style={{width:'200px',height:'200px'}}>
-                                <img src="http://img4.imgtn.bdimg.com/it/u=398347842,2770887580&fm=23&gp=0.jpg" className="app-wh100-all-radius"/>
+                                <img src={info.headImgUrl} className="app-wh100-all-radius"/>
                             </div>
                         </div>
 
@@ -240,10 +257,12 @@ class TempleDetail extends React.Component {
 
                                         <div className="s-flex1 s-j-end">
 
+                                            <div className="step" onClick={this.upvoteStatus.bind(this,json.id)}>
+
                                                 <img className="img" src={pac}/>
 
                                                 <div className="number app-999-font24 padding-right-40">{json.upvoteNumber}</div>
-
+                                            </div>
 
                                         <Link  to={'/CommentLists/' + json.id + ''}  className="step app-a" >
                                             <img className="img" src={comments}/>

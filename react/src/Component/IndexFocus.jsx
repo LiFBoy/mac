@@ -17,7 +17,7 @@ import like from '../../src/images/index/like.png'
 import alms from '../../src/images/index/alms.png'
 
 
-import {HttpService} from '../Http';
+import {HttpService} from '../utils';
 import LocalStorage from '../LocalStorage'
 
 

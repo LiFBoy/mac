@@ -3,7 +3,7 @@
  */
 'use strict';
 
-import {HttpService, Toast}  from'../Http';
+import {HttpService, Toast}  from'../utils';
 
 
 

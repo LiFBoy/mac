@@ -2,7 +2,7 @@
 
 import React from 'react';
 import {Router, Route, IndexRoute, browserHistory, Link} from 'react-router';
-import {HttpService} from '../../Http'
+import {HttpService} from '../../utils'
 class FocusLists extends React.Component {
     constructor() {
         super();

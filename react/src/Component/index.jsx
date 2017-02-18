@@ -15,7 +15,8 @@ import Foot from './Foot';
 
 import like from '../../src/images/index/like.png'
 import alms from '../../src/images/index/alms.png'
-import {HttpService} from '../Http'
+import {HttpService} from '../utils'
+import JsBridge from '../jsBridge'
 
 
 class Index extends React.Component {
@@ -31,6 +32,8 @@ class Index extends React.Component {
     }
 
     componentWillMount() {
+
+        console.log(JsBridge.getJsBridge())
 
         this.hot();
         this.banners();
@@ -121,7 +124,7 @@ class Index extends React.Component {
                                         <div className="temple-content">
                                             <div className="con-img">
                                                 <div className="img-content"><img className="app-wh100-all"
-                                                                                  src={json.picture}/>
+                                                                                  src={json.headImgUrl}/>
                                                 </div>
                                                 <div className="con-bar step">
 
