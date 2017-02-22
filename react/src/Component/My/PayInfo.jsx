@@ -17,23 +17,24 @@ class PayInfo extends React.Component {
     componentWillMount(){
 
         this.history();
+        this.donations();
     }
 
-    history(){
+    async history(){
         console.log(LocalStorage.get('token'))
-        HttpService.query({
+
+        const code= await HttpService.query({
             url:'/v1/p/user/donation/history',
             data:{accessToken:LocalStorage.get('token')}
-        }).then((res)=>{
-            console.log(res)
-
-            this.setState({
-                records:res.records
-            })
-
-        },(error)=>{
-
         })
+    }
+    async donations(){
+       const code= await HttpService.query({
+            url:'/v1/p/user/recent/donations',
+            data:{accessToken:LocalStorage.get('token')}
+        })
+
+
     }
 
     createLogin() {

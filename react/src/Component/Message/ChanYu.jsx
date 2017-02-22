@@ -45,6 +45,14 @@ class ChanYu extends React.Component {
         }
 
     }
+    newDate(timestamp3){
+        var newDate = new Date();
+        newDate.setTime(timestamp3 * 1000);
+
+
+
+        return newDate.toLocaleString()
+    }
 
     render() {
 
@@ -69,7 +77,7 @@ class ChanYu extends React.Component {
                                         <div className="s-right s-j-center"
                                              style={{flexDirection: 'column', alignItems: 'flex-start'}}>
                                             <div className="app-333-font28 app-line-height-one">每日一句</div>
-                                            <div className="app-999-font24 app-line-height-one" style={{paddingTop: '12px'}}>{json.timeStr}</div>
+                                            <div className="app-999-font24 app-line-height-one" style={{paddingTop: '12px'}}>{this.newDate(json.publicTime)}</div>
                                         </div>
                                     </div>
 

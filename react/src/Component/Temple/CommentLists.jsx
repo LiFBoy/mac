@@ -10,6 +10,7 @@ import {Router, Route, IndexRoute, browserHistory, Link} from 'react-router';
 
 import {HttpService} from '../../utils'
 import LocalStorage from '../../LocalStorage'
+import jsBridge from '../../jsBridge'
 
 class CommentLists extends React.Component {
     constructor() {
@@ -17,12 +18,16 @@ class CommentLists extends React.Component {
         this.state={
             comments:[]
         }
+        jsBridge.getBrideg();
+        jsBridge.setTitle('评论列表')
     }
 
     componentWillMount() {
         this.comments();
 
     }
+
+
 
     async comments(){
         let code = await HttpService.query({

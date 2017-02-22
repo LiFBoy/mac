@@ -20,11 +20,19 @@ class SettingWord extends React.Component {
     constructor() {
         super();
         this.state={
-            content:null
+            content:null,
+            dailySentences:[]
         }
+
+
     }
     onChange(date) {
         console.log(date)
+    }
+
+
+    componentWillMount(){
+        this.sentence();
     }
 
     componentDidMount(){
@@ -35,6 +43,27 @@ class SettingWord extends React.Component {
             'trigger': '#demo2',
             'type': 'datetime'
         });
+
+    }
+
+
+    async sentence(){
+        console.log(LocalStorage.get('token'))
+
+        try{
+            let code=await HttpService.query({
+                url:'/v1/p/notify/get/daily/sentence',
+                data:{accessToken:LocalStorage.get('token')}
+            })
+
+            console.log(code)
+
+            this.setState({
+                dailySentences:code.dailySentences
+            })
+        }catch (error){
+
+        }
 
     }
 
@@ -61,7 +90,17 @@ class SettingWord extends React.Component {
     content(e){
 
     }
+
+    newDate(timestamp3){
+        var newDate = new Date();
+        newDate.setTime(timestamp3 * 1000);
+
+
+
+        return newDate.toLocaleString()
+    }
     render() {
+        const { dailySentences} =this.state;
         return (
             <div className="app-padding-lr24">
 
@@ -101,25 +140,23 @@ class SettingWord extends React.Component {
                         <div className="s-flex1 app-666-font32">最近设置每日一句</div>
                     </div>
 
+                    {
+                        dailySentences.length!=0?dailySentences.map((json,index)=>(
+                            <div className="step border-bottom app-wh-120  app-white" style={{paddingLeft:'50px'}} key={index}>
+                                <div className="s-flex1 s-j-center s-flex-d app-666-font30" style={{alignItems: 'flex-start'}}>
+                                    <div className="app-333-font28">{this.newDate(json.publicTime)}</div>
+                                    <div className="app-999-font30 pt20">{json.content}</div>
+                                </div>
+                                <div className="s-flex1 s-j-end app-333-font28">
+                                    删除
+                                </div>
+                            </div>
+                        )):''
+                    }
 
-                    <div className="step border-bottom app-wh-120  app-white" style={{paddingLeft:'50px'}}>
-                        <div className="s-flex1 s-j-center s-flex-d app-666-font30" style={{alignItems: 'flex-start'}}>
-                            <div className="app-333-font28">2018年1月1日19:00</div>
-                            <div className="app-999-font30 pt20">我是每日一句</div>
-                        </div>
-                        <div className="s-flex1 s-j-end app-333-font28">
-                            删除
-                        </div>
-                    </div>
-                    <div className="step border-bottom app-wh-120  app-white" style={{paddingLeft:'50px'}}>
-                        <div className="s-flex1 s-j-center s-flex-d app-666-font30" style={{alignItems: 'flex-start'}}>
-                            <div className="app-333-font28">2018年1月1日19:00</div>
-                            <div className="app-999-font30 pt20">我是每日一句</div>
-                        </div>
-                        <div className="s-flex1 s-j-end app-333-font28">
-                            删除
-                        </div>
-                    </div>
+
+
+
                     </form>
 
             </div>

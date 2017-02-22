@@ -7,6 +7,21 @@ import jt from '../../../src/images/my/jt.png'
 class Setting extends React.Component {
     constructor() {
         super();
+
+    }
+
+    componentWillMount(){
+       // this.title()
+    }
+
+
+    title(){
+        window.g_bridge.callHandler('sendMessageToApp', {
+                type: 15, data: {title:'个人',
+                    rightNavigationBarItems:[{type: t||10000, title: !t ? '编辑' : 'baocun'}]}},
+            (response)=>{
+
+            })
     }
 
     render(){

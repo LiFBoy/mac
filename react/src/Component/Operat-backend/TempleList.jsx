@@ -7,24 +7,42 @@ import Foot from '../Foot'
 import jt from '../../../src/images/my/jt.png'
 
 import {Router, Route, IndexRoute, browserHistory, Link} from 'react-router';
+import {HttpService} from '../../utils'
 
+import LocalStorage from '../../LocalStorage'
 class TempleList extends React.Component {
     constructor() {
         super();
+        this.state={
+            temples:[]
+        }
+        this.temple();
     }
 
 
     editInfo(){
 
     }
+
+    async temple(){
+       const hot=await HttpService.query({
+            url:'/v1/temple/get/hot/temples'
+        });
+        this.setState({
+            temples: hot.temples
+
+        })
+    }
     render() {
+
+        const {temples} =this.state;
         return (
             <div className="app-container">
 
 
                     <div className="step app-padding-lr24 app-white-chunk border-bottom">
                         <div className="s-flex2">
-                            <div className="app-333-font28 app-padding-l24">寺庙数量: <sapn>5</sapn></div>
+                            <div className="app-333-font28 app-padding-l24">寺庙数量: <sapn>{temples.length}</sapn></div>
                         </div>
 
                         <div className="s-flex1 s-j-end app-333-font28">添加</div>
@@ -33,32 +51,24 @@ class TempleList extends React.Component {
 
 
                 <div className="app-padding-tb20"></div>
+                {
+                    temples.length!=0?temples.map((json,index)=>(
+                        <Link to="/AddTemple" className="app-a">
+                            <div className="step app-padding-lr24 app-white-chunk border-bottom">
+                                <div className="s-flex2">
+                                    <div className="app-333-font28 app-padding-l24">{json.name} </div>
+
+                                </div>
+
+                                <div className="s-flex1 s-j-end app-333-font28">修改</div>
+                            </div>
+                        </Link>
+
+                    )):''
+                }
 
 
 
-
-
-
-                <Link to="/AddTemple" className="app-a">
-                    <div className="step app-padding-lr24 app-white-chunk border-bottom">
-                        <div className="s-flex2">
-                            <div className="app-333-font28 app-padding-l24">创建寺庙</div>
-
-                        </div>
-
-                        <div className="s-flex1 s-j-end app-333-font28">修改</div>
-                    </div>
-                </Link>
-                <Link to="/AddTemple" className="app-a">
-                    <div className="step app-padding-lr24 app-white-chunk border-bottom">
-                        <div className="s-flex2">
-                            <div className="app-333-font28 app-padding-l24">创建寺庙</div>
-
-                        </div>
-
-                        <div className="s-flex1 s-j-end app-333-font28">修改</div>
-                    </div>
-                </Link>
 
 
                 {/*<Foot type="3"></Foot>*/}

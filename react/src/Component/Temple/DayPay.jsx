@@ -5,13 +5,16 @@ import React from 'react';
 
 
 import {Router, Route, IndexRoute, browserHistory, Link} from 'react-router';
+import jsBridge from '../../jsBridge'
 class DayPay extends React.Component {
     constructor() {
         super();
 
         this.state={
             money:''
-        }
+        };
+        jsBridge.getBrideg();
+        jsBridge.setTitle('日善')
     }
 
     money(e){
@@ -21,6 +24,12 @@ class DayPay extends React.Component {
             money:value
         })
     }
+
+    componentWillMount(){
+
+    }
+
+
 
 
 

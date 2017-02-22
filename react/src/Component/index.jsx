@@ -11,12 +11,12 @@ import {bindActionCreators} from 'redux';
 import {Router, Route, IndexRoute, browserHistory, Link} from 'react-router';
 
 import Foot from './Foot';
+import App from './app';
 
 
 import like from '../../src/images/index/like.png'
 import alms from '../../src/images/index/alms.png'
 import {HttpService} from '../utils'
-import JsBridge from '../jsBridge'
 
 
 class Index extends React.Component {
@@ -33,7 +33,6 @@ class Index extends React.Component {
 
     componentWillMount() {
 
-        console.log(JsBridge.getJsBridge())
 
         this.hot();
         this.banners();
@@ -46,6 +45,14 @@ class Index extends React.Component {
         this.initBannerSwiper();
 
 
+    }
+
+    TempleDetail(id){
+        window.g_bridge.callHandler('sendMessageToApp', {
+                type: 2, data: {url: 'http://172.27.35.4:3002/index.html#/TempleDetail/'+id+''}},
+            (response)=>{
+
+            })
     }
     async banners() {
 
@@ -118,9 +125,10 @@ class Index extends React.Component {
                             return (
 
                                 <div key={index}>
-                                    {/*<div className="app-margin-tb20"></div>*/}
+                                    {/*<div className="app-margin-t20"></div>*/}
 
-                                    <Link to={'/TempleDetail/' + json.id + ''} className="app-a" >
+
+                                    <App cb={this.TempleDetail.bind(this,json.id)}>
                                         <div className="temple-content">
                                             <div className="con-img">
                                                 <div className="img-content"><img className="app-wh100-all"
@@ -155,7 +163,7 @@ class Index extends React.Component {
                                                 </div>
                                             </div>
                                         </div>
-                                    </Link>
+                                    </App>
                                 </div>
                             )
                         })

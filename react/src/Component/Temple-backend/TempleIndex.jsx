@@ -7,16 +7,28 @@ import Foot from '../Foot'
 import jt from '../../../src/images/my/jt.png'
 
 import {Router, Route, IndexRoute, browserHistory, Link} from 'react-router';
+import App from '../app'
+import jsBridge from '../../jsBridge'
 
 class TempleIndex extends React.Component {
     constructor() {
         super();
+        jsBridge.getBrideg();
+        jsBridge.setTitle('寺庙后台')
+    }
+
+    componentWillMount(){
+       // this.title()
+    }
+
+    sendMessageToApp_type_2(type){
+        jsBridge.sendMessageToApp_type_2(type);
     }
     render() {
         return (
             <div className="app-container">
                 <div className="app-padding-tb20"></div>
-                <Link to="/dynamic" className="app-a">
+                <App  cb={this.sendMessageToApp_type_2.bind(this,'dynamic')}>
                     <div className="step app-padding-lr24 app-white-chunk border-bottom">
                         <div className="s-flex2">
                             <div className="app-333-font28 app-padding-l24">发布动态</div>
@@ -24,8 +36,8 @@ class TempleIndex extends React.Component {
 
                         <div className="s-flex1 s-j-end"><img className="app-wh-45" src={jt}/></div>
                     </div>
-                </Link>
-                <Link to="/TempleEdit" className="app-a">
+                </App>
+                <App  cb={this.sendMessageToApp_type_2.bind(this,'TempleEdit')}>
                     <div className="step app-padding-lr24 app-white-chunk">
                         <div className="s-flex2">
                             <div className=" app-333-font28 app-padding-l24">编辑资料</div>
@@ -33,10 +45,10 @@ class TempleIndex extends React.Component {
 
                         <div className="s-flex1 s-j-end"><img className="app-wh-45" src={jt}/></div>
                     </div>
-                </Link>
+                </App>
                 <div className="app-padding-tb20"></div>
 
-                <Link to="/Donations" className="app-a">
+                <App cb={this.sendMessageToApp_type_2.bind(this,'Donations')}>
                     <div className="step app-padding-lr24 app-white-chunk border-bottom">
                         <div className="s-flex2">
                             <div className="app-333-font28 app-padding-l24">发布募捐</div>
@@ -45,9 +57,9 @@ class TempleIndex extends React.Component {
 
                         <div className="s-flex1 s-j-end"><img className="app-wh-45" src={jt}/></div>
                     </div>
-                </Link>
+                </App>
 
-                <Link to="/" className="app-a">
+                <App  cb={this.sendMessageToApp_type_2.bind(this,'Donations')}>
                     <div className="step app-padding-lr24 app-white-chunk">
 
 
@@ -59,7 +71,7 @@ class TempleIndex extends React.Component {
 
                     </div>
 
-                </Link>
+                </App>
 
                 {/*<Foot type="3"></Foot>*/}
             </div>

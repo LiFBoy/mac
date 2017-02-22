@@ -14,6 +14,8 @@ import {Router, Route, IndexRoute, browserHistory, Link} from 'react-router';
 
 import {HttpService} from '../../utils'
 import LocalStorage  from '../../LocalStorage'
+import jsBridge from '../../jsBridge'
+import App  from '../app'
 class TempleDetail extends React.Component {
     constructor() {
         super();
@@ -23,15 +25,19 @@ class TempleDetail extends React.Component {
             latestCollections:{},
             bili:{}
         }
+        jsBridge.getBrideg();
+        jsBridge.setTitle('寺庙')
     }
 
     componentWillMount() {
         this.info();
 
         this.status();
-        this.latestCollections()
+        this.latestCollections();
 
     }
+
+
 
     componentDidMount(){
 
@@ -101,17 +107,88 @@ class TempleDetail extends React.Component {
     }
 
 
+
+
+
+
+
+    DayPay(){
+
+        window.g_bridge.callHandler('sendMessageToApp', {
+                type: 2, data: {url: 'http://172.27.35.4:3002/index.html#/DayPay'}},
+            (response)=>{
+
+            })
+
+    }
+
+    AlmsDetail(){
+        window.g_bridge.callHandler('sendMessageToApp', {
+                type: 2, data: {url: 'http://172.27.35.4:3002/index.html#/AlmsDetail/'+this.props.params.id+''}},
+            (response)=>{
+
+            })
+    }
+
+
+    PayHistory(id){
+        window.g_bridge.callHandler('sendMessageToApp', {
+                type: 2, data: {url: 'http://172.27.35.4:3002/index.html#/PayHistory/'+id+''}},
+            (response)=>{
+
+            })
+    }
+    PayRecord(){
+        window.g_bridge.callHandler('sendMessageToApp', {
+                type: 2, data: {url: 'http://172.27.35.4:3002/index.html#/PayRecord'}},
+            (response)=>{
+
+            })
+    }
+    UnderstandDetail(id){
+        window.g_bridge.callHandler('sendMessageToApp', {
+                type: 2, data: {url: 'http://172.27.35.4:3002/index.html#/UnderstandDetail/'+id+''}},
+            (response)=>{
+
+            })
+    }
+    Pay(){
+        window.g_bridge.callHandler('sendMessageToApp', {
+                type: 2, data: {url: 'http://172.27.35.4:3002/index.html#/Pay'}},
+            (response)=>{
+
+            })
+    }
+    CommentLists(id){
+        window.g_bridge.callHandler('sendMessageToApp', {
+                type: 2, data: {url: 'http://172.27.35.4:3002/index.html#/CommentLists/'+id+''}},
+            (response)=>{
+
+            })
+    }
+
+
+
+
+
     changeType(type) {
+
+        const id=this.props.params.id;
         if (type == 1) {
-            window.location.href = '/index.html#/FocusLists/'+ this.props.params.id + ''
+
+            jsBridge.sendMessageToApp_type_2('FocusLists',id);
+           // window.location.href = '/index.html#/FocusLists/'+ this.props.params.id + ''
         } else if (type == 2) {
-            window.location.href = '/index.html#/MessageBoard/'+ this.props.params.id + ''
+            jsBridge.sendMessageToApp_type_2('MessageBoard',id);
+         //   window.location.href = '/index.html#/MessageBoard/'+ this.props.params.id + ''
         } else if (type == 3) {
-            window.location.href = "/index.html#/PayRecord"
+           // window.location.href = "/index.html#/PayRecord"
+            jsBridge.sendMessageToApp_type_2('PayRecord');
         }
 
 
     }
+
 
     render(){
         const {templeStatuses,info,latestCollections}=this.state;
@@ -136,12 +213,12 @@ class TempleDetail extends React.Component {
                     <div className="step">
                         <div className="s-center">
                             <div className="goAlms step">
-                                <Link to="/DayPay" className="app-a s-flex1">
+                                <App cb={this.DayPay} class="s-flex1">
                                 <div className="s-flex1 app-padding-l24">
                                     <div><img className="img" src={myalms}/></div>
                                     <div className="app-333-font28" style={{paddingLeft:'14px'}}>去日善></div>
                                 </div>
-                                </Link>
+                                </App>
                             </div>
                         </div>
                     </div>
@@ -177,13 +254,13 @@ class TempleDetail extends React.Component {
                         </div>
                     </div>
 
-                    <Link to="/AlmsDetail" className="app-a">
+                    <App cb={this.AlmsDetail.bind(this)}>
                         <div className="step h-80">
                             <div className="s-center s-j-center app-999-font24">
                                 更多资料>
                             </div>
                         </div>
-                    </Link>
+                    </App>
 
 
 
@@ -193,9 +270,9 @@ class TempleDetail extends React.Component {
                 <div className="middle">
                     <div className="step h-88-b">
                         <div className="s-flex2 s-j-center app-333-font32">{latestCollections.title}</div>
-                        <Link to={'/PayHistory/' + this.props.params.id + ''}>
+                        <App cb={this.PayHistory.bind(this,this.props.params.id)}>
                             <div className="app-padding-r24 app-666-font24" style={{position:'absolute',right:'0',lineHeight:'88px'}}>往期></div>
-                        </Link>
+                        </App>
                     </div>
 
                     <div className="app-padding-lr40">
@@ -215,11 +292,11 @@ class TempleDetail extends React.Component {
                         <div className="s-center">
 
                             <div className="step">
-                                <Link to="/PayRecord" className="app-a s-flex1"><div className="chunk app-666-font28 s-flex1 s-j-center">捐款记录</div></Link>
+                                <App cb={this.PayRecord.bind(this)} class="s-flex1"><div className="chunk app-666-font28 s-flex1 s-j-center">捐款记录</div></App>
                                 <div className="app-padding-lr20"></div>
-                                <Link  to={'/UnderstandDetail/' + latestCollections.id + ''}  className="app-a s-flex1"><div className="chunk app-666-font28 s-flex1 s-j-center">了解详情</div></Link>
+                                <App   cb={this.UnderstandDetail.bind(this,latestCollections.id )}  class="s-flex1"><div className="chunk app-666-font28 s-flex1 s-j-center">了解详情</div></App>
                                 <div className="app-padding-lr20"></div>
-                                <Link to="/Pay" className="app-a s-flex1"><div className="chunk app-666-font28 s-flex1 s-j-center">发善心</div></Link>
+                                <App cb={this.Pay.bind(this)} class="s-flex1"><div className="chunk app-666-font28 s-flex1 s-j-center">发善心</div></App>
                             </div>
 
                         </div>
@@ -264,23 +341,15 @@ class TempleDetail extends React.Component {
                                                 <div className="number app-999-font24 padding-right-40">{json.upvoteNumber}</div>
                                             </div>
 
-                                        <Link  to={'/CommentLists/' + json.id + ''}  className="step app-a" >
+                                        <App  cb={this.CommentLists.bind(this,json.id)}  class="step" >
                                             <img className="img" src={comments}/>
                                             <div className="number app-999-font24">{json.commentNumber}</div>
-                                        </Link>
+                                        </App>
                                         </div>
                                     </div>
                                 </div>
                             )):''
                     }
-
-
-
-
-
-
-
-
                 </div>
                 <div className="no-more">
                     <div className="step">

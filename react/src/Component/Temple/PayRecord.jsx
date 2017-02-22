@@ -5,6 +5,7 @@ import React from 'react';
 
 
 import {Router, Route, IndexRoute, browserHistory, Link} from 'react-router';
+import jsBridge from '../../jsBridge'
 class PayRecord extends React.Component {
     constructor() {
         super();
@@ -12,7 +13,14 @@ class PayRecord extends React.Component {
         this.state ={
             type:1
         };
+        jsBridge.getBrideg();
+        jsBridge.setTitle('捐款记录')
     }
+
+    componentWillMount(){
+      //  this.title();
+    }
+
 
     createLogin(){
         return (

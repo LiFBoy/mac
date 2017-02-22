@@ -13,14 +13,16 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="renderer" content="webkit">
     <title>react-cnode</title>
-<link href="/dist/css/index.css?13ec24923bf27665a873" rel="stylesheet"></head>
+<link href="/dist/css/index.css?e669c494c6d680bc255f" rel="stylesheet">
+    <script src="dist/lCalendar.js"></script>
+</head>
 <link rel="stylesheet" href="http://cdn.bootcss.com/Swiper/3.3.1/css/swiper.min.css">
 <body>
 
 <div id="content"></div>
 
-
 <script>
+
     function setupWebViewJavascriptBridge(callback) {
         if (window.WebViewJavascriptBridge) { return callback(WebViewJavascriptBridge); }
         if (window.WVJBCallbacks) { return window.WVJBCallbacks.push(callback); }
@@ -32,16 +34,19 @@
         setTimeout(function() { document.documentElement.removeChild(WVJBIframe) }, 0);
     }
     setupWebViewJavascriptBridge(function(bridge) {
-        document.getElementById("log").innerHTML = "callback1";
+        //document.getElementById("log").innerHTML = "callback1";
         window.g_bridge = bridge;
     });
 
+
 </script>
+
+
 <script src="http://cdn.bootcss.com/react/15.3.2/react.js"></script>
 <script src="http://cdn.bootcss.com/react/15.3.2/react-dom.js"></script>
 <script src="http://cdn.bootcss.com/react-router/2.5.2/ReactRouter.js"></script>
 <script src="http://cdn.bootcss.com/react-redux/4.4.5/react-redux.js"></script>
 <script src="http://cdn.bootcss.com/redux/3.3.1/redux.js"></script>
 <script src="http://cdn.bootcss.com/Swiper/3.3.1/js/swiper.min.js"></script>
-<script type="text/javascript" src="/dist/vendors.js?13ec24923bf27665a873"></script><script type="text/javascript" src="/dist/index.js?13ec24923bf27665a873"></script></body>
+<script type="text/javascript" src="/dist/vendors.js?e669c494c6d680bc255f"></script><script type="text/javascript" src="/dist/index.js?e669c494c6d680bc255f"></script></body>
 </html>

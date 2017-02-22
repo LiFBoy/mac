@@ -7,18 +7,24 @@ import React from 'react';
 
 import {Router, Route, IndexRoute, browserHistory, Link} from 'react-router';
 import {HttpService} from '../../utils'
+import jsBridge from '../../jsBridge'
 class UnderstandDetail extends React.Component {
     constructor() {
         super();
         this.state={
             getCollections:{}
-        }
+        };
+        jsBridge.getBrideg();
+        jsBridge.setTitle('化缘详情')
     }
 
     componentWillMount() {
-        this.getCollections()
+        this.getCollections();
 
     }
+
+
+
     async getCollections(){
 
         const code=await HttpService.query({

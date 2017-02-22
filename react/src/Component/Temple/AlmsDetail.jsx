@@ -4,6 +4,7 @@ import React from 'react';
 
 
 import {HttpService} from '../../utils';
+import jsBridge from '../../jsBridge'
 class AlmsDetail extends React.Component {
     constructor() {
         super();
@@ -12,7 +13,9 @@ class AlmsDetail extends React.Component {
                 locationPictures: [],
                 pictures: []
             }
-        }
+        };
+        jsBridge.getBrideg();
+        jsBridge.setTitle('寺庙详情')
     }
 
 
@@ -21,11 +24,12 @@ class AlmsDetail extends React.Component {
 
     }
 
+
     async info() {
         let code = await HttpService.query({
             url: '/v1/temple/info',
             data: {
-                id: '1'
+                id:this.props.params.id
             }
         });
         console.log(code)
@@ -34,6 +38,8 @@ class AlmsDetail extends React.Component {
         })
 
     }
+
+
 
 
     render() {

@@ -22,27 +22,15 @@ class App extends React.Component {
     componentWillMount(){
 
     }
-
-
-    open(){
-        alert(this.props.to)
-        window.location.href = this.props.to
-    }
-    
-    
-
-
-
     render() {
         
-        
-        let {to}=this.props;
+
         
 
         return (
 
-            <div className="app-a" onClick={this.open}>
-wfwfww
+            <div  onClick={this.props.cb} className={this.props.class}>
+                {this.props.children}
             </div>
 
 

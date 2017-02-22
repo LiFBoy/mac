@@ -3,17 +3,21 @@
 import React from 'react';
 
 import {HttpService} from '../../utils'
+import jsBridge from '../../jsBridge'
 class PayHistory extends React.Component {
     constructor() {
         super();
         this.state={
             templeCollections:[]
-        }
+        };
+        jsBridge.getBrideg();
+        jsBridge.setTitle('历史募捐')
     }
 
     componentWillMount() {
 
         this.collections();
+
 
     }
 

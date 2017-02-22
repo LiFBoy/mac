@@ -15,6 +15,8 @@ class Login extends React.Component {
 
     constructor() {
         super();
+
+        // document.body.innerHTML=1111;
         this.state = {
             disabled: false,
             text: '获取验证码',

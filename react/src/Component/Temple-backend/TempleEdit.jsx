@@ -7,11 +7,20 @@ import Foot from '../Foot'
 import jt from '../../../src/images/my/jt.png'
 
 import {Router, Route, IndexRoute, browserHistory, Link} from 'react-router';
+import jsBridge from '../../jsBridge'
 
 class TempleEdit extends React.Component {
     constructor() {
         super();
+       // this.title()
+        jsBridge.getBrideg();
+        jsBridge.setTitle('编辑资料')
     }
+
+    componentWillMount(){
+        //this.titless();
+    }
+
 
 
     editInfo() {

@@ -14,6 +14,7 @@ import comments from '../../../src/images/temple/comments.png'
 import face from '../../../src/images/temple/face.png'
 import {HttpService} from '../../utils'
 import LocalStorage from '../../LocalStorage'
+import jsBridge from '../../jsBridge'
 
 class MessageBoard extends React.Component {
     constructor() {
@@ -23,13 +24,17 @@ class MessageBoard extends React.Component {
             userInfo:{
 
             }
-        }
+        };
+        jsBridge.getBrideg();
+        jsBridge.setTitle('留言板')
     }
     componentWillMount() {
         this.info();
         this.messages();
 
     }
+
+
     async info(){
         let code = await HttpService.query({
             url: '/v1/p/user/info',

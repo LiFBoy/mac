@@ -10,13 +10,22 @@ import {Router, Route, IndexRoute, browserHistory, Link} from 'react-router';
 import {HttpService,Toast} from '../../utils'
 
 import LocalStorage from '../../LocalStorage'
+import jsBridge from '../../jsBridge'
 class dynamic extends React.Component {
     constructor() {
         super();
         this.state={
             requestId:[]
-        }
+        };
+   //     this.title();
+
+
+        jsBridge.getBrideg();
+        jsBridge.setTitle('发布动态');
+
+
     }
+
 
    async editInfo(){
         let code = await HttpService.saveJson({
@@ -37,7 +46,7 @@ class dynamic extends React.Component {
     uploadImg(){
         var self=this;
         //window.g_bridge
-        window.g_bridge.callHandler('sendMessageToApp', {type:17, data:{accessToken:'a20441e0fa5847b48ab2819f91cb3799'}}, function(response) {
+        window.g_bridge.callHandler('sendMessageToApp', {type:17, data:{accessToken:LocalStorage.get('token')}}, function(response) {
                 Toast.toast(response,3000)
 
                 if(response.code=='0'){

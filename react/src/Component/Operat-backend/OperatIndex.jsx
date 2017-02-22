@@ -7,17 +7,30 @@ import Foot from '../Foot'
 import jt from '../../../src/images/my/jt.png'
 
 import {Router, Route, IndexRoute, browserHistory, Link} from 'react-router';
+import App from '../app'
+import jsBridge from '../../jsBridge'
+
+
 
 class OperatIndex extends React.Component {
     constructor() {
         super();
+        jsBridge.getBrideg();
+        jsBridge.setTitle('运营后台')
+
+
+    }
+
+
+    sendMessageToApp_type_2(type){
+        jsBridge.sendMessageToApp_type_2(type)
     }
     render() {
         return (
             <div className="app-container">
 
                 <div className="app-padding-tb20"></div>
-                <Link to="/SettingWord" className="app-a">
+                <App cb={this.sendMessageToApp_type_2.bind(this,'SettingWord')}>
                     <div className="step app-padding-lr24 app-white-chunk border-bottom">
                         <div className="s-flex2">
                             <div className="app-333-font28 app-padding-l24">发布每日一句</div>
@@ -25,8 +38,8 @@ class OperatIndex extends React.Component {
 
                         <div className="s-flex1 s-j-end"><img className="app-wh-45" src={jt}/></div>
                     </div>
-                </Link>
-                <Link to="/ReplaceBanner" className="app-a">
+                </App>
+                <App  className="app-a" cb={this.sendMessageToApp_type_2.bind(this,'ReplaceBanner')} >
                     <div className="step app-padding-lr24 app-white-chunk">
                         <div className="s-flex2">
                             <div className=" app-333-font28 app-padding-l24">更换banner</div>
@@ -34,10 +47,10 @@ class OperatIndex extends React.Component {
 
                         <div className="s-flex1 s-j-end"><img className="app-wh-45" src={jt}/></div>
                     </div>
-                </Link>
+                </App>
                 <div className="app-padding-tb20"></div>
 
-                <Link to="/TempleList" className="app-a">
+                <App  cb={this.sendMessageToApp_type_2.bind(this,'TempleList')}>
                     <div className="step app-padding-lr24 app-white-chunk border-bottom">
                         <div className="s-flex2">
                             <div className="app-333-font28 app-padding-l24">创建寺庙</div>
@@ -46,9 +59,9 @@ class OperatIndex extends React.Component {
 
                         <div className="s-flex1 s-j-end"><img className="app-wh-45" src={jt}/></div>
                     </div>
-                </Link>
+                </App>
 
-                <Link to="/AppInfo" className="app-a">
+                <App cb={this.sendMessageToApp_type_2.bind(this,'AppInfo')}>
                     <div className="step app-padding-lr24 app-white-chunk">
                         <div className="s-flex2">
                             <div className="app-333-font28 app-padding-l24">查看平台信息</div>
@@ -57,7 +70,7 @@ class OperatIndex extends React.Component {
                         <div className="s-flex1 s-j-end"><img className="app-wh-45" src={jt}/></div>
                     </div>
 
-                </Link>
+                </App>
 
                 {/*<Foot type="3"></Foot>*/}
             </div>

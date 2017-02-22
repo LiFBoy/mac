@@ -1,4 +1,5 @@
 'usr strict';
+import LocalStorage from './LocalStorage'
 export  class HttpService {
     static query(config) {
             return new Promise((resolve,reject)=>{
@@ -17,10 +18,15 @@ export  class HttpService {
                                 if (response.code=='0') {
                                     resolve(response);
                                 }else{
+
+                                  //       window.g_bridge.callHandler('sendMessageToApp', {type:2, data:{url:"http://www.baidu.com"}}, function(response) {});
+
                                     Toast.toast(response.desc, 3000);
                                     //reject(response)
                                 }
                             } else {
+                             //   window.g_bridge.callHandler('sendMessageToApp', {type:2, data:{url:"http://www.baidu.com"}}, function(response) {});
+
                                 Toast.toast(JSON.parse(request.responseText).desc, 3000);
                                 //reject(request);
                             }
@@ -104,10 +110,15 @@ export  class HttpService {
                         if (response.code=='0') {
                             resolve(response);
                         }else{
+
+                             //   window.g_bridge.callHandler('sendMessageToApp', {type:2, data:{url:"http://www.baidu.com"}}, function(response) {});
+
                             Toast.toast(response.desc, 3000);
                             //reject(response)
                         }
                     } else {
+                       // window.g_bridge.callHandler('sendMessageToApp', {type:2, data:{url:"http://www.baidu.com"}}, function(response) {});
+
                         Toast.toast(JSON.parse(request.responseText).desc, 3000);
                         //reject(request);
                     }
@@ -175,10 +186,15 @@ export  class HttpService {
                         if (response.code=='0') {
                             resolve(response);
                         }else{
+
+                              //  window.g_bridge.callHandler('sendMessageToApp', {type:2, data:{url:"http://www.baidu.com"}}, function(response) {});
+
                             Toast.toast(response.desc, 3000);
                             //reject(response)
                         }
                     } else {
+                      //  window.g_bridge.callHandler('sendMessageToApp', {type:2, data:{url:"http://www.baidu.com"}}, function(response) {});
+
                         Toast.toast(JSON.parse(request.responseText).desc, 3000);
                         //reject(request);
                     }

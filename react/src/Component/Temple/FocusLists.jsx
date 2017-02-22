@@ -3,17 +3,22 @@
 import React from 'react';
 import {Router, Route, IndexRoute, browserHistory, Link} from 'react-router';
 import {HttpService} from '../../utils'
+import jsBridge from '../../jsBridge'
 class FocusLists extends React.Component {
     constructor() {
         super();
         this.state={
             fans:[]
-        }
+        };
+
+        jsBridge.getBrideg();
+        jsBridge.setTitle('关注列表')
     }
 
     componentWillMount() {
 
         this.fans();
+       // this.title();
 
     }
 
@@ -30,6 +35,7 @@ class FocusLists extends React.Component {
             fans:code.fans
         })
     }
+
 
     render(){
 
