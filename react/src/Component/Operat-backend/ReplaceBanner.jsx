@@ -13,15 +13,37 @@ import {Router, Route, IndexRoute, browserHistory, Link} from 'react-router';
 class ReplaceBanner extends React.Component {
     constructor() {
         super();
+        this.state={
+            banners:[]
+        }
+    }
+
+    componentWillMount(){
+        this.banners();
+    }
+
+
+
+    async banners(){
+        const code=await HttpService.query({
+            url:"/v1/public/get/banners",
+        });
+
+
+        this.setState({
+            banners:code.banners
+        })
     }
 
 
    async editInfo() {
 
+        const link=document.getElementById('link').value;
+
         let code = await HttpService.saveJson({
             url: '/v1/ad/admin/create/banner?accessToken=' + LocalStorage.get('token') + '',
             data: {
-                Link: '2222', picture:''
+                Link: link, picture:''
             }
         });
     }
@@ -34,7 +56,7 @@ class ReplaceBanner extends React.Component {
                     <div className="step app-padding-tb20">
                         <div className="s-left app-666-font28">跳转链接：</div>
                         <div className="s-right app-input-edit">
-                            <input className="app-input" placeholder="跳转链接" type="text"/>
+                            <input id="link" className="app-input" placeholder="跳转链接" type="text"/>
                         </div>
                     </div>
 
@@ -55,19 +77,22 @@ class ReplaceBanner extends React.Component {
                         <div className="s-flex1 app-666-font32">已设置banner</div>
                     </div>
 
-
-                    <div className="step border-bottom app-wh-120  app-white" style={{paddingLeft: '50px'}}>
-                        <div className="s-flex3 s-j-center s-flex-d app-666-font30" style={{alignItems: 'flex-start'}}>
-                            <div className="app-333-font28">链接:http://www.baidu.com</div>
-                            <div className="app-999-font30 pt20" style={{height: '3rem'}}>
-                                <img src="http://img.taopic.com/uploads/allimg/120222/34250-12022209414087.jpg"
-                                     className="app-all-img"/>
-                            </div>
-                        </div>
-                        <div className="s-flex1 s-j-end app-333-font28">
-                            删除
-                        </div>
-                    </div>
+                    {
+                        this.state.banners.length!=0?this.state.banners.map((json,index)=>(
+                                <div className="step border-bottom app-wh-120  app-white" style={{paddingLeft: '50px'}} key={index}>
+                                    <div className="s-flex3 s-j-center s-flex-d app-666-font30" style={{alignItems: 'flex-start'}}>
+                                        <div className="app-333-font28">{json.link}</div>
+                                        <div className="app-999-font30 pt20" style={{height: '3rem'}}>
+                                            <img src={json.picture}
+                                                 className="app-all-img"/>
+                                        </div>
+                                    </div>
+                                    <div className="s-flex1 s-j-end app-333-font28">
+                                        删除
+                                    </div>
+                                </div>
+                            )):''
+                    }
                 </form>
 
             </div>

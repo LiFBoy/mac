@@ -106,13 +106,13 @@ class Index extends React.Component {
                                 </div><div className="swiper-slide">
                                     <img src="http://img4.imgtn.bdimg.com/it/u=2389140428,1315216178&fm=21&gp=0.jpg"/>
                                 </div>
-                                {
+                                {/*{
                                     banners.length!=0?banners.map((json,index)=>(
                                             <div className="swiper-slide" key={index}>
                                                 <img src={json.picture}/>
                                             </div>
                                         )):''
-                                }
+                                }*/}
                             </div>
 
                             <div className="swiper-pagination"></div>

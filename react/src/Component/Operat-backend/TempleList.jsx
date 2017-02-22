@@ -44,8 +44,9 @@ class TempleList extends React.Component {
                         <div className="s-flex2">
                             <div className="app-333-font28 app-padding-l24">寺庙数量: <sapn>{temples.length}</sapn></div>
                         </div>
-
+                        <Link to="/AddTemple" className="s-flex1 app-a">
                         <div className="s-flex1 s-j-end app-333-font28">添加</div>
+                        </Link>
                     </div>
 
 
@@ -53,14 +54,16 @@ class TempleList extends React.Component {
                 <div className="app-padding-tb20"></div>
                 {
                     temples.length!=0?temples.map((json,index)=>(
-                        <Link to="/AddTemple" className="app-a">
+                        <Link to={'/AddTemple/'+json.id} className="app-a">
                             <div className="step app-padding-lr24 app-white-chunk border-bottom">
                                 <div className="s-flex2">
                                     <div className="app-333-font28 app-padding-l24">{json.name} </div>
 
                                 </div>
 
-                                <div className="s-flex1 s-j-end app-333-font28">修改</div>
+
+                                    <div className="s-flex1 s-j-end app-333-font28">修改</div>
+
                             </div>
                         </Link>
 

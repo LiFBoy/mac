@@ -123,7 +123,7 @@ const RouteConfig = (
             <Route path="/SettingWord" component={SettingWord} />
             <Route path="/ReplaceBanner" component={ReplaceBanner} />
             <Route path="/TempleList" component={TempleList} />
-            <Route path="/AddTemple" component={AddTemple} />
+            <Route path="/AddTemple/:id" component={AddTemple} />
             <Route path="/AppInfo" component={AppInfo} />
 
 
