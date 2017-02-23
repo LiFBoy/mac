@@ -10,12 +10,12 @@ class PayHistory extends React.Component {
         this.state={
             templeCollections:[]
         };
-        jsBridge.getBrideg();
-        jsBridge.setTitle('历史募捐')
     }
 
     componentWillMount() {
-
+        jsBridge.getBrideg(()=>{
+            jsBridge.setTitle('历史募捐')
+        });
         this.collections();
 
 

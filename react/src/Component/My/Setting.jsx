@@ -4,25 +4,31 @@ import React from 'react';
 
 import jt from '../../../src/images/my/jt.png'
 
+import jsBridge from '../../jsBridge'
+import LocalStorage from '../../LocalStorage'
+
 class Setting extends React.Component {
     constructor() {
         super();
+
 
     }
 
     componentWillMount(){
        // this.title()
+
+        jsBridge.getBrideg(
+            ()=>{
+                jsBridge.setTitle('退出');
+
+            }
+        );
+
+
     }
 
 
-    title(){
-        window.g_bridge.callHandler('sendMessageToApp', {
-                type: 15, data: {title:'个人',
-                    rightNavigationBarItems:[{type: t||10000, title: !t ? '编辑' : 'baocun'}]}},
-            (response)=>{
 
-            })
-    }
 
     render(){
         return (

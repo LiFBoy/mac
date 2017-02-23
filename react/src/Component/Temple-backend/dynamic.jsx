@@ -17,13 +17,13 @@ class dynamic extends React.Component {
         this.state={
             requestId:[]
         };
-   //     this.title();
 
+    }
 
-        jsBridge.getBrideg();
-        jsBridge.setTitle('发布动态');
-
-
+    componentWillMount(){
+        jsBridge.getBrideg(()=>{
+            jsBridge.setTitle('发布动态')
+        })
     }
 
 

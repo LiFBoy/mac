@@ -8,6 +8,7 @@ import jt from '../../../src/images/my/jt.png'
 import {HttpService} from '../../utils'
 
 import LocalStorage from '../../LocalStorage'
+import jsBridge from '../../jsBridge'
 import {Router, Route, IndexRoute, browserHistory, Link} from 'react-router';
 
 class ReplaceBanner extends React.Component {
@@ -20,6 +21,9 @@ class ReplaceBanner extends React.Component {
 
     componentWillMount(){
         this.banners();
+        jsBridge.getBrideg(()=>{
+            jsBridge.setTitle('更换banner')
+        })
     }
 
 

@@ -13,6 +13,7 @@ import jt from '../../../src/images/my/jt.png'
 import {HttpService} from '../../utils'
 
 import LocalStorage from '../../LocalStorage'
+import jsBridge from '../../jsBridge'
 
 import {Router, Route, IndexRoute, browserHistory, Link} from 'react-router';
 
@@ -33,6 +34,9 @@ class SettingWord extends React.Component {
 
     componentWillMount(){
         this.sentence();
+        jsBridge.getBrideg(()=>{
+            jsBridge.setTitle('每日一句')
+        })
     }
 
     componentDidMount(){

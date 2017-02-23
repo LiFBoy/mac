@@ -5,6 +5,7 @@ import React, {Component, PropTypes}  from 'react';
 import kaoqin from '../../../src/images/kaoqin.png'
 import {HttpService} from '../../utils';
 import LocalStorage from '../../LocalStorage'
+import jsBridge from '../../jsBridge'
 class PayInfo extends React.Component {
     constructor() {
         super();
@@ -12,12 +13,15 @@ class PayInfo extends React.Component {
         this.state = {
             type: 1,
             records: []
-        }
+        };
     }
     componentWillMount(){
 
         this.history();
         this.donations();
+        jsBridge.getBrideg(()=>{
+            jsBridge.setTitle('我的供养')
+        })
     }
 
     async history(){

@@ -14,11 +14,12 @@ class UnderstandDetail extends React.Component {
         this.state={
             getCollections:{}
         };
-        jsBridge.getBrideg();
-        jsBridge.setTitle('化缘详情')
     }
 
     componentWillMount() {
+        jsBridge.getBrideg(()=>{
+            jsBridge.setTitle('化缘详情')
+        });
         this.getCollections();
 
     }

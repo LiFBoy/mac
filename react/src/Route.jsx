@@ -24,6 +24,7 @@ import Temple from './Component/Message/Temple';
 import ChanYu from './Component/Message/ChanYu';
 import Notice from './Component/Message/Notice';
 import Coments from './Component/Message/Coments';
+import reply from './Component/Message/reply';
 
 
 //Temple
@@ -43,6 +44,7 @@ import UnderstandDetail from './Component/Temple/UnderstandDetail';
 import Pay from './Component/Temple/Pay';
 import PayRecord from './Component/Temple/PayRecord';
 import wish from './Component/Temple/wish';
+import Replies from './Component/Temple/Replies';
 
 
 
@@ -89,7 +91,7 @@ const RouteConfig = (
             <Route path="/Feedbackpro" component={Feedbackpro} />
             <Route path="/PersonalInfo" component={PersonalInfo} />
             <Route path="/PersonalEdit" component={PersonalEdit} />
-            <Route path="/UserInfo" component={UserInfo} />
+            <Route path="/UserInfo/:id" component={UserInfo} />
             <Route path="/Setting" component={Setting} />
             <Route path="/PayInfo" component={PayInfo} />
             <Route path="/DayGoods" component={DayGoods} />
@@ -132,6 +134,13 @@ const RouteConfig = (
             <Route path="/dynamic" component={dynamic} />
             <Route path="/TempleEdit" component={TempleEdit} />
             <Route path="/Donations" component={Donations} />
+
+
+            <Route path="/Replies/:id" component={Replies} />
+            <Route path="/reply/:id" component={reply} />
+
+
+
 
 
 

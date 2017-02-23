@@ -21,21 +21,26 @@ class PersonalInfo extends React.Component {
             title:''
         };
 
-        jsBridge.getBrideg();
-
     }
 
     componentWillMount(){
-        this.getInfo();
-        this.listenEvent();
-        this.title()
+        jsBridge.getBrideg(()=>{
+            this.title(10000);
+            this.listenEvent();
+            this.getInfo();
+        });
+
+
+
+
+        //this.title()
     }
 
 
     title(t){
         window.g_bridge.callHandler('sendMessageToApp', {
                 type: 15, data: {title:'个人',
-                    rightNavigationBarItems:[{type: t||10000, title: !t ? '编辑' : '保存'}]}},
+                    rightNavigationBarItems:[{type: t, title: t==10000 ? '编辑' : '保存'}]}},
             (response)=>{
 
             })
@@ -45,44 +50,33 @@ class PersonalInfo extends React.Component {
     listenEvent() {
         window.g_bridge.registerHandler('sendMessageToHTML',  (msg,cb)  => {
 
+                Toast.toast(msg,330000)
+
                 if(msg=='10000'){
-                    this.title(10001)
+
+                    jsBridge.getBrideg(()=>{
+                        this.title(10001);
+                        this._getInfo();
+                    });
+
                     this.setState({
                         title:'10001'
                     });
 
-                    this._getInfo();
+                }else if(msg=='10001') {
 
-                  //  jsBridge.sendMessageToApp_type_2('PersonalEdit')
-                }else {
+                    this.setState({
+                        title:''
+                    });
 
-
-                  //
-                    this.title();
                     this.editInfo();
 
-                    (async ()=>{
-                        const res = await HttpService.query({
-                            url:'/v1/p/user/info',
-                            data:{accessToken:LocalStorage.get('token')}
-                        });
+                    jsBridge.getBrideg(()=>{
+                        this.title(10000);
+                        this.getInfo();
 
-                        this.setState({
-                            userInfo:{
-                                username:res.username,
-                                sex:res.sex,
-                                age:res.age,
-                                residence:res.residence,
-                                zen:res.zen
-                            },
-                            title:''
-                        })
-                    })()
+                    });
 
-
-
-
-                 //   jsBridge.sendMessageToApp_type_2('PersonalInfo')
                 }
         })
 
@@ -268,6 +262,8 @@ class PersonalInfo extends React.Component {
             if (this.state.title == '10001') {
                 return this.edit()
             } else {
+
+                this.getInfo();
                 return this.info();
             }
         };

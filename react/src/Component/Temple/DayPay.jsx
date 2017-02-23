@@ -13,8 +13,7 @@ class DayPay extends React.Component {
         this.state={
             money:''
         };
-        jsBridge.getBrideg();
-        jsBridge.setTitle('日善')
+
     }
 
     money(e){
@@ -26,7 +25,9 @@ class DayPay extends React.Component {
     }
 
     componentWillMount(){
-
+        jsBridge.getBrideg(()=>{
+            jsBridge.setTitle('日善')
+        })
     }
 
 
@@ -88,10 +89,11 @@ class DayPay extends React.Component {
 
 
                 </div>
-
+                <Link to={'/wish/'} className='app-a'>
                 <div className="step app-yellow-radius-check-button" style={{height:'100px'}}>
                     <div className="s-center">行日善</div>
                 </div>
+                </Link>
             </div>
         )
     }

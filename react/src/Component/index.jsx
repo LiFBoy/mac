@@ -17,6 +17,7 @@ import App from './app';
 import like from '../../src/images/index/like.png'
 import alms from '../../src/images/index/alms.png'
 import {HttpService} from '../utils'
+import jsBridge from '../jsBridge'
 
 
 class Index extends React.Component {
@@ -28,6 +29,8 @@ class Index extends React.Component {
             temples: [],
             banners:[]
         }
+
+        //jsBridge.getBrideg();
 
     }
 
@@ -139,7 +142,7 @@ class Index extends React.Component {
 
                                                 </div>
                                                 <div className="con-bar-content step">
-                                                    <div className="s-flex1 bar-left">杭州灵隐寺</div>
+                                                    <div className="s-flex1 bar-left">{json.name}</div>
                                                     <div className="s-flex1 s-j-end">
 
                                                         <img className="img" src={alms}/>
@@ -155,7 +158,7 @@ class Index extends React.Component {
                                             </div>
 
                                             <div className="con-content step">
-                                                <div className="s-flex1 app-333-font28">灵隐寺最新消息</div>
+                                                <div className="s-flex1 app-333-font28">{json.name}最新消息</div>
                                                 <div className="s-flex1 s-j-end app-666-font24">
                                                     <span>
                                                         {json.distance}

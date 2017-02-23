@@ -21,6 +21,8 @@ class App extends React.Component {
 
     componentWillMount(){
 
+
+    // console.log(this.props.cb)
     }
     render() {
         

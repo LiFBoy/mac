@@ -37,8 +37,9 @@ class Coments extends React.Component {
                 padding: '0'
             },
             content: <div>
-                <div className="step app-coments-popup border-bottom" onClick={this.close.bind(this)}>
-                    <ul className="s-center">
+                <div className="step app-coments-popup border-bottom">
+
+                    <ul className="s-center" onClick={this.reply.bind(this)}>
                         <li className="app-333-font32">回复评论</li>
                     </ul>
 
@@ -96,20 +97,16 @@ class Coments extends React.Component {
         this.comments();
     }
 
-    close() {
-        this.setState({
-            admin: {
-                flag: false,
-                _flag: false
-            }
-        })
+    reply() {
+        window.location.href='/index.html#/reply/'+ this.state.admin.id + ''
     }
 
-    popup() {
+    popup(id) {
         this.setState({
             admin: {
                 flag: true,
-                _flag: true
+                _flag: true,
+                id:id
             }
         })
     }
@@ -140,9 +137,9 @@ class Coments extends React.Component {
 
 
                     {
-                        this.state.comments.map((json => {
+                        this.state.comments.map((json ,index)=> {
                             return (
-                                <div className="dynamic-content app-padding-lr24 border-bottom" key={json.userId}>
+                                <div className="dynamic-content app-padding-lr24 border-bottom" key={index}>
                                     <div className="step temple-name">
                                         <div>
                                             <div className="temple-img"><img className="app-wh100-all-radius"
@@ -165,7 +162,7 @@ class Coments extends React.Component {
                                             </div>
                                         </div>
 
-                                        <div className="step app-margin-tb24">
+                                        <div className="step app-margin-tb24" onClick={this.popup.bind(this,json.myCommentId)}>
                                             <div className="comments s-flex1 s-flex-d s-j-center app-padding-l24"
                                                  style={{alignItems: 'flex-start'}}>
                                                 <div className="app-333-font28" style={{marginBottom: '16px'}}>{json.username}
@@ -178,7 +175,7 @@ class Coments extends React.Component {
 
                                 </div>
                             )
-                        }))
+                        })
                     }
 
 

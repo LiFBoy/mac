@@ -17,6 +17,7 @@ import like from '../../src/images/index/like.png'
 import alms from '../../src/images/index/alms.png'
 
 import {HttpService} from '../utils'
+import App from './app'
 
 
 
@@ -49,6 +50,14 @@ class NearBy extends React.Component {
 
     }
 
+    TempleDetail(id){
+        window.g_bridge.callHandler('sendMessageToApp', {
+                type: 2, data: {url: 'http://172.27.35.4:3002/index.html#/TempleDetail/'+id+''}},
+            (response)=>{
+
+            })
+    }
+
     render(){
         const {temples} =this.state;
 
@@ -62,14 +71,18 @@ class NearBy extends React.Component {
 
                         {
                             temples.length!=0?temples.map((json,index)=>(
-                                    <div className="near-by-content" key={index}>
-                                        <div className="near-by-img"><img className="app-wh100-all" src={json.picture}/></div>
+                                <div key={index}>
+                                <App cb={this.TempleDetail.bind(this,json.id)}>
+                                    <div className="near-by-content">
+                                        <div className="near-by-img"><img className="app-wh100-all" src={json.headImgUrl}/></div>
                                         <div className="detail step app-padding-lr24 app-white">
                                             <div className="s-flex1 app-333-font28">{json.name}</div>
                                             <div className="s-flex1 s-j-end app-666-font24">{json.distance}</div>
 
                                         </div>
                                     </div>
+                                    </App>
+                                </div>
                                 )):''
                         }
                     </div>

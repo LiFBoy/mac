@@ -14,12 +14,14 @@ class AlmsDetail extends React.Component {
                 pictures: []
             }
         };
-        jsBridge.getBrideg();
-        jsBridge.setTitle('寺庙详情')
+
     }
 
 
     componentWillMount() {
+        jsBridge.getBrideg(()=>{
+            jsBridge.setTitle('寺庙详情')
+        });
         this.info();
 
     }

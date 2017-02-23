@@ -18,6 +18,7 @@ import alms from '../../src/images/index/alms.png'
 
 
 import {HttpService} from '../utils';
+import App from './app';
 import LocalStorage from '../LocalStorage'
 
 
@@ -51,6 +52,14 @@ class IndexFocus extends React.Component {
 
     }
 
+    TempleDetail(id){
+        window.g_bridge.callHandler('sendMessageToApp', {
+                type: 2, data: {url: 'http://172.27.35.4:3002/index.html#/TempleDetail/'+id+''}},
+            (response)=>{
+
+            })
+    }
+
 
 
     render(){
@@ -62,11 +71,13 @@ class IndexFocus extends React.Component {
 
                     {
                         temples.length!=0?temples.map((json,index)=>(
-                                <Link to="/TempleDetail" className="app-a" key={index}>
+
+                            <div key={index}>
+                            <App cb={this.TempleDetail.bind(this,json.id)}>
                                     <div className="temple-content">
                                         <div className="con-img">
                                             <div className="img-content">
-                                                <img className="app-wh100-all" src={json.picture}/></div>
+                                                <img className="app-wh100-all" src={json.headImgUrl}/></div>
                                             <div className="con-bar step">
 
 
@@ -88,15 +99,16 @@ class IndexFocus extends React.Component {
                                         </div>
 
                                         <div className="con-content step">
-                                            <div className="s-flex1 app-333-font28">灵隐寺最新消息</div>
+                                            <div className="s-flex1 app-333-font28">{json.name}最新消息</div>
                                             <div className="s-flex1 s-j-end app-666-font24">
                                     <span>
-                                        20km
+                                        {json.distance}
                                     </span>
                                             </div>
                                         </div>
                                     </div>
-                                </Link>
+                                </App>
+                                </div>
                             )):''
                     }
 

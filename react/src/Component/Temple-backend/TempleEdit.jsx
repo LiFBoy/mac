@@ -12,13 +12,15 @@ import jsBridge from '../../jsBridge'
 class TempleEdit extends React.Component {
     constructor() {
         super();
-       // this.title()
-        jsBridge.getBrideg();
-        jsBridge.setTitle('编辑资料')
+
     }
 
     componentWillMount(){
-        //this.titless();
+
+
+        jsBridge.getBrideg(()=>{
+            jsBridge.setTitle('编辑资料')
+        })
     }
 
 

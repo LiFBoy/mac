@@ -24,12 +24,15 @@ class TempleDetail extends React.Component {
             info:{},
             latestCollections:{},
             bili:{}
-        }
-        jsBridge.getBrideg();
-        jsBridge.setTitle('寺庙')
+        };
     }
 
     componentWillMount() {
+        jsBridge.getBrideg(()=>{
+            jsBridge.setTitle('寺庙')
+        });
+
+      // document.body.innerHTML=11111
         this.info();
 
         this.status();
@@ -159,7 +162,20 @@ class TempleDetail extends React.Component {
 
             })
     }
-    CommentLists(id){
+    CommentLists(id,...option){
+        console.log(option);
+        const [timeStr,content,pictures] =option;
+        const obj={
+            timeStr:timeStr,
+            content:content,
+            pictures:pictures
+
+        };
+
+
+         const  _obj=JSON.stringify(obj);
+        LocalStorage.add('obj',_obj);
+
         window.g_bridge.callHandler('sendMessageToApp', {
                 type: 2, data: {url: 'http://172.27.35.4:3002/index.html#/CommentLists/'+id+''}},
             (response)=>{
@@ -250,7 +266,7 @@ class TempleDetail extends React.Component {
                         </div>
                         <div className="s-flex1 s-j-center s-flex-d" onClick={this.changeType.bind(this,3)}>
                             <div><img src={chunk3}/></div>
-                            <div className="pdt app-666-font24">3333</div>
+                            <div className="pdt app-666-font24">0</div>
                         </div>
                     </div>
 
@@ -341,7 +357,7 @@ class TempleDetail extends React.Component {
                                                 <div className="number app-999-font24 padding-right-40">{json.upvoteNumber}</div>
                                             </div>
 
-                                        <App  cb={this.CommentLists.bind(this,json.id)}  class="step" >
+                                        <App  cb={this.CommentLists.bind(this,json.id,json.timeStr,json.content,json.pictures)}  class="step" >
                                             <img className="img" src={comments}/>
                                             <div className="number app-999-font24">{json.commentNumber}</div>
                                         </App>

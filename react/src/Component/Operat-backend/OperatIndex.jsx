@@ -15,10 +15,12 @@ import jsBridge from '../../jsBridge'
 class OperatIndex extends React.Component {
     constructor() {
         super();
-        jsBridge.getBrideg();
-        jsBridge.setTitle('运营后台')
+    }
 
-
+    componentWillMount(){
+        jsBridge.getBrideg(()=>{
+            jsBridge.setTitle('运营后台')
+        })
     }
 
 

@@ -11,13 +11,16 @@ import jsBridge from '../../jsBridge'
 class Feedbackpro extends React.Component {
     constructor() {
         super();
-        jsBridge.getBrideg();
+       // jsBridge.getBrideg();
 
     }
 
     componentWillMount(){
+        jsBridge.getBrideg(()=>{
+            this.title();
+        });
+
         this.listenEvent();
-        this.title();
     }
 
 

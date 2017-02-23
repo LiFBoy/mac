@@ -15,41 +15,58 @@ import face from '../../../src/images/temple/face.png'
 import {HttpService} from '../../utils'
 import LocalStorage from '../../LocalStorage'
 import jsBridge from '../../jsBridge'
+import {Router, Route, IndexRoute, browserHistory, Link} from 'react-router';
 
 class MessageBoard extends React.Component {
     constructor() {
         super();
-        this.state={
-            messages:[],
-            userInfo:{
-
-            }
+        this.state = {
+            messages: [],
+            userInfo: {}
         };
-        jsBridge.getBrideg();
-        jsBridge.setTitle('留言板')
+
     }
+
     componentWillMount() {
+        jsBridge.getBrideg(()=> {
+            jsBridge.setTitle('留言板')
+        });
         this.info();
         this.messages();
 
     }
 
+    async createMessage(){
+        const code=await HttpService.saveJson({
+            url:'/v1/p/user/create/leave/message?accessToken='+LocalStorage.get('token')+'',
+            data:{
+                content:document.getElementById('creact-msg').value,
+                templeId: this.props.params.id
+            }
+        });
 
-    async info(){
+        document.getElementById('creact-msg').innerHTML='';
+        this.messages();
+
+    }
+
+
+    async info() {
         let code = await HttpService.query({
             url: '/v1/p/user/info',
             data: {
-                accessToken:LocalStorage.get('token')
+                accessToken: LocalStorage.get('token')
             }
         });
         this.setState({
-           userInfo:{
-               username:code.username,
-               residence:code.residence
-           }
+            userInfo: {
+                username: code.username,
+                residence: code.residence
+            }
         })
     }
-    async messages(){
+
+    async messages() {
         let code = await HttpService.query({
             url: '/v1/public/get/temple/leave/messages',
             data: {
@@ -57,23 +74,27 @@ class MessageBoard extends React.Component {
             }
         });
         this.setState({
-            messages:code.messages
+            messages: code.messages
         })
     }
-    render(){
-        const {messages,userInfo}=this.state;
+
+    render() {
+        const {messages, userInfo}=this.state;
         return (
-            <div className="app-container">
+            <div>
+            <div className="app-container" style={{position: 'relative'}}>
 
                 <div className="step app-padding-lr24 message-board">
 
-                        <div className="img"><img src="http://img4.imgtn.bdimg.com/it/u=398347842,2770887580&fm=23&gp=0.jpg" className="app-wh100-all-radius"/></div>
+                    <div className="img"><img src="http://img4.imgtn.bdimg.com/it/u=398347842,2770887580&fm=23&gp=0.jpg"
+                                              className="app-wh100-all-radius"/></div>
 
                     <div className="s-right s-j-center" style={{flexDirection: 'column', alignItems: 'flex-start'}}>
                         <div className="app-333-font30 app-line-height-one">{userInfo.username}</div>
-                        <div className="app-999-font22 app-line-height-one" style={{paddingTop:'24px'}}>{userInfo.residence}</div>
-            </div>
-            </div>
+                        <div className="app-999-font22 app-line-height-one"
+                             style={{paddingTop: '24px'}}>{userInfo.residence}</div>
+                    </div>
+                </div>
 
                 <div className="middle">
                     <div className="step dynamic app-padding-lr24">
@@ -83,38 +104,41 @@ class MessageBoard extends React.Component {
                     </div>
 
                     {
-                        messages.length!=0?messages.map((json,index)=>(
-                                <div className="dynamic-content app-padding-lr24" style={{borderBottom:'0'}} key={index}>
-                                    <div className="step temple-name">
-                                        <div>
-                                            <div className="temple-img">
-                                                <img src={json.userHeadImgUrl} className="app-wh100-all-radius"/>
-                                            </div>
-                                        </div>
-                                        <div className="s-flex1 s-j-center" style={{flexDirection: 'column', alignItems: 'flex-start'}}>
-                                            <div className="app-333-font28 app-line-height-one">{json.username}</div>
-                                            <div className="app-999-font24 app-line-height-one" style={{paddingTop:'12px'}}>{json.timeStr}</div>
-                                        </div>
-
-                                        <div className="s-flex1 message-board-number s-j-end">
-                                            <img className="img" src={pac}/>
-                                            <div className="number app-999-font24 padding-right-40">{json.upvoteNumber}</div>
-
-
-
-                                            <img className="img" src={comments}/>
-                                            <div className="number app-999-font24"></div>
+                        messages.length != 0 ? messages.map((json, index)=>(
+                            <div className="dynamic-content app-padding-lr24" style={{borderBottom: '0'}} key={index}>
+                                <div className="step temple-name">
+                                    <div>
+                                        <div className="temple-img">
+                                            <img src={json.userHeadImgUrl} className="app-wh100-all-radius"/>
                                         </div>
                                     </div>
-
-                                    <div className="step temple-content app-padding-b24 border-bottom">
-                                        <div className="s-flex1 app-333-font28">
-                                            {json.content}
-                                        </div>
+                                    <div className="s-flex1 s-j-center"
+                                         style={{flexDirection: 'column', alignItems: 'flex-start'}}>
+                                        <div className="app-333-font28 app-line-height-one">{json.username}</div>
+                                        <div className="app-999-font24 app-line-height-one"
+                                             style={{paddingTop: '12px'}}>{json.timeStr}</div>
                                     </div>
 
+                                    <div className="s-flex1 message-board-number s-j-end">
+                                        <img className="img" src={pac}/>
+                                        <div
+                                            className="number app-999-font24 padding-right-40">{json.upvoteNumber}</div>
+
+                                        <Link to={'/Replies/'+json.id} className="app-a step">
+                                        <img className="img" src={comments}/>
+                                        <div className="number app-999-font24">{json.replies.length}</div>
+                                        </Link>
+                                    </div>
                                 </div>
-                            )):''
+
+                                <div className="step temple-content app-padding-b24 border-bottom">
+                                    <div className="s-flex1 app-333-font28">
+                                        {json.content}
+                                    </div>
+                                </div>
+
+                            </div>
+                        )) : ''
                     }
 
 
@@ -125,88 +149,64 @@ class MessageBoard extends React.Component {
                     </div>
 
 
-                    <div className="dynamic-content app-padding-lr24" style={{borderBottom:'0'}}>
-                        <div className="step temple-name">
-                            <div>
-                                <div className="temple-img">
-                                    <img src="http://img4.imgtn.bdimg.com/it/u=398347842,2770887580&fm=23&gp=0.jpg" className="app-wh100-all-radius"/>
+
+                    {
+                        messages.length != 0 ? messages.map((json, index)=>(
+                            <div className="dynamic-content app-padding-lr24" style={{borderBottom: '0'}} key={index}>
+                                <div className="step temple-name">
+                                    <div>
+                                        <div className="temple-img">
+                                            <img src={json.userHeadImgUrl} className="app-wh100-all-radius"/>
+                                        </div>
+                                    </div>
+                                    <div className="s-flex1 s-j-center"
+                                         style={{flexDirection: 'column', alignItems: 'flex-start'}}>
+                                        <div className="app-333-font28 app-line-height-one">{json.username}</div>
+                                        <div className="app-999-font24 app-line-height-one"
+                                             style={{paddingTop: '12px'}}>{json.timeStr}</div>
+                                    </div>
+
+                                    <div className="s-flex1 message-board-number s-j-end">
+                                        <img className="img" src={pac}/>
+                                        <div
+                                            className="number app-999-font24 padding-right-40">{json.upvoteNumber}</div>
+
+
+                                        <img className="img" src={comments}/>
+                                        <div className="number app-999-font24"></div>
+                                    </div>
                                 </div>
-                            </div>
-                            <div className="s-flex1 s-j-center" style={{flexDirection: 'column', alignItems: 'flex-start'}}>
-                                <div className="app-333-font28 app-line-height-one">灵隐寺</div>
-                                <div className="app-999-font24 app-line-height-one" style={{paddingTop:'12px'}}>2分钟前</div>
-                            </div>
 
-                            <div className="s-flex1 message-board-number s-j-end">
-                                <img className="img" src={pac}/>
-                                <div className="number app-999-font24 padding-right-40">50562</div>
-
-
-
-                                <img className="img" src={comments}/>
-                                <div className="number app-999-font24">789</div>
-                            </div>
-                        </div>
-
-                        <div className="step temple-content app-padding-b24 border-bottom">
-                            <div className="s-flex1 app-333-font28">
-                                下个月即将迎来观音圣诞，让我们为观音共同祈福，祈福，众生向善。
-                            </div>
-                        </div>
-
-                    </div>
-                    <div className="dynamic-content app-padding-lr24" style={{borderBottom:'0'}}>
-                        <div className="step temple-name">
-                            <div>
-                                <div className="temple-img">
-                                    <img src="http://img4.imgtn.bdimg.com/it/u=398347842,2770887580&fm=23&gp=0.jpg" className="app-wh100-all-radius"/>
+                                <div className="step temple-content app-padding-b24 border-bottom">
+                                    <div className="s-flex1 app-333-font28">
+                                        {json.content}
+                                    </div>
                                 </div>
+
                             </div>
-                            <div className="s-flex1 s-j-center" style={{flexDirection: 'column', alignItems: 'flex-start'}}>
-                                <div className="app-333-font28 app-line-height-one">灵隐寺</div>
-                                <div className="app-999-font24 app-line-height-one" style={{paddingTop:'12px'}}>2分钟前</div>
-                            </div>
-
-                            <div className="s-flex1 message-board-number s-j-end">
-                                <img className="img" src={pac}/>
-                                <div className="number app-999-font24 padding-right-40">50562</div>
-
-
-
-                                <img className="img" src={comments}/>
-                                <div className="number app-999-font24">789</div>
-                            </div>
-                        </div>
-
-                        <div className="step temple-content app-padding-b24 border-bottom">
-                            <div className="s-flex1 app-333-font28">
-                                下个月即将迎来观音圣诞，让我们为观音共同祈福，祈福，众生向善。
-                            </div>
-                        </div>
-
-                    </div>
+                        )) : ''
+                    }
                 </div>
 
 
-                <div className="step face app-padding-lr24" style={{height:'100px'}}>
+                <div className="step face app-padding-lr24"
+                     style={{height: '100px', position: 'fixed', bottom: '0', width: '100%'}}>
 
 
                     <div className="s-flex1">
-                        <input type="text" placeholder="留下你的意见..." className="face-input"/>
+                        <input id="creact-msg" type="text" placeholder="你的留言" className="face-input"/>
                     </div>
 
-                    <div className="s-flex-zero app-padding-l24" >
-                        <img className="face-img" src={face} />
+                    <div className="s-flex-zero app-padding-l24" onClick={this.createMessage.bind(this)}>
+                        <img className="face-img" src={face}/>
                     </div>
-
 
 
                 </div>
 
 
-
-
             </div>
+                </div>
         )
     }
 }

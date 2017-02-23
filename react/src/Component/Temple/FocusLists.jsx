@@ -4,22 +4,26 @@ import React from 'react';
 import {Router, Route, IndexRoute, browserHistory, Link} from 'react-router';
 import {HttpService} from '../../utils'
 import jsBridge from '../../jsBridge'
+import App from '../app'
 class FocusLists extends React.Component {
     constructor() {
         super();
         this.state={
             fans:[]
         };
-
-        jsBridge.getBrideg();
-        jsBridge.setTitle('关注列表')
     }
 
     componentWillMount() {
-
+        jsBridge.getBrideg(()=>{
+            jsBridge.setTitle('关注列表')
+        });
         this.fans();
        // this.title();
 
+    }
+
+    userinfo(type,id){
+        jsBridge.sendMessageToApp_type_2(type,id)
     }
 
     async fans(){
@@ -49,7 +53,7 @@ class FocusLists extends React.Component {
                                     <img className="app-wh100-all-radius" src={json.userHeadImgUrl}/>
                                 </div>
                                 <div className="s-flex2 s-j-center" style={{flexDirection: 'column', alignItems: 'flex-start'}}>
-                                    <Link to="/UserInfo" className="app-a"><div className="app-333-font28 app-line-height-one">{json.username}</div></Link>
+                                    <App cb={this.userinfo.bind(this,'userinfo',json.userId)} class="app-a"><div className="app-333-font28 app-line-height-one">{json.username}</div></App>
                                     <div className="app-999-font24 app-line-height-one" style={{paddingTop:'20px'}}>空侬倥侬人空倥</div>
                                 </div>
                             </div>

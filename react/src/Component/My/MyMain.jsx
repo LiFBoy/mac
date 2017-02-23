@@ -26,7 +26,7 @@ class MyMain extends React.Component {
             info: {}
         };
 
-        jsBridge.getBrideg();
+       // jsBridge.getBrideg();
 
 
 
@@ -47,7 +47,7 @@ class MyMain extends React.Component {
 
     sendMessageToApp_type_2(type) {
 
-        // document.body.innerHTML=window.g_bridge;
+         // document.body.innerHTML=window.g_bridge;
 
         window.g_bridge.callHandler('sendMessageToApp', {
                 type: 2, data: {url: 'http://172.27.35.4:3002/index.html#/' + type + ''}

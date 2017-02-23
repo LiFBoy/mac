@@ -10,6 +10,7 @@ import {Router, Route, IndexRoute, browserHistory, Link} from 'react-router';
 import {HttpService} from '../../utils'
 
 import LocalStorage from '../../LocalStorage'
+import jsBridge from '../../jsBridge'
 import App from '../app'
 
 class Donations extends React.Component {
@@ -19,18 +20,15 @@ class Donations extends React.Component {
 
     componentWillMount(){
       //  this.title();
+        jsBridge.getBrideg(()=>{
+            jsBridge.setTitle('发布募捐')
+        })
     }
     getValue(name){
         return document.getElementById(name).value;
     }
 
-    title(){
-        window.g_bridge.callHandler('sendMessageToApp', {
-                type: 15, data: {title:'发布募捐'}},
-            (response)=>{
 
-            })
-    }
     async editInfo(){
 
         const abbotWords=this.getValue('abbotWords'),

@@ -2,7 +2,9 @@
  * Created by sheldon on 17/2/18.
  */
 
+import LocalStorage from './LocalStorage'
 export default class jsBridge {
+
     constructor() {
 
     }
@@ -47,11 +49,16 @@ export default class jsBridge {
         setTimeout(function() { document.documentElement.removeChild(WVJBIframe) }, 0);
     }
 
-    static getBrideg(){
-        jsBridge.setupWebViewJavascriptBridge(function(bridge) {
+      static getBrideg(cb){
+
+        jsBridge.setupWebViewJavascriptBridge((bridge)=> {
             //document.getElementById("log").innerHTML = "callback1";
             window.g_bridge = bridge;
+            cb()
         });
+
+        // return this.brigde;
     }
+
 
 }

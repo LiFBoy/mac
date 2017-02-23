@@ -3,6 +3,7 @@
 import React, {Component, PropTypes}  from 'react';
 
 import kaoqin from '../../../src/images/kaoqin.png'
+import jsBridge from '../../jsBridge'
 class MyAlms extends React.Component {
     constructor() {
         super();
@@ -10,6 +11,13 @@ class MyAlms extends React.Component {
         this.state ={
             type:1
         };
+
+    }
+
+    componentWillMount(){
+        jsBridge.getBrideg(()=>{
+            jsBridge.setTitle('我的日善')
+        })
     }
 
     createLogin(){
