@@ -12,7 +12,7 @@ import pac from '../../../src/images/temple/praise.png'
 import comments from '../../../src/images/temple/comments.png'
 import {Router, Route, IndexRoute, browserHistory, Link} from 'react-router';
 
-import {HttpService} from '../../utils'
+import {HttpService,Toast} from '../../utils'
 import LocalStorage  from '../../LocalStorage'
 import jsBridge from '../../jsBridge'
 import App  from '../app'
@@ -29,7 +29,7 @@ class TempleDetail extends React.Component {
 
     componentWillMount() {
         jsBridge.getBrideg(()=>{
-            jsBridge.setTitle('寺庙')
+            jsBridge.setTitle(this.props.params.name)
         });
 
       // document.body.innerHTML=11111
@@ -118,7 +118,7 @@ class TempleDetail extends React.Component {
     DayPay(){
 
         window.g_bridge.callHandler('sendMessageToApp', {
-                type: 2, data: {url: 'http://172.27.35.4:3002/index.html#/DayPay'}},
+                type: 2, data: {url: 'http://172.27.35.4:3002/index.html#/DayPay/'+this.props.params.id+''}},
             (response)=>{
 
             })
@@ -155,9 +155,9 @@ class TempleDetail extends React.Component {
 
             })
     }
-    Pay(){
+    Pay(id){
         window.g_bridge.callHandler('sendMessageToApp', {
-                type: 2, data: {url: 'http://172.27.35.4:3002/index.html#/Pay'}},
+                type: 2, data: {url: 'http://172.27.35.4:3002/index.html#/Pay/'+id+''}},
             (response)=>{
 
             })
@@ -172,12 +172,13 @@ class TempleDetail extends React.Component {
 
         };
 
-
          const  _obj=JSON.stringify(obj);
         LocalStorage.add('obj',_obj);
 
+
+        //Toast.toast(LocalStorage.get('token'),2000);
         window.g_bridge.callHandler('sendMessageToApp', {
-                type: 2, data: {url: 'http://172.27.35.4:3002/index.html#/CommentLists/'+id+''}},
+                type: 2, data: {url: 'http://172.27.35.4:3002/index.html#/CommentLists/'+id+'/commentLists'}},
             (response)=>{
 
             })
@@ -312,7 +313,7 @@ class TempleDetail extends React.Component {
                                 <div className="app-padding-lr20"></div>
                                 <App   cb={this.UnderstandDetail.bind(this,latestCollections.id )}  class="s-flex1"><div className="chunk app-666-font28 s-flex1 s-j-center">了解详情</div></App>
                                 <div className="app-padding-lr20"></div>
-                                <App cb={this.Pay.bind(this)} class="s-flex1"><div className="chunk app-666-font28 s-flex1 s-j-center">发善心</div></App>
+                                <App cb={this.Pay.bind(this,latestCollections.id)} class="s-flex1"><div className="chunk app-666-font28 s-flex1 s-j-center">发善心</div></App>
                             </div>
 
                         </div>
@@ -354,12 +355,12 @@ class TempleDetail extends React.Component {
 
                                                 <img className="img" src={pac}/>
 
-                                                <div className="number app-999-font24 padding-right-40">{json.upvoteNumber}</div>
+                                                <div className="s-flex1 number app-999-font24 padding-right-40">{json.upvoteNumber}</div>
                                             </div>
 
                                         <App  cb={this.CommentLists.bind(this,json.id,json.timeStr,json.content,json.pictures)}  class="step" >
                                             <img className="img" src={comments}/>
-                                            <div className="number app-999-font24">{json.commentNumber}</div>
+                                            <div className="s-flex1 number app-999-font24">{json.commentNumber}</div>
                                         </App>
                                         </div>
                                     </div>

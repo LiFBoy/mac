@@ -28,13 +28,14 @@ class dynamic extends React.Component {
 
 
    async editInfo(){
+
+
+
         let code = await HttpService.saveJson({
             url: '/v1/ab/abbot/create/temple/status?accessToken=' + LocalStorage.get('token') + '',
             data: {
-                content: "string",
-                pictures: [
-
-                ],
+                content: document.getElementById('dynamic-contnt').value,
+                pictures: this.state.requestId
 
             }
         });
@@ -43,33 +44,30 @@ class dynamic extends React.Component {
         console.log(code)
     }
 
+
     uploadImg(){
-        var self=this;
-        //window.g_bridge
-        window.g_bridge.callHandler('sendMessageToApp', {type:17, data:{accessToken:LocalStorage.get('token')}}, function(response) {
-                Toast.toast(response,3000)
-
-                if(response.code=='0'){
-
-
-                    self.setState({
-                        requestId:self.state.requestId.push(response.ids[0])
-                    })
-                }else{
-                    Toast.toast(response.desc,3000)
-                }
-        });
+        jsBridge.uploadImg((ids)=>{
+            this.setState({
+                requestId: this.state.requestId.concat(ids)
+            });
+        })
     }
+
 
 
     render() {
         const {requestId}=this.state;
+
+
+
+
+
         return (
 
                 <div className="app-padding-lr24">
                         <div className="step app-padding-tb20" style={{height:'200px'}}>
                             <div className="s-flex1 app-input-edit" style={{height:'200px'}}>
-                                <textarea  className="s-flex1 app-999-font28 app-setting-textarea-word"  placeholder="输入内容"></textarea>
+                                <textarea id="dynamic-contnt"  className="s-flex1 app-999-font28 app-setting-textarea-word"  placeholder="输入内容"></textarea>
                             </div>
                         </div>
                     <div className="step  app-666-font28" >
@@ -77,7 +75,7 @@ class dynamic extends React.Component {
                             {
                                 requestId.length!=0?requestId.map((json,map)=>(
                                     <div className="app-upload-img-temple-backend">
-                                        <img src={json} className="app-wh100-all" />
+                                        <img src={'http://oss-cn-hangzhou.aliyuncs.com/rulaibao/dev/'+json+'.jpg'} className="app-wh100-all" />
                                     </div>
                                 )):''
                             }

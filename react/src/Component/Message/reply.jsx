@@ -16,11 +16,9 @@ class reply extends React.Component {
     }
 
     componentWillMount(){
-        // jsBridge.getBrideg(()=>{
-        //     this.title();
-        // });
-        //
-        // this.listenEvent();
+        jsBridge.getBrideg(()=>{
+            jsBridge.setTitle('评论')
+        })
     }
 
 

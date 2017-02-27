@@ -11,6 +11,7 @@ import {bindActionCreators} from 'redux';
 import {Router, Route, IndexRoute, browserHistory, Link} from 'react-router';
 
 import Foot from './Foot';
+import jsBridge from '../jsBridge';
 
 
 import like from '../../src/images/index/like.png'
@@ -34,6 +35,50 @@ class IndexFocus extends React.Component {
     componentWillMount(){
 
         this.temples();
+
+
+
+        // var w;
+        //
+        // if(typeof(Worker)!=="undefined")
+        // {
+        //     if(typeof(w)=="undefined")
+        //     {
+        //         w=new Worker('/dist/worker.js');
+        //         w.postMessage(36);
+        //
+        //         w.onmessage=(event)=>{
+        //             console.log(event.data)
+        //             if (!LocalStorage.get('token')) {
+        //
+        //
+        //                 jsBridge.getBrideg(()=>{
+        //
+        //                     //document.body.innerHTML=window.g_bridge;
+        //                     // jsBridge.sendMessageToApp_type_2('login')
+        //                     window.location.href='/index.html#/login'
+        //                 });
+        //
+        //
+        //
+        //             }else{
+        //                 this.temples();
+        //             }
+        //         };
+        //
+        //
+        //         w.onerror = function(event) {
+        //             console.log(event.filename, event.lineno, event.message);
+        //         };
+        //     }
+        //
+        //
+        //
+        // }
+
+
+
+
     }
 
     async temples(){
@@ -52,9 +97,9 @@ class IndexFocus extends React.Component {
 
     }
 
-    TempleDetail(id){
+    TempleDetail(id,name){
         window.g_bridge.callHandler('sendMessageToApp', {
-                type: 2, data: {url: 'http://172.27.35.4:3002/index.html#/TempleDetail/'+id+''}},
+                type: 2, data: {url: 'http://172.27.35.4:3002/index.html#/TempleDetail/'+id+'/'+name+''}},
             (response)=>{
 
             })
@@ -73,7 +118,7 @@ class IndexFocus extends React.Component {
                         temples.length!=0?temples.map((json,index)=>(
 
                             <div key={index}>
-                            <App cb={this.TempleDetail.bind(this,json.id)}>
+                            <App cb={this.TempleDetail.bind(this,json.id,json.name)}>
                                     <div className="temple-content">
                                         <div className="con-img">
                                             <div className="img-content">

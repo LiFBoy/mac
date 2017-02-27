@@ -15,7 +15,8 @@ class ReplaceBanner extends React.Component {
     constructor() {
         super();
         this.state={
-            banners:[]
+            banners:[],
+            bannerPic:[]
         }
     }
 
@@ -47,9 +48,27 @@ class ReplaceBanner extends React.Component {
         let code = await HttpService.saveJson({
             url: '/v1/ad/admin/create/banner?accessToken=' + LocalStorage.get('token') + '',
             data: {
-                Link: link, picture:''
+                Link: link, picture:this.state.bannerPic[0]
             }
         });
+    }
+
+    bannerPic(){
+        jsBridge.uploadImg((ids)=>{
+            this.setState({
+                bannerPic:ids
+            })
+        })
+    }
+    async delete(id){
+        await HttpService.saveJson({
+            url:'/v1/ad/admin/delete/banner?accessToken=' + LocalStorage.get('token') + '',
+            data:{
+                id:id
+            }
+        })
+
+        this.banners();
     }
 
     render() {
@@ -66,7 +85,7 @@ class ReplaceBanner extends React.Component {
 
                     <div className="step" style={{height: '15rem'}}>
                         <div className="s-left app-666-font28" style={{height: '15rem'}}>图片：</div>
-                        <div className="s-right app-input-edit" style={{height: '15rem'}}>
+                        <div className="s-right app-input-edit" style={{height: '15rem'}} onClick={this.bannerPic.bind(this)}>
                             <img src="http://img.taopic.com/uploads/allimg/120222/34250-12022209414087.jpg"
                                  className="app-all-img"/>
                         </div>
@@ -91,7 +110,7 @@ class ReplaceBanner extends React.Component {
                                                  className="app-all-img"/>
                                         </div>
                                     </div>
-                                    <div className="s-flex1 s-j-end app-333-font28">
+                                    <div className="s-flex1 s-j-end app-333-font28" onClick={this.delete.bind(this,json.id)}>
                                         删除
                                     </div>
                                 </div>

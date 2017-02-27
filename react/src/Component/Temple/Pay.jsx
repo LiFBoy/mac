@@ -15,15 +15,15 @@ class Pay extends React.Component {
         this.state = {
             info: {},
             admin: {},
-            money:{
-                one:1,
-                ten:10,
-                twenty:20,
-                fifty:50,
+            money: {
+                one: 1,
+                ten: 10,
+                twenty: 20,
+                fifty: 50,
 
-                oneHundred:100,
-                twoHundred:200,
-                fiveHundred:500
+                oneHundred: 100,
+                twoHundred: 200,
+                fiveHundred: 500
             }
         };
 
@@ -50,13 +50,13 @@ class Pay extends React.Component {
 
                 </div>
                 <Link to="/wish" className="app-a">
-                <div className="step" style={{paddingTop: '32px'}}>
+                    <div className="step" style={{paddingTop: '32px'}}>
 
-                    <div className="s-flex1 s-j-center app-yellow-radius-check-button" style={{height: '80px'}}
-                         onClick={this.pay.bind(this)}>供养
+                        <div className="s-flex1 s-j-center app-yellow-radius-check-button" style={{height: '80px'}}
+                             onClick={this.pay.bind(this)}>供养
+                        </div>
+
                     </div>
-
-                </div>
                 </Link>
             </div>
 
@@ -90,7 +90,15 @@ class Pay extends React.Component {
         //     })
         //
         // console.log(this.state.value)
+
+
     }
+
+    componentDidMount(){
+        LocalStorage.add('money',1);
+        this.selectPayMoney();
+    }
+
 
     close() {
         this.setState({
@@ -112,7 +120,7 @@ class Pay extends React.Component {
     }
 
     otherMoney() {
-        this.refs.InputMoney.value='';
+        this.refs.InputMoney.value = '';
         this.setState({
             admin: {
                 flag: true,
@@ -121,10 +129,38 @@ class Pay extends React.Component {
         })
     }
 
+    selectPayMoney(){
+        var dom=document.getElementById('pay-content')
+        var node=dom.children;
+        console.log(node)
+        for(var i=0;i<node.length;i++){
+            node[i].onclick=function () {
+
+                for(var j=0;j<node.length;j++){
+                    node[j].className='app-margin-right20 pay-chunk'
+                }
+                this.className='app-margin-right20 pay-active-chunk'
+
+
+               var value= this.getElementsByTagName('span')[0].innerHTML;
+                console.log(value)
+
+                LocalStorage.add('money',value);
+
+
+
+
+
+            }
+        }
+    }
+
+
+
 
     render() {
 
-        const {info, admin,money} =this.state;
+        const {info, admin, money} =this.state;
 
 
         return (
@@ -162,56 +198,62 @@ class Pay extends React.Component {
 
 
                     <div className="step">
-                        <div className="s-flex1" style={{flexWrap: 'wrap'}}>
+                        <div className="s-flex1" style={{flexWrap: 'wrap'}} id="pay-content">
 
 
-                            <div className=" pay-active-chunk ">
+                            <div className="app-margin-right20 pay-active-chunk ">
 
                                 <div className="s-flex1 s-center">
-                                    <span className="app-333-font36">{money.one}</span><span
-                                    className="app-333-font24">元</span></div>
+                                    <span className="app-333-font36">{money.one}</span>
+                                    <span className="app-333-font24">元</span>
+                                </div>
 
 
                             </div>
-                            <div className="app-padding-lr10"></div>
-                            <div className=" pay-chunk ">
+                            {/*<div className="app-padding-lr10"></div>*/}
+                            <div className="app-margin-right20  pay-chunk ">
                                 <div className="s-flex1 s-center">
                                     <span className="app-333-font36">{money.ten}</span><span className="app-333-font24">元</span>
                                 </div>
                             </div>
-                            <div className="app-padding-lr10"></div>
-                            <div className="  pay-chunk ">
+                            {/*<div className="app-padding-lr10"></div>*/}
+                            <div className="app-margin-right20 pay-chunk ">
                                 <div className="s-flex1 s-center">
-                                    <span className="app-333-font36">{money.twenty}</span><span className="app-333-font24">元</span>
+                                    <span className="app-333-font36">{money.twenty}</span><span
+                                    className="app-333-font24">元</span>
                                 </div>
                             </div>
-                            <div className="app-padding-lr10"></div>
-                            <div className=" pay-chunk ">
+                            {/*<div className="app-padding-lr10"></div>*/}
+                            <div className="app-margin-right20   pay-chunk ">
                                 <div className="s-flex1 s-center">
-                                    <span className="app-333-font36">{money.fifty}</span><span className="app-333-font24">元</span>
+                                    <span className="app-333-font36">{money.fifty}</span>
+                                    <span className="app-333-font24">元</span>
                                 </div>
                             </div>
 
 
-                            <div className=" pay-chunk ">
+                            <div className="app-margin-right20  pay-chunk ">
                                 <div className="s-flex1 s-center">
-                                    <span className="app-333-font36">{money.oneHundred}</span><span className="app-333-font24">元</span>
+                                    <span className="app-333-font36">{money.oneHundred}</span><span
+                                    className="app-333-font24">元</span>
                                 </div>
                             </div>
-                            <div className="app-padding-lr10"></div>
-                            <div className=" pay-chunk ">
+                            {/*<div className="app-padding-lr10"></div>*/}
+                            <div className="app-margin-right20  pay-chunk ">
                                 <div className="s-flex1 s-center">
-                                    <span className="app-333-font36">{money.twoHundred}</span><span className="app-333-font24">元</span>
+                                    <span className="app-333-font36">{money.twoHundred}</span><span
+                                    className="app-333-font24">元</span>
                                 </div>
                             </div>
-                            <div className="app-padding-lr10"></div>
-                            <div className=" pay-chunk ">
+                            {/*<div className="app-padding-lr10"></div>*/}
+                            <div className="app-margin-right20  pay-chunk ">
                                 <div className="s-flex1 s-center">
-                                    <span className="app-333-font36">{money.fiveHundred}</span><span className="app-333-font24">元</span>
+                                    <span className="app-333-font36">{money.fiveHundred}</span><span
+                                    className="app-333-font24">元</span>
                                 </div>
                             </div>
-                            <div className="app-padding-lr10"></div>
-                            <div className=" pay-chunk " onClick={this.otherMoney.bind(this)}>
+                            {/*<div className="app-padding-lr10"></div>*/}
+                            <div className="app-margin-right20 pay-chunk " onClick={this.otherMoney.bind(this)}>
                                 <div className="s-flex1 s-center">
                                     <span className="app-333-font28">其它</span>
                                 </div>
@@ -219,13 +261,13 @@ class Pay extends React.Component {
                         </div>
                     </div>
                 </div>
-                <Link to="/wish" className="app-a">
-                <div className="step app-yellow-radius-check-button" style={{height: '100px'}}>
+                <Link to={'/wish/2/'+this.props.params.id} className="app-a">
+                    <div className="step app-yellow-radius-check-button" style={{height: '100px'}}>
 
 
-                    <div className="s-center">供养</div>
+                        <div className="s-center">供养</div>
 
-                </div>
+                    </div>
                 </Link>
             </div>
         )

@@ -43,7 +43,7 @@ class UserInfo extends React.Component {
                 <div className="step">
                     <div className="s-center user-title">
                         <div style={{width:'200px',height:'200px'}}>
-                            <img src={userInfo.headImgUrl} className="app-wh100-all-radius"/>
+                            <img src={'http://oss-cn-hangzhou.aliyuncs.com/rulaibao/'+userInfo.headImgUrl+''} className="app-wh100-all-radius"/>
                         </div>
 
                     </div>

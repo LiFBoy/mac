@@ -11,12 +11,14 @@ import {Router, Route, IndexRoute, browserHistory, Link} from 'react-router';
 import {HttpService} from '../../utils'
 import LocalStorage from '../../LocalStorage'
 import jsBridge from '../../jsBridge'
+import App from '../app'
 
 class CommentLists extends React.Component {
     constructor() {
         super();
         this.state = {
-            comments: []
+            comments: [],
+            obj:[]
         };
 
     }
@@ -25,8 +27,53 @@ class CommentLists extends React.Component {
 
         jsBridge.getBrideg(()=> {
             jsBridge.setTitle('评论列表')
+
         });
-        this.comments();
+
+        if(this.props.params.type=='detail'){
+
+            this.detail();
+        }else if(this.props.params.type=='commentLists') {
+            this.comments();
+            this.setState({
+                obj: JSON.parse(LocalStorage.get('obj'))
+            })
+        }
+
+
+    }
+
+    sendMessageToApp_type_2(type,id){
+        jsBridge.sendMessageToApp_type_2(type,id);
+    }
+
+    async detail(){
+        let code=await HttpService.query({
+            url:'/v1/public/get/comment/detail',
+            data:{
+                id:this.props.params.id
+            }
+        });
+
+        var arry=[];
+
+        console.log(code.rootComment)
+
+        const obj=code.rootComment;
+            obj.replies=code.subComments;
+
+
+        arry.push(code.rootComment);
+        console.log(arry);
+
+
+        console.log(code.content);
+
+
+        this.setState({
+            comments: arry,
+            obj:code.content
+        })
 
 
     }
@@ -40,6 +87,8 @@ class CommentLists extends React.Component {
             }
         });
 
+        console.log(code.comments)
+
         this.setState({
             comments: code.comments
         })
@@ -52,7 +101,19 @@ class CommentLists extends React.Component {
                 id: id
             }
         });
-        this.comments();
+
+        if(this.props.params.type=='detail'){
+
+            this.detail();
+
+
+
+        }else if(this.props.params.type=='commentLists')(
+            this.comments()
+        )
+
+
+
     }
 
     async status() {
@@ -67,8 +128,8 @@ class CommentLists extends React.Component {
     }
 
     render() {
-        const {comments}=this.state;
-        const obj = JSON.parse(LocalStorage.get('obj'));
+        const {comments,obj}=this.state;
+
         return (
             <div>
                 <div className="app-container" style={{position: 'relative'}}>
@@ -99,13 +160,13 @@ class CommentLists extends React.Component {
                                 <div className="step" style={{paddingTop: '24px', paddingBottom: '36px'}}>
                                     <div className="s-flex1" style={{flexWrap: 'wrap'}}>
 
-                                        {
-                                            obj.pictures.length!=0?obj.pictures.map((json,index)=>(
-                                                <div className="upload-img" key={index}>
-                                                    <img src={json}  className="app-wh100-all"/>
-                                                </div>
-                                            )):''
-                                        }
+                                        {/*{*/}
+                                            {/*obj.pictures.length!=0?obj.pictures.map((json,index)=>(*/}
+                                                {/*<div className="upload-img" key={index}>*/}
+                                                    {/*<img src={json}  className="app-wh100-all"/>*/}
+                                                {/*</div>*/}
+                                            {/*)):''*/}
+                                        {/*}*/}
                                     </div>
                                 </div>
 
@@ -121,52 +182,6 @@ class CommentLists extends React.Component {
                                 最新评论
                             </div>
                         </div>
-
-                        {
-                            comments.length != 0 ? comments.map((json, index)=>(
-                                <div className="dynamic-content app-padding-lr24" style={{borderBottom: '0'}}
-                                     key={index}>
-                                    <div className="step temple-name">
-                                        <div>
-                                            <div className="temple-img">
-                                                <img src={json.senderHeadImgUrl} className="app-wh100-all-radius"/>
-                                            </div>
-                                        </div>
-                                        <div className="s-flex1 s-j-center"
-                                             style={{flexDirection: 'column', alignItems: 'flex-start'}}>
-                                            <Link to="/UserInfo" className="app-a">
-                                                <div className="app-333-font28 app-line-height-one">{json.sender}</div>
-                                            </Link>
-                                            <div className="app-999-font24 app-line-height-one"
-                                                 style={{paddingTop: '12px'}}>{json.timeStr}</div>
-                                        </div>
-
-                                        <div className="s-flex1 message-board-number s-j-end">
-                                            <div className="step" onClick={this.upvote.bind(this, json.id)}>
-
-
-                                                <img className="img" src={pac}/>
-                                                <div
-                                                    className="number app-999-font24 padding-right-40">{json.upvoteNumber}</div>
-
-                                            </div>
-
-                                            <Link to={'/reply/'+json.id} className="step app-a">
-                                                <img className="img" src={_comments}/>
-                                                <div className="number app-999-font24">{json.replies.length}</div>
-                                            </Link>
-                                        </div>
-                                    </div>
-
-                                    <div className="step temple-content app-padding-b24 border-bottom">
-                                        <div className="s-flex1 app-333-font28">
-                                            {json.content}
-                                        </div>
-                                    </div>
-
-                                </div>
-                            )) : ''
-                        }
                         <div className="step dynamic app-padding-lr24">
                             <div className="s-flex1  app-666-font28">
                                 热门评论
@@ -179,28 +194,33 @@ class CommentLists extends React.Component {
                                 <div className="dynamic-content app-padding-lr24" style={{borderBottom: '0'}}
                                      key={index}>
                                     <div className="step temple-name">
-                                        <div>
+                                        <App cb={this.sendMessageToApp_type_2.bind(this,'userinfo',json.senderId)}>
                                             <div className="temple-img">
-                                                <img src={json.senderHeadImgUrl} className="app-wh100-all-radius"/>
+                                                <img src={'http://oss-cn-hangzhou.aliyuncs.com/rulaibao/'+json.senderHeadImgUrl+''} className="app-wh100-all-radius"/>
                                             </div>
-                                        </div>
+                                        </App>
                                         <div className="s-flex1 s-j-center"
                                              style={{flexDirection: 'column', alignItems: 'flex-start'}}>
-                                            <Link to="/UserInfo" className="app-a">
+
                                                 <div className="app-333-font28 app-line-height-one">{json.sender}</div>
-                                            </Link>
+
                                             <div className="app-999-font24 app-line-height-one"
                                                  style={{paddingTop: '12px'}}>{json.timeStr}</div>
                                         </div>
 
                                         <div className="s-flex1 message-board-number s-j-end">
+
+                                            <div className="step" onClick={this.upvote.bind(this,json.id)}>
                                             <img className="img" src={pac}/>
                                             <div
                                                 className="number app-999-font24 padding-right-40">{json.upvoteNumber}</div>
 
+</div>
 
+                                            <App cb={this.sendMessageToApp_type_2.bind(this,'reply',json.id)} class="step">
                                             <img className="img" src={_comments}/>
-                                            <div className="number app-999-font24">789</div>
+                                            <div className="number app-999-font24">{json.replies.length}</div>
+                                                </App>
                                         </div>
                                     </div>
 
@@ -225,8 +245,8 @@ class CommentLists extends React.Component {
                             <input id="input-content" type="text" placeholder="你的评论..." className="face-input"/>
                         </div>
 
-                        <div className="s-flex-zero app-padding-l24" onClick={this.status.bind(this)}>
-                            <img className="face-img" src={face}/>
+                        <div className="step app-padding-l24" style={{alignItems:'center'}} onClick={this.status.bind(this)}>
+                            <img className="face-image"  src={face}/>
                         </div>
 
 

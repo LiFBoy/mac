@@ -16,8 +16,9 @@ import App from './app';
 
 import like from '../../src/images/index/like.png'
 import alms from '../../src/images/index/alms.png'
-import {HttpService} from '../utils'
+import {HttpService,Toast} from '../utils'
 import jsBridge from '../jsBridge'
+import LocalStorage from '../LocalStorage'
 
 
 class Index extends React.Component {
@@ -25,7 +26,6 @@ class Index extends React.Component {
         super();
 
         this.state = {
-            swiper: [],
             temples: [],
             banners:[]
         }
@@ -39,23 +39,33 @@ class Index extends React.Component {
 
         this.hot();
         this.banners();
+
+
+
     }
 
 
     componentDidMount() {
 
+        // (async ()=>{
+        //     let banners = await HttpService.query({
+        //         url: '/v1/public/get/banners',
+        //     });
+        //
+        //     document.body.innerHTML=banners;
+        // })();
+        setTimeout(()=>{
+            this.initBannerSwiper();
 
-        this.initBannerSwiper();
+        },30)
+
+
 
 
     }
 
-    TempleDetail(id){
-        window.g_bridge.callHandler('sendMessageToApp', {
-                type: 2, data: {url: 'http://172.27.35.4:3002/index.html#/TempleDetail/'+id+''}},
-            (response)=>{
-
-            })
+    TempleDetail(id,name){
+        jsBridge.sendMessageToApp_type_2('TempleDetail',id,name)
     }
     async banners() {
 
@@ -67,6 +77,8 @@ class Index extends React.Component {
 
         })
     }
+
+
     async hot() {
 
         let hot = await HttpService.query({
@@ -81,7 +93,7 @@ class Index extends React.Component {
 
     initBannerSwiper() {
         //下面是在table render完成后执行的js
-        this.state.swiper = new Swiper('.swiper-container', {
+         new Swiper('.swiper-container', {
             pagination: '.swiper-pagination',
             paginationClickable: true,
             //loop: true,
@@ -99,28 +111,32 @@ class Index extends React.Component {
             <div className="app-container">
 
                 <div className="index-container">
+
                     <div className="banner">
                         <div className="swiper-container">
-                            <div className="swiper-wrapper">
-                                <div className="swiper-slide">
-                                    <img src="http://img4.imgtn.bdimg.com/it/u=2389140428,1315216178&fm=21&gp=0.jpg"/>
-                                </div><div className="swiper-slide">
-                                    <img src="http://img4.imgtn.bdimg.com/it/u=2389140428,1315216178&fm=21&gp=0.jpg"/>
-                                </div><div className="swiper-slide">
-                                    <img src="http://img4.imgtn.bdimg.com/it/u=2389140428,1315216178&fm=21&gp=0.jpg"/>
-                                </div>
-                                {/*{
-                                    banners.length!=0?banners.map((json,index)=>(
-                                            <div className="swiper-slide" key={index}>
-                                                <img src={json.picture}/>
-                                            </div>
-                                        )):''
-                                }*/}
+
+
+
+
+                            <div className="swiper-wrapper" >
+
+
+                            {
+                                this.state.banners.length!=0?this.state.banners.map((json,index)=>(
+
+                                    <div className="swiper-slide" key={index}>
+                                        <img src={json.picture}/>
+                                    </div>
+
+                                )):''
+                            }
                             </div>
+
 
                             <div className="swiper-pagination"></div>
                         </div>
                     </div>
+
 
 
                     {
@@ -131,7 +147,7 @@ class Index extends React.Component {
                                     {/*<div className="app-margin-t20"></div>*/}
 
 
-                                    <App cb={this.TempleDetail.bind(this,json.id)}>
+                                    <App cb={this.TempleDetail.bind(this,json.id,json.name)}>
                                         <div className="temple-content">
                                             <div className="con-img">
                                                 <div className="img-content"><img className="app-wh100-all"
@@ -173,7 +189,7 @@ class Index extends React.Component {
                     }
                 </div>
 
-                {/*<Foot type="1"></Foot>*/}
+                <Foot type="1"></Foot>
             </div>
         )
     }

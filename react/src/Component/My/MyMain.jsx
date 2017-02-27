@@ -23,7 +23,8 @@ class MyMain extends React.Component {
     constructor() {
         super();
         this.state = {
-            info: {}
+            info: {},
+            uploadUserImg:[]
         };
 
        // jsBridge.getBrideg();
@@ -32,16 +33,76 @@ class MyMain extends React.Component {
 
     }
 
-    componentWillMount() {
+    componentDidMount() {
+
+
+        Toast.toast(LocalStorage.get('token'),2000);
 
         if (!LocalStorage.get('token')) {
-            this.sendMessageToApp_type_2('login')
+
+
+            jsBridge.getBrideg(()=>{
+
+                //document.body.innerHTML=window.g_bridge;
+                jsBridge.sendMessageToApp_type_2('login')
+
+            });
+
+            //
+            // document.body.innerHTML=window.g_bridge;
+            //
+            //
+            // jsBridge.sendMessageToApp_type_2('login')
+
+          //  window.location.href='/index.html#/login'
+
 
         }else{
             this.info();
         }
 
+            // var w;
+            //
+            // if(typeof(Worker)!=="undefined")
+            // {
+            //     if(typeof(w)=="undefined")
+            //     {
+            //         w=new Worker('/dist/worker.js');
+            //         w.postMessage(36);
+            //
+            //         w.onmessage=(event)=>{
+            //             console.log(event.data)
+            //             if (!LocalStorage.get('token')) {
+            //
+            //
+            //                 jsBridge.getBrideg(()=>{
+            //
+            //                     //document.body.innerHTML=window.g_bridge;
+            //                    // jsBridge.sendMessageToApp_type_2('login')
+            //                     window.location.href='/index.html#/login'
+            //                 });
+            //
+            //
+            //
+            //             }else{
+            //                 this.info();
+            //             }
+            //         };
+            //
+            //
+            //         w.onerror = function(event) {
+            //             console.log(event.filename, event.lineno, event.message);
+            //         };
+            //     }
+            //
+            //
+            //
+            // }
+
+
     }
+
+
 
 
 
@@ -76,12 +137,27 @@ class MyMain extends React.Component {
                 residence:code.residence
             }
         })
-
-
-
-
     }
 
+    uploadUserImg(){
+        jsBridge.uploadImg((ids)=>{
+            this.setState({
+                uploadUserImg:ids
+            });
+
+            this.upload();
+
+        })
+
+    }
+    async upload(){
+        await HttpService.saveJson({
+            url:'/v1/p/user/update/head/image?accessToken='+LocalStorage.get('token')+'',
+            data:{
+                picture:this.state.uploadUserImg[0]
+            }
+        })
+    }
 
     render() {
         const {info}=this.state;
@@ -89,13 +165,13 @@ class MyMain extends React.Component {
             <div className="app-container">
 
                 <div className="step app-padding-lr24 my-main">
-                    <Link to="/PersonalInfo" className="app-a">
-                        <div className="img"><img src={info.headImgUrl} className="app-wh100-all-radius"/></div>
-                    </Link>
+
+                        <div className="img" onClick={this.uploadUserImg.bind(this)}><img src={'http://oss-cn-hangzhou.aliyuncs.com/rulaibao/'+info.headImgUrl+''} className="app-wh100-all-radius"/></div>
+
                     <div className="s-right s-j-center" style={{flexDirection: 'column', alignItems: 'flex-start'}}>
                         <App cb={this.sendMessageToApp_type_2.bind(this,'PersonalInfo')}>
 
-                            <div className="app-333-font30 app-line-height-one">{info.username}</div>
+                            <div className="app-333-font30 app-line-height-one">fwfwfwfw</div>
 
 
 
@@ -169,7 +245,7 @@ class MyMain extends React.Component {
                     </div>
                 </App>
 
-                <App cb={this.sendMessageToApp_type_2.bind(this,'OperatIndex')} to="/OperatIndex" className="app-a">
+                <App cb={this.sendMessageToApp_type_2.bind(this,'OperatIndex')}  className="app-a">
                     <div className="step app-padding-lr24 app-white-chunk">
 
 
@@ -183,7 +259,7 @@ class MyMain extends React.Component {
 
                 </App>
 
-                {/*<Foot type="3"></Foot>*/}
+                <Foot type="3"></Foot>
             </div>
         )
     }

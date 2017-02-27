@@ -6,6 +6,7 @@ import React from 'react';
 
 import {Router, Route, IndexRoute, browserHistory, Link} from 'react-router';
 import jsBridge from '../../jsBridge'
+import LocalStorage from '../../LocalStorage'
 class DayPay extends React.Component {
     constructor() {
         super();
@@ -16,12 +17,19 @@ class DayPay extends React.Component {
 
     }
 
+    componentWillMount(){
+        LocalStorage.add('money',1)
+    }
+
     money(e){
         let value=e.target.value;
 
         this.setState({
             money:value
-        })
+        });
+
+        LocalStorage.add('money',this.state.money)
+
     }
 
     componentWillMount(){
@@ -89,7 +97,7 @@ class DayPay extends React.Component {
 
 
                 </div>
-                <Link to={'/wish/'} className='app-a'>
+                <Link to={'/wish/1/'+this.props.params.id} className='app-a'>
                 <div className="step app-yellow-radius-check-button" style={{height:'100px'}}>
                     <div className="s-center">行日善</div>
                 </div>

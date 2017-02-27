@@ -60,7 +60,7 @@ class Coments extends React.Component {
 
                 </div>
                 <div className="step app-coments-popup">
-                    <ul className="s-center">
+                    <ul className="s-center" onClick={this.detail.bind(this)}>
                         <li className="app-333-font32">查看详情</li>
                     </ul>
 
@@ -99,6 +99,10 @@ class Coments extends React.Component {
 
     reply() {
         window.location.href='/index.html#/reply/'+ this.state.admin.id + ''
+    }
+
+    detail(){
+        window.location.href='/index.html#/commentlists/'+this.state.admin.id+'/detail'
     }
 
     popup(id) {

@@ -18,9 +18,10 @@ class Feedbackpro extends React.Component {
     componentWillMount(){
         jsBridge.getBrideg(()=>{
             this.title();
+            this.listenEvent();
         });
 
-        this.listenEvent();
+
     }
 
 
@@ -29,7 +30,7 @@ class Feedbackpro extends React.Component {
         var suggestion=document.getElementById('suggestion').value;
 
        const code= await HttpService.saveJson({
-            url:"/v1/p/user/suggestion",
+            url:'/v1/p/user/suggestion?accessToken='+LocalStorage.get('token')+'',
             data:{
                 suggestion:suggestion
             }
@@ -45,6 +46,10 @@ class Feedbackpro extends React.Component {
                 type: 15, data: {title:'反馈问题',
                     rightNavigationBarItems:[{type: 10003, title:'提交'}]}},
             (response)=>{
+
+                if(response==1003){
+                    this.suggestion();
+                }
 
             })
     }
@@ -66,13 +71,11 @@ class Feedbackpro extends React.Component {
     render(){
         return (
             <div className="app-padding-lr24 ">
-                <form action="">
+                <form>
                     <div className="step app-padding-tb20">
                         <textarea id="suggestion"  className="s-flex1 app-999-font28 app-setting-textarea"  placeholder="请输入你的问题">
 
                         </textarea>
-
-
                     </div>
                 </form>
             </div>

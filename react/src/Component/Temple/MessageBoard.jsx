@@ -15,7 +15,7 @@ import face from '../../../src/images/temple/face.png'
 import {HttpService} from '../../utils'
 import LocalStorage from '../../LocalStorage'
 import jsBridge from '../../jsBridge'
-import {Router, Route, IndexRoute, browserHistory, Link} from 'react-router';
+import App from '../app'
 
 class MessageBoard extends React.Component {
     constructor() {
@@ -49,6 +49,23 @@ class MessageBoard extends React.Component {
         this.messages();
 
     }
+
+    async leaveMsg(id){
+       await HttpService.saveJson({
+            url:'/v1/p/user/upvote/leave/message?accessToken='+LocalStorage.get('token')+'',
+            data:{
+                id:id
+            }
+        })
+
+        this.messages();
+    }
+
+    sendMessageToApp_type_2(type,id){
+        jsBridge.sendMessageToApp_type_2(type,id);
+    }
+
+
 
 
     async info() {
@@ -120,14 +137,14 @@ class MessageBoard extends React.Component {
                                     </div>
 
                                     <div className="s-flex1 message-board-number s-j-end">
+                                        <div className="step" onClick={this.leaveMsg.bind(this,json.id)}>
                                         <img className="img" src={pac}/>
-                                        <div
-                                            className="number app-999-font24 padding-right-40">{json.upvoteNumber}</div>
-
-                                        <Link to={'/Replies/'+json.id} className="app-a step">
+                                        <div className="s-flex1 number app-999-font24 padding-right-40">{json.upvoteNumber}</div>
+                                        </div>
+                                        <App cb={this.sendMessageToApp_type_2.bind(this,'Replies',json.id)} class="step">
                                         <img className="img" src={comments}/>
-                                        <div className="number app-999-font24">{json.replies.length}</div>
-                                        </Link>
+                                        <div className="s-flex1 number app-999-font24">{json.replies.length}</div>
+                                        </App>
                                     </div>
                                 </div>
 
@@ -197,8 +214,8 @@ class MessageBoard extends React.Component {
                         <input id="creact-msg" type="text" placeholder="你的留言" className="face-input"/>
                     </div>
 
-                    <div className="s-flex-zero app-padding-l24" onClick={this.createMessage.bind(this)}>
-                        <img className="face-img" src={face}/>
+                    <div className="step app-padding-l24" style={{alignItems:'center'}} onClick={this.createMessage.bind(this)}>
+                        <img className="face-image" src={face}/>
                     </div>
 
 

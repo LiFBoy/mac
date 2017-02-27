@@ -132,6 +132,8 @@ class Login extends React.Component {
 
         LocalStorage.add('token', result.accessToken);
 
+        Toast.toast(LocalStorage.get('token'),30000);
+
         console.log(LocalStorage.get('token'))
     }
 

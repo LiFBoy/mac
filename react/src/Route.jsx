@@ -1,6 +1,10 @@
 import React, {Component, PropTypes} from 'react';
 import {Router, Route, IndexRoute, browserHistory, hashHistory} from 'react-router';
 
+import LocalStorage from './LocalStorage'
+import {Toast} from './utils'
+import jsBridge from './jsBridge'
+
 import Index from './Component/index'; //首页
 import IndexFocus from './Component/IndexFocus'; //首页
 import NearBy from './Component/NearBy'; //
@@ -81,6 +85,19 @@ import Donations from './Component/Temple-backend/Donations';
 
 var history = hashHistory;
 
+
+const requireAuth = (nextState, replaceState) => {
+
+    // if (!LocalStorage.get('token')) {
+    //     jsBridge.getBrideg(()=>{
+    //         jsBridge.sendMessageToApp_type_2('login')
+    //      //   document.body.innerHTML=window.g_bridge;
+    //     });
+    //     // Redirect to Home page if not an Admin
+    //     replaceState({ pathname: '/Login' })
+    // }
+}
+
 const RouteConfig = (
     <Router history={history}>
         <Route path="/">
@@ -95,30 +112,30 @@ const RouteConfig = (
             <Route path="/Setting" component={Setting} />
             <Route path="/PayInfo" component={PayInfo} />
             <Route path="/DayGoods" component={DayGoods} />
-            <Route path="/MyMain" component={MyMain} />
+            <Route path="/MyMain" component={MyMain} onEnter={requireAuth}/>
             <Route path="/MyAlms" component={MyAlms} />
 
 
 
-            <Route path="/TempleDetail/:id" component={TempleDetail} />
+            <Route path="/TempleDetail/:id/:name" component={TempleDetail} />
             <Route path="/PaySuccess" component={PaySuccess} />
             <Route path="/PayMoney" component={PayMoney} />
             <Route path="/FocusLists/:id" component={FocusLists} />
             <Route path="/MessageBoard/:id" component={MessageBoard} />
             <Route path="/PayHistory/:id" component={PayHistory} />
-            <Route path="/AlmsDetail" component={AlmsDetail} />
+            <Route path="/AlmsDetail/:id" component={AlmsDetail} />
             <Route path="/SelectMoney" component={SelectMoney} />
-            <Route path="/CommentLists/:id" component={CommentLists} />
-            <Route path="/wish" component={wish} />
+            <Route path="/CommentLists/:id/:type" component={CommentLists} />
+            <Route path="/wish/:type/:id" component={wish} />
 
 
             <Route path="/Temple" component={Temple} />
             <Route path="/Notice" component={Notice} />
             <Route path="/ChanYu" component={ChanYu} />
             <Route path="/Coments" component={Coments} />
-            <Route path="/DayPay" component={DayPay} />
+            <Route path="/DayPay/:id" component={DayPay} />
             <Route path="/UnderstandDetail/:id" component={UnderstandDetail} />
-            <Route path="/Pay" component={Pay} />
+            <Route path="/Pay/:id" component={Pay} />
             <Route path="/PayRecord" component={PayRecord} />
 
             <Route path="/OperatIndex" component={OperatIndex} />

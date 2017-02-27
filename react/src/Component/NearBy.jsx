@@ -7,20 +7,9 @@ import {doLogin, change, getOneBabyid, changeSaveBabyStatus, getMap, getCurrentP
 
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-
-import {Router, Route, IndexRoute, browserHistory, Link} from 'react-router';
-
-import Foot from './Foot';
-
-
-import like from '../../src/images/index/like.png'
-import alms from '../../src/images/index/alms.png'
-
 import {HttpService} from '../utils'
+import jsBridge from '../jsBridge'
 import App from './app'
-
-
-
 class NearBy extends React.Component {
     constructor() {
         super();
@@ -50,13 +39,13 @@ class NearBy extends React.Component {
 
     }
 
-    TempleDetail(id){
-        window.g_bridge.callHandler('sendMessageToApp', {
-                type: 2, data: {url: 'http://172.27.35.4:3002/index.html#/TempleDetail/'+id+''}},
-            (response)=>{
+    TempleDetail(id,name){
 
-            })
+        jsBridge.sendMessageToApp_type_2('TempleDetail',id,name);
     }
+
+
+
 
     render(){
         const {temples} =this.state;
@@ -66,13 +55,10 @@ class NearBy extends React.Component {
 
                 <div className="step">
                     <div className="s-flex1" style={{flexWrap:'wrap'}}>
-
-
-
                         {
                             temples.length!=0?temples.map((json,index)=>(
                                 <div key={index}>
-                                <App cb={this.TempleDetail.bind(this,json.id)}>
+                                <App cb={this.TempleDetail.bind(this,json.id,json.name)}>
                                     <div className="near-by-content">
                                         <div className="near-by-img"><img className="app-wh100-all" src={json.headImgUrl}/></div>
                                         <div className="detail step app-padding-lr24 app-white">

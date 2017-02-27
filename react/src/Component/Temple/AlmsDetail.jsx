@@ -39,6 +39,8 @@ class AlmsDetail extends React.Component {
             info: code
         })
 
+        console.log(this.state.info)
+
     }
 
 

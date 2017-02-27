@@ -3,6 +3,7 @@
  */
 
 import LocalStorage from './LocalStorage'
+import {Toast} from './utils'
 export default class jsBridge {
 
     constructor() {
@@ -17,18 +18,26 @@ export default class jsBridge {
                 })
     }
 
-    static sendMessageToApp_type_2(type,...id){
+    static sendMessageToApp_type_2(type,...option){
 
-        if(id.length==0){
+        if(option.length==0){
             window.g_bridge.callHandler('sendMessageToApp', {
                     type: 2, data: {url: 'http://172.27.35.4:3002/index.html#/' + type + ''}
                 },
                 (response)=> {
 
                 })
-        }else if(id.length==1){
+        }else if(option.length==1){
             window.g_bridge.callHandler('sendMessageToApp', {
-                    type: 2, data: {url: 'http://172.27.35.4:3002/index.html#/' + type + '/'+id[0]+''}
+                    type: 2, data: {url: 'http://172.27.35.4:3002/index.html#/' + type + '/'+option[0]+''}
+                },
+                (response)=> {
+
+                })
+        }else if(option.length==2){
+            const [id,name] =option;
+            window.g_bridge.callHandler('sendMessageToApp', {
+                    type: 2, data: {url: 'http://172.27.35.4:3002/index.html#/' + type + '/'+id+'/'+name+''}
                 },
                 (response)=> {
 
@@ -58,6 +67,30 @@ export default class jsBridge {
         });
 
         // return this.brigde;
+    }
+
+    static  uploadImg(cb){
+
+
+        window.g_bridge.callHandler('sendMessageToApp', {type:17, data:{accessToken:LocalStorage.get('token')}}, (response)=> {
+
+
+
+            if (response.code == 0) {
+
+
+
+
+
+                cb(response.ids);
+
+                // document.body.innerHTML=333
+
+
+            } else {
+                Toast.toast(response.desc, 3000)
+            }
+        });
     }
 
 
