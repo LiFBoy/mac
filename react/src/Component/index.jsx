@@ -189,7 +189,7 @@ class Index extends React.Component {
                     }
                 </div>
 
-                <Foot type="1"></Foot>
+                {/*<Foot type="1"></Foot>*/}
             </div>
         )
     }

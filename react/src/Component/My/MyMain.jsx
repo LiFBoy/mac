@@ -259,7 +259,7 @@ class MyMain extends React.Component {
 
                 </App>
 
-                <Foot type="3"></Foot>
+                {/*<Foot type="3"></Foot>*/}
             </div>
         )
     }
