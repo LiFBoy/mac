@@ -20,6 +20,16 @@
 <div id="content"></div>
 
 <script>
+
+    document.addEventListener('WebViewJavascriptBridgeReady', function (event) {
+        var bridge = event.bridge;
+        bridge.init(function (message, responseCallback) {
+            responseCallback(data)
+        });
+        window.g_bridge= bridge;
+    }, false);
+
+
     function setupWebViewJavascriptBridge(callback) {
         if (window.WebViewJavascriptBridge) { return callback(WebViewJavascriptBridge); }
         if (window.WVJBCallbacks) { return window.WVJBCallbacks.push(callback); }

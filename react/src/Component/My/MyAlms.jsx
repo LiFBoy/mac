@@ -1,43 +1,78 @@
-'usr strict';
+'use strict';
 
 import React, {Component, PropTypes}  from 'react';
 
 import kaoqin from '../../../src/images/kaoqin.png'
 import jsBridge from '../../jsBridge'
+import LocalStorage from '../../LocalStorage'
+import {HttpService,FormDate,FormMoney} from '../../utils'
 class MyAlms extends React.Component {
     constructor() {
         super();
 
         this.state ={
-            type:1
+            type:1,
+            dailies:[],
+            history:[]
         };
 
     }
 
+
+
     componentWillMount(){
         jsBridge.getBrideg(()=>{
             jsBridge.setTitle('我的日善')
+        });
+
+        this.recentDailies();
+    }
+
+    async historyDailies(){
+        const code=await HttpService.query({
+            url:'/v1/p/user/daily/history',
+            data:{
+                accessToken:LocalStorage.get('token')
+            }
+        });
+
+        this.setState({
+            history:code.dailies
+        })
+
+
+    }
+
+    async recentDailies(){
+        const code=await HttpService.query({
+            url:'/v1/p/user/recent/dailies',
+            data:{
+                accessToken:LocalStorage.get('token')
+            }
+        });
+
+        this.setState({
+            dailies:code.dailies
         })
     }
 
     createLogin(){
+        const {dailies}=this.state;
         return (
+
             <div className="app-padding-l24 ">
-                <div className="step border-bottom app-white">
-                    <div className="s-flex2" style={{flexDirection: 'column', alignItems: 'flex-start'}}>
-                        <div className="app-333-font32 pt30 app-line-height-one">灵隐寺日善</div>
-                        <div className="app-999-font24 pt12 pb26 app-line-height-one">2016-12-19 20:22</div>
-                    </div>
-                    <div className="s-flex1 s-j-end app-padding-r24 app-333-font32">1元</div>
-                </div>
-                <div className="step border-bottom app-white">
-                    <div className="s-flex2" style={{flexDirection: 'column', alignItems: 'flex-start'}}>
-                        <div className="app-333-font32 pt24 app-line-height-one">灵隐寺日善</div>
-                        <div className="app-666-font24 pt20 pb16 app-line-height-one">我我我我我我我我我我多我我我我我</div>
-                        <div className="app-999-font24 pb24 app-line-height-one">2016-12-19 20:22</div>
-                    </div>
-                    <div className="s-flex1 s-j-end app-padding-r24 app-333-font32">1元</div>
-                </div>
+
+                {
+                    dailies.length!=0?dailies.map((json,index)=>(
+                        <div className="step border-bottom app-white" key={index}>
+                            <div className="s-flex2" style={{flexDirection: 'column', alignItems: 'flex-start'}}>
+                                <div className="app-333-font32 pt30 app-line-height-one">{json.templeName}</div>
+                                <div className="app-999-font24 pt12 pb26 app-line-height-one">{FormDate.formatDate(json.gmtCreate)}</div>
+                            </div>
+                            <div className="s-flex1 s-j-end app-padding-r24 app-333-font32">{FormMoney.yuanFen(json.amount)}元</div>
+                        </div>
+                    )):''
+                }
             </div>
         )
     }

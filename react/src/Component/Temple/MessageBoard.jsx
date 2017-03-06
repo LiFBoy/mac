@@ -1,4 +1,4 @@
-'usr strict';
+'use strict';
 
 import React from 'react';
 
@@ -12,7 +12,7 @@ import chunk3 from '../../../src/images/temple/chunk3.png'
 import pac from '../../../src/images/temple/praise－active.png'
 import comments from '../../../src/images/temple/comments.png'
 import face from '../../../src/images/temple/face.png'
-import {HttpService} from '../../utils'
+import {HttpService,Toast} from '../../utils'
 import LocalStorage from '../../LocalStorage'
 import jsBridge from '../../jsBridge'
 import App from '../app'
@@ -22,7 +22,7 @@ class MessageBoard extends React.Component {
         super();
         this.state = {
             messages: [],
-            userInfo: {}
+            info:{}
         };
 
     }
@@ -36,17 +36,40 @@ class MessageBoard extends React.Component {
 
     }
 
+    async info(){
+        let code = await HttpService.query({
+            url: '/v1/temple/info',
+            data: {
+                id:this.props.params.id
+            }
+        });
+        console.log(code);
+        this.setState({
+            info:code
+        })
+
+    }
+
     async createMessage(){
+
+        const content=this.refs.creactMsg.value;
+        if(!content){
+            Toast.toast('请输入评论内容',3000);
+            return;
+        }
         const code=await HttpService.saveJson({
             url:'/v1/p/user/create/leave/message?accessToken='+LocalStorage.get('token')+'',
             data:{
-                content:document.getElementById('creact-msg').value,
+                content:content,
                 templeId: this.props.params.id
             }
         });
+        if(!!code){
+            this.refs.creactMsg.value='';
+            Toast.toast('评论成功',3000);
+            this.messages();
+        }
 
-        document.getElementById('creact-msg').innerHTML='';
-        this.messages();
 
     }
 
@@ -56,7 +79,7 @@ class MessageBoard extends React.Component {
             data:{
                 id:id
             }
-        })
+        });
 
         this.messages();
     }
@@ -68,20 +91,20 @@ class MessageBoard extends React.Component {
 
 
 
-    async info() {
-        let code = await HttpService.query({
-            url: '/v1/p/user/info',
-            data: {
-                accessToken: LocalStorage.get('token')
-            }
-        });
-        this.setState({
-            userInfo: {
-                username: code.username,
-                residence: code.residence
-            }
-        })
-    }
+    // async info() {
+    //     let code = await HttpService.query({
+    //         url: '/v1/p/user/info',
+    //         data: {
+    //             accessToken: LocalStorage.get('token')
+    //         }
+    //     });
+    //     this.setState({
+    //         userInfo: {
+    //             username: code.username,
+    //             residence: code.residence
+    //         }
+    //     })
+    // }
 
     async messages() {
         let code = await HttpService.query({
@@ -96,20 +119,20 @@ class MessageBoard extends React.Component {
     }
 
     render() {
-        const {messages, userInfo}=this.state;
+        const {messages,info}=this.state;
         return (
             <div>
             <div className="app-container" style={{position: 'relative'}}>
 
                 <div className="step app-padding-lr24 message-board">
 
-                    <div className="img"><img src="http://img4.imgtn.bdimg.com/it/u=398347842,2770887580&fm=23&gp=0.jpg"
+                    <div className="img"><img src={info.headImgUrl}
                                               className="app-wh100-all-radius"/></div>
 
                     <div className="s-right s-j-center" style={{flexDirection: 'column', alignItems: 'flex-start'}}>
-                        <div className="app-333-font30 app-line-height-one">{userInfo.username}</div>
+                        <div className="app-333-font30 app-line-height-one">{info.name}</div>
                         <div className="app-999-font22 app-line-height-one"
-                             style={{paddingTop: '24px'}}>{userInfo.residence}</div>
+                             style={{paddingTop: '24px'}}>{info.location}</div>
                     </div>
                 </div>
 
@@ -211,7 +234,7 @@ class MessageBoard extends React.Component {
 
 
                     <div className="s-flex1">
-                        <input id="creact-msg" type="text" placeholder="你的留言" className="face-input"/>
+                        <input ref="creactMsg" type="text" placeholder="你的留言" className="face-input"/>
                     </div>
 
                     <div className="step app-padding-l24" style={{alignItems:'center'}} onClick={this.createMessage.bind(this)}>

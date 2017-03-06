@@ -1,4 +1,4 @@
-'usr strict';
+'use strict';
 
 import React from 'react';
 
@@ -7,6 +7,7 @@ import React from 'react';
 import {Router, Route, IndexRoute, browserHistory, Link} from 'react-router';
 import jsBridge from '../../jsBridge'
 import LocalStorage from '../../LocalStorage'
+import App from '../app'
 class DayPay extends React.Component {
     constructor() {
         super();
@@ -18,23 +19,33 @@ class DayPay extends React.Component {
     }
 
     componentWillMount(){
-        LocalStorage.add('money',1)
+
+        jsBridge.getBrideg(()=>{
+            jsBridge.setTitle('日善')
+        })
+
+        this.setState({
+            money:1
+        });
+
+      //  LocalStorage.add('money',1)
     }
 
     money(e){
         let value=e.target.value;
-
         this.setState({
             money:value
         });
-
-        LocalStorage.add('money',this.state.money)
-
     }
 
-    componentWillMount(){
+    gowish(){
         jsBridge.getBrideg(()=>{
-            jsBridge.setTitle('日善')
+            window.g_bridge.callHandler('sendMessageToApp', {
+                    type: 2, data: {url: 'http://172.27.35.4:3002/index.html#/wish/2/'+this.state.money+'/'+this.props.params.id+''}
+                },
+                (response)=> {
+
+                })
         })
     }
 
@@ -97,11 +108,11 @@ class DayPay extends React.Component {
 
 
                 </div>
-                <Link to={'/wish/1/'+this.props.params.id} className='app-a'>
+                <App cb={this.gowish.bind(this)}>
                 <div className="step app-yellow-radius-check-button" style={{height:'100px'}}>
                     <div className="s-center">行日善</div>
                 </div>
-                </Link>
+                </App>
             </div>
         )
     }

@@ -1,4 +1,4 @@
-'usr strict';
+'use strict';
 
 import React, {Component, PropTypes} from 'react';
 
@@ -23,91 +23,50 @@ import App from './app';
 import LocalStorage from '../LocalStorage'
 
 
-
 class IndexFocus extends React.Component {
     constructor() {
         super();
-        this.state={
-            temples:[]
+        this.state = {
+            temples: []
         }
     }
 
-    componentWillMount(){
+    componentWillMount() {
 
-        this.temples();
+        if (!LocalStorage.get('token')) {
+            window.location.href = '/index.html#/login'
+        } else {
+            this.temples();
+        }
+    }
 
+    async temples() {
+        console.log(LocalStorage.get('token'));
+        let code = await HttpService.query({
+            url: '/v1/p/user/get/focus/temples',
+            data: {accessToken: LocalStorage.get('token')}
+        });
 
+        console.log(code);
 
-        // var w;
-        //
-        // if(typeof(Worker)!=="undefined")
-        // {
-        //     if(typeof(w)=="undefined")
-        //     {
-        //         w=new Worker('/dist/worker.js');
-        //         w.postMessage(36);
-        //
-        //         w.onmessage=(event)=>{
-        //             console.log(event.data)
-        //             if (!LocalStorage.get('token')) {
-        //
-        //
-        //                 jsBridge.getBrideg(()=>{
-        //
-        //                     //document.body.innerHTML=window.g_bridge;
-        //                     // jsBridge.sendMessageToApp_type_2('login')
-        //                     window.location.href='/index.html#/login'
-        //                 });
-        //
-        //
-        //
-        //             }else{
-        //                 this.temples();
-        //             }
-        //         };
-        //
-        //
-        //         w.onerror = function(event) {
-        //             console.log(event.filename, event.lineno, event.message);
-        //         };
-        //     }
-        //
-        //
-        //
-        // }
-
-
+        this.setState({
+            temples: code.temples
+        })
 
 
     }
 
-    async temples(){
-        console.log(LocalStorage.get('token'))
-            let code=await HttpService.query({
-                url:'/v1/p/user/get/focus/temples',
-                data:{accessToken:LocalStorage.get('token')}
-            })
-
-            console.log(code)
-
-            this.setState({
-                temples:code.temples
-            })
-
-
-    }
-
-    TempleDetail(id,name){
+    TempleDetail(id, name) {
         window.g_bridge.callHandler('sendMessageToApp', {
-                type: 2, data: {url: 'http://172.27.35.4:3002/index.html#/TempleDetail/'+id+'/'+name+''}},
-            (response)=>{
+                type: 2, data: {url: 'http://172.27.35.4:3002/index.html#/TempleDetail/' + id + '/' + name + ''}
+            },
+            (response)=> {
 
             })
     }
 
 
-
-    render(){
+    render() {
         const {temples} =this.state;
         return (
             <div className="app-container">
@@ -115,10 +74,10 @@ class IndexFocus extends React.Component {
                 <div className="index-container">
 
                     {
-                        temples.length!=0?temples.map((json,index)=>(
+                        temples.length != 0 ? temples.map((json, index)=>(
 
                             <div key={index}>
-                            <App cb={this.TempleDetail.bind(this,json.id,json.name)}>
+                                <App cb={this.TempleDetail.bind(this, json.id, json.name)}>
                                     <div className="temple-content">
                                         <div className="con-img">
                                             <div className="img-content">
@@ -133,7 +92,6 @@ class IndexFocus extends React.Component {
 
                                                     <img className="img" src={alms}/>
                                                     <div className="number padding-right-32">{json.dailyNumber}</div>
-
 
 
                                                     <img className="img" src={like}/>
@@ -153,15 +111,9 @@ class IndexFocus extends React.Component {
                                         </div>
                                     </div>
                                 </App>
-                                </div>
-                            )):''
+                            </div>
+                        )) : ''
                     }
-
-
-
-
-
-
 
 
                 </div>
@@ -169,8 +121,6 @@ class IndexFocus extends React.Component {
         )
     }
 }
-
-
 
 
 const mapStateToProps = state => {

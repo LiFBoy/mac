@@ -47,6 +47,7 @@ import DayPay from './Component/Temple/DayPay';
 import UnderstandDetail from './Component/Temple/UnderstandDetail';
 import Pay from './Component/Temple/Pay';
 import PayRecord from './Component/Temple/PayRecord';
+import dailyRecord from './Component/Temple/dailyRecord';
 import wish from './Component/Temple/wish';
 import Replies from './Component/Temple/Replies';
 
@@ -118,7 +119,7 @@ const RouteConfig = (
 
 
             <Route path="/TempleDetail/:id/:name" component={TempleDetail} />
-            <Route path="/PaySuccess" component={PaySuccess} />
+            <Route path="/PaySuccess/:id" component={PaySuccess} />
             <Route path="/PayMoney" component={PayMoney} />
             <Route path="/FocusLists/:id" component={FocusLists} />
             <Route path="/MessageBoard/:id" component={MessageBoard} />
@@ -126,7 +127,7 @@ const RouteConfig = (
             <Route path="/AlmsDetail/:id" component={AlmsDetail} />
             <Route path="/SelectMoney" component={SelectMoney} />
             <Route path="/CommentLists/:id/:type" component={CommentLists} />
-            <Route path="/wish/:type/:id" component={wish} />
+            <Route path="/wish/:type/:money/:id" component={wish} />
 
 
             <Route path="/Temple" component={Temple} />
@@ -136,7 +137,8 @@ const RouteConfig = (
             <Route path="/DayPay/:id" component={DayPay} />
             <Route path="/UnderstandDetail/:id" component={UnderstandDetail} />
             <Route path="/Pay/:id" component={Pay} />
-            <Route path="/PayRecord" component={PayRecord} />
+            <Route path="/PayRecord/:id" component={PayRecord} />
+            <Route path="/dailyRecord/:id" component={dailyRecord} />
 
             <Route path="/OperatIndex" component={OperatIndex} />
             <Route path="/SettingWord" component={SettingWord} />

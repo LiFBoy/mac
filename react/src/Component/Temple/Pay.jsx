@@ -1,4 +1,4 @@
-'usr strict';
+'use strict';
 
 import React from 'react';
 import Popup from '../popup'
@@ -8,6 +8,9 @@ import LocalStorage from '../../LocalStorage'
 import close from '../../../src/images/temple/close.png'
 
 import {Router, Route, IndexRoute, browserHistory, Link} from 'react-router';
+
+import jsBridge from '../../jsBridge'
+import App from '../app'
 class Pay extends React.Component {
     constructor(props) {
         super(props);
@@ -24,7 +27,8 @@ class Pay extends React.Component {
                 oneHundred: 100,
                 twoHundred: 200,
                 fiveHundred: 500
-            }
+            },
+            selectMoney:''
         };
 
         // this.state['outkey'] = {
@@ -85,17 +89,15 @@ class Pay extends React.Component {
 
 
     componentWillMount() {
-        //     this.setState({
-        //         value:{['outkey']:'sb'}
-        //     })
-        //
-        // console.log(this.state.value)
+        this.setState({
+            selectMoney:1
+        })
 
 
     }
 
     componentDidMount(){
-        LocalStorage.add('money',1);
+
         this.selectPayMoney();
     }
 
@@ -120,7 +122,7 @@ class Pay extends React.Component {
     }
 
     otherMoney() {
-        this.refs.InputMoney.value = '';
+      //  this.refs.InputMoney.value = '';
         this.setState({
             admin: {
                 flag: true,
@@ -130,29 +132,40 @@ class Pay extends React.Component {
     }
 
     selectPayMoney(){
-        var dom=document.getElementById('pay-content')
+        var dom=document.getElementById('pay-content');
         var node=dom.children;
-        console.log(node)
-        for(var i=0;i<node.length;i++){
-            node[i].onclick=function () {
+        console.log(node);
 
-                for(var j=0;j<node.length;j++){
-                    node[j].className='app-margin-right20 pay-chunk'
+        var self=this;
+
+        for(var i=0;i<node.length;i++) {
+            node[i].onclick = function () {
+                for (var j = 0; j < node.length; j++) {
+                    node[j].className = 'app-margin-right20 pay-chunk'
                 }
-                this.className='app-margin-right20 pay-active-chunk'
+                this.className = 'app-margin-right20 pay-active-chunk';
 
 
-               var value= this.getElementsByTagName('span')[0].innerHTML;
-                console.log(value)
+                var value = this.getElementsByTagName('span')[0].innerHTML;
+                console.log(value);
 
-                LocalStorage.add('money',value);
-
-
-
-
+                self.setState({
+                    selectMoney:value
+                })
 
             }
         }
+    }
+
+    gowish(){
+        jsBridge.getBrideg(()=>{
+            window.g_bridge.callHandler('sendMessageToApp', {
+                    type: 2, data: {url: 'http://172.27.35.4:3002/index.html#/wish/2/'+this.state.selectMoney+'/'+this.props.params.id+''}
+                },
+                (response)=> {
+
+                })
+        })
     }
 
 
@@ -261,14 +274,14 @@ class Pay extends React.Component {
                         </div>
                     </div>
                 </div>
-                <Link to={'/wish/2/'+this.props.params.id} className="app-a">
+                <App cb={this.gowish.bind(this)} >
                     <div className="step app-yellow-radius-check-button" style={{height: '100px'}}>
 
 
                         <div className="s-center">供养</div>
 
                     </div>
-                </Link>
+                </App>
             </div>
         )
     }

@@ -1,4 +1,4 @@
-'usr strict';
+'use strict';
 
 import React from 'react';
 
@@ -14,6 +14,8 @@ import pac from '../../../src/images/temple/praise－active.png'
 import comments from '../../../src/images/temple/comments.png'
 
 import {HttpService} from '../../utils'
+import LocalStorage from '../../LocalStorage'
+import jsBridge from '../../jsBridge'
 
 class Temple extends React.Component {
     constructor() {
@@ -25,27 +27,54 @@ class Temple extends React.Component {
 
     componentWillMount() {
 
+
         this.status();
+
+
 
     }
 
     async status(){
+
         let code = await HttpService.query({
-            url: '/v1/public/get/temple/status',
-            data: {
-                templeId:'1'
+            url: '/v1/p/notify/get/temple/status',
+            data:{
+                accessToken:LocalStorage.get('token')
             }
         });
-        console.log(code)
+        console.log(code);
 
         this.setState({
-            templeStatuses:code.templeStatuses
+            templeStatuses:code.statuses
         })
     }
+    async upvoteStatus(id){
+        let code = await HttpService.saveJson({
+            url: '/v1/p/user/upvote/temple/status?accessToken=' + LocalStorage.get('token') + '',
+            data: {
+                id:id
+            }
+        });
+        console.log(code);
+        this.status();
+
+
+    }
+
+    sendMessageToApp_type_2(id){
+
+        jsBridge.getBrideg(()=>{
+            jsBridge.sendMessageToApp_type_2('CommentLists',id,'CommentLists')
+        })
+    }
+
+
 
     render(){
 
         const {templeStatuses}=this.state;
+
+        console.log(templeStatuses)
         return (
 
             <div className="temple-container app-container">
@@ -54,14 +83,14 @@ class Temple extends React.Component {
                 <div className="middle">
 
                     {
-                        templeStatuses.map((json,index)=>(
+                        templeStatuses.length!=0?templeStatuses.map((json,index)=>(
                             <div className="dynamic-content app-padding-lr24" key={index}>
                                 <div className="step temple-name">
                                     <div>
-                                        <div className="temple-img"><img className="app-wh100-all-radius" src="http://pic.58pic.com/58pic/11/52/20/45s58PICVat.jpg"/></div>
+                                        <div className="temple-img"><img className="app-wh100-all-radius" src={json.templeImgUrl}/></div>
                                     </div>
                                     <div className="s-right s-j-center" style={{flexDirection: 'column', alignItems: 'flex-start'}}>
-                                        <div className="app-333-font28 app-line-height-one">灵隐寺</div>
+                                        <div className="app-333-font28 app-line-height-one">{json.templeName}</div>
                                         <div className="app-999-font24 app-line-height-one" style={{paddingTop:'12px'}}>{json.timeStr}</div>
                                     </div>
                                 </div>
@@ -75,13 +104,13 @@ class Temple extends React.Component {
 
                                     <div className="step" style={{paddingTop:'24px'}}>
                                         <div className="s-flex1" style={{flexWrap:'wrap'}}>
-                                            {
-                                                json.pictures.map((json,index)=>(
-                                                    <div className="upload-img">
-                                                        <img src={json} className="app-wh100-all" />
-                                                    </div>
-                                                ))
-                                            }
+                                            {/*{*/}
+                                                {/*json.pictures.map((json,index)=>(*/}
+                                                    {/*<div className="upload-img">*/}
+                                                        {/*<img src={json} className="app-wh100-all" />*/}
+                                                    {/*</div>*/}
+                                                {/*))*/}
+                                            {/*}*/}
                                         </div>
                                     </div>
                                 </div>
@@ -89,18 +118,21 @@ class Temple extends React.Component {
 
                                     <div className="s-flex1 s-j-end">
 
+                                        <div className="step" onClick={this.upvoteStatus.bind(this,json.templeStatusId)}>
+
                                         <img className="img" src={pac}/>
                                         <div className="number app-999-font24 padding-right-40">{json.upvoteNumber}</div>
 
-
-
+                                        </div>
+                                        <div className="step" onClick={this.sendMessageToApp_type_2.bind(this,json.templeStatusId)}>
                                         <img className="img" src={comments}/>
-                                        <div className="number app-999-font24">{json.commentNumber}</div>
+                                        <div className="number app-999-font24">{json.myComments.length}</div>
+                                            </div>
 
                                     </div>
                                 </div>
                             </div>
-                        ))
+                        )):''
                     }
 
 

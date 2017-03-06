@@ -1,4 +1,4 @@
-'usr strict';
+'use strict';
 
 import React from 'react';
 
@@ -13,9 +13,10 @@ import chunk3 from '../../../src/images/temple/chunk3.png'
 import pac from '../../../src/images/temple/praise－active.png'
 import comments from '../../../src/images/temple/comments.png'
 
-import {HttpService} from '../../utils';
+import {HttpService,Toast} from '../../utils';
 import LocalStorage from '../../LocalStorage'
 import Popup from '../popup'
+import jsBridge from '../../jsBridge'
 
 class Coments extends React.Component {
     constructor() {
@@ -92,17 +93,44 @@ class Coments extends React.Component {
     }
 
 
-    componentWillMount() {
+    componentDidMount() {
 
+
+        Toast.toast(LocalStorage.get('token'),4000);
         this.comments();
     }
 
     reply() {
-        window.location.href='/index.html#/reply/'+ this.state.admin.id + ''
+
+
+        jsBridge.getBrideg(()=>{
+            jsBridge.sendMessageToApp_type_2('reply',this.state.admin.id)
+            this.setState({
+                admin: {
+                    flag: false,
+                    _flag: false
+                }
+            });
+        });
+        // window.location.href='/index.html#/reply/'+ this.state.admin.id + ''
     }
 
     detail(){
-        window.location.href='/index.html#/commentlists/'+this.state.admin.id+'/detail'
+        jsBridge.getBrideg(()=>{
+            jsBridge.sendMessageToApp_type_2('commentlists',this.state.admin.id,'detail');
+
+            this.setState({
+                admin: {
+                    flag: false,
+                    _flag: false
+                }
+            })
+        });
+
+
+
+
+        // window.location.href='/index.html#/commentlists/'+this.state.admin.id+'/detail'
     }
 
     popup(id) {
@@ -147,7 +175,7 @@ class Coments extends React.Component {
                                     <div className="step temple-name">
                                         <div>
                                             <div className="temple-img"><img className="app-wh100-all-radius"
-                                                                             src="http://pic.58pic.com/58pic/11/52/20/45s58PICVat.jpg"/>
+                                                                             src={json.userHeadImgUrl}/>
                                             </div>
                                         </div>
                                         <div className="s-right s-j-center"

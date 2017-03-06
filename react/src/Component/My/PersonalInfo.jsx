@@ -1,4 +1,4 @@
-'usr strict';
+'use strict';
 
 import React from 'react';
 import {HttpService,Toast,Tool} from '../../utils';
@@ -12,11 +12,11 @@ class PersonalInfo extends React.Component {
         this.state={
             userInfo:{},
             editInfo:{
-                username:'',
-                sex:'',
-                age:'',
-                residence:'',
-                zen:''
+                // username:'',
+                // sex:'',
+                // age:'',
+                // residence:'',
+                // zen:''
             },
             title:''
         };

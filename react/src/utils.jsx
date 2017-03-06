@@ -1,4 +1,4 @@
-'usr strict';
+'use strict';
 import LocalStorage from './LocalStorage'
 export  class HttpService {
     static query(config) {
@@ -220,13 +220,19 @@ export  class HttpService {
 }
 
 export  class Toast{
-    static toast(msg,duration){
+    static toast(msg,duration,bottom){
+
+      if(!bottom){
+          bottom='5rem'
+      }else{
+          bottom='15rem'
+      }
         duration=isNaN(duration)?3000:duration;
         var m = document.createElement('div');
         m.innerHTML = msg;
-        m.style.cssText="width:20rem;opacity:0.5; height:40px; color:#fff; line-height:40px; " +
-            "text-align:center; border-radius:1rem; position:fixed; bottom:5rem; left:50%; z-index:999999; " +
-            "font-weight:bold; filter: alpha(opacity=80); background: #000;margin-left: -10rem;";
+        m.style.cssText='width:20rem;opacity:0.5; height:40px; color:#fff; line-height:40px; ' +
+            'text-align:center; border-radius:1rem; position:fixed; bottom:'+bottom+'; left:50%; z-index:999999; ' +
+            'font-weight:bold; filter: alpha(opacity=80); background: #000;margin-left: -10rem;';
         document.body.appendChild(m);
         setTimeout(function() {
             var d = 0.5;
@@ -236,6 +242,41 @@ export  class Toast{
         }, duration);
     }
 }
+
+export class FormDate{
+    static formatDate(now) {
+        var year = now.getFullYear();
+        var month = now.getMonth() + 1;
+        var date = now.getDate();
+        var hour = now.getHours();
+        var minute = now.getMinutes();
+        var second = now.getSeconds();
+        return year + "-" + month + "-" + date + "   " + hour + ":" + minute + ":" + second;
+    }
+
+    static time(timestamp3){
+        var newDate = new Date(timestamp3 * 1000);
+        return FormDate.formatDate(newDate);
+
+    }
+
+
+}
+
+export class FormMoney{
+    static yuanFen(money) {
+
+        return money *100
+    }
+
+    static fenYuan(money){
+       return money * 0.01
+    }
+
+
+}
+
+
 
 
 export class Tool{

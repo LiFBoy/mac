@@ -18,6 +18,15 @@ export default class jsBridge {
                 })
     }
 
+    static goBack(){
+        window.g_bridge.callHandler('sendMessageToApp', {
+                type: 1
+            },
+            (response)=> {
+
+            })
+    }
+
     static sendMessageToApp_type_2(type,...option){
 
         if(option.length==0){
@@ -79,12 +88,7 @@ export default class jsBridge {
             if (response.code == 0) {
 
 
-
-
-
-                cb(response.ids);
-
-                // document.body.innerHTML=333
+                cb(response.ids,response.base64StringOfImage);
 
 
             } else {

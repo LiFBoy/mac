@@ -1,4 +1,4 @@
-'usr strict';
+'use strict';
 
 import React from 'react';
 
@@ -16,7 +16,9 @@ class ReplaceBanner extends React.Component {
         super();
         this.state={
             banners:[],
-            bannerPic:[]
+            bannerPic:[],
+            ids:[],
+            base64:[]
         }
     }
 
@@ -26,9 +28,6 @@ class ReplaceBanner extends React.Component {
             jsBridge.setTitle('更换banner')
         })
     }
-
-
-
     async banners(){
         const code=await HttpService.query({
             url:"/v1/public/get/banners",
@@ -54,9 +53,16 @@ class ReplaceBanner extends React.Component {
     }
 
     bannerPic(){
-        jsBridge.uploadImg((ids)=>{
+
+
+        this.setState({
+            bannerPic:[],
+            base64:[],
+        });
+        jsBridge.uploadImg((ids,base64)=>{
             this.setState({
-                bannerPic:ids
+                bannerPic:this.state.bannerPic.concat(ids),
+                base64:this.state.base64.concat(base64),
             })
         })
     }
@@ -66,7 +72,7 @@ class ReplaceBanner extends React.Component {
             data:{
                 id:id
             }
-        })
+        });
 
         this.banners();
     }
@@ -86,7 +92,9 @@ class ReplaceBanner extends React.Component {
                     <div className="step" style={{height: '15rem'}}>
                         <div className="s-left app-666-font28" style={{height: '15rem'}}>图片：</div>
                         <div className="s-right app-input-edit" style={{height: '15rem'}} onClick={this.bannerPic.bind(this)}>
-                            <img src="http://img.taopic.com/uploads/allimg/120222/34250-12022209414087.jpg"
+
+
+                            <img src={this.state.bannerPic.length!=0?'data:image/png;base64,'+this.state.base64[0]:''}
                                  className="app-all-img"/>
                         </div>
                     </div>

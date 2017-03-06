@@ -1,4 +1,4 @@
-'usr strict';
+'use strict';
 
 import React, {Component, PropTypes} from 'react';
 
@@ -35,6 +35,7 @@ class Index extends React.Component {
     }
 
     componentWillMount() {
+
 
 
         this.hot();

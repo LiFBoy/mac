@@ -1,4 +1,4 @@
-'usr strict';
+'use strict';
 
 import React from 'react';
 import {Router, Route, IndexRoute, browserHistory, Link} from 'react-router';

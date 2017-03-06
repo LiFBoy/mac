@@ -28,6 +28,7 @@ class Login extends React.Component {
         this.countdown = []
     }
 
+
     componentDidMount() {
 
     }
@@ -55,11 +56,12 @@ class Login extends React.Component {
             val: val,
         });
         if (!val) {
-            Toast.toast('手机号不能为空', 3000);
+
+            Toast.toast('手机号不能为空', 3000,'bottom');
 
             return false;
         } else if (!patt.test(val)) {
-            Toast.toast('手机号不正确，请重新输入', 3000);
+            Toast.toast('手机号不正确，请重新输入', 3000,'bottom');
             return false;
         }
 
@@ -78,7 +80,7 @@ class Login extends React.Component {
             return;
         }
 
-        let self = this;
+       // let self = this;
         try {
             let code = await HttpService.save({
                 url: "/v1/public/send/verify/code",
@@ -86,25 +88,25 @@ class Login extends React.Component {
             });
             console.log(code);
 
-            self.setState({
+            this.setState({
                 disabled: true,
                 text: '59s后重新获取',
                 timer: 59,
             });
 
 
-            self.countdown = setInterval(function () {
-                var tt = self.state.timer - 1;
+            this.countdown = setInterval( ()=> {
+                var tt = this.state.timer - 1;
                 if (tt <= 0) {
-                    self.setState({
+                    this.setState({
                         disabled: false,
                         text: '获取验证码',
                         timer: 60,
                     });
-                    clearInterval(self.countdown);
+                    clearInterval(this.countdown);
                     return;
                 }
-                self.setState({
+                this.setState({
                     disabled: true,
                     text: tt + 's后重新获取',
                     timer: tt,
@@ -132,9 +134,17 @@ class Login extends React.Component {
 
         LocalStorage.add('token', result.accessToken);
 
-        Toast.toast(LocalStorage.get('token'),30000);
+        // this.toast(LocalStorage.get('token'),30000);
 
-        console.log(LocalStorage.get('token'))
+        //console.log(LocalStorage.get('token'));
+
+        if(!!result){
+           // this.toast('sss',10000);
+
+            clearInterval(this.countdown);
+            window.history.go(-1);
+        }
+
     }
 
 
@@ -143,7 +153,7 @@ class Login extends React.Component {
         let {val, code}=this.state;
 
         return (
-            <div className="app-login app-padding-lr24">
+            <div className="app-login app-padding-lr24" ref='_login'>
                 <form>
                     <div className="step">
                         <div className="s-center">

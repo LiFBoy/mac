@@ -1,4 +1,4 @@
-'usr strict';
+'use strict';
 
 import React from 'react';
 import myalms from '../../../src/images/temple/myalms.png'
@@ -28,13 +28,13 @@ class TempleDetail extends React.Component {
     }
 
     componentWillMount() {
+
         jsBridge.getBrideg(()=>{
             jsBridge.setTitle(this.props.params.name)
         });
 
-      // document.body.innerHTML=11111
+        LocalStorage.add('templeName',this.props.params.name);
         this.info();
-
         this.status();
         this.latestCollections();
 
@@ -143,7 +143,7 @@ class TempleDetail extends React.Component {
     }
     PayRecord(){
         window.g_bridge.callHandler('sendMessageToApp', {
-                type: 2, data: {url: 'http://172.27.35.4:3002/index.html#/PayRecord'}},
+                type: 2, data: {url: 'http://172.27.35.4:3002/index.html#/PayRecord/'+this.props.params.id+''}},
             (response)=>{
 
             })
@@ -163,25 +163,11 @@ class TempleDetail extends React.Component {
             })
     }
     CommentLists(id,...option){
-        console.log(option);
-        const [timeStr,content,pictures] =option;
-        const obj={
-            timeStr:timeStr,
-            content:content,
-            pictures:pictures
+            window.g_bridge.callHandler('sendMessageToApp', {
+                    type: 2, data: {url: 'http://172.27.35.4:3002/index.html#/CommentLists/'+id+'/commentLists'}},
+                (response)=>{
 
-        };
-
-         const  _obj=JSON.stringify(obj);
-        LocalStorage.add('obj',_obj);
-
-
-        //Toast.toast(LocalStorage.get('token'),2000);
-        window.g_bridge.callHandler('sendMessageToApp', {
-                type: 2, data: {url: 'http://172.27.35.4:3002/index.html#/CommentLists/'+id+'/commentLists'}},
-            (response)=>{
-
-            })
+                })
     }
 
 
@@ -200,7 +186,7 @@ class TempleDetail extends React.Component {
          //   window.location.href = '/index.html#/MessageBoard/'+ this.props.params.id + ''
         } else if (type == 3) {
            // window.location.href = "/index.html#/PayRecord"
-            jsBridge.sendMessageToApp_type_2('PayRecord');
+            jsBridge.sendMessageToApp_type_2('dailyRecord',id);
         }
 
 
@@ -230,7 +216,7 @@ class TempleDetail extends React.Component {
                     <div className="step">
                         <div className="s-center">
                             <div className="goAlms step">
-                                <App cb={this.DayPay} class="s-flex1">
+                                <App cb={this.DayPay.bind(this)} class="s-flex1">
                                 <div className="s-flex1 app-padding-l24">
                                     <div><img className="img" src={myalms}/></div>
                                     <div className="app-333-font28" style={{paddingLeft:'14px'}}>去日善></div>
@@ -267,7 +253,7 @@ class TempleDetail extends React.Component {
                         </div>
                         <div className="s-flex1 s-j-center s-flex-d" onClick={this.changeType.bind(this,3)}>
                             <div><img src={chunk3}/></div>
-                            <div className="pdt app-666-font24">0</div>
+                            <div className="pdt app-666-font24">{info.dailyNumber}</div>
                         </div>
                     </div>
 
@@ -332,11 +318,11 @@ class TempleDetail extends React.Component {
                                     <div className="step temple-name">
                                         <div>
                                             <div className="temple-img">
-                                                <img src="" className="app-wh100-all-radius"/>
+                                                <img src={json.pictures[0]} className="app-wh100-all-radius"/>
                                             </div>
                                         </div>
                                         <div className="s-right s-j-center" style={{flexDirection: 'column', alignItems: 'flex-start'}}>
-                                            <div className="app-333-font28 app-line-height-one">灵隐寺</div>
+                                            <div className="app-333-font28 app-line-height-one">{info.name}</div>
                                             <div className="app-999-font24 app-line-height-one" style={{paddingTop:'12px'}}>{json.timeStr}</div>
                                         </div>
                                     </div>
@@ -344,6 +330,19 @@ class TempleDetail extends React.Component {
                                     <div className="step temple-content">
                                         <div className="s-flex1 app-333-font28">
                                             {json.content}
+                                        </div>
+                                    </div>
+
+                                    <div className="step temple-content" style={{paddingTop: '24px'}}>
+                                        <div className="s-flex1" style={{flexWrap: 'wrap'}}>
+
+                                            {
+                                            json.pictures.length!=0?json.pictures.map((json,index)=>(
+                                            <div className="upload-img" key={index}>
+                                            <img src={json}  className="app-wh100-all"/>
+                                            </div>
+                                            )):''
+                                            }
                                         </div>
                                     </div>
 
@@ -358,7 +357,7 @@ class TempleDetail extends React.Component {
                                                 <div className="s-flex1 number app-999-font24 padding-right-40">{json.upvoteNumber}</div>
                                             </div>
 
-                                        <App  cb={this.CommentLists.bind(this,json.id,json.timeStr,json.content,json.pictures)}  class="step" >
+                                        <App  cb={this.CommentLists.bind(this,json.id,json.timeStr,json.content,json.pictures,info.name)}  class="step" >
                                             <img className="img" src={comments}/>
                                             <div className="s-flex1 number app-999-font24">{json.commentNumber}</div>
                                         </App>

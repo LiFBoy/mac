@@ -1,4 +1,4 @@
-'usr strict';
+'use strict';
 
 import React from 'react';
 
@@ -11,7 +11,7 @@ import payinfo from '../../../src/images/my/payinfo.png'
 import jt from '../../../src/images/my/jt.png'
 
 import {Router, Route, IndexRoute, browserHistory, Link} from 'react-router';
-import {HttpService,Toast} from '../../utils'
+import {HttpService, Toast} from '../../utils'
 import App from '../app'
 // import {Foot} from '../Foot'
 
@@ -24,168 +24,157 @@ class MyMain extends React.Component {
         super();
         this.state = {
             info: {},
-            uploadUserImg:[]
+            uploadUserImg: [],
+            base64: [],
+            code: []
         };
 
-       // jsBridge.getBrideg();
 
+        // document.addEventListener("visibilitychange", ()=> {
+        //     console.log( document.visibilityState );
+        //
+        //     if( document.visibilityState=='visible'){
+        //
+        //         if (!LocalStorage.get('token')) {
+        //
+        //             window.location.href = '/index.html#/login';
+        //         } else {
+        //
+        //             this.info();
+        //         }
+        //
+        //     }
+        // });
 
 
     }
+
+
+    async _banner() {
+
+        var code = await HttpService.query({
+            url: "/v1/public/get/banners",
+        });
+
+        this.state({
+            code: code.banners
+        })
+
+
+    }
+
 
     componentDidMount() {
 
+    }
 
-        Toast.toast(LocalStorage.get('token'),2000);
+
+
+    componentWillMount() {
+
+
 
         if (!LocalStorage.get('token')) {
 
+            window.location.href = '/index.html#/login';
+        } else {
 
-            jsBridge.getBrideg(()=>{
-
-                //document.body.innerHTML=window.g_bridge;
-                jsBridge.sendMessageToApp_type_2('login')
-
-            });
-
-            //
-            // document.body.innerHTML=window.g_bridge;
-            //
-            //
-            // jsBridge.sendMessageToApp_type_2('login')
-
-          //  window.location.href='/index.html#/login'
-
-
-        }else{
             this.info();
         }
 
-            // var w;
-            //
-            // if(typeof(Worker)!=="undefined")
-            // {
-            //     if(typeof(w)=="undefined")
-            //     {
-            //         w=new Worker('/dist/worker.js');
-            //         w.postMessage(36);
-            //
-            //         w.onmessage=(event)=>{
-            //             console.log(event.data)
-            //             if (!LocalStorage.get('token')) {
-            //
-            //
-            //                 jsBridge.getBrideg(()=>{
-            //
-            //                     //document.body.innerHTML=window.g_bridge;
-            //                    // jsBridge.sendMessageToApp_type_2('login')
-            //                     window.location.href='/index.html#/login'
-            //                 });
-            //
-            //
-            //
-            //             }else{
-            //                 this.info();
-            //             }
-            //         };
-            //
-            //
-            //         w.onerror = function(event) {
-            //             console.log(event.filename, event.lineno, event.message);
-            //         };
-            //     }
-            //
-            //
-            //
-            // }
 
 
     }
 
 
-
-
+    componentDidMount() {
+        // document.body.innerHTML=11
+    }
 
     sendMessageToApp_type_2(type) {
-
-         // document.body.innerHTML=window.g_bridge;
-
-        window.g_bridge.callHandler('sendMessageToApp', {
-                type: 2, data: {url: 'http://172.27.35.4:3002/index.html#/' + type + ''}
-            },
-            (response)=> {
-
-            })
+        jsBridge.getBrideg(()=> {
+            jsBridge.sendMessageToApp_type_2(type)
+        })
     }
 
-
-
-
-
-    async info(){
+    async info() {
         console.log(LocalStorage.get('token'));
-        let code=await HttpService.query({
-            url:'/v1/p/user/info',
-            data:{accessToken:LocalStorage.get('token')}
+        let code = await HttpService.query({
+            url: '/v1/p/user/info',
+            data: {accessToken: LocalStorage.get('token')}
         });
-
-        // Toast.toast('222',33333)
         this.setState({
-            info:{
-                headImgUrl:code.headImgUrl,
-                username:code.username,
-                residence:code.residence
+            info: {
+                headImgUrl: code.headImgUrl,
+                username: code.username,
+                residence: code.residence
             }
         })
     }
 
-    uploadUserImg(){
-        jsBridge.uploadImg((ids)=>{
+    uploadUserImg() {
+
+        this.setState({
+            uploadUserImg: []
+        });
+        jsBridge.uploadImg((ids, base64)=> {
             this.setState({
-                uploadUserImg:ids
+                uploadUserImg: this.state.uploadUserImg.concat(ids),
+                base64: base64
             });
 
-            this.upload();
+            this.upload()
 
-        })
+
+        });
 
     }
-    async upload(){
+
+    async upload() {
         await HttpService.saveJson({
-            url:'/v1/p/user/update/head/image?accessToken='+LocalStorage.get('token')+'',
-            data:{
-                picture:this.state.uploadUserImg[0]
+            url: '/v1/p/user/update/head/image?accessToken=' + LocalStorage.get('token') + '',
+            data: {
+                picture: this.state.uploadUserImg[0]
             }
-        })
+        });
+
+        this.info();
     }
 
     render() {
         const {info}=this.state;
         return (
-            <div className="app-container">
+            <div className="app-container" ref="_myMain">
 
                 <div className="step app-padding-lr24 my-main">
 
-                        <div className="img" onClick={this.uploadUserImg.bind(this)}><img src={'http://oss-cn-hangzhou.aliyuncs.com/rulaibao/'+info.headImgUrl+''} className="app-wh100-all-radius"/></div>
+                    <div className="img" onClick={this.uploadUserImg.bind(this)}>
+
+                        {/*<img src={this.state.base64.length != 0 ? 'data:image/png;base64,' + this.state.base64[0] : info.headImgUrl}*/}
+                        {/*className="app-wh100-all-radius"/>*/}
+                        <img src={'http://oss-cn-hangzhou.aliyuncs.com/rulaibao/' + info.headImgUrl + ''}
+                             className="app-wh100-all-radius"/>
+                        {/*<img src={'http://oss-cn-hangzhou.aliyuncs.com/rulaibao/'+info.headImgUrl+''} className="app-wh100-all-radius"/>*/}
+
+
+                    </div>
 
                     <div className="s-right s-j-center" style={{flexDirection: 'column', alignItems: 'flex-start'}}>
-                        <App cb={this.sendMessageToApp_type_2.bind(this,'PersonalInfo')}>
+                        <App cb={this.sendMessageToApp_type_2.bind(this, 'PersonalInfo')}>
 
-                            <div className="app-333-font30 app-line-height-one">fwfwfwfw</div>
-
-
+                            <div className="app-333-font30 app-line-height-one">{info.username}</div>
 
                         </App>
 
-                        <div className="app-999-font22 app-line-height-one" style={{paddingTop:'24px'}}>{info.residence}</div>
+                        <div className="app-999-font22 app-line-height-one"
+                             style={{paddingTop: '24px'}}>{info.residence}</div>
                     </div>
                 </div>
 
 
-
                 <div className="app-margin-tb20"></div>
 
-                <App cb={this.sendMessageToApp_type_2.bind(this,'MyAlms')}>
+                <App cb={this.sendMessageToApp_type_2.bind(this, 'MyAlms')}>
                     <div className="step app-padding-lr24 app-white-chunk border-bottom">
                         <div className="s-flex2"><img className="app-wh-45" src={myalms}/>
                             <div className="app-333-font28 app-padding-l24">我的日善</div>
@@ -194,7 +183,7 @@ class MyMain extends React.Component {
                         <div className="s-flex1 s-j-end"><img className="app-wh-45" src={jt}/></div>
                     </div>
                 </App>
-                <App cb={this.sendMessageToApp_type_2.bind(this,'PayInfo')}>
+                <App cb={this.sendMessageToApp_type_2.bind(this, 'PayInfo')}>
                     <div className="step app-padding-lr24 app-white-chunk">
                         <div className="s-flex2"><img className="app-wh-45" src={payinfo}/>
                             <div className=" app-333-font28 app-padding-l24">我的供养</div>
@@ -205,7 +194,7 @@ class MyMain extends React.Component {
                 </App>
                 <div className="app-margin-tb20"></div>
 
-                <App cb={this.sendMessageToApp_type_2.bind(this,'Feedbackpro')}>
+                <App cb={this.sendMessageToApp_type_2.bind(this, 'Feedbackpro')}>
                     <div className="step app-padding-lr24 app-white-chunk border-bottom">
                         <div className="s-flex2">
 
@@ -218,7 +207,7 @@ class MyMain extends React.Component {
                     </div>
                 </App>
 
-                <App cb={this.sendMessageToApp_type_2.bind(this,'Setting')}>
+                <App cb={this.sendMessageToApp_type_2.bind(this, 'Setting')}>
                     <div className="step app-padding-lr24 app-white-chunk">
 
 
@@ -233,7 +222,7 @@ class MyMain extends React.Component {
                 </App>
                 <div className="app-margin-tb20"></div>
 
-                <App cb={this.sendMessageToApp_type_2.bind(this,'TempleIndex')}>
+                <App cb={this.sendMessageToApp_type_2.bind(this, 'TempleIndex')}>
                     <div className="step app-padding-lr24 app-white-chunk border-bottom">
                         <div className="s-flex2">
 
@@ -245,7 +234,7 @@ class MyMain extends React.Component {
                     </div>
                 </App>
 
-                <App cb={this.sendMessageToApp_type_2.bind(this,'OperatIndex')}  className="app-a">
+                <App cb={this.sendMessageToApp_type_2.bind(this, 'OperatIndex')} className="app-a">
                     <div className="step app-padding-lr24 app-white-chunk">
 
 
@@ -259,7 +248,7 @@ class MyMain extends React.Component {
 
                 </App>
 
-                {/*<Foot type="3"></Foot>*/}
+
             </div>
         )
     }

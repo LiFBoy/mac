@@ -1,8 +1,8 @@
-'usr strict';
+'use strict';
 
 import React from 'react';
 
-import {HttpService} from '../../utils'
+import {HttpService,Toast} from '../../utils'
 
 import LocalStorage from '../../LocalStorage'
 import jsBridge from '../../jsBridge'
@@ -11,7 +11,6 @@ import jsBridge from '../../jsBridge'
 class reply extends React.Component {
     constructor() {
         super();
-        // jsBridge.getBrideg();
 
     }
 
@@ -23,19 +22,28 @@ class reply extends React.Component {
 
 
     async _reply(){
-        await HttpService.saveJson({
+      //  alert(document.getElementById('reply-content').value)
+        const replyContent=this.refs.replyContent.value;
+        if(!replyContent){
+            Toast.toast('请输入内容',3000);
+            return;
+
+        }
+        const code=await HttpService.saveJson({
             url:'/v1/p/comment/reply?accessToken='+LocalStorage.get('token')+'',
             data:{
-                content:document.getElementById('reply-content').value,
+                content:replyContent,
                 commentId:this.props.params.id
             }
-        })
+        });
+
+        if(!!code){
+            this.refs.replyContent.value='';
+            jsBridge.getBrideg(()=>{
+                jsBridge.goBack();
+            })
+        }
     }
-
-
-
-
-
 
 
 
@@ -68,7 +76,7 @@ class reply extends React.Component {
             <div className="app-padding-lr24 ">
                 <form action="">
                     <div className="step app-padding-tb20">
-                        <textarea id="reply-content"  className="s-flex1 app-999-font28 app-setting-textarea"  placeholder="请输入评论">
+                        <textarea ref="replyContent"  className="s-flex1 app-999-font28 app-setting-textarea"  placeholder="请输入评论1">
 
                         </textarea>
 
@@ -77,7 +85,6 @@ class reply extends React.Component {
 
                     <div className="step app-yellow-radius-check-button login-btn" style={{height:'5rem'}}>
                         {/*<input className="s-center" type="submit" readOnly="readOnly" value="登录"/>*/}
-
                         <div className="s-center" onClick={this._reply.bind(this)}>评论</div>
                     </div>
                 </form>

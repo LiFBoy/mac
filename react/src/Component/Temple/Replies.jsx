@@ -1,8 +1,8 @@
-'usr strict';
+'use strict';
 
 import React from 'react';
 
-import {HttpService} from '../../utils'
+import {HttpService,Toast} from '../../utils'
 
 import LocalStorage from '../../LocalStorage'
 import jsBridge from '../../jsBridge'
@@ -23,54 +23,33 @@ class Replies extends React.Component {
 
 
     async commentLeave(){
-        await HttpService.saveJson({
+
+        const leaveContent=this.refs.leaveContent.value;
+        if(!leaveContent){
+            Toast.toast('请输入内容',3000);
+            return;
+        }
+        const code=await HttpService.saveJson({
             url:'/v1/p/comment/temple/leave?accessToken='+LocalStorage.get('token')+'',
             data:{
-                content:document.getElementById('leave-content').value,
+                content:leaveContent,
                 contentId:this.props.params.id
             }
-        })
-
+        });
+        if(!!code){
+            jsBridge.getBrideg(()=>{
+               jsBridge.goBack();
+            })
+        }
 
     }
-
-
-
-
-
-
-
-
-    //
-    // title(){
-    //     window.g_bridge.callHandler('sendMessageToApp', {
-    //             type: 15, data: {title:'反馈问题',
-    //                 rightNavigationBarItems:[{type: 10003, title:'提交'}]}},
-    //         (response)=>{
-    //
-    //         })
-    // }
-    //
-    //
-    // listenEvent() {
-    //     window.g_bridge.registerHandler('sendMessageToHTML',  (msg,cb)  => {
-    //
-    //         if(msg=='10003'){
-    //             this.suggestion();
-    //         }
-    //
-    //     })
-    //
-    //
-    //
-    // }
 
     render(){
         return (
             <div className="app-padding-lr24 ">
                 <form action="">
                     <div className="step app-padding-tb20">
-                        <textarea id="leave-content"  className="s-flex1 app-999-font28 app-setting-textarea"  placeholder="请输入评论">
+                        <textarea ref="leaveContent"  className="s-flex1 app-999-font28 app-setting-textarea"  placeholder="请输入评论">
 
                         </textarea>
 

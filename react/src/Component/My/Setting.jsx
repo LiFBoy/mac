@@ -1,4 +1,4 @@
-'usr strict';
+'use strict';
 
 import React from 'react';
 
@@ -6,6 +6,7 @@ import jt from '../../../src/images/my/jt.png'
 
 import jsBridge from '../../jsBridge'
 import LocalStorage from '../../LocalStorage'
+import {Toast} from '../../utils'
 
 class Setting extends React.Component {
     constructor() {
@@ -15,7 +16,7 @@ class Setting extends React.Component {
     }
 
     componentWillMount(){
-       // this.title()
+      // Toast.toast('22',222);
 
         jsBridge.getBrideg(
             ()=>{
@@ -24,6 +25,26 @@ class Setting extends React.Component {
             }
         );
 
+
+    }
+
+    set(){
+        LocalStorage.add('token','');
+
+        window.g_bridge.callHandler('sendMessageToApp', {
+                type: 18, data: {accessToken:''}
+            },
+            (response)=> {
+
+            });
+
+        Toast.toast('退出登录成功',3000);
+        window.g_bridge.callHandler('sendMessageToApp', {
+                type: 1, data: {accessToken:''}
+            },
+            (response)=> {
+
+            });
 
     }
 
@@ -36,7 +57,7 @@ class Setting extends React.Component {
 
                 <div className="app-height-20"></div>
 
-                    <div className="step app-white app-padding-lr24" style={{height:'100px'}}>
+                    <div className="step app-white app-padding-lr24" style={{height:'100px'}}　onClick={this.set.bind(this)}>
                         <div className="s-flex1 app-333-font28">退出登录</div>
                         <div className="s-flex1 s-j-end"><img src={jt} /></div>
                     </div>

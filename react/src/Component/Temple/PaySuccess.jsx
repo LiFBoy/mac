@@ -1,12 +1,22 @@
-'usr strict';
+'use strict';
 
 import React from 'react';
 
-
+import jsBridge from '../../jsBridge'
+import LocalStorage from '../../LocalStorage'
+import App from '../app'
 class PaySuccess extends React.Component {
     constructor() {
         super();
     }
+
+
+    goTemple(){
+        jsBridge.getBrideg(()=>{
+            jsBridge.sendMessageToApp_type_2('TempleDetail',this.props.params.id,LocalStorage.get('templeName'));
+        })
+    }
+
 
     render(){
         return (
@@ -47,9 +57,12 @@ class PaySuccess extends React.Component {
 
                 </div>
 
+                <App cb={this.goTemple.bind(this)}>
+
                 <div className="step app-yellow-radius-check-button" style={{height:'100px'}}>
                     <div className="s-center">返回寺庙</div>
                 </div>
+                </App>
             </div>
         )
     }

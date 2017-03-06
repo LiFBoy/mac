@@ -1,4 +1,4 @@
-'usr strict';
+'use strict';
 
 export default  class LocalStorage{
     constructor(){

@@ -1,24 +1,25 @@
-'usr strict';
+'use strict';
 
 import React from 'react';
 import kaoqin from '../../../src/images/kaoqin.png'
 import {HttpService} from '../../utils';
 import jsBridge from '../../jsBridge';
+import LocalStorage from '../../LocalStorage'
 class UserInfo extends React.Component {
     constructor() {
         super();
         this.state={
-            userInfo:{}
+            userInfo:{},
+            uploadUserImg:[],
+            base64:[]
         }
     }
 
     componentWillMount(){
         jsBridge.getBrideg(()=>{
             jsBridge.setTitle('用户资料')
-        })
+        });
         this.userInfo();
-
-
     }
 
 
@@ -28,11 +29,40 @@ class UserInfo extends React.Component {
             data:{
                 userId:this.props.params.id
             }
-        })
+        });
 
        this.setState({
            userInfo:code
        })
+    }
+
+    uploadImg(){
+
+        this.setState({
+            uploadUserImg:[]
+        });
+        jsBridge.uploadImg((ids,base64)=>{
+            this.setState({
+                uploadUserImg:this.state.uploadUserImg.concat(ids),
+                base64:base64
+            });
+
+            this.upload()
+
+
+        });
+
+    }
+
+    async upload(){
+        await HttpService.saveJson({
+            url:'/v1/p/user/update/head/image?accessToken='+LocalStorage.get('token')+'',
+            data:{
+                picture:this.state.uploadUserImg[0]
+            }
+        });
+
+        this.userInfo();
     }
 
     render(){

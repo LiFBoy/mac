@@ -1,9 +1,9 @@
-'usr strict';
+'use strict';
 
 import React, {Component, PropTypes}  from 'react';
 
 import kaoqin from '../../../src/images/kaoqin.png'
-import {HttpService} from '../../utils';
+import {HttpService,FormDate} from '../../utils';
 import LocalStorage from '../../LocalStorage'
 import jsBridge from '../../jsBridge'
 class PayInfo extends React.Component {
@@ -12,7 +12,8 @@ class PayInfo extends React.Component {
 
         this.state = {
             type: 1,
-            records: []
+            records: {},
+            donations:[]
         };
     }
     componentWillMount(){
@@ -24,42 +25,54 @@ class PayInfo extends React.Component {
         })
     }
 
+    fen_yuan(num){
+        return num*0.01
+    }
+
     async history(){
-        console.log(LocalStorage.get('token'))
+        console.log(LocalStorage.get('token'));
 
         const code= await HttpService.query({
             url:'/v1/p/user/donation/history',
             data:{accessToken:LocalStorage.get('token')}
+        })
+
+        this.setState({
+            records:code
         })
     }
     async donations(){
        const code= await HttpService.query({
             url:'/v1/p/user/recent/donations',
             data:{accessToken:LocalStorage.get('token')}
+        });
+
+        this.setState({
+            donations:code.donations
         })
 
 
     }
 
     createLogin() {
+        const {donations}=this.state
+
         return (
             <div className="app-padding-l24 ">
 
-                    <div className="step border-bottom app-white">
-                        <div className="s-flex2" style={{flexDirection: 'column', alignItems: 'flex-start'}}>
-                            <div className="app-333-font32 pt30 app-line-height-one">灵隐寺扩建</div>
-                            <div className="app-999-font24 pt12 pb26 app-line-height-one">2016-12-19 20:22</div>
+                {
+                    donations.length!=0?donations.map((json,index)=>(
+                        <div className="step border-bottom app-white" key={index}>
+                            <div className="s-flex2" style={{flexDirection: 'column', alignItems: 'flex-start'}}>
+                                <div className="app-333-font32 pt24 app-line-height-one">{json.title}</div>
+                                <div className="app-666-font24 pt20 pb16 app-line-height-one">{FormDate.time(json.gmtCreate)}</div>
+                                <div className="app-999-font24 pb24 app-line-height-one">{json.timeStr}</div>
+                            </div>
+                            <div className="s-flex1 s-j-end app-padding-r24 app-333-font32">{this.fen_yuan(json.amount)}元</div>
                         </div>
-                        <div className="s-flex1 s-j-end app-padding-r24 app-333-font32">1元</div>
-                    </div>
-                    <div className="step border-bottom app-white">
-                        <div className="s-flex2" style={{flexDirection: 'column', alignItems: 'flex-start'}}>
-                            <div className="app-333-font32 pt24 app-line-height-one">灵隐寺扩建</div>
-                            <div className="app-666-font24 pt20 pb16 app-line-height-one">我我我我我我我我我我多我我我我我</div>
-                            <div className="app-999-font24 pb24 app-line-height-one">2016-12-19 20:22</div>
-                        </div>
-                        <div className="s-flex1 s-j-end app-padding-r24 app-333-font32">1元</div>
-                    </div>
+                    )):''
+                }
+
             </div>
         )
     }
@@ -72,6 +85,7 @@ class PayInfo extends React.Component {
 
 
     createRegistered() {
+        const {records}=this.state;
         return (
             <div>
                 <ul>
@@ -79,7 +93,7 @@ class PayInfo extends React.Component {
                         <div className="app-padding-l24">
                             <div className="step app-white-chunk border-bottom app-666-font30">
                                 <div className="s-left">总供养次数</div>
-                                <div className="s-left s-j-end app-padding-r24">200次</div>
+                                <div className="s-left s-j-end app-padding-r24">{records.total}次</div>
                             </div>
                         </div>
 
@@ -89,7 +103,7 @@ class PayInfo extends React.Component {
                         <div className="app-padding-l24">
                             <div className="step app-white-chunk border-bottom app-666-font30">
                                 <div className="s-left">总供养金额</div>
-                                <div className="s-left s-j-end app-padding-r24">200元</div>
+                                <div className="s-left s-j-end app-padding-r24">{this.fen_yuan(records.amount)}元</div>
                             </div>
                         </div>
                     </li>
@@ -105,56 +119,23 @@ class PayInfo extends React.Component {
 
 
                     {
-                        this.state.records.map((json=>{
-                            return <div >
+                        records.records.length!=0?records.records.map((json,index)=>(
+                            <div className="step border-bottom app-wh120" key={index}>
+                                <div className="app-padding-r24 app-active-font28 s-j-center">NO{index+1}</div>
+                                <div className="app-wh-80 app-margin-right24">
+                                    <img className="app-wh100-all-radius"
+                                         src={json.templeImageUrl}/>
+                                </div>
 
+                                <div className="s-flex1 app-666-font30">
+                                    {json.templeName}
+                                </div>
+                                <div className="s-flex1 s-j-end app-666-font30">
+                                    {this.fen_yuan(json.amount)}元
+                                </div>
                             </div>
-                        }))
+                        )):''
                     }
-
-
-                    <div className="step border-bottom app-wh120">
-                        <div className="app-padding-r24 app-active-font28 s-j-center">NO1</div>
-                        <div className="app-wh-80 app-margin-right24">
-                            <img className="app-wh100-all-radius"
-                                 src="http://img4.imgtn.bdimg.com/it/u=398347842,2770887580&fm=23&gp=0.jpg"/>
-                        </div>
-
-                        <div className="s-flex1 app-666-font30">
-                            灵隐寺
-                        </div>
-                        <div className="s-flex1 s-j-end app-666-font30">
-                            6000元
-                        </div>
-                    </div>
-                    <div className="step border-bottom app-wh120">
-                        <div className="app-padding-r24 app-active-font28 s-j-center">NO2</div>
-                        <div className="app-wh-80 app-margin-right24">
-                            <img className="app-wh100-all-radius"
-                                 src="http://img4.imgtn.bdimg.com/it/u=398347842,2770887580&fm=23&gp=0.jpg"/>
-                        </div>
-
-                        <div className="s-flex1 app-666-font30">
-                            灵隐寺
-                        </div>
-                        <div className="s-flex1 s-j-end app-666-font30">
-                            6000元
-                        </div>
-                    </div>
-                    <div className="step border-bottom app-wh120">
-                        <div className="app-padding-r24 app-active-font28 s-j-center">NO3</div>
-                        <div className="app-wh-80 app-margin-right24">
-                            <img className="app-wh100-all-radius"
-                                 src="http://img4.imgtn.bdimg.com/it/u=398347842,2770887580&fm=23&gp=0.jpg"/>
-                        </div>
-
-                        <div className="s-flex1 app-666-font30">
-                            灵隐寺
-                        </div>
-                        <div className="s-flex1 s-j-end app-666-font30">
-                            6000元
-                        </div>
-                    </div>
 
                 </div>
             </div>

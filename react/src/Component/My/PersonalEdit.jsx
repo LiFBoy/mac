@@ -1,4 +1,4 @@
-'usr strict';
+'use strict';
 
 import React from 'react';
 import {HttpService,Tool} from '../../utils';
