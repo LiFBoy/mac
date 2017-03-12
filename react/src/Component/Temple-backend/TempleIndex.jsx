@@ -62,7 +62,7 @@ class TempleIndex extends React.Component {
                     </div>
                 </App>
 
-                <App  cb={this.sendMessageToApp_type_2.bind(this,'Donations')}>
+                <App  cb={this.sendMessageToApp_type_2.bind(this,'trans')}>
                     <div className="step app-padding-lr24 app-white-chunk">
 
 

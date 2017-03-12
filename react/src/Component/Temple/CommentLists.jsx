@@ -27,10 +27,14 @@ class CommentLists extends React.Component {
 
     componentDidMount() {
 
+
+
         jsBridge.getBrideg(()=> {
             jsBridge.setTitle('评论列表')
 
         });
+
+        //this.templeInfo();
 
         // Toast.toast(LocalStorage.get('obj'),30000);
 
@@ -38,7 +42,12 @@ class CommentLists extends React.Component {
         if (this.props.params.type == 'detail') {
 
             this.detail();
-        } else if (this.props.params.type == 'commentLists') {
+        } else if (this.props.params.type == 'commentlists') {
+
+
+
+            // document.body.innerHTML='33';
+
 
             //alert(22)
 
@@ -96,8 +105,24 @@ class CommentLists extends React.Component {
         }
     }
 
+    async templeInfo() {
+        let code = await HttpService.query({
+            url: '/v1/temple/info',
+            data: {
+                id: this.props.params.id
+            }
+        });
+        console.log(code)
+        this.setState({
+            info: code
+        })
+
+    }
+
 
     async comments() {
+        // document.body.innerHTML='3333';
+
         let code = await HttpService.query({
             url: '/v1/public/get/temple/status/info',
             data: {
@@ -108,12 +133,38 @@ class CommentLists extends React.Component {
         let _upvote = upvote.concat(code.comments);
         console.log(_upvote);
         const comments = code.comments;
-        this.setState({
-            comments: comments,
-            upvote: _upvote.sort(this.compare('upvoteNumber')).slice(0, 3),
-            obj: code.status,
-            pic: code.status.pictures
-        })
+        if(this.props.params.obj==''){
+            this.setState({
+                comments: comments,
+                upvote: _upvote.sort(this.compare('upvoteNumber')).slice(0, 3),
+                obj:code.status,
+                pic:code.status.pictures
+                //  obj:JSON.parse(decodeURIComponent(this.props.params.obj)),
+                // // obj: code.status,
+                //  pic:JSON.parse(decodeURIComponent(this.props.params.obj)).pictures
+            })
+        }else if(!!this.props.params.obj&&code.status==null){
+           // alert(22)
+            this.setState({
+                comments: comments,
+                upvote: _upvote.sort(this.compare('upvoteNumber')).slice(0, 3),
+                 obj:JSON.parse(decodeURIComponent(this.props.params.obj)),
+                // obj: code.status,
+                 pic:JSON.parse(decodeURIComponent(this.props.params.obj)).pictures
+            })
+        }else{
+            this.setState({
+                comments: comments,
+                upvote: _upvote.sort(this.compare('upvoteNumber')).slice(0, 3),
+                obj:code.status,
+                pic:code.status.pictures
+            })
+        }
+
+
+
+
+
     }
 
     async upvote(id) {
@@ -127,7 +178,7 @@ class CommentLists extends React.Component {
         if (!!code) {
             if (this.props.params.type == 'detail') {
                 this.detail();
-            } else if (this.props.params.type == 'commentLists')(
+            } else if (this.props.params.type == 'commentlists')(
                 this.comments()
             )
         }
@@ -157,7 +208,7 @@ class CommentLists extends React.Component {
 
                 this.detail();
 
-            } else if (this.props.params.type == 'commentLists')(
+            } else if (this.props.params.type == 'commentlists')(
                 this.comments()
             )
 
@@ -176,12 +227,12 @@ class CommentLists extends React.Component {
                             <div className="step temple-name">
                                 <div>
                                     <div className="temple-img"><img className="app-wh100-all-radius"
-                                                                     src={pic[0]}/>
+                                                                     src={obj.headImgUrl||'/dist/bg/loginHead.jpg'}/>
                                     </div>
                                 </div>
                                 <div className="s-right s-j-center"
                                      style={{flexDirection: 'column', alignItems: 'flex-start'}}>
-                                    <div className="app-333-font28 app-line-height-one">{obj.name}</div>
+                                    <div className="app-333-font28 app-line-height-one">{obj.templeName}</div>
                                     <div className="app-999-font24 app-line-height-one"
                                          style={{paddingTop: '12px'}}>{obj.timeStr}</div>
                                 </div>
@@ -232,7 +283,7 @@ class CommentLists extends React.Component {
                                         <App cb={this.sendMessageToApp_type_2.bind(this, 'userinfo', json.senderId)}>
                                             <div className="temple-img">
                                                 <img
-                                                    src={'http://oss-cn-hangzhou.aliyuncs.com/rulaibao/' + json.senderHeadImgUrl + ''}
+                                                    src={ json.senderHeadImgUrl ||'/dist/bg/loginHead.jpg'}
                                                     className="app-wh100-all-radius"/>
                                             </div>
                                         </App>
@@ -270,7 +321,9 @@ class CommentLists extends React.Component {
                                     </div>
 
                                 </div>
-                            )) : ''
+                            )) : <div className="step app-padding-tb20">
+                                <div className="s-center app-666-font30">暂无评论</div>
+                            </div>
                         }
                         <div className="step dynamic app-padding-lr24">
                             <div className="s-flex1  app-666-font28">
@@ -286,7 +339,7 @@ class CommentLists extends React.Component {
                                         <App cb={this.sendMessageToApp_type_2.bind(this, 'userinfo', json.senderId)}>
                                             <div className="temple-img">
                                                 <img
-                                                    src={'http://oss-cn-hangzhou.aliyuncs.com/rulaibao/' + json.senderHeadImgUrl + ''}
+                                                    src={json.senderHeadImgUrl||'/dist/bg/loginHead.jpg'}
                                                     className="app-wh100-all-radius"/>
                                             </div>
                                         </App>
@@ -324,7 +377,9 @@ class CommentLists extends React.Component {
                                     </div>
 
                                 </div>
-                            )) : ''
+                            )) :<div className="step app-padding-tb20">
+                                <div className="s-center app-666-font30">暂无评论</div>
+                            </div>
                         }
 
 

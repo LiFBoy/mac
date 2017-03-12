@@ -34,7 +34,7 @@ class IndexFocus extends React.Component {
     componentWillMount() {
 
         if (!LocalStorage.get('token')) {
-            window.location.href = '/index.html#/login'
+          //  window.location.href = '/index.html#/login'
         } else {
             this.temples();
         }

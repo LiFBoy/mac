@@ -29,24 +29,6 @@ class MyMain extends React.Component {
             code: []
         };
 
-
-        // document.addEventListener("visibilitychange", ()=> {
-        //     console.log( document.visibilityState );
-        //
-        //     if( document.visibilityState=='visible'){
-        //
-        //         if (!LocalStorage.get('token')) {
-        //
-        //             window.location.href = '/index.html#/login';
-        //         } else {
-        //
-        //             this.info();
-        //         }
-        //
-        //     }
-        // });
-
-
     }
 
 
@@ -60,37 +42,48 @@ class MyMain extends React.Component {
             code: code.banners
         })
 
-
     }
-
-
-    componentDidMount() {
-
-    }
-
 
 
     componentWillMount() {
 
+        console.log(this);
 
-
-        if (!LocalStorage.get('token')) {
-
-            window.location.href = '/index.html#/login';
-        } else {
-
-            this.info();
-        }
-
-
-
+        //Toast.toast('componentWillMount',2000);
+        this.info();
     }
 
 
     componentDidMount() {
-        // document.body.innerHTML=11
-    }
 
+        jsBridge.getBrideg(()=> {
+            jsBridge.listen(()=> {
+
+                //Toast.toast('componentWillMount',2000);
+
+                 // document.body.innerHTML=LocalStorage.get('token');
+                //Toast.toast(LocalStorage.get('token'),3000,'bottom');
+                // document.body.innerHTML='2';
+
+                if(!LocalStorage.get('token')){
+
+                  //  Toast.toast(location.state,3000);
+                        setTimeout(()=>{
+                            this.props.history.replaceState(null,'Login');
+                        },1000);
+
+                   // window.location.href='/index.html#/login'
+
+                }else{
+                    this.info();
+                }
+
+
+
+            })
+        })
+
+    }
     sendMessageToApp_type_2(type) {
         jsBridge.getBrideg(()=> {
             jsBridge.sendMessageToApp_type_2(type)
@@ -98,11 +91,14 @@ class MyMain extends React.Component {
     }
 
     async info() {
+
         console.log(LocalStorage.get('token'));
         let code = await HttpService.query({
             url: '/v1/p/user/info',
             data: {accessToken: LocalStorage.get('token')}
         });
+
+
         this.setState({
             info: {
                 headImgUrl: code.headImgUrl,
@@ -152,7 +148,7 @@ class MyMain extends React.Component {
 
                         {/*<img src={this.state.base64.length != 0 ? 'data:image/png;base64,' + this.state.base64[0] : info.headImgUrl}*/}
                         {/*className="app-wh100-all-radius"/>*/}
-                        <img src={'http://oss-cn-hangzhou.aliyuncs.com/rulaibao/' + info.headImgUrl + ''}
+                        <img src={info.headImgUrl||'dist/bg/loginHead.jpg'}
                              className="app-wh100-all-radius"/>
                         {/*<img src={'http://oss-cn-hangzhou.aliyuncs.com/rulaibao/'+info.headImgUrl+''} className="app-wh100-all-radius"/>*/}
 
@@ -162,7 +158,7 @@ class MyMain extends React.Component {
                     <div className="s-right s-j-center" style={{flexDirection: 'column', alignItems: 'flex-start'}}>
                         <App cb={this.sendMessageToApp_type_2.bind(this, 'PersonalInfo')}>
 
-                            <div className="app-333-font30 app-line-height-one">{info.username}</div>
+                            <div className="app-333-font30 app-line-height-one">{info.username||'匿名'}</div>
 
                         </App>
 

@@ -223,9 +223,9 @@ export  class Toast{
     static toast(msg,duration,bottom){
 
       if(!bottom){
-          bottom='5rem'
+          bottom='12rem'
       }else{
-          bottom='15rem'
+          bottom='12rem'
       }
         duration=isNaN(duration)?3000:duration;
         var m = document.createElement('div');

@@ -10,6 +10,7 @@ import LocalStorage from '../LocalStorage'
 import {Router, Route, IndexRoute, browserHistory, Link} from 'react-router';
 import pwd from '../../src/images/login/pwd.png'
 import phoneImg from '../../src/images/login/phone.png'
+// import loginHead from '../../src/images/login/loginHead.jpg'
 
 class Login extends React.Component {
 
@@ -132,18 +133,36 @@ class Login extends React.Component {
             data: {verifyCode: code, phone: phone}
         });
 
-        LocalStorage.add('token', result.accessToken);
 
-        // this.toast(LocalStorage.get('token'),30000);
 
-        //console.log(LocalStorage.get('token'));
+      if(!!result){
 
-        if(!!result){
-           // this.toast('sss',10000);
 
-            clearInterval(this.countdown);
-            window.history.go(-1);
-        }
+
+          LocalStorage.add('phone',phone);
+          clearInterval(this.countdown);
+          LocalStorage.add('token', result.accessToken);
+             setTimeout(()=>{
+                 this.props.history.replaceState(null,'MyMain');
+             },1000);
+
+          window.g_bridge.callHandler('sendMessageToApp', {
+                  type: 18, data: {accessToken:result.accessToken}
+              },
+              (response)=> {
+
+              });
+      }
+
+        // if(!!result){
+
+
+
+        //    document.body.innerHTML='22';
+
+          //  clearInterval(this.countdown);
+
+        // }
 
     }
 
@@ -157,8 +176,8 @@ class Login extends React.Component {
                 <form>
                     <div className="step">
                         <div className="s-center">
-                            <div className="login-img">
-                                <img src="http://img4.imgtn.bdimg.com/it/u=398347842,2770887580&fm=23&gp=0.jpg"
+                            <div className="login-img" style={{textAlign:'center'}}>
+                                <img src='/dist/bg/loginHead.jpg' style={{width:'22vw',height:'22vw'}}
                                      className="app-wh100-all"/>
                             </div>
                         </div>

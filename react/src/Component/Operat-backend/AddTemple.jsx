@@ -4,10 +4,10 @@ import React from 'react';
 
 
 import Foot from '../Foot'
-import jt from '../../../src/images/my/jt.png'
+import add from '../../../src/images/add.png'
 
 import {Router, Route, IndexRoute, browserHistory, Link} from 'react-router';
-import {HttpService, Toast} from '../../utils'
+import {HttpService, Toast,Tool} from '../../utils'
 
 import LocalStorage from '../../LocalStorage'
 import jsBridge from '../../jsBridge'
@@ -132,33 +132,51 @@ class AddTemple extends React.Component {
 
         const abbot = this.getValue('abbot'),
             abbotInfo = this.getValue('abbotInfo'),
+            templeInfo = this.getValue('templeInfo'),
             buildingInfo = this.getValue('buildingInfo'),
             lat = this.getValue('lat'),
             lng = this.getValue('lng'),
             location = this.getValue('location'),
-            locationInfo = this.getValue('locationInfo');
+            locationInfo = this.getValue('locationInfo'),
+            name = this.getValue('name');
+
+       //console.log(lat<90&&lat>-90)
+
+        if(!(lat<90&&lat>-90)&&(lng<90&&lng>-90)){
+            return;
+        }
 
 
         if (this.props.params.id == 'null') {
+
+
             let code = await HttpService.saveJson({
                 url: '/v1/ad/admin/create/temple?accessToken=' + LocalStorage.get('token') + '',
                 data: {
                     abbot: abbot, abbotInfo: abbotInfo, buildingInfo: buildingInfo,
+                    summary:templeInfo,
                     headImgUrl: this.state.headImgUrl[0],
                     lat: lat, lng: lng, location: location,
                     locationInfo: locationInfo,
                     locationPictures: [
                         '58ad80fefb3e8e05cd4badb2'
                     ],
-                    name: 'lsb',
-                    phone: '13656696510',
+                    name: name,
+                    phone: LocalStorage.get('phone'),
                     pictures: this.state._ids
                 }
             });
+
+            if(!!code){
+                Toast.toast('操作成功',3000);
+                jsBridge.getBrideg(()=>{
+                    jsBridge.goBack()
+                })
+            }
         } else {
 
             console.log(this.state._ids);
-            console.log(this.state.headImgUrl[0])
+            console.log(this.state.headImgUrl[0]);
 
             //Toast.toast(this.state.headImgUrl[0],30000);
             let code = await HttpService.saveJson({
@@ -167,6 +185,7 @@ class AddTemple extends React.Component {
                     abbot: abbot,
                     abbotInfo: abbotInfo,
                     buildingInfo: buildingInfo,
+                    summary:templeInfo,
                     headImgUrl: this.state.headImgUrl[0],
                     id: this.props.params.id,
                     lat: lat,
@@ -176,11 +195,18 @@ class AddTemple extends React.Component {
                     locationPictures: [
                         '58ad80fefb3e8e05cd4badb2'
                     ],
-                    name: 'ls',
-                    phone: '13656696510',
+                    name: name,
+                    phone: LocalStorage.get('phone'),
                     pictures: this.state._ids
                 }
             });
+
+            if(!!code){
+                Toast.toast('操作成功',3000);
+                jsBridge.getBrideg(()=>{
+                    jsBridge.goBack()
+                })
+            }
 
         }
 
@@ -217,11 +243,15 @@ class AddTemple extends React.Component {
 
     changeValue(a, e) {
 
+       if(this.props.params.id == 'null'){
+           return;
+       }
+
         let obj = {};
         obj[a] = e.target.value;
         console.log(obj);
         this.setState({
-            info: obj
+            info: Tool.assign({},obj,this.state.info)
         });
 
 
@@ -231,6 +261,13 @@ class AddTemple extends React.Component {
         const {info, showPictures, base64} =this.state;
         return (
             <div className="app-padding-lr24">
+                <div className="step app-padding-tb20">
+                    <div className="s-left app-666-font32">寺庙名：</div>
+                    <div className="s-right app-input-edit">
+                        <input className="app-input" id="name" value={info.name}
+                               onChange={this.changeValue.bind(this, 'name')} placeholder="寺庙" type="text"/>
+                    </div>
+                </div>
 
 
                 <div className="step app-padding-tb20">
@@ -251,14 +288,14 @@ class AddTemple extends React.Component {
                     <div className="s-left app-666-font32">经度：</div>
                     <div className="s-right app-input-edit">
                         <input className="app-input" id="lat" value={info.lat}
-                               onChange={this.changeValue.bind(this, 'lat')} placeholder="经度" type="text"/>
+                               onChange={this.changeValue.bind(this, 'lat')} placeholder="经度" type="number"/>
                     </div>
                 </div>
                 <div className="step app-padding-tb20">
                     <div className="s-left app-666-font32">纬度：</div>
                     <div className="s-right app-input-edit">
                         <input className="app-input" id="lng" value={info.lng}
-                               onCanPlay={this.changeValue.bind(this, 'lng')} placeholder="纬度" type="text"/>
+                               onCanPlay={this.changeValue.bind(this, 'lng')} placeholder="纬度" type="number"/>
                     </div>
                 </div>
 
@@ -273,7 +310,9 @@ class AddTemple extends React.Component {
                         <div className="app-upload-img-temple-backend" onClick={this.uploadheadImgUrl.bind(this)}>
                             {/*<img src={info.headImgUrl} className="app-wh100-all" />*/}
                             <img
-                                src={this.state.headImgUrlBase64.length != 0 ? 'data:image/png;base64,' + this.state.headImgUrlBase64[0] : info.headImgUrl}
+                                src={this.state.headImgUrlBase64.length != 0 ?
+                                    'data:image/png;base64,' + this.state.headImgUrlBase64[0] :
+                                         !!info.headImgUrl?info.headImgUrl:add}
                                 className="app-all-img"/>
                         </div>
                     </div>
@@ -286,8 +325,8 @@ class AddTemple extends React.Component {
 
                 <div className="step app-padding-tb20" style={{height: '200px'}}>
                     <div className="s-flex1 app-input-edit" style={{height: '200px'}}>
-                        <textarea value={info.buildingInfo} onChange={this.changeValue.bind(this, 'buildingInfo')}
-                                  className="s-flex1 app-999-font28 app-setting-textarea-word" id="buildingInfo"
+                        <textarea value={info.buildingInfo} onChange={this.changeValue.bind(this, 'templeInfo')}
+                                  className="s-flex1 app-999-font28 app-setting-textarea-word" id="templeInfo"
                                   placeholder="寺庙概况"></textarea>
                     </div>
                 </div>
@@ -330,11 +369,10 @@ class AddTemple extends React.Component {
 
                         <div className="app-upload-img-temple-backend" style={{position: 'relative'}}
                              onClick={this.uploadImg.bind(this)}>
-                            <div style={{position: 'absolute', top: '10px', right: '10px'}} id='2'
-                                 onClick={this.deleteBase64.bind(this, '2', '2')}>x
-                            </div>
 
-                            <img src="http://pic17.nipic.com/20111003/5847249_214945441162_2.jpg"
+                            {/*<div className="app-wh100-all"></div>*/}
+
+                            <img src={add}
                                  className="app-wh100-all"/>
                         </div>
                     </div>
@@ -382,7 +420,7 @@ class AddTemple extends React.Component {
                 </div>
 
 
-                <button onClick={this._uploadImg.bind(this)}>+</button>
+                {/*<button onClick={this._uploadImg.bind(this)}>+</button>*/}
 
             </div>
         )

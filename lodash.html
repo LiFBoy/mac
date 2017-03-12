@@ -2,9 +2,572 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>$Title$</title>
+    <title>Title</title>
 </head>
 <body>
-$END$
+<img src="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"
+     alt="">
 </body>
+<script src="http://cdn.bootcss.com/lodash.js/3.10.1/lodash.js"></script>
+<script>
+
+
+    console.log(_.drop([1, 2, 3], 2))
+
+    for (var i = 0; i < 5; i++) {
+        (function (i) {
+            setTimeout(function () {
+//                console.log(i)
+            }, i * 1000)
+        })(i)
+    }
+
+
+</script>
+
+<div>
+    <p>ss</p>
+    <p>222</p>
+</div>
+<div id="demo">
+    <div id="thisNode">点击删除我</div>
+</div>
+
+<script type="text/javascript">
+    'use strict';
+    document.getElementById("thisNode").onclick = function () {
+
+        console.log(this)
+//        this.parentNode.remove()
+        this.parentNode.removeChild(this);
+    }
+
+
+    Array.prototype.remove = function (obj) {
+        for (var i = 0; i < this.length; i++) {
+            var temp = this[i];
+            if (!isNaN(obj)) {
+                temp = i;
+            }
+            if (temp == obj) {
+                for (var j = i; j < this.length; j++) {
+                    this[j] = this[j + 1];
+                }
+                this.length = this.length - 1;
+            }
+        }
+    }
+
+    var arr = [{a: '2'}];
+    var str = "2";
+
+    var b = arr.remove(str)
+    //console.log(b)
+    //类数组对象
+    let arrayLike = {
+        '0': 'a',
+        '1': 'b',
+        '2': 'c',
+    };
+
+    //    console.log(arrayLike.0)
+
+
+    let arr2 = Array.from(arrayLike);
+
+    console.log(arr2)
+
+
+    function foo(...b) {
+        console.log(b.slice(1, 2))
+        //  var args = Array.from(arguments);
+
+//        console.log(args.slice(0,1))
+        // ...
+    }
+
+    foo(2, 3)
+
+    console.log(Array.prototype.map)
+    console.log(Array.prototype.slice instanceof Object)
+
+    //    let obj={
+    //        a:'b'
+    //    }
+    //
+    //    console.log()
+
+    var obj = {0: "a", 1: "b", 2: "c"};
+    console.log(Object.keys(obj))
+
+
+    let ps = document.querySelectorAll('p');
+
+    console.log(ps)
+
+    Array.prototype.slice.call(ps);
+    console.log(ps);
+
+    //   console.log([] instanceof Array)
+
+    //    console.log(ps.length)
+    for (var i = 0; i < ps.length; i++) {
+        //  console.log(ps[i].innerHTML)
+    }
+    [7, 8].forEach(function (p) {
+        // console.log(p);
+    });
+
+
+    function add() {
+        console.log(arguments);
+    }
+    function sub(a, b) {
+        //  alert(a - b);
+    }
+
+    add.apply(sub, ['1', 2]);
+
+    var _obj = {
+        a: '2',
+        b: '44'
+    };
+    'use strict';
+    console.log(!this);
+
+    function myTest() {
+        // foo();
+        function foo() {
+            //    alert("我来自 foo");
+        }
+    }
+    myTest();
+
+    //    alert(_obj.length)
+
+    //
+    //    var bacd=1;
+    //    function abcde() {
+    //
+    //        alert(abcd)
+    //       // var abcd=2
+    //    }
+    //    abcde();
+
+    //    let name="global";
+    //    if(true){
+    //        let name="local";
+    //        console.log(name)
+    //    }
+    //    console.log(name);
+
+    var scope = "global";
+    function t() {
+
+        console.log(scope);
+        var scope = "local"
+        console.log(scope);
+    }
+    t();
+
+    console.log(scope)
+
+    var _key = [
+        {a: '2'},
+        {b: '3'}
+    ]
+
+    //    _key.forEach((jsoon,index)=>{
+    //        console.log(jsoon)
+    //        console.log(index)
+    //    })
+
+    for (var i = 0; i < _key.length; i++) {
+
+        console.log(_key[i], i)
+//        if(_key[i].a == '2') {
+//            _key.splice(i, 1);
+//            break;
+//        }
+    }
+
+
+    Array.prototype.remove = function (value) {
+        var len = this.length;
+        for (var i = 0, n = 0; i < len; i++) {//把除了要删除的元素赋值给新数组
+            if (this[i].a != value) {
+                console.log('N:' + n)
+                this[n++] = this[i];
+            } else {
+                console.log(i);//测试所用
+            }
+        }
+        this.length = n;
+    };
+
+    var arr = [{a: "1", b: '1'}, {a: '2', b: '2'}, {a: '3', b: '3'}];
+    arr.remove(2);
+    console.log(arr)
+
+
+</script>
+<style>
+    .box {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-left: -100px;
+        margin-top: -100px;
+        height: 200px;
+        width: 200px;
+        border: 1px solid red;
+
+    }
+
+    .box1 {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        margin: auto;
+        width: 300px;
+        height: 300px;
+        border: 1px solid blue;
+    }
+
+    .box2 {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 400px;
+        height: 400px;
+        border: 1px solid black;
+
+    }
+
+    .box3 {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, 50%);
+        width: 100px;
+        height: 400px;
+        border: 1px solid blueviolet;
+    }
+
+</style>
+<div>
+    <div class="box"></div>
+    <div class="box1"></div>
+    <div style="display: flex">
+        <div class="box2"></div>
+    </div>
+    <div class="box3"></div>
+</div>
+
+<script>
+    var p = ['abc', 'bdc'];
+    var pp = []
+    p.forEach((items)=> {
+        pp.push(items)
+        console.log(pp)
+    })
+
+</script>
+
+<script>
+    'use strict';
+    var a = '2';
+
+    //    var cc='22222'
+    function cc() {
+        console.log(a);
+        var a = '4';
+    }
+
+
+    cc()
+
+    //    a='2';
+    //    if(true){
+    //       var a='3'
+    //    };
+    //    console.log(a)
+
+
+    function num() {
+        function abc() {
+            console.log(bb)
+
+        }
+
+        var bb = '444'
+        return abc
+    }
+
+
+    var num2 = num();
+    num2()
+    function get(e) {
+        //  alert(1)
+    }
+    function get2(event) {
+        event.stopPropagation()
+        //  alert(2)
+    }
+</script>
+
+<nav>
+    <ul onClick="get(event)">
+        <div onclick="get2(event)">1</div>
+        <div>12</div>
+    </ul>
+</nav>
+
+<script>
+
+    function compare(property) {
+        return (a, b)=> {
+            var value1 = a[property];
+            var value2 = b[property];
+            return value2 - value1;
+        }
+    }
+
+
+    var flag = compare('upvoteNumber')
+
+    console.log(flag)
+</script>
+
+<script>
+    //        //alert(man==man2)
+    ////        alert()
+    //function father() {
+    //
+    //    this.a = 'father';
+    //    this.abcd=function () {
+    //      //  alert(33);
+    //    }
+    //
+    //}
+    //
+    //father.prototype.b = function() {
+    //
+    //  //  alert(this.a)
+    //
+    //}
+    //
+    //var child = function() {
+    //
+    //  //  father.call(this)
+    //
+    //}
+    //
+    //child.prototype.ab=function () {
+    //    return '3'
+    //}
+    //
+    ////child.prototype = new father();
+    //
+    //const f=new father();
+    //
+    //console.log(f);
+    //f.b()
+    //
+    //
+    //const c=new child();
+    //console.log('33333');
+    //
+    //console.log(c);
+
+
+    function Father() {
+        this.value = 'bb';
+        this.name = 'son';
+    }
+    Father.prototype.getValue = function () {
+        return this.value;
+    };
+
+    function Son() {
+        this.value2 = false;
+    }
+
+    console.log('222222');
+
+    console.log(Son.prototype.constructor === Son);
+    Son.prototype = new Father();
+
+    Son.prototype.getValue2 = function () {
+        alert('getValue2')
+    };
+
+    const _fff=new Father()
+    console.log(_fff);
+
+//    _fff.getValue2()
+
+
+    console.log(Father.prototype);
+    var son = new Son();
+    console.log(son);
+    son.getValue2();
+
+
+    //(son instanceof Father)
+    //alert(son instanceof Son)
+    // console.log(son.getValue2());  // true
+
+
+    class Polygon {
+        constructor(height, width) {
+            this.name = 'lsb';
+            this.height = height;
+            this.width = width;
+        }
+
+        getwidht() {
+            console.log(this.height)
+        }
+    }
+
+    const Polygon_ = new Polygon(100, 200);
+
+    class My extends Polygon {
+        constructor(height, width) {
+            super(height, width);
+            this.lsb='333';
+        }
+
+        getMy() {
+            //  alert(1)
+        }
+    }
+    const my = new My(100, 200);
+    console.log(my);
+    my.getMy();
+
+
+    //   console.log(my.getMy())
+
+
+</script>
+
+<script>
+    function Person() {
+        this.friends = ["ZhangSan", "LiSi"]
+    }
+
+    Person.prototype = {
+        //constructor: Person,
+        name: "Stone",
+        age: 28,
+        job: "Software Engineer",
+
+        sayName: function () {
+            console.log(this.name);
+        }
+    };
+
+    var person1 = new Person();
+    var person2 = new Person();
+
+    console.log(person1 instanceof Person)
+    console.log(person1 == Person)
+
+    person1.friends.push("WangWu");
+
+    console.log(person1.friends);    // "ZhangSan,LiSi,WangWu"
+    console.log(person2.friends);    // "ZhangSan,LiSi,WangWu"
+    console.log(person1.friends === person2.friends);
+</script>
+
+<script>
+    function Product(name, price) {
+        this.name = name;
+        this.price = price;
+
+        if (price < 0) {
+            throw RangeError('Cannot create product ' +
+                    this.name + ' with a negative price');
+        }
+    }
+
+    function Food(name, price) {
+        Product.call(this, name, price);
+        this.category = 'food';
+    }
+
+    var cheese = new Food('feta', 5);
+
+    var newArr = [1, 2, 3, 4].map(function (item, i, arr) {
+        console.log(item, i, arr, this);  // 可运行试试看
+        return item + 1;  // 每一项加1
+    }, {a: 1})
+
+
+    Array.prototype._map = function (fn) {
+
+//        console.log(context)
+        var temp = [];
+        if (typeof fn == 'function') {
+            var k = 0;
+            console.log(this);
+            var len = this.length;
+            // 封装for循环过程
+            for (; k < len; k++) {
+                // 将每一项的运算操作丢进fn里，利用call方法指定fn的this指向与具体参数
+                temp.push(fn.call(undefined, this[k], k, this))
+            }
+        } else {
+            console.error('TypeError: ' + fn + ' is not a function.');
+        }
+
+        // 返回每一项运算结果组成的新数组
+        return temp;
+    }
+
+    var newArr = [1, 2, 3, 4]._map(function (item) {
+        return item + 1;
+    })
+
+    console.log(newArr)
+
+    function fn() {
+        return 20;
+    }
+
+    fn.toString = function () {
+        return 10;
+    }
+
+    fn.valueOf = function () {
+        return 5;
+    }
+
+    console.log(fn + 10)
+
+
+    function ab() {
+
+    }
+
+    ab.prototype.say = function () {
+
+    }
+
+    const ac = new ab()
+    console.log(ac)
+
+    console.log(ab.prototype);
+
+
+    var m = { a: 10, b: 20 };
+    var b = { a: 10, b: 20 };
+    console.log(m==b);
+    var n=Object.assign({},m);
+    console.log(n==m);
+</script>
 </html>

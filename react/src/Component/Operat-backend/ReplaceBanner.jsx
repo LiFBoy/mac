@@ -4,8 +4,8 @@ import React from 'react';
 
 
 import Foot from '../Foot'
-import jt from '../../../src/images/my/jt.png'
-import {HttpService} from '../../utils'
+import add from '../../../src/images/add.png'
+import {HttpService,Toast} from '../../utils'
 
 import LocalStorage from '../../LocalStorage'
 import jsBridge from '../../jsBridge'
@@ -36,20 +36,31 @@ class ReplaceBanner extends React.Component {
 
         this.setState({
             banners:code.banners
-        })
+        });
+
+
     }
 
 
    async editInfo() {
-
-        const link=document.getElementById('link').value;
-
+      // Toast.toast(this.state.bannerPic[0],3000);
+        const link=this.refs.link.value;
         let code = await HttpService.saveJson({
             url: '/v1/ad/admin/create/banner?accessToken=' + LocalStorage.get('token') + '',
             data: {
                 Link: link, picture:this.state.bannerPic[0]
             }
         });
+
+           if(code){
+               Toast.toast('添加成功',3000);
+               this.refs.link.value='';
+               this.banners();
+               this.setState({
+                   bannerPic:[]
+               })
+           }
+
     }
 
     bannerPic(){
@@ -59,6 +70,7 @@ class ReplaceBanner extends React.Component {
             bannerPic:[],
             base64:[],
         });
+
         jsBridge.uploadImg((ids,base64)=>{
             this.setState({
                 bannerPic:this.state.bannerPic.concat(ids),
@@ -85,7 +97,7 @@ class ReplaceBanner extends React.Component {
                     <div className="step app-padding-tb20">
                         <div className="s-left app-666-font28">跳转链接：</div>
                         <div className="s-right app-input-edit">
-                            <input id="link" className="app-input" placeholder="跳转链接" type="text"/>
+                            <input ref="link" className="app-input" placeholder="跳转链接" type="text"/>
                         </div>
                     </div>
 
@@ -94,7 +106,7 @@ class ReplaceBanner extends React.Component {
                         <div className="s-right app-input-edit" style={{height: '15rem'}} onClick={this.bannerPic.bind(this)}>
 
 
-                            <img src={this.state.bannerPic.length!=0?'data:image/png;base64,'+this.state.base64[0]:''}
+                            <img src={this.state.bannerPic.length!=0?'data:image/png;base64,'+this.state.base64[0]:add}
                                  className="app-all-img"/>
                         </div>
                     </div>

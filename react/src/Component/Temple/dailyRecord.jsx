@@ -62,7 +62,7 @@ class dailyRecord extends React.Component {
                     recentDailies.length!=0?recentDailies.map((json,index)=>(
                         <div className="step app-white border-bottom app-padding-l24  app-wh-120" key={index}>
                             <div className="app-wh-80  app-margin-right24 app-margin-tb20">
-                                <img className="app-wh100-all-radius" src={json.headImgUrl}/>
+                                <img className="app-wh100-all-radius" src={json.headImgUrl || 'dist/bg/loginHead.jpg'}/>
                             </div>
                             <div className="s-flex2 s-j-center" style={{flexDirection: 'column', alignItems: 'flex-start'}}>
                                 <div className="app-333-font28 app-line-height-one">{json.username}</div>
@@ -70,7 +70,9 @@ class dailyRecord extends React.Component {
                             </div>
                             <div className="s-flex1 s-j-end app-padding-r24 app-333-font32">捐款{FormMoney.fenYuan(json.amount)}元</div>
                         </div>
-                    )):''
+                    )): <div className="step">
+                        <div className="s-center app-margin-t20 app-333-font30">暂无</div>
+                    </div>
                 }
             </div>
         )
@@ -87,24 +89,27 @@ class dailyRecord extends React.Component {
         const {historyDailies}=this.state;
         return (
             <div>
-                <div>
+                <div className="app-padding-lr24">
+
                     {
-                        historyDailies.length!=0?historyDailies.map((json,index)=>(
-                            <div className="step border-bottom app-wh-120 app-padding-lr24" key={index}>
-                                <div className="app-padding-r24 app-active-font28 s-j-center s-flex-zero">NO{index+1}</div>
-                                <div className="app-wh-80 app-margin-right24 app-margin-tb20">
-                                    <img className="app-wh100-all-radius" src={json.headImgUrl}/>
+                        historyDailies.length != 0 ? historyDailies.map((json, index)=>(
+                            <div className="step border-bottom app-wh120" key={index}>
+                                <div className="app-padding-r24 app-active-font28 s-j-center">NO{index + 1}</div>
+                                <div className="app-wh-80 app-margin-right24">
+                                    <img className="app-wh100-all-radius"
+                                         src={json.headImgUrl || 'dist/bg/loginHead.jpg'}/>
                                 </div>
 
-                                <div className="s-flex1 s-j-center s-flex-d app-666-font30" style={{alignItems: 'flex-start'}}>
-                                    <div className="app-333-font28 app-line-height-one">{json.username}</div>
-                                    <div className="app-999-font24 app-line-height-one" style={{paddingTop:'20px'}}>{json.timeStr}</div>
+                                <div className="s-flex1 app-666-font30">
+                                    {json.username}
                                 </div>
                                 <div className="s-flex1 s-j-end app-666-font30">
-                                    捐款{FormMoney.fenYuan(json.amount)}元
+                                    {FormMoney.fenYuan(json.amount)}元
                                 </div>
                             </div>
-                        )):''
+                        )) : <div className="step">
+                            <div className="s-center app-margin-t20 app-333-font30">暂无</div>
+                        </div>
                     }
 
 

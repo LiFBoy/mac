@@ -22,7 +22,8 @@ class MessageBoard extends React.Component {
         super();
         this.state = {
             messages: [],
-            info:{}
+            info:{},
+            upvote:[]
         };
 
     }
@@ -33,6 +34,8 @@ class MessageBoard extends React.Component {
         });
         this.info();
         this.messages();
+
+
 
     }
 
@@ -106,6 +109,14 @@ class MessageBoard extends React.Component {
     //     })
     // }
 
+    compare(property) {
+        return (a, b)=> {
+            var value1 = a[property];
+            var value2 = b[property];
+            return value2 - value1;
+        }
+    }
+
     async messages() {
         let code = await HttpService.query({
             url: '/v1/public/get/temple/leave/messages',
@@ -113,13 +124,17 @@ class MessageBoard extends React.Component {
                 templeId: this.props.params.id
             }
         });
+
+        let _messages=[];
+        let upvote=  _messages.concat(code.messages);
         this.setState({
-            messages: code.messages
+            messages: code.messages,
+            upvote:upvote.sort(this.compare('upvoteNumber')).slice(0, 3),
         })
     }
 
     render() {
-        const {messages,info}=this.state;
+        const {messages,info,upvote}=this.state;
         return (
             <div>
             <div className="app-container" style={{position: 'relative'}}>
@@ -149,7 +164,7 @@ class MessageBoard extends React.Component {
                                 <div className="step temple-name">
                                     <div>
                                         <div className="temple-img">
-                                            <img src={json.userHeadImgUrl} className="app-wh100-all-radius"/>
+                                            <img src={json.userHeadImgUrl ||'dist/bg/loginHead.jpg'} className="app-wh100-all-radius"/>
                                         </div>
                                     </div>
                                     <div className="s-flex1 s-j-center"
@@ -164,7 +179,7 @@ class MessageBoard extends React.Component {
                                         <img className="img" src={pac}/>
                                         <div className="s-flex1 number app-999-font24 padding-right-40">{json.upvoteNumber}</div>
                                         </div>
-                                        <App cb={this.sendMessageToApp_type_2.bind(this,'Replies',json.id)} class="step">
+                                        <App cb={this.sendMessageToApp_type_2.bind(this,'messageReply',json.id)} class="step">
                                         <img className="img" src={comments}/>
                                         <div className="s-flex1 number app-999-font24">{json.replies.length}</div>
                                         </App>
@@ -178,7 +193,9 @@ class MessageBoard extends React.Component {
                                 </div>
 
                             </div>
-                        )) : ''
+                        )) : <div className="step app-padding-tb20">
+                            <div className="s-center app-666-font30">暂无留言</div>
+                        </div>
                     }
 
 
@@ -191,12 +208,12 @@ class MessageBoard extends React.Component {
 
 
                     {
-                        messages.length != 0 ? messages.map((json, index)=>(
+                        upvote.length != 0 ? upvote.map((json, index)=>(
                             <div className="dynamic-content app-padding-lr24" style={{borderBottom: '0'}} key={index}>
                                 <div className="step temple-name">
                                     <div>
                                         <div className="temple-img">
-                                            <img src={json.userHeadImgUrl} className="app-wh100-all-radius"/>
+                                            <img src={json.userHeadImgUrl ||'dist/bg/loginHead.jpg'} className="app-wh100-all-radius"/>
                                         </div>
                                     </div>
                                     <div className="s-flex1 s-j-center"
@@ -207,13 +224,14 @@ class MessageBoard extends React.Component {
                                     </div>
 
                                     <div className="s-flex1 message-board-number s-j-end">
-                                        <img className="img" src={pac}/>
-                                        <div
-                                            className="number app-999-font24 padding-right-40">{json.upvoteNumber}</div>
-
-
-                                        <img className="img" src={comments}/>
-                                        <div className="number app-999-font24"></div>
+                                        <div className="step" onClick={this.leaveMsg.bind(this,json.id)}>
+                                            <img className="img" src={pac}/>
+                                            <div className="s-flex1 number app-999-font24 padding-right-40">{json.upvoteNumber}</div>
+                                        </div>
+                                        <App cb={this.sendMessageToApp_type_2.bind(this,'Replies',json.id)} class="step">
+                                            <img className="img" src={comments}/>
+                                            <div className="s-flex1 number app-999-font24">{json.replies.length}</div>
+                                        </App>
                                     </div>
                                 </div>
 
@@ -224,8 +242,11 @@ class MessageBoard extends React.Component {
                                 </div>
 
                             </div>
-                        )) : ''
+                        )) : <div className="step app-padding-tb20">
+                            <div className="s-center app-666-font30">暂无留言</div>
+                        </div>
                     }
+
                 </div>
 
 

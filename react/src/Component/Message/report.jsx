@@ -2,29 +2,43 @@
 
 import React from 'react';
 
+import ReactDOM from 'react-dom';
+
 import {HttpService,Toast} from '../../utils'
 
 import LocalStorage from '../../LocalStorage'
 import jsBridge from '../../jsBridge'
+import I from '../input'
+import Pagination from '../pages'
 
 
-class reply extends React.Component {
+class report extends React.Component {
     constructor() {
         super();
 
     }
 
     componentWillMount(){
+
+        console.log('componentWillMount')
         jsBridge.getBrideg(()=>{
-            jsBridge.setTitle('评论')
+            jsBridge.setTitle('举报评论')
         })
     }
 
+    componentDidMount(){
 
-    async _reply(){
-      //  alert(document.getElementById('reply-content').value)
-        const replyContent=this.refs.replyContent.value;
-        if(!replyContent){
+
+
+    }
+
+
+
+    async report(){
+        //  alert(document.getElementById('reply-content').value)
+        const reportContent=this.refs.reportContent.value;
+
+        if(!reportContent){
             Toast.toast('请输入内容',3000);
             return;
 
@@ -32,51 +46,42 @@ class reply extends React.Component {
         const code=await HttpService.saveJson({
             url:'/v1/p/comment/reply?accessToken='+LocalStorage.get('token')+'',
             data:{
-                content:replyContent,
+                report:reportContent,
                 commentId:this.props.params.id
             }
         });
 
         if(!!code){
-            this.refs.replyContent.value='';
+            this.refs.reportContent.value='';
             jsBridge.getBrideg(()=>{
                 jsBridge.goBack();
             })
         }
     }
 
+    handle(e){
+        console.log(e.target.value)
+        this.setState({
+            val:e.target.value
+        })
+    }
 
+    shouldComponentUpdate(props,state){
 
-    //
-    // title(){
-    //     window.g_bridge.callHandler('sendMessageToApp', {
-    //             type: 15, data: {title:'反馈问题',
-    //                 rightNavigationBarItems:[{type: 10003, title:'提交'}]}},
-    //         (response)=>{
-    //
-    //         })
-    // }
-    //
-    //
-    // listenEvent() {
-    //     window.g_bridge.registerHandler('sendMessageToHTML',  (msg,cb)  => {
-    //
-    //         if(msg=='10003'){
-    //             this.suggestion();
-    //         }
-    //
-    //     })
-    //
-    //
-    //
-    // }
+        console.log('shouldComponentUpdate');
+     //   console.log(state.val=='4')
+
+        return true;
+    }
+
 
     render(){
+        console.log('render')
         return (
             <div className="app-padding-lr24 ">
                 <form action="">
                     <div className="step app-padding-tb20">
-                        <textarea ref="replyContent"  className="s-flex1 app-999-font28 app-setting-textarea"  placeholder="请输入评论1">
+                        <textarea ref="reportContent"  className="s-flex1 app-999-font28 app-setting-textarea"  placeholder="请输入举报内容">
 
                         </textarea>
 
@@ -85,13 +90,14 @@ class reply extends React.Component {
 
                     <div className="step app-yellow-radius-check-button login-btn" style={{height:'5rem'}}>
                         {/*<input className="s-center" type="submit" readOnly="readOnly" value="登录"/>*/}
-                        <div className="s-center" onClick={this._reply.bind(this)}>评论</div>
+                        <div className="s-center" onClick={this.report.bind(this)}>举报</div>
                     </div>
                 </form>
+
             </div>
         )
     }
 }
 
 
-export default reply
+export default report

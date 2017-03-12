@@ -13,7 +13,8 @@ class MyAlms extends React.Component {
         this.state ={
             type:1,
             dailies:[],
-            history:[]
+            history:{},
+            historyDailies:[],
         };
 
     }
@@ -26,6 +27,7 @@ class MyAlms extends React.Component {
         });
 
         this.recentDailies();
+        this.historyDailies()
     }
 
     async historyDailies(){
@@ -37,7 +39,8 @@ class MyAlms extends React.Component {
         });
 
         this.setState({
-            history:code.dailies
+            history:code,
+            historyDailies:code.dailies
         })
 
 
@@ -66,10 +69,10 @@ class MyAlms extends React.Component {
                     dailies.length!=0?dailies.map((json,index)=>(
                         <div className="step border-bottom app-white" key={index}>
                             <div className="s-flex2" style={{flexDirection: 'column', alignItems: 'flex-start'}}>
-                                <div className="app-333-font32 pt30 app-line-height-one">{json.templeName}</div>
-                                <div className="app-999-font24 pt12 pb26 app-line-height-one">{FormDate.formatDate(json.gmtCreate)}</div>
+                                <div className="app-333-font32 pt30 app-line-height-one">{json.title}</div>
+                                <div className="app-999-font24 pt12 pb26 app-line-height-one">{FormDate.time(json.gmtCreate)}</div>
                             </div>
-                            <div className="s-flex1 s-j-end app-padding-r24 app-333-font32">{FormMoney.yuanFen(json.amount)}元</div>
+                            <div className="s-flex1 s-j-end app-padding-r24 app-333-font32">{FormMoney.fenYuan(json.amount)}元</div>
                         </div>
                     )):''
                 }
@@ -85,6 +88,8 @@ class MyAlms extends React.Component {
 
 
     createRegistered(){
+        const {history,historyDailies}=this.state;
+
         return (
             <div>
                 <ul>
@@ -92,7 +97,7 @@ class MyAlms extends React.Component {
                         <div className="app-padding-l24">
                             <div className="step app-white-chunk border-bottom app-666-font30">
                                 <div className="s-left">总日善次数</div>
-                                <div className="s-left s-j-end app-padding-r24">200次</div>
+                                <div className="s-left s-j-end app-padding-r24">{history.total}次</div>
                             </div>
                         </div>
 
@@ -101,64 +106,42 @@ class MyAlms extends React.Component {
                     <li>
                         <div className="app-padding-l24">
                             <div className="step app-white-chunk border-bottom app-666-font30">
-                                <div className="s-left">总日善天数</div>
-                                <div className="s-left s-j-end app-padding-r24">200天</div>
+                                <div className="s-left">总日善金额</div>
+                                <div className="s-left s-j-end app-padding-r24">{FormMoney.fenYuan(history.amount)}元</div>
                             </div>
                         </div>
                     </li>
                 </ul>
 
                 <div className="app-height-20"></div>
+                        <div className="app-padding-lr24">
 
-                <div className="app-padding-lr24">
-
-                    <div className="step border-bottom app-wh80">
-                        <div className="s-left s-j-center app-666-font30">捐献排行</div>
-                    </div>
-
+                            <div className="step border-bottom app-wh80">
+                                <div className="s-left s-j-center app-666-font30">捐献排行</div>
+                            </div>
 
 
-                    <div className="step border-bottom app-wh120">
-                        <div className="app-padding-r24 app-active-font28 s-j-center">NO1</div>
-                        <div className="app-wh-80 app-margin-right24">
-                            <img className="app-wh100-all-radius" src="http://img4.imgtn.bdimg.com/it/u=398347842,2770887580&fm=23&gp=0.jpg"/>
-                        </div>
 
-                        <div className="s-flex1 app-666-font30">
-                            灵隐寺
-                        </div>
-                        <div className="s-flex1 s-j-end app-666-font30">
-                            6000天
-                        </div>
-                    </div>
-                    <div className="step border-bottom app-wh120">
-                        <div className="app-padding-r24 app-active-font28 s-j-center">NO2</div>
-                        <div className="app-wh-80 app-margin-right24">
-                            <img className="app-wh100-all-radius" src="http://img4.imgtn.bdimg.com/it/u=398347842,2770887580&fm=23&gp=0.jpg"/>
-                        </div>
+                            {
+                                historyDailies.length!=0?historyDailies.map((json,index)=>(
+                                    <div className="step border-bottom app-wh120" key={index}>
+                                        <div className="app-padding-r24 app-active-font28 s-j-center">NO{index+1}</div>
+                                        <div className="app-wh-80 app-margin-right24">
+                                            <img className="app-wh100-all-radius" src={json.templeImageUrl}/>
+                                        </div>
 
-                        <div className="s-flex1 app-666-font30">
-                            灵隐寺
-                        </div>
-                        <div className="s-flex1 s-j-end app-666-font30">
-                            6000天
-                        </div>
-                    </div>
-                    <div className="step border-bottom app-wh120">
-                        <div className="app-padding-r24 app-active-font28 s-j-center">NO3</div>
-                        <div className="app-wh-80 app-margin-right24">
-                            <img className="app-wh100-all-radius" src="http://img4.imgtn.bdimg.com/it/u=398347842,2770887580&fm=23&gp=0.jpg"/>
-                        </div>
+                                        <div className="s-flex1 app-666-font30">
+                                            {json.templeName}
+                                        </div>
+                                        <div className="s-flex1 s-j-end app-666-font30">
+                                            {FormMoney.fenYuan(json.amount)}元
+                                        </div>
+                                    </div>
+                                )):''
+                            }
 
-                        <div className="s-flex1 app-666-font30">
-                            灵隐寺
-                        </div>
-                        <div className="s-flex1 s-j-end app-666-font30">
-                            6000天
-                        </div>
-                    </div>
 
-                </div>
+                        </div>
             </div>
 
 

@@ -7,13 +7,15 @@ import React from 'react';
 import {Router, Route, IndexRoute, browserHistory, Link} from 'react-router';
 import jsBridge from '../../jsBridge'
 import LocalStorage from '../../LocalStorage'
+import {Toast,HttpService} from '../../utils'
 import App from '../app'
 class DayPay extends React.Component {
     constructor() {
         super();
 
         this.state={
-            money:''
+            money:'',
+            info:{}
         };
 
     }
@@ -21,14 +23,28 @@ class DayPay extends React.Component {
     componentWillMount(){
 
         jsBridge.getBrideg(()=>{
-            jsBridge.setTitle('日善')
-        })
+            jsBridge.setTitle('日善');
+        });
 
         this.setState({
             money:1
         });
 
-      //  LocalStorage.add('money',1)
+        this.info();
+    }
+
+    async info() {
+        let code = await HttpService.query({
+            url: '/v1/temple/info',
+            data: {
+                id: this.props.params.id
+            }
+        });
+        console.log(code);
+        this.setState({
+            info: code
+        })
+
     }
 
     money(e){
@@ -41,7 +57,7 @@ class DayPay extends React.Component {
     gowish(){
         jsBridge.getBrideg(()=>{
             window.g_bridge.callHandler('sendMessageToApp', {
-                    type: 2, data: {url: 'http://172.27.35.4:3002/index.html#/wish/2/'+this.state.money+'/'+this.props.params.id+''}
+                    type: 2, data: {url: 'http://172.27.35.4:3002/index.html#/wish/1/'+this.state.money+'/'+this.props.params.id+''}
                 },
                 (response)=> {
 
@@ -56,6 +72,8 @@ class DayPay extends React.Component {
     render() {
 
 
+
+        const {info} =this.state;
         return (
 
             <div className="pay app-padding-lr24">
@@ -64,7 +82,7 @@ class DayPay extends React.Component {
                     <div className="step">
                         <div className="s-center pay-title">
                             <div style={{width:'200px',height:'200px'}}>
-                                <img src="http://img4.imgtn.bdimg.com/it/u=398347842,2770887580&fm=23&gp=0.jpg" className="app-wh100-all-radius"/>
+                                <img src={info.headImgUrl} className="app-wh100-all"/>
                             </div>
 
                         </div>

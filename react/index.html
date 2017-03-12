@@ -13,14 +13,13 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="renderer" content="webkit">
     <title>react-cnode</title>
-<link href="/dist/css/index.css?0c588dd3ea4d1e9b539e" rel="stylesheet"></head>
+<link href="/dist/css/index.css?d8fd31bc0a57df2de98a" rel="stylesheet"></head>
 <link rel="stylesheet" href="http://cdn.bootcss.com/Swiper/3.3.1/css/swiper.min.css">
 <body>
 
 <div id="content"></div>
 
 <script>
-
 
     document.addEventListener('WebViewJavascriptBridgeReady', function (event) {
         var bridge = event.bridge;
@@ -29,6 +28,7 @@
         });
         window.g_bridge= bridge;
     }, false);
+
 
     function setupWebViewJavascriptBridge(callback) {
         if (window.WebViewJavascriptBridge) { return callback(WebViewJavascriptBridge); }
@@ -52,5 +52,10 @@
 <script src="http://cdn.bootcss.com/react-redux/4.4.5/react-redux.js"></script>
 <script src="http://cdn.bootcss.com/redux/3.3.1/redux.js"></script>
 <script src="http://cdn.bootcss.com/Swiper/3.3.1/js/swiper.min.js"></script>
-<script type="text/javascript" src="/dist/vendors.js?0c588dd3ea4d1e9b539e"></script><script type="text/javascript" src="/dist/index.js?0c588dd3ea4d1e9b539e"></script></body>
+<script type="text/javascript" src="/dist/vendors.js?d8fd31bc0a57df2de98a"></script>
+<script type="text/javascript" src="/dist/index.js?d8fd31bc0a57df2de98a"></script>
+
+<!--<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=4zynelxW9HauIXZsWsIyeCax8xCIlYsF"></script>-->
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=1.4&key=4zynelxW9HauIXZsWsIyeCax8xCIlYsF&callback=initialize"></script>
+</body>
 </html>

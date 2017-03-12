@@ -10,6 +10,7 @@ import close from '../../../src/images/temple/close.png'
 import {Router, Route, IndexRoute, browserHistory, Link} from 'react-router';
 
 import jsBridge from '../../jsBridge'
+import {HttpService} from '../../utils'
 import App from '../app'
 class Pay extends React.Component {
     constructor(props) {
@@ -53,7 +54,7 @@ class Pay extends React.Component {
                     </div>
 
                 </div>
-                <Link to="/wish" className="app-a">
+
                     <div className="step" style={{paddingTop: '32px'}}>
 
                         <div className="s-flex1 s-j-center app-yellow-radius-check-button" style={{height: '80px'}}
@@ -61,7 +62,6 @@ class Pay extends React.Component {
                         </div>
 
                     </div>
-                </Link>
             </div>
 
 
@@ -91,7 +91,12 @@ class Pay extends React.Component {
     componentWillMount() {
         this.setState({
             selectMoney:1
+        });
+        jsBridge.getBrideg(()=>{
+            jsBridge.setTitle('发善心')
         })
+
+        // this.info();
 
 
     }
@@ -112,12 +117,13 @@ class Pay extends React.Component {
     }
 
     pay() {
-        LocalStorage.add('money', this.refs.InputMoney.value);
+       // LocalStorage.add('money', this.refs.InputMoney.value);
         this.setState({
             admin: {
                 flag: false,
                 _flag: false
-            }
+            },
+            selectMoney:this.refs.InputMoney.value
         })
     }
 
@@ -168,6 +174,20 @@ class Pay extends React.Component {
         })
     }
 
+    async info(){
+        let code = await HttpService.query({
+            url: '/v1/temple/info',
+            data: {
+                id:this.props.params.id
+            }
+        });
+        console.log(code)
+        this.setState({
+            info:code
+        })
+
+    }
+
 
 
 
@@ -186,7 +206,7 @@ class Pay extends React.Component {
                     <div className="step">
                         <div className="s-center pay-title">
                             <div style={{width: '200px', height: '200px'}}>
-                                <img src="http://img4.imgtn.bdimg.com/it/u=398347842,2770887580&fm=23&gp=0.jpg"
+                                <img src='/dist/bg/wish.png'
                                      className="app-wh100-all-radius"/>
                             </div>
 
@@ -195,7 +215,7 @@ class Pay extends React.Component {
 
                     <div className="step">
                         <div className="s-center app-333-font32">
-                            灵隐寺
+                            {this.props.params.name}
                         </div>
                     </div>
 

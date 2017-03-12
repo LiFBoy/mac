@@ -12,7 +12,8 @@ class AlmsDetail extends React.Component {
             info: {
                 locationPictures: [],
                 pictures: []
-            }
+            },
+            buildInfo:{}
         };
 
     }
@@ -20,9 +21,23 @@ class AlmsDetail extends React.Component {
 
     componentWillMount() {
         jsBridge.getBrideg(()=>{
-            jsBridge.setTitle('寺庙详情')
+            jsBridge.setTitle('更多资料')
         });
         this.info();
+
+    }
+
+    componentDidMount(){
+
+
+    }
+
+
+    componentWillUpdate(){
+
+            var map = new BMap.Map("allmap");          // 创建地图实例
+            var point = new BMap.Point(this.state.info.lat,this.state.info.lng);  // 创建点坐标
+            map.centerAndZoom(point, 15);
 
     }
 
@@ -36,10 +51,10 @@ class AlmsDetail extends React.Component {
         });
         console.log(code)
         this.setState({
-            info: code
-        })
+            info: code,
+        });
 
-        console.log(this.state.info)
+      //  console.log(this.state.info)
 
     }
 
@@ -47,18 +62,16 @@ class AlmsDetail extends React.Component {
 
 
     render() {
-        const {info}=this.state;
+        const {info,buildInfo}=this.state;
         return (
             <div className="app-container">
                 <div className="app-white">
                     <div className="step app-wh80  app-padding-lr24 border-bottom">
-                        <div className="s-flex1 app-333-font32">最近日善</div>
+                        <div className="s-flex1 app-333-font32">寺庙概括</div>
                     </div>
                     <div className="step app-padding-tb32 app-666-font28 app-padding-lr24 app-line-height">
 
-                        灵隐寺，又名云林寺，位于浙江省杭州市，背靠北高峰，面朝飞来峰，始建于东晋咸和元年（326年）。
-                        灵隐寺，又名云林寺，位于浙江省杭州市，背靠北高峰，面朝飞来峰，始建于东晋咸和元年（326年）。
-                        灵隐寺，又名云林寺，位于浙江省杭州市，背靠北高峰，面朝飞来峰，始建于东晋咸和元年（326年）。
+                        {info.summary}
 
                     </div>
                     <div className="app-height-20"></div>
@@ -104,15 +117,7 @@ class AlmsDetail extends React.Component {
 
                     <div className="step app-padding-tb32 app-666-font28 app-padding-lr24">
 
-                        <div className="s-flex1">
-                            {
-                                info.locationPictures.map((json, index) => (
-
-                                    <img src={json} className="app-wh100-all" key={index}/>
-
-                                ))
-                            }
-                        </div>
+                        <div id="allmap" style={{width:'100%',height:'200px'}}></div>
                     </div>
                 </div>
             </div>

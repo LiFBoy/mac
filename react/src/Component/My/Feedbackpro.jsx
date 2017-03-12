@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-import {HttpService} from '../../utils'
+import {HttpService,Toast} from '../../utils'
 
 import LocalStorage from '../../LocalStorage'
 import jsBridge from '../../jsBridge'
@@ -27,14 +27,27 @@ class Feedbackpro extends React.Component {
 
     async suggestion(){
 
-        var suggestion=document.getElementById('suggestion').value;
+        const suggestion=this.refs.suggestion.value;
 
-       const code= await HttpService.saveJson({
+        if(!suggestion){
+            Toast.toast('请输入内容',3000);
+            return;
+        }
+
+        const code= await HttpService.saveJson({
             url:'/v1/p/user/suggestion?accessToken='+LocalStorage.get('token')+'',
             data:{
                 suggestion:suggestion
             }
-        })
+        });
+
+        if(!!code){
+            jsBridge.getBrideg(()=>{
+                jsBridge.goBack();
+            })
+        }
+
+
 
     }
 
@@ -44,10 +57,10 @@ class Feedbackpro extends React.Component {
     title(){
         window.g_bridge.callHandler('sendMessageToApp', {
                 type: 15, data: {title:'反馈问题',
-                    rightNavigationBarItems:[{type: 10003, title:'提交'}]}},
+                    rightNavigationBarItems:[{type: 10004, title:'提交'}]}},
             (response)=>{
 
-                if(response==1003){
+                if(response==1004){
                     this.suggestion();
                 }
 
@@ -58,7 +71,7 @@ class Feedbackpro extends React.Component {
     listenEvent() {
         window.g_bridge.registerHandler('sendMessageToHTML',  (msg,cb)  => {
 
-            if(msg=='10003'){
+            if(msg=='10004'){
                 this.suggestion();
             }
 
@@ -73,7 +86,7 @@ class Feedbackpro extends React.Component {
             <div className="app-padding-lr24 ">
                 <form>
                     <div className="step app-padding-tb20">
-                        <textarea id="suggestion"  className="s-flex1 app-999-font28 app-setting-textarea"  placeholder="请输入你的问题">
+                        <textarea ref="suggestion"  className="s-flex1 app-999-font28 app-setting-textarea"  placeholder="请输入你的问题">
 
                         </textarea>
                     </div>

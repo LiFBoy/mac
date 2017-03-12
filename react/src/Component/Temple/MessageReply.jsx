@@ -8,7 +8,7 @@ import LocalStorage from '../../LocalStorage'
 import jsBridge from '../../jsBridge'
 
 
-class Replies extends React.Component {
+class MessageReply extends React.Component {
     constructor() {
         super();
         // jsBridge.getBrideg();
@@ -17,7 +17,7 @@ class Replies extends React.Component {
 
     componentWillMount(){
         jsBridge.getBrideg(()=>{
-            jsBridge.setTitle('评论')
+            jsBridge.setTitle('留言评论')
         })
     }
 
@@ -49,7 +49,7 @@ class Replies extends React.Component {
             <div className="app-padding-lr24 ">
                 <form action="">
                     <div className="step app-padding-tb20">
-                        <textarea ref="leaveContent"  className="s-flex1 app-999-font28 app-setting-textarea"  placeholder="请输入评论">
+                        <textarea ref="leaveContent"  className="s-flex1 app-999-font28 app-setting-textarea"  placeholder="留言评论">
 
                         </textarea>
 
@@ -68,4 +68,4 @@ class Replies extends React.Component {
 }
 
 
-export default Replies
+export default MessageReply

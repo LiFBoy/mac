@@ -13,7 +13,7 @@ import chunk3 from '../../../src/images/temple/chunk3.png'
 import pac from '../../../src/images/temple/praise－active.png'
 import comments from '../../../src/images/temple/comments.png'
 
-import {HttpService,Toast} from '../../utils';
+import {HttpService, Toast,Tool} from '../../utils';
 import LocalStorage from '../../LocalStorage'
 import Popup from '../popup'
 import jsBridge from '../../jsBridge'
@@ -25,6 +25,8 @@ class Coments extends React.Component {
             comments: [],
             admin: {}
         };
+
+        this.timeOutEvent = 0;
 
         this.config = {
             isSure: true,
@@ -43,52 +45,24 @@ class Coments extends React.Component {
                     <ul className="s-center" onClick={this.reply.bind(this)}>
                         <li className="app-333-font32">回复评论</li>
                     </ul>
-
-
                 </div>
                 <div className="step app-coments-popup border-bottom">
                     <ul className="s-center">
                         <li className="app-333-font32">删除评论</li>
                     </ul>
-
-
                 </div>
-                <div className="step app-coments-popup border-bottom">
+                <div className="step app-coments-popup border-bottom" onClick={this.report.bind(this)}>
                     <ul className="s-center">
                         <li className="app-333-font32">举报评论</li>
                     </ul>
-
-
                 </div>
                 <div className="step app-coments-popup">
                     <ul className="s-center" onClick={this.detail.bind(this)}>
                         <li className="app-333-font32">查看详情</li>
                     </ul>
-
-
                 </div>
-
-
             </div>
-
-
             ,
-            yes_cb: () => {
-
-                //  alert(this.state.info.isadmin)
-
-                //
-                // if (!!this.state.info.isadmin) {
-                //
-                // } else {
-                //
-                // }
-
-
-            },
-            no_cb: () => {
-                this.context.router.goBack()
-            }
         };
     }
 
@@ -96,35 +70,75 @@ class Coments extends React.Component {
     componentDidMount() {
 
 
-        Toast.toast(LocalStorage.get('token'),4000);
+        Toast.toast(LocalStorage.get('token'), 4000);
         this.comments();
+
+
+        jsBridge.getBrideg(()=> {
+            jsBridge.listen(()=> {
+                Toast.toast('来了',3000);
+                this.setState({
+                    admin: Tool.assign({},this.state.admin,{
+                        flag: false,
+                        _flag: false
+                    })
+                });
+
+            })
+        })
+    }
+
+    report() {
+
+        jsBridge.sendMessageToApp_type_2('report', this.state.admin.id)
+
     }
 
     reply() {
-
-
-        jsBridge.getBrideg(()=>{
-            jsBridge.sendMessageToApp_type_2('reply',this.state.admin.id)
+        jsBridge.getBrideg(()=> {
             this.setState({
-                admin: {
+                admin: Tool.assign({},this.state.admin,{
                     flag: false,
                     _flag: false
-                }
+                })
             });
         });
+
+            jsBridge.sendMessageToApp_type_2('commentReply', this.state.admin.id)
+
         // window.location.href='/index.html#/reply/'+ this.state.admin.id + ''
     }
 
-    detail(){
-        jsBridge.getBrideg(()=>{
-            jsBridge.sendMessageToApp_type_2('commentlists',this.state.admin.id,'detail');
+    detail() {
 
-            this.setState({
-                admin: {
-                    flag: false,
-                    _flag: false
-                }
-            })
+       // Toast.toast('lai',3000);
+        jsBridge.getBrideg(()=> {
+            if(this.state.admin.type=='2'){
+
+                const obj="''";
+
+                this.setState({
+                    admin: Tool.assign({},this.state.admin,{
+                        flag: false,
+                        _flag: false
+                    })
+                });
+
+                window.g_bridge.callHandler('sendMessageToApp', {
+                        type: 2,
+                        data: {url: 'http://172.27.35.4:3002/index.html#/CommentLists/' + this.state.admin.id + '/commentlists/'+obj+''}
+                    },
+                    (response)=> {
+
+                    });
+
+                // jsBridge.sendMessageToApp_type_2('CommentLists', this.state.admin.id, 'commentlists','');
+            }else if(this.state.admin.type=='1'){
+
+            }
+
+
+
         });
 
 
@@ -133,15 +147,42 @@ class Coments extends React.Component {
         // window.location.href='/index.html#/commentlists/'+this.state.admin.id+'/detail'
     }
 
-    popup(id) {
+    popup(id,type) {
         this.setState({
             admin: {
                 flag: true,
                 _flag: true,
-                id:id
+                id: id,
+                type:type
             }
         })
     }
+
+    //开始按
+    gtouchstart(id,type) {
+        // alert(id)
+        this.timeOutEvent = setTimeout(()=> {
+            this.timeOutEvent = 0;
+            this.popup(id,type)
+        }, 1000);//这里设置定时器，定义长按500毫秒触发长按事件，时间可以自己改，个人感觉500毫秒非常合适
+        console.log(this.timeOutEvent);
+        return false;
+    };
+
+    //手释放，如果在500毫秒内就释放，则取消长按事件，此时可以执行onclick应该执行的事件
+    gtouchend(id,type) {
+        clearTimeout(this.timeOutEvent);//清除定时器
+        if (this.timeOutEvent != 0) {
+        }
+        return false;
+    };
+
+    //  //如果手指有移动，则取消所有事件，此时说明用户只是要移动而不是长按
+    gtouchmove(id,type) {
+        clearTimeout(timeOutEvent);//清除定时器
+        this.timeOutEvent = 0;
+    };
+
 
     async comments() {
 
@@ -162,6 +203,7 @@ class Coments extends React.Component {
         return (
 
             <div className="temple-container app-container">
+
                 <Popup config={this.config} blockOrNone={admin.flag} _flag={admin.flag}/>
 
 
@@ -169,9 +211,9 @@ class Coments extends React.Component {
 
 
                     {
-                        this.state.comments.map((json ,index)=> {
+                        this.state.comments.map((json, index)=> {
                             return (
-                                <div className="dynamic-content app-padding-lr24 border-bottom" key={index}>
+                                <div className="dynamic-content app-padding-lr24 border-bottom" key={index} onClick={this.popup.bind(this,json.contentId,json.contentType)}>
                                     <div className="step temple-name">
                                         <div>
                                             <div className="temple-img"><img className="app-wh100-all-radius"
@@ -194,10 +236,11 @@ class Coments extends React.Component {
                                             </div>
                                         </div>
 
-                                        <div className="step app-margin-tb24" onClick={this.popup.bind(this,json.myCommentId)}>
+                                        <div className="step app-margin-tb24">
                                             <div className="comments s-flex1 s-flex-d s-j-center app-padding-l24"
                                                  style={{alignItems: 'flex-start'}}>
-                                                <div className="app-333-font28" style={{marginBottom: '16px'}}>{json.username}
+                                                <div className="app-333-font28"
+                                                     style={{marginBottom: '16px'}}>{json.username}
                                                 </div>
                                                 <div className="app-999-font24">{json.myComment}</div>
                                             </div>
@@ -209,9 +252,6 @@ class Coments extends React.Component {
                             )
                         })
                     }
-
-
-
 
 
                 </div>

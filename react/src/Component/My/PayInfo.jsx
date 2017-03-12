@@ -55,7 +55,7 @@ class PayInfo extends React.Component {
     }
 
     createLogin() {
-        const {donations}=this.state
+        const {donations}=this.state;
 
         return (
             <div className="app-padding-l24 ">

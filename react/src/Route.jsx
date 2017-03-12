@@ -20,6 +20,10 @@ import PayInfo from './Component/My/PayInfo';
 import DayGoods from './Component/My/DayGoods';
 import MyMain from './Component/My/MyMain';
 import MyAlms from './Component/My/MyAlms';
+import myHistoryDaily from './Component/My/myHistoryDaily';
+import myRecentDonations from './Component/My/myRecentDonations';
+import myRecentDaily from './Component/My/myRecentDaily';
+import myHistoryDonation from './Component/My/myHistoryDonation';
 
 
 
@@ -28,7 +32,8 @@ import Temple from './Component/Message/Temple';
 import ChanYu from './Component/Message/ChanYu';
 import Notice from './Component/Message/Notice';
 import Coments from './Component/Message/Coments';
-import reply from './Component/Message/reply';
+import CommentReply from './Component/Message/CommentReply';
+import report from './Component/Message/report';
 
 
 //Temple
@@ -49,7 +54,11 @@ import Pay from './Component/Temple/Pay';
 import PayRecord from './Component/Temple/PayRecord';
 import dailyRecord from './Component/Temple/dailyRecord';
 import wish from './Component/Temple/wish';
-import Replies from './Component/Temple/Replies';
+import MessageReply from './Component/Temple/MessageReply';
+import recentDonations from './Component/Temple/recentDonations';
+import historyDonations from './Component/Temple/historyDonations';
+import historyDaily from './Component/Temple/historyDaily';
+import recentDaily from './Component/Temple/recentDaily';
 
 
 
@@ -69,6 +78,9 @@ import TempleIndex from './Component/Temple-backend/TempleIndex';
 import dynamic from './Component/Temple-backend/dynamic';
 import TempleEdit from './Component/Temple-backend/TempleEdit';
 import Donations from './Component/Temple-backend/Donations';
+import trans from './Component/Temple-backend/trans';
+
+
 // /**
 //  * (路由根目录组件，显示当前符合条件的组件)
 //  *
@@ -87,37 +99,50 @@ import Donations from './Component/Temple-backend/Donations';
 var history = hashHistory;
 
 
+
+
 const requireAuth = (nextState, replaceState) => {
 
-    // if (!LocalStorage.get('token')) {
-    //     jsBridge.getBrideg(()=>{
-    //         jsBridge.sendMessageToApp_type_2('login')
-    //      //   document.body.innerHTML=window.g_bridge;
-    //     });
-    //     // Redirect to Home page if not an Admin
-    //     replaceState({ pathname: '/Login' })
-    // }
-}
+    console.log(nextState);
+
+    if (!LocalStorage.get('token')) {
+     //   Toast.toast('444',3333,'bottom');
+
+        //mymain
+        replaceState({nextPathname:nextState.location.pathname},'/Login')
+
+    }else{
+
+    }
+
+};
 
 const RouteConfig = (
     <Router history={history}>
         <Route path="/">
             <Route path="/Login" component={Login} />
             <Route path="/index" component={Index} />
-            <Route path="/IndexFocus" component={IndexFocus} />
+            <Route path="/IndexFocus" component={IndexFocus}/>
             <Route path="/NearBy" component={NearBy} />
             <Route path="/Feedbackpro" component={Feedbackpro} />
             <Route path="/PersonalInfo" component={PersonalInfo} />
             <Route path="/PersonalEdit" component={PersonalEdit} />
             <Route path="/UserInfo/:id" component={UserInfo} />
-            <Route path="/Setting" component={Setting} />
+            <Route path="/Setting" component={Setting}/>
             <Route path="/PayInfo" component={PayInfo} />
             <Route path="/DayGoods" component={DayGoods} />
-            <Route path="/MyMain" component={MyMain} onEnter={requireAuth}/>
+            <Route path="/myHistoryDaily" component={myHistoryDaily} />
+            <Route path="/myHistoryDonation" component={myHistoryDonation} />
+            <Route path="/myRecentDonations" component={myRecentDonations} />
+            <Route path="/myRecentDaily" component={myRecentDaily} />
+
+            <Route path="/MyMain" component={MyMain} onEnter={requireAuth}>
+
+            </Route>
+
+
+
             <Route path="/MyAlms" component={MyAlms} />
-
-
-
             <Route path="/TempleDetail/:id/:name" component={TempleDetail} />
             <Route path="/PaySuccess/:id" component={PaySuccess} />
             <Route path="/PayMoney" component={PayMoney} />
@@ -126,7 +151,7 @@ const RouteConfig = (
             <Route path="/PayHistory/:id" component={PayHistory} />
             <Route path="/AlmsDetail/:id" component={AlmsDetail} />
             <Route path="/SelectMoney" component={SelectMoney} />
-            <Route path="/CommentLists/:id/:type" component={CommentLists} />
+            <Route path="/CommentLists/:id/:type/:obj" component={CommentLists} />
             <Route path="/wish/:type/:money/:id" component={wish} />
 
 
@@ -136,9 +161,15 @@ const RouteConfig = (
             <Route path="/Coments" component={Coments} />
             <Route path="/DayPay/:id" component={DayPay} />
             <Route path="/UnderstandDetail/:id" component={UnderstandDetail} />
-            <Route path="/Pay/:id" component={Pay} />
+            <Route path="/Pay/:id/:name" component={Pay} />
             <Route path="/PayRecord/:id" component={PayRecord} />
             <Route path="/dailyRecord/:id" component={dailyRecord} />
+            <Route path="/recentDonations" component={recentDonations} />
+            <Route path="/historyDonations" component={historyDonations} />
+            <Route path="/historyDaily" component={historyDaily} />
+            <Route path="/recentDaily" component={recentDaily} />
+
+
 
             <Route path="/OperatIndex" component={OperatIndex} />
             <Route path="/SettingWord" component={SettingWord} />
@@ -153,15 +184,11 @@ const RouteConfig = (
             <Route path="/dynamic" component={dynamic} />
             <Route path="/TempleEdit" component={TempleEdit} />
             <Route path="/Donations" component={Donations} />
+            <Route path="/trans" component={trans} />
 
-
-            <Route path="/Replies/:id" component={Replies} />
-            <Route path="/reply/:id" component={reply} />
-
-
-
-
-
+            <Route path="/MessageReply/:id" component={MessageReply} />
+            <Route path="/CommentReply/:id" component={CommentReply} />
+            <Route path="/report/:id" component={report} />
 
         </Route>
     </Router>

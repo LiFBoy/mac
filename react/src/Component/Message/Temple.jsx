@@ -13,7 +13,7 @@ import chunk3 from '../../../src/images/temple/chunk3.png'
 import pac from '../../../src/images/temple/praise－active.png'
 import comments from '../../../src/images/temple/comments.png'
 
-import {HttpService} from '../../utils'
+import {HttpService,Toast} from '../../utils'
 import LocalStorage from '../../LocalStorage'
 import jsBridge from '../../jsBridge'
 
@@ -63,8 +63,19 @@ class Temple extends React.Component {
 
     sendMessageToApp_type_2(id){
 
+        const obj="''";
+
+        Toast.toast(id,3000);
+
+
         jsBridge.getBrideg(()=>{
-            jsBridge.sendMessageToApp_type_2('CommentLists',id,'CommentLists')
+            window.g_bridge.callHandler('sendMessageToApp', {
+                    type: 2,
+                    data: {url: 'http://172.27.35.4:3002/index.html#/CommentLists/' + id + '/commentlists/'+obj+''}
+                },
+                (response)=> {
+
+                })
         })
     }
 
@@ -84,7 +95,7 @@ class Temple extends React.Component {
 
                     {
                         templeStatuses.length!=0?templeStatuses.map((json,index)=>(
-                            <div className="dynamic-content app-padding-lr24" key={index}>
+                            <div className="dynamic-content app-padding-lr24" key={index} onClick={this.sendMessageToApp_type_2.bind(this,json.templeStatusId)}>
                                 <div className="step temple-name">
                                     <div>
                                         <div className="temple-img"><img className="app-wh100-all-radius" src={json.templeImgUrl}/></div>
@@ -114,17 +125,11 @@ class Temple extends React.Component {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="step right-corner">
+                                <div className="step ">
 
                                     <div className="s-flex1 s-j-end">
 
-                                        <div className="step" onClick={this.upvoteStatus.bind(this,json.templeStatusId)}>
-
-                                        <img className="img" src={pac}/>
-                                        <div className="number app-999-font24 padding-right-40">{json.upvoteNumber}</div>
-
-                                        </div>
-                                        <div className="step" onClick={this.sendMessageToApp_type_2.bind(this,json.templeStatusId)}>
+                                        <div className="step right-corner" >
                                         <img className="img" src={comments}/>
                                         <div className="number app-999-font24">{json.myComments.length}</div>
                                             </div>

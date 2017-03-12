@@ -29,23 +29,19 @@ class Setting extends React.Component {
     }
 
     set(){
-        LocalStorage.add('token','');
+            window.g_bridge.callHandler('sendMessageToApp', {
+                    type: 18, data: {accessToken:''}
+                },
+                (response)=> {
 
-        window.g_bridge.callHandler('sendMessageToApp', {
-                type: 18, data: {accessToken:''}
-            },
-            (response)=> {
+                });
 
+            jsBridge.getBrideg(()=>{
+                jsBridge.goBack();
             });
 
-        Toast.toast('退出登录成功',3000);
-        window.g_bridge.callHandler('sendMessageToApp', {
-                type: 1, data: {accessToken:''}
-            },
-            (response)=> {
-
-            });
-
+            LocalStorage.add('token','');
+            Toast.toast('退出成功',3000);
     }
 
 

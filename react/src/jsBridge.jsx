@@ -51,6 +51,14 @@ export default class jsBridge {
                 (response)=> {
 
                 })
+        }else if(option.length==3){
+            const [id,name,obj] =option;
+            window.g_bridge.callHandler('sendMessageToApp', {
+                    type: 2, data: {url: 'http://172.27.35.4:3002/index.html#/' + type + '/'+id+'/'+name+'/'+obj+''}
+                },
+                (response)=> {
+
+                })
         }
 
 
@@ -83,9 +91,12 @@ export default class jsBridge {
 
         window.g_bridge.callHandler('sendMessageToApp', {type:17, data:{accessToken:LocalStorage.get('token')}}, (response)=> {
 
+            Toast.toast(response,4000);
 
 
             if (response.code == 0) {
+
+
 
 
                 cb(response.ids,response.base64StringOfImage);
@@ -95,6 +106,17 @@ export default class jsBridge {
                 Toast.toast(response.desc, 3000)
             }
         });
+    }
+
+    static listen(callback){
+
+        window.g_bridge.registerHandler('sendMessageToHTML',  (msg,cb)  => {
+
+            if(msg=='10003'){
+                callback()
+            }
+
+        })
     }
 
 
