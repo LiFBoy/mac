@@ -10,7 +10,7 @@ import React from 'react';
 import Foot from '../Foot'
 import jt from '../../../src/images/my/jt.png'
 
-import {HttpService} from '../../utils'
+import {HttpService,FormDate} from '../../utils'
 
 import LocalStorage from '../../LocalStorage'
 import jsBridge from '../../jsBridge'
@@ -95,14 +95,6 @@ class SettingWord extends React.Component {
 
     }
 
-    newDate(timestamp3){
-        var newDate = new Date();
-        newDate.setTime(timestamp3 * 1000);
-
-
-
-        return newDate.toLocaleString()
-    }
     render() {
         const { dailySentences} =this.state;
         return (
@@ -148,7 +140,7 @@ class SettingWord extends React.Component {
                         dailySentences.length!=0?dailySentences.map((json,index)=>(
                             <div className="step border-bottom app-wh-120  app-white" style={{paddingLeft:'50px'}} key={index}>
                                 <div className="s-flex1 s-j-center s-flex-d app-666-font30" style={{alignItems: 'flex-start'}}>
-                                    <div className="app-333-font28">{this.newDate(json.publicTime)}</div>
+                                    <div className="app-333-font28">{FormDate.time(json.publicTime)}</div>
                                     <div className="app-999-font30 pt20">{json.content}</div>
                                 </div>
                                 <div className="s-flex1 s-j-end app-333-font28">

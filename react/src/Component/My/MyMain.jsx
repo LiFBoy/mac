@@ -137,6 +137,39 @@ class MyMain extends React.Component {
         this.info();
     }
 
+    role(){
+        if(this.state.info.role=2){
+            // alert(1111)
+            return <App cb={this.sendMessageToApp_type_2.bind(this, 'TempleIndex')}>
+                <div className="step app-padding-lr24 app-white-chunk border-bottom">
+                    <div className="s-flex2">
+
+                        <div className="app-333-font28 app-padding-l24">寺庙后台</div>
+
+                    </div>
+
+                    <div className="s-flex1 s-j-end"><img className="app-wh-45" src={jt}/></div>
+                </div>
+            </App>
+        }else if(this.state.info.role=3){
+            return <App cb={this.sendMessageToApp_type_2.bind(this, 'OperatIndex')} className="app-a">
+                <div className="step app-padding-lr24 app-white-chunk">
+
+
+                    <div className="s-flex2">
+                        <div className="app-333-font28 app-padding-l24">运营后台</div>
+                    </div>
+
+                    <div className="s-flex1 s-j-end"><img className="app-wh-45" src={jt}/></div>
+
+                </div>
+
+            </App>
+        }else if(this.state.info.role=1){
+            return
+        }
+    }
+
     render() {
         const {info}=this.state;
         return (
@@ -218,31 +251,12 @@ class MyMain extends React.Component {
                 </App>
                 <div className="app-margin-tb20"></div>
 
-                <App cb={this.sendMessageToApp_type_2.bind(this, 'TempleIndex')}>
-                    <div className="step app-padding-lr24 app-white-chunk border-bottom">
-                        <div className="s-flex2">
-
-                            <div className="app-333-font28 app-padding-l24">寺庙后台</div>
-
-                        </div>
-
-                        <div className="s-flex1 s-j-end"><img className="app-wh-45" src={jt}/></div>
-                    </div>
-                </App>
-
-                <App cb={this.sendMessageToApp_type_2.bind(this, 'OperatIndex')} className="app-a">
-                    <div className="step app-padding-lr24 app-white-chunk">
+                {
+                    this.role()
+                }
 
 
-                        <div className="s-flex2">
-                            <div className="app-333-font28 app-padding-l24">运营后台</div>
-                        </div>
 
-                        <div className="s-flex1 s-j-end"><img className="app-wh-45" src={jt}/></div>
-
-                    </div>
-
-                </App>
 
 
             </div>
