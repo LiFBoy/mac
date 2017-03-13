@@ -1,12 +1,15 @@
 1.运营后台，删除banner,没有 id
-2.根据寺庙id获取捐款历史
-  根据寺庙id获取最近捐款记录,这两个查不到数据，但确实是支付了好几笔
-
-3.获取评论详情， content内容来源中有个picture 应该是个数组类型，和获取寺庙状态中的 pictures 应该一致的类型吧
 
 4，headImgUrl字段，有些接口返回的是完整的url,有的就是 /dev/........jpg,
 
-5.删除评论，在评论列表里没有相应的删除。
+6./v1/p/notify/get/temple/status{?accessToken}  获取寺庙状态 :返回少了upvote字段，url是不完整的。
 
+7.获取用户通知信息,url是不完整,
+8:获取用户基本信息,url是不完整,
+9:获取寺庙状态详情,url是不完整
 
-6./v1/p/notify/get/temple/status{?accessToken}  获取关注的寺庙状态 :返回少了upvote字段，url是不完整的。
+9.寺庙的日善记录，日善历史，headImgUrl username 字段没数据
+
+10,添加寺庙少了个  寺庙概括 字段
+
+11./v1/public/get/temple/status/info 获取寺庙状态详情，status 字段中，少了寺庙headImgurl,name,
