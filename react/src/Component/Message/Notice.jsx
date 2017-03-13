@@ -26,7 +26,7 @@ class Notice extends React.Component {
                 data:{accessToken:LocalStorage.get('token')}
             });
 
-            console.log(code)
+            console.log(code);
 
            this.setState({
                notifies:code.notifies

@@ -10,7 +10,7 @@ import React from 'react';
 import Foot from '../Foot'
 import jt from '../../../src/images/my/jt.png'
 
-import {HttpService,FormDate} from '../../utils'
+import {HttpService,FormDate,Toast} from '../../utils'
 
 import LocalStorage from '../../LocalStorage'
 import jsBridge from '../../jsBridge'
@@ -87,7 +87,16 @@ class SettingWord extends React.Component {
                content: _content,publicTime:timestamp2
            }
        });
+
+
         console.log(code)
+
+        if(!!code){
+            Toast.toast('添加成功',3000);
+            this.sentence();
+            document.getElementById('_content').innerHTML='';
+            document.getElementById('demo2').innerHTML='';
+        }
 
     }
 
@@ -105,7 +114,11 @@ class SettingWord extends React.Component {
                         <div className="s-left app-666-font32">时间：</div>
                         <div className="s-right app-input-edit">
 
-                            <input id="demo2" className="app-input" type="text" readOnly="" name="input_date" placeholder="日期和时间" data-lcalendar="2010-01-11,2016-05-29" />
+
+                            {/*<input type="date"/>*/}
+                            {/*<input type="time"/>*/}
+
+                            <input id="demo2" className="app-input" type="text" readOnly="" name="input_date" placeholder="日期和时间" data-lcalendar="2010-01-11,2018-05-29" />
 
                                 {/*<DatePicker className="forss"*/}
                                             {/*mode="datetime"*/}

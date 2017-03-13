@@ -50,7 +50,7 @@ class PersonalInfo extends React.Component {
     listenEvent() {
         window.g_bridge.registerHandler('sendMessageToHTML',  (msg,cb)  => {
 
-                Toast.toast(msg,330000)
+             //   Toast.toast(msg,330000)
 
                 if(msg=='10000'){
 

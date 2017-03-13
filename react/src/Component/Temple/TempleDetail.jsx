@@ -138,7 +138,7 @@ class TempleDetail extends React.Component {
         window.g_bridge.callHandler('sendMessageToApp', {
                 type: 2,
                 data: {
-                    url: 'http://172.27.35.4:3002/index.html#/DayPay/' + this.props.params.id + '/'
+                    url: 'http://192.168.0.107:3002/index.html#/DayPay/' + this.props.params.id + '/'
                 }
             },
             (response)=> {
@@ -150,7 +150,7 @@ class TempleDetail extends React.Component {
 
     AlmsDetail() {
         window.g_bridge.callHandler('sendMessageToApp', {
-                type: 2, data: {url: 'http://172.27.35.4:3002/index.html#/AlmsDetail/' + this.props.params.id + ''}
+                type: 2, data: {url: 'http://192.168.0.107:3002/index.html#/AlmsDetail/' + this.props.params.id + ''}
             },
             (response)=> {
 
@@ -160,7 +160,7 @@ class TempleDetail extends React.Component {
 
     PayHistory(id) {
         window.g_bridge.callHandler('sendMessageToApp', {
-                type: 2, data: {url: 'http://172.27.35.4:3002/index.html#/PayHistory/' + id + ''}
+                type: 2, data: {url: 'http://192.168.0.107:3002/index.html#/PayHistory/' + id + ''}
             },
             (response)=> {
 
@@ -169,7 +169,7 @@ class TempleDetail extends React.Component {
 
     PayRecord() {
         window.g_bridge.callHandler('sendMessageToApp', {
-                type: 2, data: {url: 'http://172.27.35.4:3002/index.html#/PayRecord/' + this.props.params.id + ''}
+                type: 2, data: {url: 'http://192.168.0.107:3002/index.html#/PayRecord/' + this.props.params.id + ''}
             },
             (response)=> {
 
@@ -178,7 +178,7 @@ class TempleDetail extends React.Component {
 
     UnderstandDetail(id) {
         window.g_bridge.callHandler('sendMessageToApp', {
-                type: 2, data: {url: 'http://172.27.35.4:3002/index.html#/UnderstandDetail/' + id + ''}
+                type: 2, data: {url: 'http://192.168.0.107:3002/index.html#/UnderstandDetail/' + id + ''}
             },
             (response)=> {
 
@@ -187,7 +187,7 @@ class TempleDetail extends React.Component {
 
     Pay(id) {
         window.g_bridge.callHandler('sendMessageToApp', {
-                type: 2, data: {url: 'http://172.27.35.4:3002/index.html#/Pay/' + id + '/' + this.props.params.name + ''}
+                type: 2, data: {url: 'http://192.168.0.107:3002/index.html#/Pay/' + id + '/' + this.props.params.name + ''}
             },
             (response)=> {
 
@@ -206,7 +206,7 @@ class TempleDetail extends React.Component {
         };
         window.g_bridge.callHandler('sendMessageToApp', {
                 type: 2,
-                data: {url: 'http://172.27.35.4:3002/index.html#/CommentLists/' + id + '/commentlists/' + encodeURIComponent(JSON.stringify(obj)) + ''}
+                data: {url: 'http://192.168.0.107:3002/index.html#/CommentLists/' + id + '/commentlists/' + encodeURIComponent(JSON.stringify(obj)) + ''}
             },
             (response)=> {
 

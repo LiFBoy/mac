@@ -70,13 +70,13 @@ class Coments extends React.Component {
     componentDidMount() {
 
 
-        Toast.toast(LocalStorage.get('token'), 4000);
+        // Toast.toast(LocalStorage.get('token'), 4000);
         this.comments();
 
 
         jsBridge.getBrideg(()=> {
             jsBridge.listen(()=> {
-                Toast.toast('来了',3000);
+                // Toast.toast('来了',3000);
                 this.setState({
                     admin: Tool.assign({},this.state.admin,{
                         flag: false,
@@ -126,7 +126,7 @@ class Coments extends React.Component {
 
                 window.g_bridge.callHandler('sendMessageToApp', {
                         type: 2,
-                        data: {url: 'http://172.27.35.4:3002/index.html#/CommentLists/' + this.state.admin.id + '/commentlists/'+obj+''}
+                        data: {url: 'http://192.168.0.107:3002/index.html#/CommentLists/' + this.state.admin.id + '/commentlists/'+obj+''}
                     },
                     (response)=> {
 
@@ -217,12 +217,12 @@ class Coments extends React.Component {
                                     <div className="step temple-name">
                                         <div>
                                             <div className="temple-img"><img className="app-wh100-all-radius"
-                                                                             src={json.userHeadImgUrl}/>
+                                                                             src={json.userHeadImgUrl||'dist/bg/loginHead.jpg'}/>
                                             </div>
                                         </div>
                                         <div className="s-right s-j-center"
                                              style={{flexDirection: 'column', alignItems: 'flex-start'}}>
-                                            <div className="app-333-font28 app-line-height-one">{json.username}</div>
+                                            <div className="app-333-font28 app-line-height-one">{json.username||'匿名'}</div>
                                             <div className="app-999-font24 app-line-height-one"
                                                  style={{paddingTop: '12px'}}>{json.timeStr}
                                             </div>

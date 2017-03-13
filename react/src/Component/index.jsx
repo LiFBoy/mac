@@ -55,7 +55,7 @@ class Index extends React.Component {
         setTimeout(()=> {
             this.initBannerSwiper();
 
-        }, 300)
+        }, 2000)
 
 
     }
@@ -217,7 +217,9 @@ class Index extends React.Component {
                                 {
                                     this.state.banners.length != 0 ? this.state.banners.map((json, index)=>(
                                         <div className="swiper-slide" key={index} onClick={this.sendMessageToApp_type_2.bind(this,json.link)}>
-                                            <img src={json.picture} className="app-wh100-all"/>
+                                            <div style={{width:'100vw'}}>
+                                                <img src={json.picture} className="app-wh100-all"/>
+                                            </div>
                                         </div>
 
 
@@ -284,7 +286,7 @@ class Index extends React.Component {
 
                 {/*<Foot type="1"></Foot>*/}
 
-                <div  style={{height:'100px'}}></div>
+                <div  style={{height:'15%'}}></div>
             </div>
         )
     }

@@ -31,7 +31,7 @@ class ChanYu extends React.Component {
             console.log(code)
 
             this.setState({
-                dailySentences: code.dailySentences
+                dailySentences: code.dailySentences.reverse()
             })
         } catch (error) {
 

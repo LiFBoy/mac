@@ -290,7 +290,7 @@ class CommentLists extends React.Component {
                                         <div className="s-flex1 s-j-center"
                                              style={{flexDirection: 'column', alignItems: 'flex-start'}}>
 
-                                            <div className="app-333-font28 app-line-height-one">{json.sender}</div>
+                                            <div className="app-333-font28 app-line-height-one">{json.sender||'匿名'}</div>
 
                                             <div className="app-999-font24 app-line-height-one"
                                                  style={{paddingTop: '12px'}}>{json.timeStr}</div>
@@ -346,7 +346,7 @@ class CommentLists extends React.Component {
                                         <div className="s-flex1 s-j-center"
                                              style={{flexDirection: 'column', alignItems: 'flex-start'}}>
 
-                                            <div className="app-333-font28 app-line-height-one">{json.sender}</div>
+                                            <div className="app-333-font28 app-line-height-one">{json.sender||'匿名'}</div>
 
                                             <div className="app-999-font24 app-line-height-one"
                                                  style={{paddingTop: '12px'}}>{json.timeStr}</div>

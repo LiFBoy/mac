@@ -103,7 +103,8 @@ class MyMain extends React.Component {
             info: {
                 headImgUrl: code.headImgUrl,
                 username: code.username,
-                residence: code.residence
+                residence: code.residence,
+                role:code.role
             }
         })
     }
@@ -138,7 +139,7 @@ class MyMain extends React.Component {
     }
 
     role(){
-        if(this.state.info.role=2){
+        if(this.state.info.role==2){
             // alert(1111)
             return <App cb={this.sendMessageToApp_type_2.bind(this, 'TempleIndex')}>
                 <div className="step app-padding-lr24 app-white-chunk border-bottom">
@@ -151,7 +152,7 @@ class MyMain extends React.Component {
                     <div className="s-flex1 s-j-end"><img className="app-wh-45" src={jt}/></div>
                 </div>
             </App>
-        }else if(this.state.info.role=3){
+        }else if(this.state.info.role==3){
             return <App cb={this.sendMessageToApp_type_2.bind(this, 'OperatIndex')} className="app-a">
                 <div className="step app-padding-lr24 app-white-chunk">
 
@@ -165,7 +166,7 @@ class MyMain extends React.Component {
                 </div>
 
             </App>
-        }else if(this.state.info.role=1){
+        }else if(this.state.info.role==1){
             return
         }
     }

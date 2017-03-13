@@ -65,13 +65,13 @@ class Temple extends React.Component {
 
         const obj="''";
 
-        Toast.toast(id,3000);
+        // Toast.toast(id,3000);
 
 
         jsBridge.getBrideg(()=>{
             window.g_bridge.callHandler('sendMessageToApp', {
                     type: 2,
-                    data: {url: 'http://172.27.35.4:3002/index.html#/CommentLists/' + id + '/commentlists/'+obj+''}
+                    data: {url: 'http://192.168.0.107:3002/index.html#/CommentLists/' + id + '/commentlists/'+obj+''}
                 },
                 (response)=> {
 

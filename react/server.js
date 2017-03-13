@@ -47,7 +47,7 @@ var server = new WebpackDevServer(webpack(config), {
 // });
 
 // server.listen(3002);
-server.listen(3002,'172.27.35.4');
+server.listen(3002,'192.168.0.107');
 
 // server.listen(3002);
 
