@@ -106,7 +106,7 @@ class Coments extends React.Component {
 
             jsBridge.sendMessageToApp_type_2('commentReply', this.state.admin.id)
 
-        // window.location.href='/index.html#/reply/'+ this.state.admin.id + ''
+        // window.location.href='/app.html#/reply/'+ this.state.admin.id + ''
     }
 
     detail() {
@@ -126,7 +126,7 @@ class Coments extends React.Component {
 
                 window.g_bridge.callHandler('sendMessageToApp', {
                         type: 2,
-                        data: {url: 'http://192.168.0.107:3002/index.html#/CommentLists/' + this.state.admin.id + '/commentlists/'+obj+''}
+                        data: {url: 'https://www.zrrulai.com/app.html#/CommentLists/' + this.state.admin.id + '/commentlists/'+obj+''}
                     },
                     (response)=> {
 
@@ -144,7 +144,7 @@ class Coments extends React.Component {
 
 
 
-        // window.location.href='/index.html#/commentlists/'+this.state.admin.id+'/detail'
+        // window.location.href='/app.html#/commentlists/'+this.state.admin.id+'/detail'
     }
 
     popup(id,type) {

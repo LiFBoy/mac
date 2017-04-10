@@ -138,7 +138,7 @@ class TempleDetail extends React.Component {
         window.g_bridge.callHandler('sendMessageToApp', {
                 type: 2,
                 data: {
-                    url: 'http://192.168.0.107:3002/index.html#/DayPay/' + this.props.params.id + '/'
+                    url: 'https://www.zrrulai.com/app.html#/DayPay/' + this.props.params.id + '/'
                 }
             },
             (response)=> {
@@ -150,7 +150,7 @@ class TempleDetail extends React.Component {
 
     AlmsDetail() {
         window.g_bridge.callHandler('sendMessageToApp', {
-                type: 2, data: {url: 'http://192.168.0.107:3002/index.html#/AlmsDetail/' + this.props.params.id + ''}
+                type: 2, data: {url: 'https://www.zrrulai.com/app.html#/AlmsDetail/' + this.props.params.id + ''}
             },
             (response)=> {
 
@@ -160,7 +160,7 @@ class TempleDetail extends React.Component {
 
     PayHistory(id) {
         window.g_bridge.callHandler('sendMessageToApp', {
-                type: 2, data: {url: 'http://192.168.0.107:3002/index.html#/PayHistory/' + id + ''}
+                type: 2, data: {url: 'https://www.zrrulai.com/app.html#/PayHistory/' + id + ''}
             },
             (response)=> {
 
@@ -169,7 +169,7 @@ class TempleDetail extends React.Component {
 
     PayRecord() {
         window.g_bridge.callHandler('sendMessageToApp', {
-                type: 2, data: {url: 'http://192.168.0.107:3002/index.html#/PayRecord/' + this.props.params.id + ''}
+                type: 2, data: {url: 'https://www.zrrulai.com/app.html#/PayRecord/' + this.props.params.id + ''}
             },
             (response)=> {
 
@@ -178,7 +178,7 @@ class TempleDetail extends React.Component {
 
     UnderstandDetail(id) {
         window.g_bridge.callHandler('sendMessageToApp', {
-                type: 2, data: {url: 'http://192.168.0.107:3002/index.html#/UnderstandDetail/' + id + ''}
+                type: 2, data: {url: 'https://www.zrrulai.com/app.html#/UnderstandDetail/' + id + ''}
             },
             (response)=> {
 
@@ -187,7 +187,7 @@ class TempleDetail extends React.Component {
 
     Pay(id) {
         window.g_bridge.callHandler('sendMessageToApp', {
-                type: 2, data: {url: 'http://192.168.0.107:3002/index.html#/Pay/' + id + '/' + this.props.params.name + ''}
+                type: 2, data: {url: 'https://www.zrrulai.com/app.html#/Pay/' + id + '/' + this.props.params.name + ''}
             },
             (response)=> {
 
@@ -206,7 +206,7 @@ class TempleDetail extends React.Component {
         };
         window.g_bridge.callHandler('sendMessageToApp', {
                 type: 2,
-                data: {url: 'http://192.168.0.107:3002/index.html#/CommentLists/' + id + '/commentlists/' + encodeURIComponent(JSON.stringify(obj)) + ''}
+                data: {url: 'https://www.zrrulai.com/app.html#/CommentLists/' + id + '/commentlists/' + encodeURIComponent(JSON.stringify(obj)) + ''}
             },
             (response)=> {
 
@@ -220,12 +220,12 @@ class TempleDetail extends React.Component {
         if (type == 1) {
 
             jsBridge.sendMessageToApp_type_2('FocusLists', id);
-            // window.location.href = '/index.html#/FocusLists/'+ this.props.params.id + ''
+            // window.location.href = '/app.html#/FocusLists/'+ this.props.params.id + ''
         } else if (type == 2) {
             jsBridge.sendMessageToApp_type_2('MessageBoard', id);
-            //   window.location.href = '/index.html#/MessageBoard/'+ this.props.params.id + ''
+            //   window.location.href = '/app.html#/MessageBoard/'+ this.props.params.id + ''
         } else if (type == 3) {
-            // window.location.href = "/index.html#/PayRecord"
+            // window.location.href = "/app.html#/PayRecord"
             jsBridge.sendMessageToApp_type_2('dailyRecord', id);
         }
 

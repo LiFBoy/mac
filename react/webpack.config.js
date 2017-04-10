@@ -14,11 +14,11 @@ plugins.push(new webpack.optimize.OccurenceOrderPlugin());
 plugins.push(new ExtractTextPlugin('css/[name].css')); //css单独打包
 plugins.push(new webpack.HotModuleReplacementPlugin());//热替换
 plugins.push(new HtmlWebpackPlugin({
-        filename: '../index.html', //生成的html存放路径，相对于 path
-        template: './src/Template/index.html', //html模板路径
+        filename: '../app.html', //生成的html存放路径，相对于 path
+        template: './src/Template/app.html', //html模板路径
         hash: true,
         //为静态资源生成hash值
-        chunks: ['index', 'vendors'],
+        chunks: ['app', 'vendors'],
         inject: 'body'
     })
 );
@@ -51,9 +51,7 @@ module.exports = {
     externals: {
         "react": "React",
         "react-dom": "ReactDOM",
-        "react-router": "ReactRouter",
-        "redux": "Redux",
-        "react-redux": "ReactRedux",
+        "react-router": "ReactRouter"
     },
     // devtool: 'source-map',
     module: {

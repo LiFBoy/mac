@@ -71,7 +71,7 @@ class Temple extends React.Component {
         jsBridge.getBrideg(()=>{
             window.g_bridge.callHandler('sendMessageToApp', {
                     type: 2,
-                    data: {url: 'http://192.168.0.107:3002/index.html#/CommentLists/' + id + '/commentlists/'+obj+''}
+                    data: {url: 'https://www.zrrulai.com/app.html#/CommentLists/' + id + '/commentlists/'+obj+''}
                 },
                 (response)=> {
 

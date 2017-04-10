@@ -138,31 +138,32 @@ class AddTemple extends React.Component {
             lng = this.getValue('lng'),
             location = this.getValue('location'),
             locationInfo = this.getValue('locationInfo'),
-            name = this.getValue('name');
+            name = this.getValue('name'),
+            phone = this.getValue('phone');
 
        //console.log(lat<90&&lat>-90)
 
-        if(!(lat<90&&lat>-90)&&(lng<90&&lng>-90)){
+        if(!(lat<180&&lat>-180)&&(lng<90&&lng>-90)){
             return;
         }
 
 
         if (this.props.params.id == 'null') {
 
+            console.log(this.state.headImgUrl[0]);
 
             let code = await HttpService.saveJson({
                 url: '/v1/ad/admin/create/temple?accessToken=' + LocalStorage.get('token') + '',
                 data: {
-                    abbot: abbot, abbotInfo: abbotInfo, buildingInfo: buildingInfo,
+                    abbot: abbot,
+                    abbotInfo: abbotInfo,
+                    buildingInfo: buildingInfo,
                     summary:templeInfo,
                     headImgUrl: this.state.headImgUrl[0],
                     lat: lat, lng: lng, location: location,
                     locationInfo: locationInfo,
-                    locationPictures: [
-                        '58ad80fefb3e8e05cd4badb2'
-                    ],
                     name: name,
-                    phone: LocalStorage.get('phone'),
+                    phone: phone,
                     pictures: this.state._ids
                 }
             });
@@ -192,11 +193,8 @@ class AddTemple extends React.Component {
                     lng: lng,
                     location: location,
                     locationInfo: locationInfo,
-                    locationPictures: [
-                        '58ad80fefb3e8e05cd4badb2'
-                    ],
                     name: name,
-                    phone: LocalStorage.get('phone'),
+                    phone: phone,
                     pictures: this.state._ids
                 }
             });
@@ -241,24 +239,26 @@ class AddTemple extends React.Component {
         }
     }
 
-    changeValue(a, e) {
+    changeValue(name, event) {
 
        if(this.props.params.id == 'null'){
            return;
        }
 
         let obj = {};
-        obj[a] = e.target.value;
+        obj[name] = event.target.value;
         console.log(obj);
-        this.setState({
-            info: Tool.assign({},obj,this.state.info)
-        });
 
+        console.log(this.state.info);
+        this.setState({
+            info: Tool.assign({},this.state.info,obj)
+        });
 
     }
 
     render() {
         const {info, showPictures, base64} =this.state;
+
         return (
             <div className="app-padding-lr24">
                 <div className="step app-padding-tb20">
@@ -295,7 +295,15 @@ class AddTemple extends React.Component {
                     <div className="s-left app-666-font32">纬度：</div>
                     <div className="s-right app-input-edit">
                         <input className="app-input" id="lng" value={info.lng}
-                               onCanPlay={this.changeValue.bind(this, 'lng')} placeholder="纬度" type="number"/>
+                               onChange={this.changeValue.bind(this, 'lng')} placeholder="纬度" type="number"/>
+                    </div>
+                </div>
+
+                <div className="step app-padding-tb20">
+                    <div className="s-left app-666-font32">手机号：</div>
+                    <div className="s-right app-input-edit">
+                        <input className="app-input" id="phone" value={info.phone} disabled={!(this.props.params.id=='null')}
+                               onChange={this.changeValue.bind(this, 'phone')} placeholder="手机号" type="number"/>
                     </div>
                 </div>
 

@@ -30,9 +30,15 @@ var proxy = [{
     },
     {
         path: '/v1/*',
-        target: 'http://121.40.128.121:9080',
-        host: '121.40.128.121:9080'
-    }
+        target: 'https://www.zrrulai.com',
+        host: 'www.zrrulai.com'
+    },
+
+    // {
+    //     path: '/v1/*',
+    //     target: '121.40.128.121:9080',
+    //     host: '121.40.128.121:9080'
+    // }
 ];
 
 //启动服务
@@ -41,13 +47,9 @@ var server = new WebpackDevServer(webpack(config), {
     proxy: proxy
 });
 
-//将其他路由，全部返回index.html
-// server.app.get('*', function (req, res) {
-//     res.sendFile(__dirname + '/index.html')
-// });
 
 // server.listen(3002);
-server.listen(3002,'192.168.0.107');
+server.listen(3002,'172.27.35.6');
 
 // server.listen(3002);
 

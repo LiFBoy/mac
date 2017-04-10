@@ -31,14 +31,14 @@ export default class jsBridge {
 
         if(option.length==0){
             window.g_bridge.callHandler('sendMessageToApp', {
-                    type: 2, data: {url: 'http://192.168.0.107:3002/index.html#/' + type + ''}
+                    type: 2, data: {url: 'https://www.zrrulai.com/app.html#/' + type + ''}
                 },
                 (response)=> {
 
                 })
         }else if(option.length==1){
             window.g_bridge.callHandler('sendMessageToApp', {
-                    type: 2, data: {url: 'http://192.168.0.107:3002/index.html#/' + type + '/'+option[0]+''}
+                    type: 2, data: {url: 'https://www.zrrulai.com/app.html#/' + type + '/'+option[0]+''}
                 },
                 (response)=> {
 
@@ -46,7 +46,7 @@ export default class jsBridge {
         }else if(option.length==2){
             const [id,name] =option;
             window.g_bridge.callHandler('sendMessageToApp', {
-                    type: 2, data: {url: 'http://192.168.0.107:3002/index.html#/' + type + '/'+id+'/'+name+''}
+                    type: 2, data: {url: 'https://www.zrrulai.com/app.html#/' + type + '/'+id+'/'+name+''}
                 },
                 (response)=> {
 
@@ -54,7 +54,7 @@ export default class jsBridge {
         }else if(option.length==3){
             const [id,name,obj] =option;
             window.g_bridge.callHandler('sendMessageToApp', {
-                    type: 2, data: {url: 'http://192.168.0.107:3002/index.html#/' + type + '/'+id+'/'+name+'/'+obj+''}
+                    type: 2, data: {url: 'https://www.zrrulai.com/app.html#/' + type + '/'+id+'/'+name+'/'+obj+''}
                 },
                 (response)=> {
 

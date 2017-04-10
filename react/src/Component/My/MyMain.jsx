@@ -72,7 +72,7 @@ class MyMain extends React.Component {
                             this.props.history.replaceState(null,'Login');
                         },1000);
 
-                   // window.location.href='/index.html#/login'
+                   // window.location.href='/app.html#/login'
 
                 }else{
                     this.info();

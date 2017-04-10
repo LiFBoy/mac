@@ -20,13 +20,13 @@ class Foot extends React.Component {
     }
 
     changeType(type) {
-        if (type == 1) {
-            window.location.href = "/index.html#/index"
-        } else if (type == 2) {
-            window.location.href = "/index.html#/Temple"
-        } else if (type == 3) {
-            window.location.href = "/index.html#/MyMain"
-        }
+        // if (type == 1) {
+        //     window.location.href = "/app.html#/index"
+        // } else if (type == 2) {
+        //     window.location.href = "/app.html#/Temple"
+        // } else if (type == 3) {
+        //     window.location.href = "/app.html#/MyMain"
+        // }
 
 
     }

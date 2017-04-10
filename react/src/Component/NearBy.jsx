@@ -1,12 +1,6 @@
 'use strict';
 
 import React, {Component, PropTypes} from 'react';
-
-
-import {doLogin, change, getOneBabyid, changeSaveBabyStatus, getMap, getCurrentPower, exportMap} from '../action/index'
-
-import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
 import {HttpService} from '../utils'
 import jsBridge from '../jsBridge'
 import App from './app'

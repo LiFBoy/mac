@@ -2,14 +2,6 @@
 
 import React, {Component, PropTypes} from 'react';
 
-
-import {doLogin, change, getOneBabyid, changeSaveBabyStatus, getMap, getCurrentPower, exportMap} from '../action/index'
-
-import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
-
-import {Router, Route, IndexRoute, browserHistory, Link} from 'react-router';
-
 import Foot from './Foot';
 import jsBridge from '../jsBridge';
 
@@ -34,7 +26,7 @@ class IndexFocus extends React.Component {
     componentWillMount() {
 
         if (!LocalStorage.get('token')) {
-          //  window.location.href = '/index.html#/login'
+          //  window.location.href = '/app.html#/login'
         } else {
             this.temples();
         }
@@ -58,7 +50,7 @@ class IndexFocus extends React.Component {
 
     TempleDetail(id, name) {
         window.g_bridge.callHandler('sendMessageToApp', {
-                type: 2, data: {url: 'http://192.168.0.107:3002/index.html#/TempleDetail/' + id + '/' + name + ''}
+                type: 2, data: {url: 'https://www.zrrulai.com/app.html#/TempleDetail/' + id + '/' + name + ''}
             },
             (response)=> {
 
@@ -122,37 +114,4 @@ class IndexFocus extends React.Component {
     }
 }
 
-
-const mapStateToProps = state => {
-    return {
-        list: state.login.list,
-        babyName: state.login.babyName,
-        babyid: state.login.babyid,
-        babytelephone: state.login.babytelephone,
-        headimg: state.login.headimg,
-        values: state.login.values,
-        lng: state.login.lng,
-        lat: state.login.lat,
-        gpstime: state.login.gpstime,
-        getGuardiansList: state.login.getGuardiansList,
-        _checked: state.login.checked,
-        abc: state.login.abc,
-        address: state.login.addr,
-        datasource: state.login.datasource,
-        isLogin: state.login.isLogin,
-        exportMap: state.login.exportMap
-
-    };
-};
-const mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({
-        doLogin: doLogin,
-        change: change,
-        getOneBabyid: getOneBabyid,
-        changeSaveBabyStatus: changeSaveBabyStatus,
-        getMap: getMap,
-        getCurrentPower: getCurrentPower,
-        exportMap: exportMap,
-    }, dispatch);
-};
-export default connect(mapStateToProps, mapDispatchToProps)(IndexFocus);
+export default IndexFocus;
