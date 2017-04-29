@@ -31,10 +31,12 @@ class TempleDetail extends React.Component {
     componentWillMount() {
 
         jsBridge.getBrideg(()=> {
-            jsBridge.setTitle(this.props.params.name)
+            jsBridge.setTitle(decodeURIComponent(this.props.params.name))
         });
 
-        LocalStorage.add('templeName', this.props.params.name);
+        LocalStorage.add('templeName', decodeURIComponent(this.props.params.name));
+
+
         this.info();
         this.status();
         this.latestCollections();
@@ -45,7 +47,6 @@ class TempleDetail extends React.Component {
     componentDidMount() {
 
 
-        document.getElementById("bar").style.width = this.state.bili + "%";
     }
 
     async latestCollections() {
@@ -56,12 +57,14 @@ class TempleDetail extends React.Component {
         });
 
         this.setState({
-            latestCollections: code,
-            bili: (2 / code.amount) * 100 + '%'
+            latestCollections: code
         });
 
+        this.bili=code.currentAmount==0?'0%':(code.currentAmount / code.amount) * 100 + '%';
 
-        console.log(this.state.bili)
+
+        console.log(this.bili)
+        document.getElementById('bar').style.width=this.bili;
 
     }
 
@@ -185,9 +188,11 @@ class TempleDetail extends React.Component {
             })
     }
 
-    Pay(id) {
+    Pay(id,name) {
+        console.log(encodeURIComponent(name))
+
         window.g_bridge.callHandler('sendMessageToApp', {
-                type: 2, data: {url: 'https://www.zrrulai.com/app.html#/Pay/' + id + '/' + this.props.params.name + ''}
+                type: 2, data: {url: 'https://www.zrrulai.com/app.html#/Pay/' + id + '/' + encodeURIComponent(name)+ ''}
             },
             (response)=> {
 
@@ -309,6 +314,8 @@ class TempleDetail extends React.Component {
                 </div>
                 <div className="app-margin-tb20"></div>
                 <div className="middle">
+                    {/*<div style={{display:latestCollections.amount==0?'none':'block'}}>*/}
+
                     <div className="step h-88-b">
                         <div className="s-flex2 s-j-center app-333-font32">{latestCollections.title}</div>
                         <App cb={this.PayHistory.bind(this, this.props.params.id)}>
@@ -343,13 +350,15 @@ class TempleDetail extends React.Component {
                                     <div className="chunk app-666-font28 s-flex1 s-j-center">了解详情</div>
                                 </App>
                                 <div className="app-padding-lr20"></div>
-                                <App cb={this.Pay.bind(this, latestCollections.id)} class="s-flex1">
+                                <App cb={this.Pay.bind(this, latestCollections.id,this.props.params.name)} class="s-flex1">
                                     <div className="chunk app-666-font28 s-flex1 s-j-center">发善心</div>
                                 </App>
                             </div>
 
                         </div>
                     </div>
+
+                {/*</div>*/}
 
 
                     <div className="step dynamic app-padding-lr24">

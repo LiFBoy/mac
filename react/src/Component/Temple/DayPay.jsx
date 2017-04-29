@@ -22,6 +22,7 @@ class DayPay extends React.Component {
 
     componentWillMount(){
 
+
         jsBridge.getBrideg(()=>{
             jsBridge.setTitle('日善');
         });

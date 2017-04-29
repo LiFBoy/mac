@@ -30,18 +30,18 @@ class Setting extends React.Component {
 
     set(){
             window.g_bridge.callHandler('sendMessageToApp', {
-                    type: 18, data: {accessToken:''}
+                    type: 18, data: {accessToken:' '}
                 },
                 (response)=> {
 
                 });
 
-            jsBridge.getBrideg(()=>{
-                jsBridge.goBack();
-            });
+        jsBridge.getBrideg(()=>{
+            jsBridge.goBack();
+        });
 
-            LocalStorage.add('token','');
-            Toast.toast('退出成功',3000);
+        LocalStorage.add('token','');
+        Toast.toast('退出成功',3000);
     }
 
 

@@ -14,15 +14,41 @@ class NearBy extends React.Component {
     }
 
     componentWillMount(){
-        this.near();
+        // this.near();
+    }
+
+    componentDidMount(){
+
+        this.getlonglat(this);
+
+    }
+
+    getlonglat(self){
+        var map = new BMap.Map("allmap");
+        var point = new BMap.Point(116.331398,39.897445);
+        map.centerAndZoom(point,12);
+
+        var geolocation = new BMap.Geolocation();
+        geolocation.getCurrentPosition(function(r){
+            if(this.getStatus() == BMAP_STATUS_SUCCESS){
+                var mk = new BMap.Marker(r.point);
+                map.addOverlay(mk);
+                map.panTo(r.point);
+                self.near(r.point.lng,r.point.lat);
+                // alert('您的位置：'+r.point.lng+','+r.point.lat);
+            }
+            else {
+                // alert('failed'+this.getStatus());
+            }
+        },{enableHighAccuracy: true})
     }
 
 
-    async near(){
+    async near(longitude,latitude){
 
         const code=await HttpService.query({
             url:'/v1/temple/get/near/temples',
-            data:{longitude:'3333',latitude:'222'}
+            data:{longitude:longitude,latitude:latitude}
         });
 
         this.setState({
@@ -32,6 +58,8 @@ class NearBy extends React.Component {
 
 
     }
+
+
 
     TempleDetail(id,name){
 
@@ -46,6 +74,7 @@ class NearBy extends React.Component {
 
         return (
             <div className="app-container near-by">
+                <div id="allmap"></div>
 
                 <div className="step">
                     <div className="s-flex1" style={{flexWrap:'wrap'}}>

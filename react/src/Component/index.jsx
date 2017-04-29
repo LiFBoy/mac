@@ -53,7 +53,7 @@ class Index extends React.Component {
     }
 
     TempleDetail(id, name) {
-        jsBridge.sendMessageToApp_type_2('TempleDetail', id, name)
+        jsBridge.sendMessageToApp_type_2('TempleDetail', id,name)
     }
 
      fans(id,event){

@@ -56,24 +56,16 @@ class MyMain extends React.Component {
 
     componentDidMount() {
 
+
+
+        Toast.toast('sss',1000);
+
         jsBridge.getBrideg(()=> {
             jsBridge.listen(()=> {
-
-                //Toast.toast('componentWillMount',2000);
-
-                 // document.body.innerHTML=LocalStorage.get('token');
-                //Toast.toast(LocalStorage.get('token'),3000,'bottom');
-                // document.body.innerHTML='2';
-
                 if(!LocalStorage.get('token')){
-
-                  //  Toast.toast(location.state,3000);
                         setTimeout(()=>{
                             this.props.history.replaceState(null,'Login');
-                        },1000);
-
-                   // window.location.href='/app.html#/login'
-
+                        },100);
                 }else{
                     this.info();
                 }
@@ -175,6 +167,8 @@ class MyMain extends React.Component {
         const {info}=this.state;
         return (
             <div className="app-container" ref="_myMain">
+                
+                {/*<div>eeee</div>*/}
 
                 <div className="step app-padding-lr24 my-main">
 

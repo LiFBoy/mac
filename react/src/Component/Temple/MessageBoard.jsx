@@ -228,7 +228,7 @@ class MessageBoard extends React.Component {
                                             <img className="img" src={pac}/>
                                             <div className="s-flex1 number app-999-font24 padding-right-40">{json.upvoteNumber}</div>
                                         </div>
-                                        <App cb={this.sendMessageToApp_type_2.bind(this,'Replies',json.id)} class="step">
+                                        <App cb={this.sendMessageToApp_type_2.bind(this,'MessageReply',json.id)} class="step">
                                             <img className="img" src={comments}/>
                                             <div className="s-flex1 number app-999-font24">{json.replies.length}</div>
                                         </App>

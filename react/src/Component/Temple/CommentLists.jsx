@@ -306,7 +306,7 @@ class CommentLists extends React.Component {
 
                                             </div>
 
-                                            <App cb={this.sendMessageToApp_type_2.bind(this, 'reply', json.id)}
+                                            <App cb={this.sendMessageToApp_type_2.bind(this, 'CommentReply', json.id)}
                                                  class="step">
                                                 <img className="img" src={_comments}/>
                                                 <div className="number app-999-font24">{json.replies.length}</div>
@@ -362,7 +362,7 @@ class CommentLists extends React.Component {
 
                                             </div>
 
-                                            <App cb={this.sendMessageToApp_type_2.bind(this, 'reply', json.id)}
+                                            <App cb={this.sendMessageToApp_type_2.bind(this, 'CommentReply', json.id)}
                                                  class="step">
                                                 <img className="img" src={_comments}/>
                                                 <div className="number app-999-font24">{json.replies.length}</div>

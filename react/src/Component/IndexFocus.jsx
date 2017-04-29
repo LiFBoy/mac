@@ -50,7 +50,7 @@ class IndexFocus extends React.Component {
 
     TempleDetail(id, name) {
         window.g_bridge.callHandler('sendMessageToApp', {
-                type: 2, data: {url: 'https://www.zrrulai.com/app.html#/TempleDetail/' + id + '/' + name + ''}
+                type: 2, data: {url: 'https://www.zrrulai.com/app.html#/TempleDetail/' + id + '/' + encodeURIComponent(name) + ''}
             },
             (response)=> {
 

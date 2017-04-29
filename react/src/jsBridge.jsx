@@ -44,9 +44,11 @@ export default class jsBridge {
 
                 })
         }else if(option.length==2){
+            debugger
             const [id,name] =option;
+            console.log(encodeURIComponent(name))
             window.g_bridge.callHandler('sendMessageToApp', {
-                    type: 2, data: {url: 'https://www.zrrulai.com/app.html#/' + type + '/'+id+'/'+name+''}
+                    type: 2, data: {url: 'https://www.zrrulai.com/app.html#/' + type + '/'+id+'/'+encodeURIComponent(name)+''}
                 },
                 (response)=> {
 
@@ -60,8 +62,6 @@ export default class jsBridge {
 
                 })
         }
-
-
     }
 
     static  setupWebViewJavascriptBridge(callback) {
@@ -95,10 +95,6 @@ export default class jsBridge {
 
 
             if (response.code == 0) {
-
-
-
-
                 cb(response.ids,response.base64StringOfImage);
 
 
@@ -111,7 +107,6 @@ export default class jsBridge {
     static listen(callback){
 
         window.g_bridge.registerHandler('sendMessageToHTML',  (msg,cb)  => {
-
             if(msg=='10003'){
                 callback()
             }

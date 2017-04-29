@@ -18,6 +18,8 @@ class wish extends React.Component {
     }
 
     componentWillMount(){
+
+        debugger
         // document.body.innerHTML='111'
         jsBridge.getBrideg(()=>{
             jsBridge.setTitle('祈愿')
@@ -52,7 +54,7 @@ class wish extends React.Component {
                     type: 3, data: {sign:code.aliPay.sign}
                 },
                 (response)=> {
-                    if(response.resultStatus==9000){
+                    if(response.resultStatus == 9000 ){
                         jsBridge.getBrideg(()=>{
                             jsBridge.sendMessageToApp_type_2('paysuccess',this.props.params.id)
                         })

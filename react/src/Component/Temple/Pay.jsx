@@ -49,8 +49,8 @@ class Pay extends React.Component {
                 <div className="step app-popup-pay">
                     <div className="app-padding-l24 app-333-font32" style={{lineHeight: '40px', height: '40px'}}>金额(元)
                     </div>
-                    <div className="">
-                        <input type="text" ref="InputMoney" className="app-popup-pay-input" placeholder="可填写1-2000"/>
+                    <div>
+                        <input type="text" id="InputMoney" className="app-popup-pay-input" placeholder="可填写1-2000"/>
                     </div>
 
                 </div>
@@ -117,14 +117,16 @@ class Pay extends React.Component {
     }
 
     pay() {
+       // alert(document.getElementById('InputMoney').value);
        // LocalStorage.add('money', this.refs.InputMoney.value);
         this.setState({
             admin: {
                 flag: false,
                 _flag: false
             },
-            selectMoney:this.refs.InputMoney.value
-        })
+            selectMoney:document.getElementById('InputMoney').value
+        });
+        // this.gowish();
     }
 
     otherMoney() {
@@ -164,6 +166,7 @@ class Pay extends React.Component {
     }
 
     gowish(){
+        debugger
         jsBridge.getBrideg(()=>{
             window.g_bridge.callHandler('sendMessageToApp', {
                     type: 2, data: {url: 'https://www.zrrulai.com/app.html#/wish/2/'+this.state.selectMoney+'/'+this.props.params.id+''}
@@ -215,7 +218,7 @@ class Pay extends React.Component {
 
                     <div className="step">
                         <div className="s-center app-333-font32">
-                            {this.props.params.name}
+                            {decodeURIComponent(this.props.params.name)}
                         </div>
                     </div>
 

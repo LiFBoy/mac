@@ -32,7 +32,7 @@ var proxy = [{
         path: '/v1/*',
         target: 'https://www.zrrulai.com',
         host: 'www.zrrulai.com'
-    },
+    }
 
     // {
     //     path: '/v1/*',
@@ -49,7 +49,8 @@ var server = new WebpackDevServer(webpack(config), {
 
 
 // server.listen(3002);
-server.listen(3002,'172.27.35.6');
+server.listen(3002);
+// server.listen(4000);
 
 // server.listen(3002);
 

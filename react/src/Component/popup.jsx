@@ -21,13 +21,9 @@ export  default  class Popup extends React.Component {
         this.props.config.no_cb();
     }
 
-    //props是父组件－》子组件，父组件render，子组件就调用
 
     componentWillReceiveProps(nextProps) {
 
-        // if(!!nextProps.blockOrNone&&!!nextProps._flag){
-        //
-        // }
 
         setTimeout(()=>{
             this.setState({
@@ -51,8 +47,6 @@ export  default  class Popup extends React.Component {
             width:document.documentElement.clientWidth,
             height:document.documentElement.clientHeight
         };
-
-
 
         return (
 
