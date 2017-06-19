@@ -9,7 +9,18 @@
      alt="">
 </body>
 <script src="http://cdn.bootcss.com/lodash.js/3.10.1/lodash.js"></script>
+
+
+<div onclick="de()" style="border:1px solid red">
+sfsfsf
+
+</div>
 <script>
+    function de(ev){
+        console.error(ev);
+
+        console.error(ev.target)
+    }
 
 
     console.log(_.drop([1, 2, 3], 2))
@@ -23,668 +34,315 @@
     }
 
 
+
+    let users = [
+        { 'user': 'barney',  'active': false ,billType:'PAPER' },
+        { 'user': 'fred',    'active': false ,billType:'ELECTRONIC'},
+        { 'user': 'pebbles', 'active': true ,billType:'HAS_RECEIPT'},
+        { 'user': 'pebbles', 'active': true ,billType:'NO_INVOICE',proofFileIds:'333'},
+        { 'user': 'pebbles', 'active': true ,billType:'NO_INVOICE',proofFileIds:'333'},
+        { 'user': 'pebbles', 'active': true ,billType:'NO_RECEIPT',proofFileIds:'3333'},
+        { 'user': 'pebbles', 'active': true ,billType:'NO_RECEIPT'},
+    ];
+
+   users= _.filter(users, function(n) {
+        return n.billType=='NO_INVOICE'||n.billType=='NO_RECEIPT';
+    });
+    // => [4, 6]
+
+    console.error(users);
+
+
+    let num=_.findIndex(users, function(item) {
+        return !item.proofFileIds;
+    });
+
+    if(num!=-1){
+        console.error('不能保存')
+    }
+
+    console.error(num)
+
+
+
+
 </script>
 
 <div>
     <p>ss</p>
     <p>222</p>
 </div>
+
+
+<div>
+
+
+</div>
+
+
 <div id="demo">
     <div id="thisNode">点击删除我</div>
 </div>
 
-<script type="text/javascript">
-    'use strict';
-    document.getElementById("thisNode").onclick = function () {
 
-        console.log(this)
-//        this.parentNode.remove()
-        this.parentNode.removeChild(this);
-    }
+<script>
 
 
-    Array.prototype.remove = function (obj) {
-        for (var i = 0; i < this.length; i++) {
-            var temp = this[i];
-            if (!isNaN(obj)) {
-                temp = i;
-            }
-            if (temp == obj) {
-                for (var j = i; j < this.length; j++) {
-                    this[j] = this[j + 1];
-                }
-                this.length = this.length - 1;
-            }
+
+    [
+        {
+            "domain": ".alibaba.net",
+            "expirationDate": 1811127961,
+            "hostOnly": false,
+            "httpOnly": false,
+            "name": "cna",
+            "path": "/",
+            "sameSite": "no_restriction",
+            "secure": false,
+            "session": false,
+            "storeId": "0",
+            "value": "kapPEcvtBUoCATpkUWmbGQOd",
+            "id": 1
+        },
+        {
+            "domain": ".alibaba.net",
+            "expirationDate": 1511319965,
+            "hostOnly": false,
+            "httpOnly": false,
+            "name": "isg",
+            "path": "/",
+            "sameSite": "no_restriction",
+            "secure": false,
+            "session": false,
+            "storeId": "0",
+            "value": "Aqys-7kB2ViZUc1hxB6WsHTWfYwY_lAPad6HcAbt5tfqEU4bLnRFn2DjR29S",
+            "id": 2
+        },
+        {
+            "domain": ".alibaba.net",
+            "expirationDate": 1896134400,
+            "hostOnly": false,
+            "httpOnly": false,
+            "name": "l",
+            "path": "/",
+            "sameSite": "no_restriction",
+            "secure": false,
+            "session": false,
+            "storeId": "0",
+            "value": "At7eY59xHfQKKT06W3SjNtezrn8gwaIJ",
+            "id": 3
+        },
+        {
+            "domain": ".alibaba.net",
+            "expirationDate": 1508291252,
+            "hostOnly": false,
+            "httpOnly": false,
+            "name": "UM_distinctid",
+            "path": "/",
+            "sameSite": "no_restriction",
+            "secure": false,
+            "session": false,
+            "storeId": "0",
+            "value": "15b83e4a8642d7-0e0bc0f9099938-396d7807-13c680-15b83e4a865668",
+            "id": 4
+        },
+        {
+            "domain": "127.0.0.1",
+            "expirationDate": 1511492760,
+            "hostOnly": true,
+            "httpOnly": false,
+            "name": "CNZZDATA1256740390",
+            "path": "/",
+            "sameSite": "no_restriction",
+            "secure": false,
+            "session": false,
+            "storeId": "0",
+            "value": "1603529643-1495612168-%7C1495765449",
+            "id": 5
+        },
+        {
+            "domain": "127.0.0.1",
+            "expirationDate": 1498359891,
+            "hostOnly": true,
+            "httpOnly": false,
+            "name": "emplId",
+            "path": "/",
+            "sameSite": "no_restriction",
+            "secure": false,
+            "session": false,
+            "storeId": "0",
+            "value": "WB274317",
+            "id": 6
+        },
+        {
+            "domain": "127.0.0.1",
+            "hostOnly": true,
+            "httpOnly": true,
+            "name": "JSESSIONID",
+            "path": "/",
+            "sameSite": "no_restriction",
+            "secure": false,
+            "session": true,
+            "storeId": "0",
+            "value": "XM566CC1-HW3LZE72VE85038EFMG83-O6GM953J-02",
+            "id": 7
+        },
+        {
+            "domain": "127.0.0.1",
+            "hostOnly": true,
+            "httpOnly": false,
+            "name": "recluse_language",
+            "path": "/",
+            "sameSite": "no_restriction",
+            "secure": false,
+            "session": true,
+            "storeId": "0",
+            "value": "zh_cn",
+            "id": 8
+        },
+        {
+            "domain": "127.0.0.1",
+            "hostOnly": true,
+            "httpOnly": true,
+            "name": "recluse_LAST_HEART_BEAT_TIME",
+            "path": "/",
+            "sameSite": "no_restriction",
+            "secure": false,
+            "session": true,
+            "storeId": "0",
+            "value": "7E52465E1E34AA163E0DD04A16A67B56",
+            "id": 9
+        },
+        {
+            "domain": "127.0.0.1",
+            "hostOnly": true,
+            "httpOnly": true,
+            "name": "recluse_SSO_TOKEN",
+            "path": "/",
+            "sameSite": "no_restriction",
+            "secure": false,
+            "session": true,
+            "storeId": "0",
+            "value": "086EE320DE26C8079BC1CC56AF263A518EC5A84002921E3616370741DE4449F183BBB83BA2C05A297C48443D5E00175C",
+            "id": 10
+        },
+        {
+            "domain": "127.0.0.1",
+            "hostOnly": true,
+            "httpOnly": true,
+            "name": "recluse_USER_COOKIE",
+            "path": "/",
+            "sameSite": "no_restriction",
+            "secure": false,
+            "session": true,
+            "storeId": "0",
+            "value": "B68392814D84A5AE57A130817099627023145DB6455FF68683189D0BAADD9D25707F69AE8F121BC0A580047D0F30BB8457D57A1D7FF43609C23FCCE392A537F08A358221D696BEF129B70F63F49036B8042771A34A37172B6B71A3B924E9C901231D108B472873A9810547E38BA0BC9A9469AE54ED42C05758DD3559B40B7F2AAE4EC8499C4BDF82812F13751C1A3F09AAA0ACC0491DA817F9BE24D310A5E453F019EF0E29DDB48BBF6A7B8F365B755A0715BED85240EAF92BCA721E679076C1F9B73D2532A460773DB16A629BE27548",
+            "id": 11
+        },
+        {
+            "domain": "127.0.0.1",
+            "hostOnly": true,
+            "httpOnly": true,
+            "name": "recluse-fis0",
+            "path": "/",
+            "sameSite": "no_restriction",
+            "secure": false,
+            "session": true,
+            "storeId": "0",
+            "value": "OyabaF3XlEBbeeny1aOVnl5itmLR5uX%2BYFqvE0p53TwsS8Y9eCu4p6okZiA9KC54QkthaqGii%2B67zm5oO%2BXFHVqi0vp50OJNTusT9uYTWqrGWz5KL6BTdNep6uiacqlvzD72SHt7PflIGJ9%2Bhl8%2FGWIVx9pDP%2BLAnnHvsG2iPu8%3D",
+            "id": 12
         }
-    }
-
-    var arr = [{a: '2'}];
-    var str = "2";
-
-    var b = arr.remove(str)
-    //console.log(b)
-    //类数组对象
-    let arrayLike = {
-        '0': 'a',
-        '1': 'b',
-        '2': 'c',
-    };
-
-    //    console.log(arrayLike.0)
-
-
-    let arr2 = Array.from(arrayLike);
-
-    console.log(arr2)
-
-
-    function foo(...b) {
-        console.log(b.slice(1, 2))
-        //  var args = Array.from(arguments);
-
-//        console.log(args.slice(0,1))
-        // ...
-    }
-
-    foo(2, 3)
-
-    console.log(Array.prototype.map)
-    console.log(Array.prototype.slice instanceof Object)
-
-    //    let obj={
-    //        a:'b'
-    //    }
-    //
-    //    console.log()
-
-    var obj = {0: "a", 1: "b", 2: "c"};
-    console.log(Object.keys(obj))
-
-
-    let ps = document.querySelectorAll('p');
-
-    console.log(ps)
-
-    Array.prototype.slice.call(ps);
-    console.log(ps);
-
-    //   console.log([] instanceof Array)
-
-    //    console.log(ps.length)
-    for (var i = 0; i < ps.length; i++) {
-        //  console.log(ps[i].innerHTML)
-    }
-    [7, 8].forEach(function (p) {
-        // console.log(p);
-    });
-
-
-    function add() {
-        console.log(arguments);
-    }
-    function sub(a, b) {
-        //  alert(a - b);
-    }
-
-    add.apply(sub, ['1', 2]);
-
-    var _obj = {
-        a: '2',
-        b: '44'
-    };
-    'use strict';
-    console.log(!this);
-
-    function myTest() {
-        // foo();
-        function foo() {
-            //    alert("我来自 foo");
-        }
-    }
-    myTest();
-
-    //    alert(_obj.length)
-
-    //
-    //    var bacd=1;
-    //    function abcde() {
-    //
-    //        alert(abcd)
-    //       // var abcd=2
-    //    }
-    //    abcde();
-
-    //    let name="global";
-    //    if(true){
-    //        let name="local";
-    //        console.log(name)
-    //    }
-    //    console.log(name);
-
-    var scope = "global";
-    function t() {
-
-        console.log(scope);
-        var scope = "local"
-        console.log(scope);
-    }
-    t();
-
-    console.log(scope)
-
-    var _key = [
-        {a: '2'},
-        {b: '3'}
     ]
 
-    //    _key.forEach((jsoon,index)=>{
-    //        console.log(jsoon)
-    //        console.log(index)
-    //    })
-
-    for (var i = 0; i < _key.length; i++) {
-
-        console.log(_key[i], i)
-//        if(_key[i].a == '2') {
-//            _key.splice(i, 1);
-//            break;
-//        }
-    }
-
-
-    Array.prototype.remove = function (value) {
-        var len = this.length;
-        for (var i = 0, n = 0; i < len; i++) {//把除了要删除的元素赋值给新数组
-            if (this[i].a != value) {
-                console.log('N:' + n)
-                this[n++] = this[i];
-            } else {
-                console.log(i);//测试所用
-            }
-        }
-        this.length = n;
-    };
-
-    var arr = [{a: "1", b: '1'}, {a: '2', b: '2'}, {a: '3', b: '3'}];
-    arr.remove(2);
-    console.log(arr)
-
-
-</script>
-<style>
-    .box {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        margin-left: -100px;
-        margin-top: -100px;
-        height: 200px;
-        width: 200px;
-        border: 1px solid red;
-
-    }
-
-    .box1 {
-        position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        margin: auto;
-        width: 300px;
-        height: 300px;
-        border: 1px solid blue;
-    }
-
-    .box2 {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 400px;
-        height: 400px;
-        border: 1px solid black;
-
-    }
-
-    .box3 {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, 50%);
-        width: 100px;
-        height: 400px;
-        border: 1px solid blueviolet;
-    }
-
-</style>
-<div>
-    <div class="box"></div>
-    <div class="box1"></div>
-    <div style="display: flex">
-        <div class="box2"></div>
-    </div>
-    <div class="box3"></div>
-</div>
-
-<script>
-    var p = ['abc', 'bdc'];
-    var pp = []
-    p.forEach((items)=> {
-        pp.push(items)
-        console.log(pp)
-    })
-
 </script>
 
-<script>
-    'use strict';
-    var a = '2';
-
-    //    var cc='22222'
-    function cc() {
-        console.log(a);
-        var a = '4';
-    }
-
-
-    cc()
-
-    //    a='2';
-    //    if(true){
-    //       var a='3'
-    //    };
-    //    console.log(a)
-
-
-    function num() {
-        function abc() {
-            console.log(bb)
-
-        }
-
-        var bb = '444'
-        return abc
-    }
-
-
-    var num2 = num();
-    num2()
-    function get(e) {
-         console.log(e.target.innerHTML)
-    }
-    function get2(event) {
-        //event.stopPropagation()
-        //  alert(2)
-    }
-</script>
-
-<nav>
-    <ul onClick="get(event)">
-        <div onclick="get2(event)">1</div>
-        <div>12</div>
-    </ul>
-</nav>
 
 <script>
 
-    function compare(property) {
-        return (a, b)=> {
-            var value1 = a[property];
-            var value2 = b[property];
-            return value2 - value1;
-        }
-    }
 
-
-    var flag = compare('upvoteNumber')
-
-    console.log(flag)
-</script>
-
-<script>
-    //        //alert(man==man2)
-    ////        alert()
-    //function father() {
-    //
-    //    this.a = 'father';
-    //    this.abcd=function () {
-    //      //  alert(33);
-    //    }
-    //
-    //}
-    //
-    //father.prototype.b = function() {
-    //
-    //  //  alert(this.a)
-    //
-    //}
-    //
-    //var child = function() {
-    //
-    //  //  father.call(this)
-    //
-    //}
-    //
-    //child.prototype.ab=function () {
-    //    return '3'
-    //}
-    //
-    ////child.prototype = new father();
-    //
-    //const f=new father();
-    //
-    //console.log(f);
-    //f.b()
-    //
-    //
-    //const c=new child();
-    //console.log('33333');
-    //
-    //console.log(c);
-
-
-    function Father() {
-        this.value = 'bb';
-        this.name = 'son';
-    }
-    Father.prototype.getValue = function () {
-        return this.value;
-    };
-
-    function Son() {
-        this.value2 = false;
-    }
-
-    console.log('222222');
-
-    console.log(Son.prototype.constructor === Son);
-    Son.prototype = new Father();
-
-    Son.prototype.getValue2 = function () {
-      //  alert('getValue2')
-    };
-
-    const _fff=new Father()
-    console.log(_fff);
-
-//    _fff.getValue2()
-
-
-    console.log(Father.prototype);
-    var son = new Son();
-    console.log(son);
-//    alert(son.__proto__===Father)
-    son.getValue2();
-
-
-    //(son instanceof Father)
-    //alert(son instanceof Son)
-    // console.log(son.getValue2());  // true
-
-
-    class Polygon {
-        constructor(height, width) {
-            this.name = 'lsb';
-            this.height = height;
-            this.width = width;
-        }
-
-        getwidht() {
-            console.log(this.height)
-        }
-    }
-
-    const Polygon_ = new Polygon(100, 200);
-
-    class My extends Polygon {
-        constructor(height, width) {
-            super(height, width);
-            this.lsb='333';
-        }
-
-        getMy() {
-            //  alert(1)
-        }
-    }
-    const my = new My(100, 200);
-    console.log(my);
-    my.getMy();
-
-
-    //   console.log(my.getMy())
-
-
-</script>
-
-<script>
-    function Person() {
-        this.friends = ["ZhangSan", "LiSi"]
-    }
-
-    Person.prototype = {
-        //constructor: Person,
-        name: "Stone",
-        age: 28,
-        job: "Software Engineer",
-
-        sayName: function () {
-            console.log(this.name);
-        }
-    };
-
-    var person1 = new Person();
-    var person2 = new Person();
-
-    console.log(person1 instanceof Person)
-    console.log(person1 == Person)
-
-    person1.friends.push("WangWu");
-
-    console.log(person1.friends);    // "ZhangSan,LiSi,WangWu"
-    console.log(person2.friends);    // "ZhangSan,LiSi,WangWu"
-    console.log(person1.friends === person2.friends);
-</script>
-
-<script>
-    function Product(name, price) {
-        this.name = name;
-        this.price = price;
-
-        if (price < 0) {
-            throw RangeError('Cannot create product ' +
-                    this.name + ' with a negative price');
-        }
-    }
-
-    function Food(name, price) {
-        Product.call(this, name, price);
-        this.category = 'food';
-    }
-
-    var cheese = new Food('feta', 5);
-
-    var newArr = [1, 2, 3, 4].map(function (item, i, arr) {
-        console.log(item, i, arr, this);  // 可运行试试看
-        return item + 1;  // 每一项加1
-    }, {a: 1})
-
-
-    Array.prototype._map = function (fn) {
-
-//        console.log(context)
-        var temp = [];
-        if (typeof fn == 'function') {
-            var k = 0;
-            console.log(this);
-            var len = this.length;
-            // 封装for循环过程
-            for (; k < len; k++) {
-                // 将每一项的运算操作丢进fn里，利用call方法指定fn的this指向与具体参数
-                temp.push(fn.call(undefined, this[k], k, this))
-            }
-        } else {
-            console.error('TypeError: ' + fn + ' is not a function.');
-        }
-
-        // 返回每一项运算结果组成的新数组
-        return temp;
-    }
-
-    var newArr = [1, 2, 3, 4]._map(function (item) {
-        return item + 1;
-    })
-
-    console.log(newArr)
-
-    function fn() {
-        return 20;
-    }
-
-    fn.toString = function () {
-        return 10;
-    }
-
-    fn.valueOf = function () {
-        return 5;
-    }
-
-    console.log(fn + 10)
-
-
-    function ab() {
-
-    }
-
-    ab.prototype.say = function () {
-
-    }
-
-    const ac = new ab()
-    console.log(ac)
-
-    console.log(ab.prototype);
-
-
-    var m = { a: 10, b: 20 };
-    var b = { a: 10, b: 20 };
-    console.log(m==b);
-    var n=Object.assign({},m);
-    console.log(n==m);
-
-
-
-
-
-    var a = 20;
-
-   // alert(3333);
-
+    var flag=true
     function test() {
-      //  alert(222)
-        var b = a + 10;
+        if(1==1){
+            console.error(1)
 
-        function innerTest() {
-
-          //  alert(1111);
-            var c = 10;
-            return b + c;
         }
 
-        return innerTest();
-    }
 
-    test();
-
-    Object.prototype._bind = function(context) {
-//        alert(11)
-        var _this = this;
-        var args = Array.prototype.slice.call(arguments,2);
-
-        //add.call(sub,3,1);调用add
-
-        console.log(args)
-
-        return function() {
-            return _this.apply(context, args)
-        }
-    };
-
-    function abc() {
 
     }
 
-    abc._bind(this,2,3)
 
-            var abcdd=['11','222','333'];
-
-
-            console.log(abcdd.slice(2))
-
-
+    test()
+    test()
 
 </script>
 
 
+<script>
+    var a='text/';
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
-    <meta name="keywords" content="百度地图,百度地图API，百度地图自定义工具，百度地图所见即所得工具" />
-    <meta name="description" content="百度地图API自定义地图，帮助用户在可视化操作下生成百度地图" />
-    <title>百度地图API自定义地图</title>
-    <!--引用百度地图API-->
-    <style type="text/css">
-        html,body{margin:0;padding:0;}
-        .iw_poi_title {color:#CC5522;font-size:14px;font-weight:bold;overflow:hidden;padding-right:13px;white-space:nowrap}
-        .iw_poi_content {font:12px arial,sans-serif;overflow:visible;padding-top:4px;white-space:-moz-pre-wrap;word-wrap:break-word}
-    </style>
-    <script type="text/javascript" src="http://api.map.baidu.com/api?key=&v=1.1&services=true"></script>
-</head>
+    console.error(a.length);
+    var b=a.substr(0,a.length-1)
+    console.error(b)
 
-<body>
-<!--百度地图容器-->
-<div style="width:697px;height:550px;border:#ccc solid 1px;" id="dituContent"></div>
-</body>
-<script type="text/javascript">
-    //创建和初始化地图函数：
-    function initMap(){
-        createMap();//创建地图
-        setMapEvent();//设置地图事件
-        addMapControl();//向地图添加控件
+    const obj={
+        a:"3",
+        b:'3'
     }
 
-    //创建地图函数：
-    function createMap(){
-        var map = new BMap.Map("dituContent");//在百度地图容器中创建一个地图
-        var point = new BMap.Point(339.409115,-54.470403);//定义一个中心点坐标
-        map.centerAndZoom(point,1);//设定地图的中心点和坐标并将地图显示在地图容器中
-        window.map = map;//将map变量存储在全局
-    }
-
-    //地图事件设置函数：
-    function setMapEvent(){
-        map.enableDragging();//启用地图拖拽事件，默认启用(可不写)
-        map.enableScrollWheelZoom();//启用地图滚轮放大缩小
-        map.enableDoubleClickZoom();//启用鼠标双击放大，默认启用(可不写)
-        map.enableKeyboard();//启用键盘上下左右键移动地图
-    }
-
-    //地图控件添加函数：
-    function addMapControl(){
-        //向地图中添加缩放控件
-        var ctrl_nav = new BMap.NavigationControl({anchor:BMAP_ANCHOR_TOP_LEFT,type:BMAP_NAVIGATION_CONTROL_LARGE});
-        map.addControl(ctrl_nav);
-        //向地图中添加缩略图控件
-        var ctrl_ove = new BMap.OverviewMapControl({anchor:BMAP_ANCHOR_BOTTOM_RIGHT,isOpen:1});
-        map.addControl(ctrl_ove);
-        //向地图中添加比例尺控件
-        var ctrl_sca = new BMap.ScaleControl({anchor:BMAP_ANCHOR_BOTTOM_LEFT});
-        map.addControl(ctrl_sca);
-    }
+    delete obj.a;
+    console.error(obj)
 
 
-    initMap();//创建和初始化地图
+    var ssssss = [
+        { 'user': 'barney',  'age': 36, 'active': true },
+        { 'user': 'fred',    'age': 40, 'active': false },
+        { 'user': 'pebbles', 'age': 1,  'active': true }
+    ];
+
+    var a=_.find(ssssss, function(chr) {
+        return chr.age == 140;
+    })
+
+    console.error(a)
+
+    var array=[0,2]
+   let newA= array.map(item=>{
+        return item;
+    })
+    console.error(111)
+    console.error(newA)
+
+
+    var abc=[
+        {a:'2',b:"3"},
+        {a:'22',b:"33"},
+        {a:'222',b:"333"},
+
+    ]
+        array.map(item=>{
+            console.error(item)
+             abc=abc.map((item2,index)=>{
+                console.error(index)
+                if(index==item){
+
+                    item2['jia']='jia'
+                }
+
+                console.error(item2)
+
+                return item2
+            })
+
+            //console.error(abc)
+        })
+
+
+//    console.error(abc)
+
+    const pppp=_.without([0,1,2,3], 1);
+    console.error(pppp);
+
 </script>
-</html>
+
 </html>

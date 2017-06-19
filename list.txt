@@ -13,3 +13,1243 @@
 10,添加寺庙少了个  寺庙概括 字段
 
 11./v1/public/get/temple/status/info 获取寺庙状态详情，status 字段中，少了寺庙headImgurl,name,
+
+
+
+
+
+
+
+
+配置
+
+打车明细行里打车
+
+自购飞机票写死
+
+
+function func(cellData, rowData, ctx) { 
+  //console.error(rowData)
+  let flag=rowData.overAmount;
+  let flag2=(rowData.billType=='NO_INVOICE'||rowData.billType=='NO_RECEIPT');
+  if(!!flag&&!flag2){
+    return <div><span>{cellData}</span> <em style={{"color":"#fff","background-color":"#ff0000"}}>{window.__LOCALE__ == 'zh_CN' ? '超额' : 'Excess'}</em></div>
+  }else if(!!flag&&!!flag2){
+    console.info('来了')
+    return <div><span>{cellData}</span>
+    <em style={{"color":"#fff","background-color":"#ff0000","margin-right":"5px"}}>{window.__LOCALE__ == 'zh_CN' ? '超额' : 'Excess'}</em>&nbsp;
+    <em style={{"color":"#fff","background-color":"#ff0000"}}>{window.__LOCALE__ == 'zh_CN' ? '无票' : 'Excess'}</em>
+    </div>
+ }else if(!!flag2&&!flag){
+    console.error('无')
+    return <div><span>{cellData}</span><em style={{"color":"#fff","background-color":"#ff0000"}}>{window.__LOCALE__ == 'zh_CN' ? '无票' : 'Excess'}</em></div>
+ }else{
+    return <div><span>{cellData}</span></div>
+ }
+ };
+
+
+ /* 
+* @Author: zhangshun
+* @Date:   2015-08-28 13:24:25
+* @Last Modified by:   zhangshun
+* @Last Modified time: 2015-10-18 15:33:06
+*/
+
+require('./UiCostSelect.styl');
+let DB = require('../../app/db');
+let Overflow = require('../ui.overflow');
+let assign = require('object-assign');
+let SearchForm = require('../ui.search.form');
+let ExpenseType = require('../common.expenseType');
+let deepcopy = require('deepcopy');
+
+let reactMixin = require('react-mixin');
+let Actions = require('../common.helpers/actions');
+let Store = require('../common.helpers/store');
+
+let Dialog = Uxcore.Dialog;
+
+let {Button,Form,Tabs,Table,Message} = Uxcore;
+
+let helpers = require('../common.helpers');
+
+let TaxiForm = require('./Taxi.Form');
+let HotelForm = require('./Hotel.Form');
+let TrainForm = require('./Train.Form');
+let FlightForm = require('./Flight.Form');
+let MealForm = require('./Meal.Form');
+let EntertainForm = require('./Entertain.Form');
+let TuanjianForm = require('./Tuanjian.Form');
+let UndefinedForm = require('./Undefined.Form');
+let AllAddType = require('../all.addType');
+
+let OtherTrafficForm = require('./OtherTraffic.Form');
+let OtherCostForm = require('./OtherCost.Form');
+
+
+let {
+    Constants,
+    FormRowTitle,
+    FormRow: Row,
+    InputFormField: Input,
+    DateFormField: Date,
+    TextAreaFormField: TextArea,
+    ButtonGroupFormField,
+    SelectFormField,
+    NumberInputFormField,
+    Validators
+} = Form;
+
+let TabPane = Tabs.TabPane;
+let i18n = require('i18n');
+
+class UiCostSelect extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            visible: props.visible,
+            viewType: props.viewType,
+            buCode: props.buCode,
+            viewTypeName: '',
+            results:[],
+            searchValue:'',
+            showSearch:false,
+            beginDate:helpers.date().add(-3, 'months').format('YYYY-MM-DD'),
+            endDate:helpers.date().format('YYYY-MM-DD'),
+            attachments_add_flag:true,//判断是否显示要上传附件
+            attachmentsInsertFlag:true,//添加成功了
+            isOver:false,
+            attachments_add2:[],//取消，不操作任何数据
+            taxi:true
+        };
+
+    }
+
+    componentDidMount() {
+        let me = this;  
+        me.selectedRows = [];
+        Actions.getCurrencyCode();
+    }
+
+    queryList(){
+
+        let me = this;
+        Actions.getExpenseReimburseList({
+            type: me.props.importType,
+            currency: me.props.currencyCode,
+            beginDate: helpers.date(me.state.beginDate).valueOf(),
+            endDate: helpers.date(me.state.endDate).valueOf()
+        }, function() {
+            me._filterImportList();
+        });
+    }
+
+
+    onVisibleChange(visible){
+      let me = this;  
+      if (visible){
+        if (me.state.viewType == 'import'){
+            me.selectedRows = [];
+            me._filterImportList();
+        }
+      }
+    }
+
+    _filterImportList(){
+        let me = this;
+        let values = me.refs.dataRange.props.value;
+        let flag = false;
+
+        let importType = me.props.importType;
+
+        if (importType == 'OTHER') {
+            let list = _.reject(me.state.ComOtherExpenseList, function(item) {
+                let findOne = _.find(me.props.dataList, function(data) {
+                    return item.expenseRecordId == data.expenseRecordId
+                });
+
+                if (findOne) {
+                    flag = true;
+                    return true;
+                } else {
+                    return false;
+                }
+            });
+
+            if (flag) {
+                me.setState({
+                    ComOtherExpenseList: list
+                });
+            }
+        }
+        else if (importType == 'TRANSPORT') {
+            
+            let list = _.reject(me.state.ComTransportOtherExpenseList, function(item) {
+                let findOne = _.find(me.props.dataList, function(data) {
+                    return item.expenseRecordId == data.expenseRecordId
+                });
+
+                if (findOne) {
+                    flag = true;
+                    return true;
+                } else {
+                    return false;
+                }
+            });
+
+            if (flag) {
+                me.setState({
+                    ComTransportOtherExpenseList: list
+                });
+            }
+        }
+        
+        
+    }
+
+    componentWillReceiveProps(nextProps) {
+        //debugger
+        let me = this;
+        if ('visible' in nextProps) {
+            let newState = {
+                visible: nextProps.visible
+            };
+            // 隐藏后去除按钮 loading 效果
+            if (nextProps.visible &&  nextProps.viewType == 'import'){
+                me.queryList();
+            }
+            me.setState(newState,function(){
+                me.onVisibleChange(nextProps.visible);    
+            });
+
+            
+
+            if(nextProps.visible){
+
+                //重置表单，要不酒店不出来
+                setTimeout(()=>{
+                    me.refs.expenseform && me.refs.expenseform.refs.form.resetValues();    
+                },0);
+
+            }
+
+
+
+            
+        }
+
+
+
+        if ('viewType' in nextProps) {
+            let newState = {
+                viewType: nextProps.viewType
+            };
+            if (me.state.viewType != nextProps.viewType) {
+                if (me.refs.form) {
+                    me.refs.form.resetValues();
+                }
+            }
+
+            me.setState(newState);
+        }
+
+        if ('formData' in nextProps) {
+            // debugger;
+            let newState = {
+                formData: nextProps.formData
+            };
+
+            // console.log(nextProps.formData)
+
+            me.setState(newState);
+        }
+
+        if ('viewTypeName' in nextProps) {
+            let newState = {
+                viewTypeName: nextProps.viewTypeName
+            };
+            if (nextProps.viewTypeName != me.props.viewTypeName){
+                me.setState(newState);
+            }
+            
+        }
+
+        if ('buCode' in nextProps) {
+            if (nextProps.buCode && me.props.buCode != nextProps.buCode){
+                Actions.getExpenseTypeList(nextProps.buCode);    
+            }
+        }
+
+        if('isOverAmount' in nextProps){
+            me.setState({
+                isOver:nextProps.isOverAmount
+            });
+        }else{
+            me.setState({
+                isOver:false
+            });
+        }
+
+        if(!!nextProps.formData&&(nextProps.formData.kind=='copy'||nextProps.formData.kind=='edit')){
+
+            this.state.attachments_add2=[]
+
+        }
+    }
+
+    _getSelectValue(value) {
+        if (typeof value == 'object') {
+            return value.key;
+        } else if (typeof value == 'string') {
+            return value
+        }
+    }
+
+
+    // 类型表单确认
+    handleOk() {
+
+        //debugger;
+        let me = this;
+        //超报验证
+        var form = me.refs.expenseform.form.getValues();
+        let data=form.values;
+        me.valiAmount(data,function(isOver,submitAmount,allowdSubmitAmount){
+            me.setState({isOver:isOver},function(){
+                form=me.refs.expenseform.form.getValues();
+                me.processForm(form);
+
+
+            });
+        });
+
+        // this.a()
+    }
+    //修复setState重复render
+    attachmentsAddisOverchange(attachments_add){
+        console.error(attachments_add);
+        this.props.formData2=assign({},this.props.formData2,{attachments_add:attachments_add})
+        // this.setState({
+        //
+        // })
+    }
+
+    attachmentsAddFlag2(flag){
+
+        this.setState({
+            attachments_add_flag:flag,
+            attachmentsInsertFlag:flag
+        })
+
+
+        // this.attachments_add_flag=flag
+    }
+
+
+
+    processForm(form) {
+        //debugger;
+
+        let me = this;
+        var form = me.refs.expenseform.form.getValues();
+
+        let invoceAmount = Number(me.refs.expenseform.form.data.invoceAmount);
+        let submittedAmount = Number(me.refs.expenseform.form.data.submittedAmount);
+        let invoceCurrencyCode = me.refs.expenseform.form.data.invoceCurrencyCode;
+
+        let tatalMount = me.refs.expenseform.state.newexchangeRate * invoceAmount;
+        // console.error(tatalMount);
+
+        let tatalAmountFlag = (tatalMount < 25 || tatalMount === 25) && invoceCurrencyCode !== 'USD' && invoceCurrencyCode !== 'CNY';
+        let tatalAmountFlag2 = (tatalMount > 25) && invoceCurrencyCode !== 'USD' && invoceCurrencyCode !== 'CNY';
+
+        let invoceAmountFlag = (invoceAmount < 25 || invoceAmount === 25) && invoceCurrencyCode == 'USD';
+        let invoceAmountFlag2 =(invoceAmount > 25 && invoceCurrencyCode === 'USD');
+
+        let AddForm = me.refs.expenseforms.AddForm.getValues();
+        if (AddForm.values.billType === 'NO_INVOICE' || AddForm.values.billType === 'NO_RECEIPT') {
+
+            if ((!!this.props.formData.proofFile || !!this.props.formData.proofFileIds) && me.refs.expenseforms.state.attachments_add.length != 0) {
+
+            } else if (me.refs.expenseforms.state.attachments_add.length === 0) {
+
+                if (me.props.currencyCode == 'CNY') {
+                    if ((me.refs.expenseforms.state.attachments_add.length === 0 && invoceCurrencyCode === 'CNY')) {
+                        this.setState({
+                            attachments_add_flag: false
+                        })
+                    } else if (invoceAmountFlag || tatalAmountFlag) {
+                        this.setState({
+                            attachments_add_flag: true
+                        })
+                    } else if (invoceAmountFlag2 || tatalAmountFlag2) {
+                        this.setState({
+                            attachments_add_flag: false
+                        })
+                    }
+                } else if (me.props.currencyCode == 'USD') {
+                    if (submittedAmount < 25 || submittedAmount === 25) {
+                        this.setState({
+                            attachments_add_flag: true
+                        })
+                    } else if (submittedAmount > 25) {
+                        this.setState({
+                            attachments_add_flag: false
+                        })
+                    }
+
+                    // if ((me.refs.expenseforms.state.attachments_add.length === 0 && invoceCurrencyCode === 'CNY')) {
+                    //     this.setState({
+                    //         attachments_add_flag: false
+                    //     })
+                    // } else if (invoceAmountFlag || tatalAmountFlag) {
+                    //     this.setState({
+                    //         attachments_add_flag: true
+                    //     })
+                    // } else if (invoceAmountFlag2 || tatalAmountFlag2) {
+                    //     this.setState({
+                    //         attachments_add_flag: false
+                    //     })
+                    // }
+                }
+            }
+
+
+        }
+
+
+
+
+
+        setTimeout( ()=> {
+            if ((form.pass && AddForm.pass && !!this.state.attachments_add_flag) || (!!form.pass && (AddForm.values.billType == 'PAPER' || AddForm.values.billType == 'ELECTRONIC' || AddForm.values.billType == 'HAS_RECEIPT'))) {
+
+
+                //有这个字段的才处理
+                let datas = form.values;
+                if (typeof(datas.participartCost) == 'object') {
+                    if (datas.participartCost == null || datas.participartCost.length == 0) {
+                        let msg = i18n('expense.participart.not.checked');
+                        Message.error(msg, 1.5, function () {
+                        });
+                        return;
+                    }
+                }
+                //这里是格式化一下人员信息
+                if (form.values.participationPeople) {
+                    form.values.participationPeople.map((item) => {
+                        let key = item.key.split('-');
+                        item.employeeNo = key[0];
+                        //如果有兼职/全职信息
+                        if (key.length == 2) {
+                            item.job = key[1];
+                        }
+
+                        delete item.key;
+                    });
+                }
+
+                // https://github.com/uxcore/kuma/issues/7
+                // 下拉选择取值变更
+                form.values.fromSite = me._getSelectValue(form.values.fromSite);
+                form.values.toSite = me._getSelectValue(form.values.toSite);
+                form.values.transactionCity = me._getSelectValue(form.values.transactionCity);
+
+
+                form.values.hotelName = form.values.hotelName && form.values.hotelName.key ? form.values.hotelName.key : form.values.hotelName;
+                /*me.setState({
+                 visible: false
+                 });*/
+
+                //debugger;
+
+                let data = form.values;
+                let data2 = AddForm.values;
+
+
+
+                var attachments_add = deepcopy(me.refs.expenseforms.state.attachments_add);
+                if(data2.billType=='PAPER'||data2.billType=='ELECTRONIC'|| data2.billType=='HAS_RECEIPT'){
+                    data['proofFileIds'] = '';
+
+                    !!attachments_add ? attachments_add.map((item, index) => {
+                        DB.TravelReimburse.deteteFile({
+                            authKey: attachments_add[index].authKey
+                        }).then((data) => {
+
+                        });
+                    }) : '';
+                }else{
+                    data2['attachments_add'] = attachments_add;
+
+                    let proofFileIds;
+                    if (!!attachments_add) {
+                        proofFileIds = attachments_add.map((item, index) => {
+                            return item.attachmentId
+                        });
+
+
+                    } else {
+                        proofFileIds = '';
+                    }
+
+                    data['proofFileIds'] = proofFileIds.toString();
+                }
+
+
+
+                data.expenseType = {
+                    code: me.state.viewType,
+                    name: me.state.viewTypeName || me.props.viewTypeName
+                };
+                if (!me.state.isOver) {
+                    data.amountOverReason = null;
+                }
+                data.overAmount = me.state.isOver ? true : false;
+
+
+                me.props.onConfirm(assign({}, data, data2), me.props.viewType,data2.billType);
+
+                //清空 viewTypeName
+                me.setState({
+                    viewTypeName: '',
+                    isOver: false,
+                    attachmentsInsertFlag:false,
+                    attachments_add_flag:true
+                });
+
+                me.refs.expenseforms.state.attachments_add=[];
+
+
+                // me.refs.expenseform.form.resetValues();
+            }
+        },0);
+
+
+    }
+
+
+    handleCancel(kind) {
+        // alert(kind)
+        let me = this;
+        if (kind == 'form'){
+            if (me.refs.expenseform ){
+                // me.refs.expenseform.form.resetValues();    
+            }
+            //清空 viewTypeName
+            me.setState({
+                viewTypeName: ''
+            });
+        }
+
+        this.setState({
+            attachments_add_flag:true,
+            attachmentsInsertFlag:false,
+            taxi:false
+        });
+
+
+
+        me.props.onClose();
+
+        // if (me.props.mode == 'copy' || me.props.mode == 'edit') {
+        //     return
+        // }
+
+        //debugger
+
+        !!this.state.attachments_add2?this.state.attachments_add2.map((item,index)=>{
+            this.delete_(index)
+        }):''
+    }
+
+    delete_(index){
+        DB.TravelReimburse.deteteFile({
+            authKey: this.state.attachments_add2[index].authKey
+        }).then((data) => {
+
+        });
+    }
+
+    //退出时删除上传的图片
+    cancleDelete(data){
+
+        this.state.attachments_add2=this.state.attachments_add2.concat(data)
+
+        this.state.attachments_add2= _.uniq(this.state.attachments_add2, 'attachmentId');
+    }
+
+    //radio切换时删除附件
+    changeDelete(file){
+        this.props.changeDelete(file)
+    }
+
+    render() {
+        var me = this;
+        return (
+            <div className="ui-cost-select">
+            {
+                me.props.viewType == 'import'?me._renderImportDialog():me._renderDialog()
+            }
+            </div>
+        );
+    }
+
+    _renderImportDialog() {
+        var me = this;
+        var data = me.state.data;
+        let header = i18n('expense.submit.selectUser.header');
+        let others = {
+            closable: false
+        }
+
+        return <Dialog title={header}
+                    width="800"
+                    locale={APP.locale}
+                    visible={me.state.visible}
+                    onOk={me.handleImportFormOk.bind(me)}
+                    onCancel={me.handleCancel.bind(me,'import')} {...others}>
+                    <div>
+                        <Overflow>
+                        {
+                            me.renderImportContent(me.state.viewType)
+                        }
+                        </Overflow>
+                    </div>
+                </Dialog>
+    }
+
+
+    handleImportFormChange(values, fieldname) {
+        let me = this;
+        if (fieldname == 'dataRange') {
+            me.setState({
+                beginDate:values.dataRange[0],
+                endDate:values.dataRange[1]
+            });
+            me.queryList();
+            
+            /*Actions.getConsumptionList({
+                checkinDate: helpers.moment(values.dataRange[0]),
+                checkoutDate: helpers.moment(values.dataRange[1]),
+            },function(){
+                me._filterImportList();    
+            });*/
+            
+        }
+    }
+
+    renderImportContent(){
+        var me = this;
+        return (
+            <div>
+            <Form jsxonChange={me.handleImportFormChange.bind(me)} jsxvalues={{dataRange:[me.state.beginDate,me.state.endDate]}} ref="importForm" className="text-nowrap">
+                <Row>
+                    <Date jsxname="dataRange" ref="dataRange"
+                    jsxlabel={i18n('lbl.dateRange')+":"} 
+                    locale={APP.locale}
+                    jsxtype="cascade"/>
+                </Row>
+            </Form>
+
+            <div className="reimbursement-submit-expensestable">
+                <div className="LH2 kuma-alert kuma-alert-message">
+                    <i className="kuma-alert-icon kuma-icon kuma-icon-information">
+                </i><span>{i18n('cost.select.cost1.form.tip1')}</span></div>
+                <div>
+                {me.renderImportTable()}
+                </div>    
+            </div>
+            </div>
+        )
+    }
+
+    // 导入dialog确认
+    handleImportFormOk() {
+        let me = this;
+
+       /* me.setState({
+            visible: false
+        });*/
+
+        if (me.selectedRows.length > 0) {
+            me.selectedRows.map(function(item) {
+                me.props.onConfirm(item, me.props.viewType);
+            });
+        } else {
+            me.props.onClose();
+        }
+        //
+    }
+
+    renderImportTable () {
+
+        let me=this;
+        // 通过 rowSelection 对象表明需要行选择
+        let rowSelection = {
+            onSelect: function(selected, record, selectedRows) {
+                if (selected) {
+                    me.selectedRows = selectedRows;
+                }
+            },
+            onSelectAll: function(selected, selectedRows) {
+                if (selected) {
+                    me.selectedRows = selectedRows.data;
+                }
+            }
+        };
+       
+        // title, width, type, hidden,dataKey
+        let columns = [{
+            title: i18n('lbl.type'),
+            render: (cell, row) => {
+                return row.expenseType.name
+            }
+        }, {
+            title: i18n('expense.detail.costTakenTime'),
+            render: (cell, row) => {
+                return me._renderTransactionDate(row);
+            }
+        }, {
+            title: i18n('reimbursement.detail.lblAmount'),
+            render: (cell, row) => {
+                return `${helpers.numeral(row.invoceAmount, row.invoceCurrencyCode)}(${row.invoceCurrencyCode})`
+            }
+        }, {
+            title: i18n('lbl.detailInfo'),
+            render: (cell, row) => {
+                return row._renderSummary;
+            }
+        }]
+        
+        let importType = me.props.importType;
+
+        if (importType == 'OTHER'){
+            let renderProps = {
+                height: 200,
+                emptyText: i18n('lbl.noData'),
+                statehowColumnPicker:false,
+                jsxdata: {
+                    data: me.state.ComOtherExpenseList
+                },
+                jsxcolumns: columns,
+                rowSelection: rowSelection
+            };
+
+            return (<Table {...renderProps}  ref="grid"/>); 
+        }else if (importType == 'TRANSPORT'){
+            let renderProps = {
+                height: 200,
+                emptyText: i18n('lbl.noData'),
+                showColumnPicker:false,
+                jsxdata: {
+                    data: me.state.ComTransportOtherExpenseList
+                },
+                jsxcolumns: columns,
+                rowSelection: rowSelection
+            };
+
+            return (<Table {...renderProps}  ref="grid"/>); 
+        }
+
+        
+      }
+
+    _renderTransactionDate(item) {
+       /* if (item.expenseType.code == ExpenseType.ER_TRAFFIC 
+            || item.expenseType.code == ExpenseType.ENTERTAIN) {
+            return item.transactionDate;
+        } else if (item.expenseType.code == ExpenseType.HOTEL) {
+            return item.checkinDate + '-' + item.checkoutDate;
+        }*/
+        if (item.expenseType.code == ExpenseType.HOTEL) {
+            return helpers.moment(item.checkinDate) + '-' + helpers.moment(item.checkoutDate);
+        }else{
+            return helpers.moment(item.transactionDate);
+        }
+    }
+
+    _renderSummary(item) {
+
+       return helpers.formateInfos(item);
+    }
+
+
+    _renderImportList(list) {
+        var me = this;
+        if (list){
+            return list.map(function(item,index){
+                return <tr>
+                        <td className="tOmit">
+                            {
+                                item.expenseType.name
+                            }
+                        </td>
+                        <td className="tOmit">
+                            {me._renderTransactionDate(item)}
+                        </td>
+                        <td className="tOmit">
+                            {
+                            helpers.numeral(item.invoceAmount, item.invoceCurrencyCode)
+                            }
+                            ({
+                            item.invoceCurrencyCode
+                            })
+                        </td>
+                        <td>
+                            {me._renderSummary(item)}
+                        </td>
+                    </tr>
+
+            }); 
+        }
+    }
+
+   
+
+
+    _renderDialog() {
+        // debugger;
+
+        var me = this;
+        var data = me.state.data;
+        let header = <div><span>{i18n('cost.select.cost1.form.moneyTypeSelect')}</span>
+            <span onClick={me.handleCloseType.bind(me)} className='closeButton bx-ml10'>
+            {me.state.viewTypeName}<i className="kuma-dlg-close-x"></i></span></div>
+
+        let others = {
+            closable: false
+        }
+        if (me.state.viewType == ExpenseType.DEFAULT){
+            header = i18n('cost.select.cost1.form.moneyTypeSelect');
+
+            others = {
+                footer: '',
+                closable: true
+            }
+        }else if (me.state.viewTypeName ==''){
+            
+            header = i18n('cost.select.cost1.form.reimbursementWrite');
+            if (me.state.viewType == ExpenseType.ER_TRAFFIC){
+                header = me.getExpenseTypeName(me.props.expenseType,ExpenseType.ER_TRAFFIC)
+            }
+            else if (me.state.viewType == ExpenseType.ER_TAXI){
+                header = me.getExpenseTypeName(me.props.expenseType,ExpenseType.ER_TAXI)   
+            }
+            else if (me.state.viewType == ExpenseType.ER_TUANJIAN){
+                header = me.getExpenseTypeName(me.props.expenseType,ExpenseType.ER_TUANJIAN)
+            }
+            else if (me.state.viewType == ExpenseType.ENTERTAIN){
+                header = me.getExpenseTypeName(me.props.expenseType,ExpenseType.ENTERTAIN)   
+            }
+        }
+        // 如果父层传递的是添加和编辑，怎使用传递过来的viewTypeName
+        if (me.props.mode == 'copy' || me.props.mode == 'edit') {
+
+            header = me.props.viewTypeName;
+        }
+
+        return <Dialog title={header} ref='select'
+                    width="700"
+                    locale={APP.locale}
+                    visible={me.state.visible}
+                    onOk={me.handleOk.bind(me)}
+                    onCancel={me.handleCancel.bind(me,'form')} {...others}>
+                    <div>
+                        <Overflow>
+                        {
+                            me._renderTip(me.props.viewType)
+
+
+                        }
+
+                            {
+                                 me._renderAddType(me.state.viewType,me.props.attachmentAuthKey,me.props.noBillReasonList)
+                            }
+
+
+                        {
+                            me.renderContent(me.state.viewType, me.props.currencyCode, me.props.kind, me.props.sourceId)
+                        }
+                        </Overflow>
+                    </div>
+                </Dialog>
+    }
+
+    _renderTip(viewType){
+        if (APP.language != 'zh-cn'){
+            return;
+        }
+        let taxiTip = <div className="c6 bx-mb15">
+                        <i className="kuma-icon kuma-icon-information"></i>
+                        <span>欢行小贴士：</span><br/>
+                        <span className="bx-ml15">1、打不到快车，不用愁，试试欢行出租车，报销记录自动生成，免人工填写</span><br/>
+                        <span className="bx-ml15">2、凌晨出差不用愁，试试预约用车吧</span>
+                    </div>
+        if(viewType == ExpenseType.ER_TAXI){
+            return taxiTip;
+        }
+    }
+
+    _renderAddType(viewType,attachmentAuthKey,noBillReasonList){
+
+
+        // debugger
+       // console.error(this.props.attachments)
+       //  console.log(1111);
+       //  var formData;
+       //  if(!!this.refs.expenseforms){
+       //      formData=assign({},this.props.formData2,{attachments_add:this.refs.expenseforms.state.attachments_add})
+       //  }else{
+       //      formData=this.props.formData2
+       //  }
+        let props ={
+            viewType:viewType,
+            attachments:this.props.attachments,
+            formData:this.props.formData2,
+            attachmentAuthKey:attachmentAuthKey,
+            noBillReasonList:noBillReasonList,
+            onCancleDelete:this.cancleDelete.bind(this),
+            changeDelete:this.changeDelete.bind(this),
+            attachmentsAddFlag2:this.attachmentsAddFlag2.bind(this),
+            attachments_add_flag:this.state.attachments_add_flag,
+            attachmentsInsertFlag:this.state.attachmentsInsertFlag,
+            isOver:this.state.isOver,
+            attachmentsAddisOverchange:this.attachmentsAddisOverchange.bind(this),
+            changeBillType:this.changeBillTypeVale.bind(this),
+            taxi:this.state.taxi
+        };
+        //console.log(viewType);
+        if(viewType==ExpenseType.DEFAULT){
+
+            return
+        }else{
+            return <AllAddType ref='expenseforms' {...props} onInsert={this.handleDescriptionInsert.bind(this)} onDelete={this.handleDescriptionDelete.bind(this)}/>
+        }
+    }
+    changeBillTypeVale(val){
+        // this.props.changeBillType(billType)
+        //debugger
+        this.props.formData2=assign({},this.props.formData2,val);
+        this.setState({})
+    }
+
+    handleDescriptionInsert(file){
+        this.props.onInsert(file)
+    }
+    handleDescriptionDelete(index){
+        //debugger
+        this.props.onDelete2(index)
+    }
+
+    getExpenseTypeName(expenseType, viewType) {
+        var one = _.find(expenseType, function(item) {
+            return item.expenseTypeCode == viewType
+        });
+        if (one) {
+            return one.name;
+        }
+    }
+
+    handleCloseType() {
+        this.setState({
+            'viewType': ExpenseType.DEFAULT
+        });
+    }
+
+    renderContent(viewType, currencyCode, kind, sourceId) {
+        let me = this;
+        let output = '';
+        let commonProps = {
+            isShare: me.props.isShare == 'Y' || me.props.isShare == 'y',
+            visible: me.state.visible,
+            expenseOverAmount:me.props.expenseOverAmount,
+            isOver:me.state.isOver,
+            handleExpenseFormChange:function(value, name, pass){
+                me.handleFormChange(value, name, pass);
+            }
+        }
+        
+
+        // if(me.state.formData && me.state.formData.participationPeople && me.state.formData.participationPeople.length>0){
+        //     me.state.formData.participationPeople.map((item)=>{
+        //         item.key = item.employeeNo + "-" + item.job;
+        //     })
+        // }
+
+
+        console.error(viewType)
+        console.log(ExpenseType.ER_TUANJIAN)
+        //debugger
+
+        switch (viewType) {
+            case ExpenseType.TRAIN:
+                output = <TrainForm {...commonProps} kind={kind} sourceId={sourceId} ref='expenseform' currencyData={me.state.ComCurrencyCode} formData={me.state.formData} currencyCode={currencyCode} onCode={me.handleCode.bind(me)}/>
+                break;
+            case ExpenseType.ER_TRAFFIC:
+                output = <TaxiForm {...commonProps} kind={kind} sourceId={sourceId} ref='expenseform' currencyData={me.state.ComCurrencyCode} formData={me.state.formData} currencyCode={currencyCode} onCode={me.handleCode.bind(me)}/>
+                break;
+            case ExpenseType.ER_TAXI:
+                output = <TaxiForm {...commonProps} kind={kind} sourceId={sourceId} ref='expenseform' currencyData={me.state.ComCurrencyCode} formData={me.state.formData} currencyCode={currencyCode} onCode={me.handleCode.bind(me)}/>
+                break;
+            case ExpenseType.HOTEL:
+                output = <HotelForm {...commonProps} kind={kind} sourceId={sourceId} ref='expenseform' currencyData={me.state.ComCurrencyCode} formData={me.state.formData} currencyCode={currencyCode} onCode={me.handleCode.bind(me)}/>
+                break;
+            case ExpenseType.FLIGHT:
+                output = <FlightForm {...commonProps} kind={kind} sourceId={sourceId} ref='expenseform' currencyData={me.state.ComCurrencyCode} formData={me.state.formData} currencyCode={currencyCode} onCode={me.handleCode.bind(me)}/>
+                break;
+            case ExpenseType.MEAL:
+                output = <MealForm {...commonProps} kind={kind} sourceId={sourceId} ref='expenseform' currencyData={me.state.ComCurrencyCode} formData={me.state.formData} currencyCode={currencyCode} onCode={me.handleCode.bind(me)}/>
+                break;
+            case ExpenseType.ENTERTAIN:
+                output = <EntertainForm {...commonProps} kind={kind} sourceId={sourceId} ref='expenseform' currencyData={me.state.ComCurrencyCode} formData={me.state.formData} currencyCode={currencyCode} onCode={me.handleCode.bind(me)}/>
+                break;
+            case ExpenseType.ER_OHER_TRAFFIC:
+            case ExpenseType.OTHERTRAFFIC:
+                output = <OtherTrafficForm {...commonProps} sourceId={sourceId} kind={kind} ref='expenseform' currencyData={me.state.ComCurrencyCode} formData={me.state.formData} currencyCode={currencyCode} onCode={me.handleCode.bind(me)}/>
+                break;
+            case ExpenseType.OTHERCOST:
+                output = <OtherCostForm {...commonProps} kind={kind} sourceId={sourceId} ref='expenseform' currencyData={me.state.ComCurrencyCode} formData={me.state.formData} currencyCode={currencyCode} onCode={me.handleCode.bind(me)}/>
+                break;
+            case ExpenseType.ER_TUANJIAN:
+                output = <TuanjianForm {...commonProps} kind={kind} sourceId={sourceId} ref='expenseform' currencyData={me.state.ComCurrencyCode} formData={me.state.formData} currencyCode={currencyCode} onCode={me.handleCode.bind(me)}/>
+                break;
+            case ExpenseType.DEFAULT:
+                output = me._renderDefault(me.state.showSearch);
+                break;
+                
+            default:
+                output = <UndefinedForm {...commonProps} kind={kind} sourceId={sourceId} ref='expenseform' currencyData={me.state.ComCurrencyCode} formData={me.state.formData}  currencyCode={currencyCode} onCode={me.handleCode.bind(me)}/>
+                break;
+        }
+        return output;
+    }
+
+    handleCode(code) {
+        //debugger;
+
+        //this.props.onCode(code);
+        // if (code != 'CNY') {
+        //     this.refs.expenseforms.AddForm.setValues({
+        //         billType: 'HAS_RECEIPT'
+        //     });
+        //     //this.state.formData=assign({},this.state.formData,{invoceCurrencyCode:code})
+        //     this.setState({
+        //         formData:assign({},this.state.formData,{invoceCurrencyCode:code})
+        //     })
+        // }else if(code == 'CNY'){
+        //     this.refs.expenseforms.AddForm.setValues({
+        //         billType: 'PAPER'
+        //     })
+        //
+        //     //this.state.formData=assign({},this.state.formData,{invoceCurrencyCode:code})
+        //     this.setState({
+        //         formData:assign({},this.state.formData,{invoceCurrencyCode:code})
+        //     })
+        // }
+    }
+
+
+
+
+    callback(key) {
+        // debugger;
+
+    }
+
+    valiAmount(data,callback){
+        let me=this;
+        let submitAmount=data.submittedAmount;
+        let allowdSubmitAmount= helpers.toNumeral(me.props.expenseOverAmount, 'CNY');
+        let transactionDate=data.transactionDate;
+         if(me.state.viewType == ExpenseType.HOTEL){
+            transactionDate = data.checkinDate;
+        }
+        if(me.props.expenseOverAmount && transactionDate && submitAmount){
+               let toCurrency='CNY';
+               if(me.props.currencyCode != 'CNY' && me.props.currencyCode !='cny'){
+                //如果发票金额是rmb也不做转换
+                if(data.invoceAmount && data.invoceCurrencyCode && (data.invoceCurrencyCode == 'CNY' || data.invoceCurrencyCode == 'cny')){
+                     submitAmount = helpers.toNumeral(data.invoceAmount, 'CNY');
+                     if(submitAmount > allowdSubmitAmount){
+                        callback(true,submitAmount,allowdSubmitAmount);
+                     }else{
+                         callback(false,submitAmount,allowdSubmitAmount);
+                     }
+                }else{
+                    DB.TravelReimburse.getExchangeRate({
+                        fromCurrency: me.props.currencyCode,
+                        toCurrency: toCurrency,
+                        conversionDate: helpers.moment(transactionDate)
+                    }).then(function(data) {
+                        let exchangeRate= helpers.toNumeral(data, '_RATE');
+                        submitAmount = helpers.mul(submitAmount, exchangeRate, 'CNY');
+                        submitAmount = helpers.toNumeral(submitAmount, 'CNY');
+                        if(submitAmount > allowdSubmitAmount){
+                            callback(true,submitAmount,allowdSubmitAmount);
+                        }else{
+                            callback(false,submitAmount,allowdSubmitAmount);
+                        }
+                    });
+                }
+          
+            }else{
+                submitAmount = helpers.toNumeral(submitAmount, 'CNY');
+                if(submitAmount > allowdSubmitAmount){
+                        callback(true,submitAmount,allowdSubmitAmount);
+                }else{
+                    callback(false,submitAmount,allowdSubmitAmount);
+                }
+            }
+        }else{
+            callback(false,submitAmount,allowdSubmitAmount);
+        }  
+    }
+
+    handleFormChange(value, name, pass){
+        let me=this;
+        if(name == 'submittedAmount' || name == 'invoceAmount'){
+            me.valiAmount(value,function(isOver,submitAmount,allowdSubmitAmount){
+                  me.setState({isOver:isOver});
+            });
+        }
+    }
+
+    //变更选择类型
+    handleClickCategory(item) {
+        //debugger;
+        let me = this;
+        me.setState({
+            viewType: item.viewType,
+            viewTypeName: item.viewTypeName,
+            expenseOverAmount:item.expenseOverAmount
+        });
+        me.props.onSelectTypeChange(item);
+    }
+
+    _renderKey(types){
+        let me = this;
+        return types.map(function(item,index){
+            
+            //直接传一个item过去吧，省的一个一个写了。这俩字段是不存在的，需要创建一下
+            item.viewType = item.expenseTypeCode;
+            item.viewTypeName = item.name;
+
+            return(
+                <li onClick={me.handleClickCategory.bind(me,item)} title={item.summary} className="fn-left bx-wp49 bx-lh2">{item.name}</li>
+                )
+            
+        })
+    }
+
+    /*handleSearch(item){
+       //搜索类别
+        this.setState({
+            viewType: item.expenseTypeCode,
+            viewTypeName:item.name
+        });
+    }*/
+
+    handleSearch(results,showSearch,value){
+       //搜索类别
+        let me = this;
+        me.setState({
+            //'viewType': 'SearchResult',
+            'viewType': ExpenseType.DEFAULT,
+            'results': results,
+            'showSearch': showSearch,
+            'searchValue':value
+        });
+    }
+
+    formatText(item){
+        return item.name;
+    }
+
+    _renderDefault(showSearch){
+        // debugger
+        var me = this;
+        let tabs;
+        if (!showSearch){
+            tabs = me.state.ComExpenseTypeList.map(function(item,index){
+                return (
+                            <TabPane tab={item.expenseTypeCategoryName} key={index}>
+                            <ul className="fn-clear">
+                                {me._renderKey(item.types)}
+                            </ul>
+                            </TabPane>
+                    )
+
+            });
+        }else{
+             tabs = <div className="kuma-tab"><div className="kuma-tab-nav-container">
+                    <ul className="fn-clear">
+                        {me._renderKey(me.state.results)}
+                    </ul>
+                    </div>
+                </div>
+        }
+
+        return(
+                <div>
+                    <SearchForm value={me.state.searchValue} onSearch={me.handleSearch.bind(me)} beforeFetch={function(q){
+                        return {buCode:me.props.buCode,keyword:q}
+                    }}/>
+                    <div className="expense-tabs">
+                    {!showSearch?
+                    <Tabs type="brick" defaultActiveKey="0" onChange={me.callback.bind(me)}>
+                        {tabs}
+                    </Tabs>:
+                        <div>
+                            <div className="kuma-tab kuma-tab-top kuma-tab-brick">
+                                <div className="kuma-tab-bar">
+                                <div className="kuma-tab-nav-container">
+                                    {i18n('ui.search.result')}
+                                </div>
+                                </div>
+
+                                <div className="kuma-tab-content">
+                                    <div className="kuma-tab-tabpane">
+                                    <ul className="fn-clear">
+
+                                        {me.state.results.length>0?me._renderKey(me.state.results):
+                                            <p className="kuma-alert kuma-alert-message">
+                                                <i className="kuma-alert-icon kuma-icon kuma-icon-information"></i>
+                                                {i18n('ui.search.form.notFound')}
+                                            </p>
+
+                                        }
+                                    </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+                    </div>
+                </div>
+        )
+
+    }
+
+  
+
+}
+
+UiCostSelect.defaultProps = {
+    viewType: ExpenseType.DEFAULT,
+    visible: false,
+    mode: '',
+    sourceId: '',
+    kind: 'ER',
+    onConfirm: function() {}
+};
+
+reactMixin.onClass(UiCostSelect, Reflux.connect(Store));
+
+module.exports = UiCostSelect;
+
+
+ceshi
