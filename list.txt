@@ -13,3 +13,5 @@
 10,添加寺庙少了个  寺庙概括 字段
 
 11./v1/public/get/temple/status/info 获取寺庙状态详情，status 字段中，少了寺庙headImgurl,name,
+
+
