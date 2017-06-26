@@ -1,4 +1,4 @@
-1.运营后台，删除banner,没有 id
+.运营后台，删除banner,没有 id
 
 4，headImgUrl字段，有些接口返回的是完整的url,有的就是 /dev/........jpg,
 
