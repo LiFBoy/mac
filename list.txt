@@ -18,3 +18,5 @@
 
 13.abcdd..sfwfwf:x
 14. master`
+15.daily/1.4
+16.daily/1.3
